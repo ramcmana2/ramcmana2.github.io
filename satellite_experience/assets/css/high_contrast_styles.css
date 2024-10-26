@@ -120,10 +120,17 @@ body {
 
 .modal-text {
     margin-top: 10px;
-    /*background-color: rgba(255, 255, 255, 0.05);*/
-    background-color: #34254B;
+    background-color: rgba(255, 255, 255, 0.05);
+    /*background-color: #34254B;*/
     padding: 10px;
     border-radius: 5px;
+}
+
+div div.modal-text {
+    background-color: #34254B;
+    border: 2px;
+    border-style: solid;
+    border-color: #FFFAFA;
 }
 
 /* Settings Page/Modal */
