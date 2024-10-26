@@ -1,8 +1,10 @@
 /* Main Styling */
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: black;
-    color: white;
+    /*background-color: black;*/
+    /*color: white;*/
+    background-color: #FFFFFF;
+    color: #000000;
     text-align: center;
     display: flex;
     padding: 0;
@@ -54,7 +56,7 @@ body {
 
 .modal-popup {
     /*background-color: rgba(32, 22, 47, 0.8); /* Make background slightly opaque */
-    background-color: #FFFFFF;
+    /*background-color: #FFFFFF;*/
     margin: 10% auto;
     padding: 20px;
     width: 80%;
