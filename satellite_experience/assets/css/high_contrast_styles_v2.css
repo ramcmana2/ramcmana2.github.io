@@ -1,10 +1,10 @@
 /* Main Styling */
 body {
     font-family: Arial, Helvetica, sans-serif;
-    /*background-color: black;*/
-    /*color: white;*/
-    background-color: #FFFFFF;
-    color: #000000;
+    background-color: black;
+    color: white;
+    /*background-color: #FFFFFF;*/
+    /*color: #000000;*/
     text-align: center;
     display: flex;
     padding: 0;
@@ -66,6 +66,10 @@ body {
     max-height: 90vh;
     overflow-y: auto;
     z-index: 3;
+}
+
+.modal-container {
+    background-color: #FFFFFF;
 }
 
 .modal-logo-container {
