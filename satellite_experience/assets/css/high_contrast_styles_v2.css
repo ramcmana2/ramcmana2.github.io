@@ -55,8 +55,7 @@ body {
 }
 
 .modal-popup {
-    /*background-color: rgba(32, 22, 47, 0.8); /* Make background slightly opaque */
-    /*background-color: #FFFFFF;*/
+    background-color: rgba(32, 22, 47, 0.8); /* Make background slightly opaque */
     margin: 10% auto;
     padding: 20px;
     width: 80%;
@@ -90,7 +89,7 @@ body {
 }
 
 .modal-close {
-    color: white;
+    color: #000000;
     position: absolute;
     top: 10px;
     right: 20px;
