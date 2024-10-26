@@ -120,8 +120,9 @@ body {
 
 .modal-text {
     margin-top: 10px;
-    background-color: rgba(255, 255, 255, 0.05);
+    /*background-color: rgba(255, 255, 255, 0.05);*/
     /*background-color: #34254B;*/
+    background-color: #FFFFFF;
     padding: 10px;
     border-radius: 5px;
 }
