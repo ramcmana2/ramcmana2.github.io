@@ -83,6 +83,7 @@ body {
     margin-top: 0;
     padding-top: 10px;
     text-align: center;
+    color: black;
 }
 
 .modal-close {
@@ -120,12 +121,12 @@ body {
 
 .modal-text {
     margin-top: 10px;
-    background-color: #34254B;
+    background-color: #AF445E;
     padding: 10px;
     border: 1px;
     border-radius: 5px;
     border-style: solid;
-    border-color: #FFFFFF;
+    border-color: #000000;
 }
 
 /* Settings Page/Modal */
