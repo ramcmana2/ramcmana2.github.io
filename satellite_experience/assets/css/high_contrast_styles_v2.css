@@ -55,7 +55,8 @@ body {
 }
 
 .modal-popup {
-    background-color: rgba(32, 22, 47, 0.8); /* Make background slightly opaque */
+    /*background-color: rgba(32, 22, 47, 0.8); /* Make background slightly opaque */
+    background-color: #FFFFFF;
     margin: 10% auto;
     padding: 20px;
     width: 80%;
@@ -66,10 +67,6 @@ body {
     max-height: 90vh;
     overflow-y: auto;
     z-index: 3;
-}
-
-.modal-container {
-    background-color: #FFFFFF;
 }
 
 .modal-logo-container {
