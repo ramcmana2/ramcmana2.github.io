@@ -228,7 +228,7 @@ body {
 
 /* Loading screen */
 /* Loading container styling */
-        #loading-container {
+        #loading-container_v2 {
             position: fixed;
             inset: 0;
             /*background-color: #20162F;*/
