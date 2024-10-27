@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function openSettingsModal() {
         var xhr = new XMLHttpRequest();
         xhr.open("GET", "settings_page.html", true);
+        //xhr.open("GET", "settings_page_v2.html", true);
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 settingsModalContent.innerHTML = xhr.responseText;
