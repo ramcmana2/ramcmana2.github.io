@@ -231,7 +231,8 @@ body {
         #loading-container {
             position: fixed;
             inset: 0;
-            background-color: #20162F;
+            /*background-color: #20162F;*/
+            background-color: #FFFFFF;
             z-index: 2;
             opacity: 1;
             transition: opacity 700ms ease;
@@ -252,8 +253,10 @@ body {
       
         /* Loader styling */
         .loader {
-          border: 10px solid #f3f3f3; /* Light grey */
-          border-top: 10px solid #A5405C; /* Psyche pink/red color */
+          /*border: 10px solid #f3f3f3; /* Light grey */
+          border: 10px solid #000000;
+          /*border-top: 10px solid #A5405C; /* Psyche pink/red color */
+          border-top: 10px solid #F99F02;
           border-radius: 70%;
           width: 50px;
           height: 50px;
