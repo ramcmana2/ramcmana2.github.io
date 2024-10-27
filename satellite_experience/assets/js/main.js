@@ -13,8 +13,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // Inject the help modal content
     function openHelpModal() {
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "help_page.html", true);
-        //xhr.open("GET", "help_page_v2.html", true);
+        //xhr.open("GET", "help_page.html", true);
+        xhr.open("GET", "help_page_v2.html", true);
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 helpModalContent.innerHTML = xhr.responseText;
@@ -71,8 +71,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // Inject the settings modal content
     function openSettingsModal() {
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "settings_page.html", true);
-        //xhr.open("GET", "settings_page_v2.html", true);
+        //xhr.open("GET", "settings_page.html", true);
+        xhr.open("GET", "settings_page_v2.html", true);
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 settingsModalContent.innerHTML = xhr.responseText;
@@ -170,8 +170,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Loading screen
-    let loading = document.getElementById("loading-container");
-    //let loading = document.getElementById("loading-container_v2");
+    //let loading = document.getElementById("loading-container");
+    let loading = document.getElementById("loading-container_v2");
 
     setTimeout(function () {
       loading.style.opacity = 0;
