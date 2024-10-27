@@ -13,8 +13,8 @@ document.addEventListener("DOMContentLoaded", function() {
     // Inject the help modal content
     function openHelpModal() {
         var xhr = new XMLHttpRequest();
-        //xhr.open("GET", "help_page.html", true);
-        xhr.open("GET", "help_page_v2.html", true);
+        xhr.open("GET", "help_page.html", true);
+        //xhr.open("GET", "help_page_v2.html", true);
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 helpModalContent.innerHTML = xhr.responseText;
