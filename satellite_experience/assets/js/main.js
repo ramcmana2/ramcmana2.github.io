@@ -169,7 +169,8 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // Loading screen
-    let loading = document.getElementById("loading-container");
+    //let loading = document.getElementById("loading-container");
+    let loading = document.getElementById("loading-container_v2");
 
     setTimeout(function () {
       loading.style.opacity = 0;
