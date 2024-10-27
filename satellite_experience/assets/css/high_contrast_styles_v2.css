@@ -247,7 +247,7 @@ body {
 
         /* Content styling */
         .loading-content {
-            color: #000000;
+            /*color: #000000;*/
             position: absolute;
             bottom: 0px;
         }
