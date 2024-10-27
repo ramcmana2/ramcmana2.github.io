@@ -139,9 +139,13 @@ body {
     text-align: left;
     margin-bottom: 1px;
     margin-top: 10px;
-    background-color: rgba(255, 255, 255, 0.05);
+    /*background-color: rgba(255, 255, 255, 0.05);*/
+    background-color: #AF445E;
     padding: 15px 10px;
+    border: 1px;
     border-radius: 5px;
+    border-style: solid;
+    border-color: #000000;
     display: flex;
     justify-content: space-between;
 }
