@@ -2,8 +2,8 @@
 
 //const launch_sound = new Audio("../audio/launch.wav");
 
-const sound = new Audio();
-sound.autoplay = true;
+//const sound = new Audio();
+//sound.autoplay = true;
 
 function onClick() {
 	//let launch_sound = new Audio("../audio/launch.ogg");
@@ -16,8 +16,8 @@ function onClick() {
 	//silence.play();
 
 	sound.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
-	sound.src = "../audio/launch.wav"
-  //window.location.href = "main_page.html";
+	//sound.src = "../audio/launch.wav";
+  window.location.href = "main_page.html";
 }
 
 const fadeInSections = document.querySelectorAll('.fade-in-section');
