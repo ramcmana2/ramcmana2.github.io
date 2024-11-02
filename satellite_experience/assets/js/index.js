@@ -18,8 +18,12 @@ function onClick() {
 	//let silence = new Audio("../audio/silence.wav");
 	//silence.play();
 
-	sound.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
+	//sound.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
 	//sound.src = "../audio/launch.wav";
+	if (audioContext.state === "suspended") {
+		audioContext.resume();
+	}
+	audio.play();
   window.location.href = "main_page.html";
 }
 

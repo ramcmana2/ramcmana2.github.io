@@ -146,8 +146,13 @@ class SpaceSkybox {
         //let loading = document.getElementById("loading-container");
 
         //launch_sound.play();
-        sound.src = "../audio/launch.wav";
-        audioContext.resume();
+        // sound.src = "../audio/launch.wav";
+        // audioContext.resume();
+        
+        if (audioContext.state === "suspended") {
+            audioContext.resume();
+        }
+        audio.play();
 
         setTimeout(function() {
             loading.style.opacity = 0;
