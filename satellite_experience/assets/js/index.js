@@ -1,6 +1,6 @@
 
 
-const launch_sound = new Audio("../audio/launch.ogg");
+const launch_sound = new Audio("../audio/launch.wav");
 
 function onClick() {
 	//let launch_sound = new Audio("../audio/launch.ogg");
