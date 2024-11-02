@@ -7,7 +7,7 @@ function onClick() {
 	//launch_sound.play();
 	let state = launch_sound.play();
 	window.history.pushState(state, "", "main_page.html");
-  //window.location.href = "main_page.html";
+  window.location.href = "main_page.html";
 }
 
 const fadeInSections = document.querySelectorAll('.fade-in-section');
