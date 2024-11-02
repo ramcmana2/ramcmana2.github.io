@@ -1,6 +1,10 @@
 
 
+const launch_sound = new Audio("../audio/launch.ogg");
+
 function onClick() {
+	//let launch_sound = new Audio("../audio/launch.ogg");
+	launch_sound.play();
   window.location.href = "main_page.html";
 }
 
