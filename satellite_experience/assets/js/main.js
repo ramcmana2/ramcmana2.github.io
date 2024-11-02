@@ -135,11 +135,13 @@ class SpaceSkybox {
     // private method for loading screen
     _LoadingScreen() {
         //const launch_sound = new Audio("../audio/launch.ogg");
-        //const launch_sound = new Audio("../audio/launch.wav");
+        const launch_sound = new Audio("../audio/launch.wav");
 
         //const launch_sound = new Audio("../audio/launch_mp3.mp3");
         ////launch_sound.autoplay = true;
         //launch_sound.play();
+        let state = launch_sound.play();
+        window.history.pushState(state, "", "");
         let loading = document.getElementById("loading-container");
 
         setTimeout(function() {
