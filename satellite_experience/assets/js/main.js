@@ -148,11 +148,15 @@ class SpaceSkybox {
         //launch_sound.play();
         // sound.src = "../audio/launch.wav";
         // audioContext.resume();
-        
-        if (audioContext.state === "suspended") {
-            audioContext.resume();
-        }
-        audio.play();
+
+        // if (audioContext.state === "suspended") {
+        //     audioContext.resume();
+        // }
+        // audio.play();
+
+        let myAudio: WKAudiovisualMediaTypes = [];
+        myAudio = new Audio("../audio/launch.wav");
+        myAudio.play();
 
         setTimeout(function() {
             loading.style.opacity = 0;
