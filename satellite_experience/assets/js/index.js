@@ -16,7 +16,7 @@ function onClick() {
 	//silence.play();
 
 	sound.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
-	//sound.src = "../audio/launch.wav";
+	sound.src = "../audio/launch.wav";
   window.location.href = "main_page.html";
 }
 
