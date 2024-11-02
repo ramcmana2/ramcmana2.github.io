@@ -8,6 +8,9 @@ function onClick() {
 
 	//let state = launch_sound.play();
 	//window.history.pushState(state, "", "main_page.html");
+
+	let silence = new Audio("../audio/silence.wav");
+	silence.play();
   window.location.href = "main_page.html";
 }
 

@@ -140,9 +140,12 @@ class SpaceSkybox {
         //const launch_sound = new Audio("../audio/launch_mp3.mp3");
         ////launch_sound.autoplay = true;
         //launch_sound.play();
-        let state = launch_sound.play();
-        window.history.pushState(state, "", "");
-        let loading = document.getElementById("loading-container");
+
+        //let state = launch_sound.play();
+        //window.history.pushState(state, "", "");
+        //let loading = document.getElementById("loading-container");
+
+        launch_sound.play();
 
         setTimeout(function() {
             loading.style.opacity = 0;
@@ -150,6 +153,7 @@ class SpaceSkybox {
                 loading.style.display = "none";
             }, 3000);
         }, 2000);
+        //window.history.popState(state, "", "");
     }
 
     _OnWindowResize() {
