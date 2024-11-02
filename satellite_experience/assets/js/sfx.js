@@ -12,7 +12,7 @@
 
 //sound.autoplay = true;
 
-const audioContext = new AudioContext();
-const audio = new Audio("../audio/launch.wav");
-const source = audioContext.createMediaElementSource(audio);
-source.connect(audioContext.destination);
+// const audioContext = new AudioContext();
+// const audio = new Audio("../audio/launch.wav");
+// const source = audioContext.createMediaElementSource(audio);
+// source.connect(audioContext.destination);
