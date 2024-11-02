@@ -147,6 +147,7 @@ class SpaceSkybox {
 
         //launch_sound.play();
         sound.src = "../audio/launch.wav";
+        audioContext.resume();
 
         setTimeout(function() {
             loading.style.opacity = 0;
