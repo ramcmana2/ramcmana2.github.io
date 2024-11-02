@@ -20,11 +20,17 @@ function onClick() {
 
 	//sound.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
 	//sound.src = "../audio/launch.wav";
-	if (audioContext.state === "suspended") {
-		audioContext.resume();
-	}
-	audio.play();
-  window.location.href = "main_page.html";
+	// if (audioContext.state === "suspended") {
+	// 	audioContext.resume();
+	// }
+	// audio.play();
+  //window.location.href = "main_page.html";
+    var iframe = document.createElement('iframe');
+	var html = '<body>Foo</body>';
+	document.body.appendChild(iframe);
+	iframe.contentWindow.document.open();
+	iframe.contentWindow.document.write(html);
+	iframe.contentWindow.document.close();
 }
 
 const fadeInSections = document.querySelectorAll('.fade-in-section');
