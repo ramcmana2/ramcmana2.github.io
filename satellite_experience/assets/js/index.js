@@ -1,6 +1,6 @@
 
 
-//const launch_sound = new Audio("../audio/launch.wav");
+const launch_sound = new Audio("../audio/launch.wav");
 
 // const sound = new Audio();
 // sound.autoplay = true;
@@ -10,7 +10,7 @@
 
 function onClick() {
 	//let launch_sound = new Audio("../audio/launch.ogg");
-	//launch_sound.play();
+	launch_sound.play();
 
 	//let state = launch_sound.play();
 	//window.history.pushState(state, "", "main_page.html");
