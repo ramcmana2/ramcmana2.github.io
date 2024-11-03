@@ -379,6 +379,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     var iframe = document.createElement('iframe');
+    iframe.id = "iframe_a";
     var html = '<body>Foo</body>';
     //iframe.src = "../pages/main_page.html";
     document.body.appendChild(iframe);
@@ -392,7 +393,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Loading screen
     //let loading = document.getElementById("loading-container");
-    let loading = iframe.contentWindow.document.getElementById("loading-container");
+    //let loading = iframe.contentWindow.document.getElementById("loading-container");
+    let loading = document.getElementById("iframe_a").contentWindow.document.getElementById("loading-container");
 
     setTimeout(function() {
         loading.style.opacity = 0;
