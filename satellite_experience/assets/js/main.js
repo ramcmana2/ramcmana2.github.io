@@ -223,12 +223,14 @@ document.addEventListener("DOMContentLoaded", function() {
     // Help icon button
     var helpIconButton = document.getElementById("help-icon-button");
     helpIconButton.addEventListener("click", function() {
+        sound.src = "../audio/open_mp3.mp3";
         openHelpModal();
     });
 
     // Close the help modal
     var helpModalCloseButton = document.getElementById("help-modal-close");
     helpModalCloseButton.addEventListener("click", function() {
+        sound.src = "../audio/open_mp3.mp3";
         helpModal.style.display = "none";
     });
 
@@ -299,16 +301,20 @@ document.addEventListener("DOMContentLoaded", function() {
                 radioSetting.forEach(radio => {
                     radio.addEventListener("change", function() {
                         if (document.getElementById('default-mode').checked) {
+                            sound.src = "../audio/open_mp3.mp3";
                             settingThemeLink.href = "../assets/css/styles.css"
                             themeLink = "../assets/css/styles.css"
                         } else if (document.getElementById('high-contrast-mode').checked) {
+                            sound.src = "../audio/open_mp3.mp3";
                             // high contrast mode selected
                             settingThemeLink.href = "../assets/css/high_contrast_mode.css"
                             themeLink = "../assets/css/high_contrast_mode.css"
                         } else if (document.getElementById('light-mode').checked) {
+                            sound.src = "../audio/open_mp3.mp3";
                             settingThemeLink.href = "../assets/css/light_mode.css"
                             themeLink = "../assets/css/light_mode.css"
                         } else if (document.getElementById('color-blind-mode').checked) {
+                            sound.src = "../audio/open_mp3.mp3";
                             // color-blind mode selected
                             console.log("Color-blind Mode selected");
                         }
@@ -322,6 +328,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Settings icon button
     var settingsIconButton = document.getElementById("settings-icon-button");
     settingsIconButton.addEventListener("click", function() {
+        sound.src = "../audio/open_mp3.mp3";
         openSettingsModal();
     });
 
@@ -329,6 +336,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var settingsModalCloseButton = document.getElementById("settings-modal-close");
     settingsModalCloseButton.addEventListener("click", function() {
         resetInactivityTimer(); // Reset activity timer so it doesn't pop up as soon as settings is closed
+        sound.src = "../audio/open_mp3.mp3";
         settingsModal.style.display = "none";
     });
 
