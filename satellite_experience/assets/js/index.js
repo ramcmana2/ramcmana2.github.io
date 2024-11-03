@@ -27,6 +27,7 @@ function onClick() {
   //window.location.href = "main_page.html";
 
     var iframe = document.createElement('iframe');
+    iframe.id = "iframe_a";
 	var html = '<body>Foo</body>';
 	//iframe.src = "../pages/main_page.html";
 	document.body.appendChild(iframe);
