@@ -388,15 +388,15 @@ document.addEventListener("DOMContentLoaded", function() {
         }, 3000);
     }, 2000);
 
-    var iframe = document.createElement('iframe');
-    var html = '<body>Foo</body>';
-    //iframe.src = "../pages/main_page.html";
-    document.body.appendChild(iframe);
-    iframe.contentWindow.document.open();
-    iframe.contentWindow.document.write(html);
-    iframe.contentWindow.document.close();
-    iframe.style = "position: fixed; top: 0px;bottom: 0px; right: 0px; width: 100%; border: none; margin: 0; padding: 0; overflow: hidden; z-index: 999999; height: 100%;";
-    iframe.src = "../pages/main_page.html";
+    // var iframe = document.createElement('iframe');
+    // var html = '<body>Foo</body>';
+    // //iframe.src = "../pages/main_page.html";
+    // document.body.appendChild(iframe);
+    // iframe.contentWindow.document.open();
+    // iframe.contentWindow.document.write(html);
+    // iframe.contentWindow.document.close();
+    // iframe.style = "position: fixed; top: 0px;bottom: 0px; right: 0px; width: 100%; border: none; margin: 0; padding: 0; overflow: hidden; z-index: 999999; height: 100%;";
+    // iframe.src = "../pages/main_page.html";
 
     // Update canvas when window resizes
     window.addEventListener('resize', function() {
