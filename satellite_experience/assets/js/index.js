@@ -22,7 +22,7 @@ function onClick() {
 	//sound.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
 	//sound.src = "../audio/launch.wav";
 
-	sound.src = "../audio/launch2_mp3.mp3";
+	sound.src = "../audio/launch.mp3";
 
 	// if (audioContext.state === "suspended") {
 	// 	audioContext.resume();
