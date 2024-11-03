@@ -1,4 +1,5 @@
-const sound = new Audio("../audio/silence.wav");
+//const sound = new Audio("../audio/silence.wav");
+const sound = new Audio();
 sound.autoplay = true;
 //sound.src = "../audio/launch.wav";
 

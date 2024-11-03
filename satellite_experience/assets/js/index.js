@@ -20,7 +20,10 @@ function onClick() {
 	//silence.play();
 
 	//sound.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
-	sound.src = "../audio/launch.wav";
+	//sound.src = "../audio/launch.wav";
+
+	sound.src = "../audio/launch2_mp3.mp3";
+
 	// if (audioContext.state === "suspended") {
 	// 	audioContext.resume();
 	// }
