@@ -223,14 +223,16 @@ document.addEventListener("DOMContentLoaded", function() {
     // Help icon button
     var helpIconButton = document.getElementById("help-icon-button");
     helpIconButton.addEventListener("click", function() {
-        sound.src = "../audio/open_mp3.mp3";
+        //sound.src = "../audio/open_mp3.mp3";
+        document.getElementById('sound').play();
         openHelpModal();
     });
 
     // Close the help modal
     var helpModalCloseButton = document.getElementById("help-modal-close");
     helpModalCloseButton.addEventListener("click", function() {
-        sound.src = "../audio/open_mp3.mp3";
+        //sound.src = "../audio/open_mp3.mp3";
+        //document.getElementById('sound').play();
         helpModal.style.display = "none";
     });
 
