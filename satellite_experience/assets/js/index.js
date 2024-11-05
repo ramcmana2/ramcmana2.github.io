@@ -53,12 +53,14 @@ function onClick() {
 
 	var duration;
 	function loop() {
-		sound.currentTime = 5;
-		duration = setTimeout(loop, 5000);
+		//sound.currentTime = 5;
+		sound.currentTime = 10;
+		//duration = setTimeout(loop, 5000);
+		duration = setTimeout(loop, 62000);
 	}
 	setTimeout(function() {
 		loop();
-	}, 10000);
+	}, 72000);
 }
 
 const fadeInSections = document.querySelectorAll('.fade-in-section');
