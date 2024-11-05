@@ -42,6 +42,13 @@ function onClick() {
 	// iframe.contentWindow.document.close();
 	// iframe.style = "position: fixed; top: 0px;bottom: 0px; right: 0px; width: 100%; border: none; margin: 0; padding: 0; overflow: hidden; z-index: 999999; height: 100%;";
 	// iframe.src = "../pages/main_page.html";
+
+	var duration;
+	function loop() {
+		sound.currentTime = 0;
+		loop = setTimeout(loop, 10000);
+	}
+	loop();
 }
 
 const fadeInSections = document.querySelectorAll('.fade-in-section');
