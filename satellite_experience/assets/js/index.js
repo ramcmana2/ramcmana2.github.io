@@ -43,12 +43,22 @@ function onClick() {
 	// iframe.style = "position: fixed; top: 0px;bottom: 0px; right: 0px; width: 100%; border: none; margin: 0; padding: 0; overflow: hidden; z-index: 999999; height: 100%;";
 	// iframe.src = "../pages/main_page.html";
 
+	// THIS WORKS!!!
+	// var duration;
+	// function loop() {
+	// 	sound.currentTime = 0;
+	// 	duration = setTimeout(loop, 10000);
+	// }
+	// loop();
+
 	var duration;
 	function loop() {
-		sound.currentTime = 0;
-		duration = setTimeout(loop, 10000);
+		sound.currentTime = 5;
+		duration = setTimeout(loop, 5000);
 	}
-	loop();
+	setTimeout(function() {
+		loop();
+	}, 10000);
 }
 
 const fadeInSections = document.querySelectorAll('.fade-in-section');
