@@ -55,7 +55,7 @@ function onClick() {
 	function loop() {
 		//sound.currentTime = 5;
 		//sound.currentTime = 10;
-		sound.currentTime = 9;
+		sound.currentTime = 10;
 		//duration = setTimeout(loop, 5000);
 		duration = setTimeout(loop, 62000);
 	}
