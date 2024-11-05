@@ -46,7 +46,7 @@ function onClick() {
 	var duration;
 	function loop() {
 		sound.currentTime = 0;
-		loop = setTimeout(loop, 10000);
+		duration = setTimeout(loop, 10000);
 	}
 	loop();
 }
