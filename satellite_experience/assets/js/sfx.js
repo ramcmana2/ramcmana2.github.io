@@ -32,7 +32,7 @@ const samplePaths = ["../audio/launch.mp3",
 
 async function getFile(filePath) {
 	let response = await fetch(filePath);
-	const arrayBuffer = await reponse.arrayBuffer();
+	const arrayBuffer = await response.arrayBuffer();
 	const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
 	return audioBuffer;
 }
