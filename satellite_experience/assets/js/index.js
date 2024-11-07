@@ -22,7 +22,7 @@ function onClick() {
 	//sound.src = "data:audio/wav;base64,UklGRigAAABXQVZFZm10IBIAAAABAAEARKwAAIhYAQACABAAAABkYXRhAgAAAAEA";
 	//sound.src = "../audio/launch.wav";
 
-	sound.src = "../audio/launch.mp3";
+//	sound.src = "../audio/launch.mp3";
 
 	// if (audioContext.state === "suspended") {
 	// 	audioContext.resume();
@@ -51,17 +51,17 @@ function onClick() {
 	// }
 	// loop();
 
-	var duration;
-	function loop() {
+//	var duration;
+//	function loop() {
 		//sound.currentTime = 5;
 		//sound.currentTime = 10;
-		sound.currentTime = 10;
+//		sound.currentTime = 10;
 		//duration = setTimeout(loop, 5000);
-		duration = setTimeout(loop, 62000);
-	}
-	setTimeout(function() {
-		loop();
-	}, 72000);
+//		duration = setTimeout(loop, 62000);
+//	}
+//	setTimeout(function() {
+//		loop();
+//	}, 72000);
 }
 
 const fadeInSections = document.querySelectorAll('.fade-in-section');
