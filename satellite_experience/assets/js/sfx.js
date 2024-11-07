@@ -55,16 +55,26 @@ function playSample(audioBuffer, time) {
 	sampleSource.start(time);
 }
 
+// function loop(audioBuffer, startSecond, durationMilliseconds) {
+// 	const sampleSource = audioContext.createBufferSource();
+// 	sampleSource.buffer = audioBuffer;
+// 	sampleSource.connect(audioContext.destination);
+// 	//sound.currentTime = 10;
+// 	//sound.currentTime = startSecond;
+// 	//duration = setTimeout(loop, 62000);
+// 	sampleSource.start(startSecond);
+// 	//let duration = setTimeout(loop(audioBuffer, startSecond, durationMilliseconds), durationMilliseconds);
+// 	setTimeout(loop(audioBuffer, startSecond, durationMilliseconds), durationMilliseconds);
+// }
+
 function loop(audioBuffer, startSecond, durationMilliseconds) {
-	const sampleSource = audioContext.createBufferSource();
-	sampleSource.buffer = audioBuffer;
-	sampleSource.connect(audioContext.destination);
-	//sound.currentTime = 10;
-	//sound.currentTime = startSecond;
-	//duration = setTimeout(loop, 62000);
-	sampleSource.start(startSecond);
-	//let duration = setTimeout(loop(audioBuffer, startSecond, durationMilliseconds), durationMilliseconds);
-	setTimeout(loop(audioBuffer, startSecond, durationMilliseconds), durationMilliseconds);
+	setTimeout(function () {
+		const sampleSource = audioContext.createBufferSource();
+		sampleSource.buffer = audioBuffer;
+		sampleSource.connect(audioContext.destination);
+		sampleSource.start(startSecond);
+		loop(audioBuffer, startSecond, durationMilliseconds);
+	}, durationMilliseconds);
 }
 
 function playFirstSample(audioBuffer, time) {
