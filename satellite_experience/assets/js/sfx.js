@@ -68,7 +68,7 @@ function playFirstSample(audioBuffer, time) {
 	sampleSource.buffer = audioBuffer;
 	sampleSource.connect(audioContext.destination);
 	//sampleSource.start(samples[0], 0);
-	sampleSource.start(audioBuffer, 0);
+	sampleSource.start(time);
 	//let duration;
 	setTimeout(function() {
 		//loop();
