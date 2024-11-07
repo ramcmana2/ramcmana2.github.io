@@ -21,7 +21,8 @@
 // const sound = new Audio();
 // sound.autoplay = true;
 
-const audioContext = new AudioContext();
+//const audioContext = new AudioContext();
+let audioContext;
 let samples;
 console.log("Audio context started");
 
@@ -94,6 +95,6 @@ function playFirstSample(audioBuffer, time) {
 	}, 72000);
 }
 
-setupSamples(samplePaths).then((response) => {
-	samples = response;
-})
+// setupSamples(samplePaths).then((response) => {
+// 	samples = response;
+// })

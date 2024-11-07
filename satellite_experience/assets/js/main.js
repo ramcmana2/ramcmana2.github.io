@@ -224,7 +224,8 @@ document.addEventListener("DOMContentLoaded", function() {
     var helpIconButton = document.getElementById("help-icon-button");
     helpIconButton.addEventListener("click", function() {
 //        sound.src = "../audio/open.mp3";
-        window.parent.playSample(window.parent.samples[1], 0);
+        //window.parent.playSample(window.parent.samples[1], 0);
+        parent.playSample(parent.samples[1], 0);
         //document.getElementById('sound').play();
         openHelpModal();
     });
@@ -233,7 +234,8 @@ document.addEventListener("DOMContentLoaded", function() {
     var helpModalCloseButton = document.getElementById("help-modal-close");
     helpModalCloseButton.addEventListener("click", function() {
 //        sound.src = "../audio/close.mp3";
-        window.parent.playSample(window.parent.samples[3], 0);
+        //window.parent.playSample(window.parent.samples[3], 0);
+        parent.playSample(parent.samples[3], 0);
         //document.getElementById('sound').play();
         helpModal.style.display = "none";
     });
@@ -305,7 +307,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 radioSetting.forEach(radio => {
                     radio.addEventListener("change", function() {
 //                        sound.src = "../audio/select.mp3";
-                        window.parent.playSample(window.parent.samples[2], 0);
+                        //window.parent.playSample(window.parent.samples[2], 0);
+                        parent.playSample(parent.samples[2], 0);
                         if (document.getElementById('default-mode').checked) {
                             //sound.src = "../audio/select.mp3";
                             settingThemeLink.href = "../assets/css/styles.css"
@@ -335,7 +338,8 @@ document.addEventListener("DOMContentLoaded", function() {
     var settingsIconButton = document.getElementById("settings-icon-button");
     settingsIconButton.addEventListener("click", function() {
 //        sound.src = "../audio/open.mp3";
-        window.parent.playSample(window.parent.samples[1], 0);
+        //window.parent.playSample(window.parent.samples[1], 0);
+        parent.playSample(parent.samples[1], 0);
         openSettingsModal();
     });
 
@@ -344,7 +348,8 @@ document.addEventListener("DOMContentLoaded", function() {
     settingsModalCloseButton.addEventListener("click", function() {
         resetInactivityTimer(); // Reset activity timer so it doesn't pop up as soon as settings is closed
 //        sound.src = "../audio/close.mp3";
-        window.parent.playSample(window.parent.samples[3], 0);
+        //window.parent.playSample(window.parent.samples[3], 0);
+        parent.playSample(parent.samples[3], 0);
         settingsModal.style.display = "none";
     });
 
