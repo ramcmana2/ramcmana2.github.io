@@ -23,6 +23,7 @@ function onClick() {
 	//sound.src = "../audio/launch.wav";
 
 //	sound.src = "../audio/launch.mp3";
+	playFirstSample(samples[0], 0);
 
 	// if (audioContext.state === "suspended") {
 	// 	audioContext.resume();
