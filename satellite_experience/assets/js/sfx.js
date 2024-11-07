@@ -68,11 +68,15 @@ function playSample(audioBuffer, time) {
 // }
 
 function loop(audioBuffer, startSecond, durationMilliseconds) {
+	const sampleSource = audioContext.createBufferSource();
+	sampleSource.buffer = audioBuffer;
+	sampleSource.connect(audioContext.destination);
+	sampleSource.start(startSecond);
 	setTimeout(function () {
-		const sampleSource = audioContext.createBufferSource();
-		sampleSource.buffer = audioBuffer;
-		sampleSource.connect(audioContext.destination);
-		sampleSource.start(startSecond);
+		// const sampleSource = audioContext.createBufferSource();
+		// sampleSource.buffer = audioBuffer;
+		// sampleSource.connect(audioContext.destination);
+		// sampleSource.start(startSecond);
 		loop(audioBuffer, startSecond, durationMilliseconds);
 	}, durationMilliseconds);
 }
