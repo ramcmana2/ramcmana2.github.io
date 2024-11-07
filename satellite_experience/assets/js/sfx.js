@@ -71,7 +71,7 @@ function loop(audioBuffer, startSecond, durationMilliseconds) {
 	const sampleSource = audioContext.createBufferSource();
 	sampleSource.buffer = audioBuffer;
 	sampleSource.connect(audioContext.destination);
-	sampleSource.start(startSecond);
+	sampleSource.start(0, startSecond);
 	setTimeout(function () {
 		// const sampleSource = audioContext.createBufferSource();
 		// sampleSource.buffer = audioBuffer;
