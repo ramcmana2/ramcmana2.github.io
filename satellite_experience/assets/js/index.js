@@ -26,8 +26,9 @@ function onClick() {
 	audioContext = new AudioContext();
 	setupSamples(samplePaths).then((response) => {
 		samples = response;
+		playFirstSample(samples[0], 0);
 	})
-	playFirstSample(samples[0], 0);
+	//playFirstSample(samples[0], 0);
 
 	// if (audioContext.state === "suspended") {
 	// 	audioContext.resume();
