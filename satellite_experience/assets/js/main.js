@@ -6,6 +6,7 @@ import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.118/examples
 import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/GLTFLoader.js';
 
 let iframeSamples = window.parent.window.samples;
+console.log(iframeSamples);
 
 class SpaceSkybox {
     constructor() {
