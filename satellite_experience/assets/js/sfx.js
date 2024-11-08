@@ -1,35 +1,9 @@
-//const sound = new Audio("../audio/silence.wav");
-// const sound = new Audio();
-// sound.autoplay = true;
-//sound.src = "../audio/launch.wav";
-
-// const sound = new Audio();
-// sound.autoplay = true;
-
-// const audioContext = new(window.AudioContext || window.webkitAudioContext)();
-// audioContext.createMediaElementSource(sound);
-// sound.src = "../audio/launch.wav";
-
-
-//sound.autoplay = true;
-
-// const audioContext = new AudioContext();
-// const audio = new Audio("../audio/launch.wav");
-// const source = audioContext.createMediaElementSource(audio);
-// source.connect(audioContext.destination);
-
-// const sound = new Audio();
-// sound.autoplay = true;
-
-//const audioContext = new AudioContext();
 let audioContext;
-let samples;
-console.log("Audio context started");
-
-const samplePaths = ["../audio/launch.mp3", 
-					 "../audio/open.mp3", 
-					 "../audio/select.mp3", 
-					 "../audio/close.mp3"]
+let sounds;
+const audioFilePaths = ["../audio/launch.mp3", 
+						"../audio/open.mp3", 
+						"../audio/select.mp3", 
+						"../audio/close.mp3"]
 
 async function getFile(filePath) {
 	let response = await fetch(filePath);
@@ -38,82 +12,57 @@ async function getFile(filePath) {
 	return audioBuffer;
 }
 
-async function setupSamples(paths) {
-	console.log("Setting up samples")
+async function setupSounds(paths) {
 	const audioBuffers = [];
 	for (const path of paths) {
-		const sample = await getFile(path);
-		audioBuffers.push(sample);
+		const sound = await getFile(path);
+		audioBuffers.push(sound);
 	}
-	console.log("Setting up done");
 	return audioBuffers;
 }
 
-function playSample(audioBuffer, time) {
-	const sampleSource = audioContext.createBufferSource();
-	sampleSource.buffer = audioBuffer;
-	sampleSource.connect(audioContext.destination);
-	sampleSource.start(time);
+function playSound(audioBuffer, time) {
+	const soundSource = audioContext.createBufferSource();
+	soundSource.buffer = audioBuffer;
+	soundSource.connect(audioContext.destination);
+	soundSource.start(time);
 }
 
-// function loop(audioBuffer, startSecond, durationMilliseconds) {
-// 	const sampleSource = audioContext.createBufferSource();
-// 	sampleSource.buffer = audioBuffer;
-// 	sampleSource.connect(audioContext.destination);
-// 	//sound.currentTime = 10;
-// 	//sound.currentTime = startSecond;
-// 	//duration = setTimeout(loop, 62000);
-// 	sampleSource.start(startSecond);
-// 	//let duration = setTimeout(loop(audioBuffer, startSecond, durationMilliseconds), durationMilliseconds);
-// 	setTimeout(loop(audioBuffer, startSecond, durationMilliseconds), durationMilliseconds);
-// }
-
 function loop(audioBuffer, startSecond, durationMilliseconds) {
-	const sampleSource = audioContext.createBufferSource();
-	sampleSource.buffer = audioBuffer;
-	sampleSource.connect(audioContext.destination);
-	sampleSource.start(0, startSecond);
+	const soundSource = audioContext.createBufferSource();
+	soundSource.buffer = audioBuffer;
+	soundSource.connect(audioContext.destination);
+	soundSource.start(0, startSecond);
 	setTimeout(function () {
-		// const sampleSource = audioContext.createBufferSource();
-		// sampleSource.buffer = audioBuffer;
-		// sampleSource.connect(audioContext.destination);
-		// sampleSource.start(startSecond);
 		loop(audioBuffer, startSecond, durationMilliseconds);
 	}, durationMilliseconds);
 }
 
-function playFirstSample(audioBuffer, time) {
-	const sampleSource = audioContext.createBufferSource();
-	sampleSource.buffer = audioBuffer;
-	sampleSource.connect(audioContext.destination);
-	//sampleSource.start(samples[0], 0);
-	sampleSource.start(time);
-	//let duration;
+function playFirstSound(audioBuffer, time) {
+	const soundSource = audioContext.createBufferSource();
+	soundSource.buffer = audioBuffer;
+	soundSource.connect(audioContext.destination);
+	soundSource.start(time);
 	setTimeout(function() {
-		//loop();
 		loop(audioBuffer, 10, 62000);
 	}, 72000);
 }
 
-// setupSamples(samplePaths).then((response) => {
-// 	samples = response;
-// })
-
-function initializeSamples() {
-	setupSamples(samplePaths).then((response) => {
-		samples = response;
-		playFirstSample(samples[0], 0);
+function initializeSounds() {
+	setupSounds(audioFilePaths).then((response) => {
+		sounds = response;
+		playFirstSound(sounds[0], 0);
 	})
 }
 
-function playSample1() {
-	playSample(samples[1], 0);
+function playSound1() {
+	playSound(sounds[1], 0);
 }
 
-function playSample2() {
-	playSample(samples[2], 0);
+function playSound2() {
+	playSound(sounds[2], 0);
 }
 
-function playSample3() {
-	playSample(samples[3], 0);
+function playSound3() {
+	playSound(sounds[3], 0);
 }

@@ -5,10 +5,6 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.mod
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/GLTFLoader.js';
 
-//let iframeSamples = window.parent.samples;
-// let iframeSamples = 3;
-// console.log(iframeSamples);
-
 class SpaceSkybox {
     constructor() {
         this._Initialize();
@@ -138,29 +134,7 @@ class SpaceSkybox {
 
     // private method for loading screen
     _LoadingScreen() {
-        //const launch_sound = new Audio("../audio/launch.ogg");
-        //const launch_sound = new Audio("../audio/launch.wav");
-
-        //const launch_sound = new Audio("../audio/launch_mp3.mp3");
-        ////launch_sound.autoplay = true;
-        //launch_sound.play();
-
-        //let state = launch_sound.play();
-        //window.history.pushState(state, "", "");
-        //let loading = document.getElementById("loading-container");
-
-        //launch_sound.play();
-        // sound.src = "../audio/launch.wav";
-        // audioContext.resume();
-
-        // if (audioContext.state === "suspended") {
-        //     audioContext.resume();
-        // }
-        // audio.play();
-
-        //let myAudio: WKAudiovisualMediaTypes = [];
-        //myAudio = new Audio("../audio/launch.wav");
-        //myAudio.play();
+        let loading = document.getElementById("loading-container");
 
         setTimeout(function() {
             loading.style.opacity = 0;
@@ -168,17 +142,6 @@ class SpaceSkybox {
                 loading.style.display = "none";
             }, 3000);
         }, 2000);
-        //window.history.popState(state, "", "");
-
-        // var iframe = document.createElement('iframe');
-        // var html = '<body>Foo</body>';
-        // //iframe.src = "../pages/main_page.html";
-        // document.body.appendChild(iframe);
-        // iframe.contentWindow.document.open();
-        // iframe.contentWindow.document.write(html);
-        // iframe.contentWindow.document.close();
-        // iframe.style = "position: fixed; top: 0px;bottom: 0px; right: 0px; width: 100%; border: none; margin: 0; padding: 0; overflow: hidden; z-index: 999999; height: 100%;";
-        // iframe.src = "../pages/main_page.html";
     }
 
     _OnWindowResize() {
@@ -227,24 +190,14 @@ document.addEventListener("DOMContentLoaded", function() {
     // Help icon button
     var helpIconButton = document.getElementById("help-icon-button");
     helpIconButton.addEventListener("click", function() {
-//        sound.src = "../audio/open.mp3";
-        //window.parent.playSample((window.parent.samples)[1], 0);
-        //window.parent.playSample(iframeSamples[1], 0);
-        parent.playSample1();
-        //parent.playSample(parent.samples[1], 0);
-        //document.getElementById('sound').play();
+        parent.playSound1();
         openHelpModal();
     });
 
     // Close the help modal
     var helpModalCloseButton = document.getElementById("help-modal-close");
     helpModalCloseButton.addEventListener("click", function() {
-//        sound.src = "../audio/close.mp3";
-        //window.parent.playSample((window.parent.samples)[3], 0);
-        //window.parent.playSample(iframeSamples[3], 0);
-        parent.playSample3();
-        //parent.playSample(parent.samples[3], 0);
-        //document.getElementById('sound').play();
+        parent.playSound3();
         helpModal.style.display = "none";
     });
 
@@ -314,26 +267,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
                 radioSetting.forEach(radio => {
                     radio.addEventListener("change", function() {
-//                        sound.src = "../audio/select.mp3";
-                        //window.parent.playSample((window.parent.samples)[2], 0);
-                        //window.parent.playSample(iframeSamples[2], 0);
-                        parent.playSample2();
-                        //parent.playSample(parent.samples[2], 0);
+                        parent.playSound2();
                         if (document.getElementById('default-mode').checked) {
-                            //sound.src = "../audio/select.mp3";
                             settingThemeLink.href = "../assets/css/styles.css"
                             themeLink = "../assets/css/styles.css"
                         } else if (document.getElementById('high-contrast-mode').checked) {
-                            //sound.src = "../audio/open_mp3.mp3";
                             // high contrast mode selected
                             settingThemeLink.href = "../assets/css/high_contrast_mode.css"
                             themeLink = "../assets/css/high_contrast_mode.css"
                         } else if (document.getElementById('light-mode').checked) {
-                            //sound.src = "../audio/open_mp3.mp3";
                             settingThemeLink.href = "../assets/css/light_mode.css"
                             themeLink = "../assets/css/light_mode.css"
                         } else if (document.getElementById('color-blind-mode').checked) {
-                            //sound.src = "../audio/open_mp3.mp3";
                             // color-blind mode selected
                             console.log("Color-blind Mode selected");
                         }
@@ -347,23 +292,15 @@ document.addEventListener("DOMContentLoaded", function() {
     // Settings icon button
     var settingsIconButton = document.getElementById("settings-icon-button");
     settingsIconButton.addEventListener("click", function() {
-//        sound.src = "../audio/open.mp3";
-        //window.parent.playSample((window.parent.samples)[1], 0);
-        //window.parent.playSample(iframeSamples[1], 0);
-        parent.playSample1();
-        //parent.playSample(parent.samples[1], 0);
+        parent.playSound1();
         openSettingsModal();
     });
 
     // Close the settings modal
     var settingsModalCloseButton = document.getElementById("settings-modal-close");
     settingsModalCloseButton.addEventListener("click", function() {
+        parent.playSound3();
         resetInactivityTimer(); // Reset activity timer so it doesn't pop up as soon as settings is closed
-//        sound.src = "../audio/close.mp3";
-        //window.parent.playSample((window.parent.samples)[3], 0);
-        //window.parent.playSample(iframeSamples[3], 0);
-        parent.playSample3();
-        //parent.playSample(parent.samples[3], 0);
         settingsModal.style.display = "none";
     });
 
@@ -413,51 +350,15 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error(error);
     });
 
-    // var iframe = document.createElement('iframe');
-    // iframe.id = "iframe_a";
-    // var html = '<body>Foo</body>';
-    // //iframe.src = "../pages/main_page.html";
-    // document.body.appendChild(iframe);
-    // iframe.contentWindow.document.open();
-    // iframe.contentWindow.document.write(html);
-    // iframe.contentWindow.document.close();
-    // iframe.style = "position: fixed; top: 0px;bottom: 0px; right: 0px; width: 100%; border: none; margin: 0; padding: 0; overflow: hidden; z-index: 999999; height: 100%;";
-    // iframe.src = "../pages/main_page.html";
-
     // Loading screen
-    //let loading = document.getElementById("loading-container");
-    //let loading = iframe.contentWindow.document.getElementById("loading-container");
-    //let loading = document.getElementById("iframe_a").contentWindow.document.getElementById("loading-container");
-
     let loading = document.getElementById("loading-container");
-    //let loading = parent.getElementById("iframe_a").contentWindow.document.getElementById("loading-container");
 
     setTimeout(function() {
         loading.style.opacity = 0;
         setTimeout(function() {
-            // var iframe = document.createElement('iframe');
-            // var html = '<body>Foo</body>';
-            // //iframe.src = "../pages/main_page.html";
-            // document.body.appendChild(iframe);
-            // iframe.contentWindow.document.open();
-            // iframe.contentWindow.document.write(html);
-            // iframe.contentWindow.document.close();
-            // iframe.style = "position: fixed; top: 0px;bottom: 0px; right: 0px; width: 100%; border: none; margin: 0; padding: 0; overflow: hidden; z-index: 999999; height: 100%;";
-            // iframe.src = "../pages/main_page.html";
-
             loading.style.display = "none";
         }, 3000);
     }, 2000);
-
-    // var iframe = document.createElement('iframe');
-    // var html = '<body>Foo</body>';
-    // //iframe.src = "../pages/main_page.html";
-    // document.body.appendChild(iframe);
-    // iframe.contentWindow.document.open();
-    // iframe.contentWindow.document.write(html);
-    // iframe.contentWindow.document.close();
-    // iframe.style = "position: fixed; top: 0px;bottom: 0px; right: 0px; width: 100%; border: none; margin: 0; padding: 0; overflow: hidden; z-index: 999999; height: 100%;";
-    // iframe.src = "../pages/main_page.html";
 
     // Update canvas when window resizes
     window.addEventListener('resize', function() {
