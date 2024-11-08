@@ -98,3 +98,10 @@ function playFirstSample(audioBuffer, time) {
 // setupSamples(samplePaths).then((response) => {
 // 	samples = response;
 // })
+
+function initializeSamples() {
+	setupSamples(samplePaths).then((response) => {
+		samples = response;
+		playFirstSample(samples[0], 0);
+	})
+}
