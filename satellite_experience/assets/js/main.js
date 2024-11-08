@@ -5,7 +5,7 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.mod
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/GLTFLoader.js';
 
-let iframeSamples = window.parent.window.samples;
+let iframeSamples = window.parent.samples;
 console.log(iframeSamples);
 
 class SpaceSkybox {
