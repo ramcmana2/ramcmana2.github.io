@@ -23,8 +23,8 @@ function onClick() {
 	//sound.src = "../audio/launch.wav";
 
 //	sound.src = "../audio/launch.mp3";
-	//audioContext = new AudioContext();
-	audioContext = new(window.AudioContext || window.webkitAudioContext)();
+	audioContext = new AudioContext();
+	//audioContext = new(window.AudioContext || window.webkitAudioContext)();
 	initializeSamples();
 	// setupSamples(samplePaths).then((response) => {
 	// 	samples = response;
