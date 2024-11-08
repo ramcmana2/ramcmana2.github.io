@@ -23,7 +23,7 @@
 
 //const audioContext = new AudioContext();
 let audioContext;
-//let samples;
+let samples;
 console.log("Audio context started");
 
 const samplePaths = ["../audio/launch.mp3", 
