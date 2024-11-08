@@ -105,3 +105,15 @@ function initializeSamples() {
 		playFirstSample(samples[0], 0);
 	})
 }
+
+function playSample1() {
+	playSample(samples[1], 0);
+}
+
+function playSample2() {
+	playSample(samples[2], 0);
+}
+
+function playSample3() {
+	playSample(samples[3], 0);
+}

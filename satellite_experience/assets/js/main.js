@@ -6,8 +6,8 @@ import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.118/examples
 import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/GLTFLoader.js';
 
 //let iframeSamples = window.parent.samples;
-let iframeSamples = 3;
-console.log(iframeSamples);
+// let iframeSamples = 3;
+// console.log(iframeSamples);
 
 class SpaceSkybox {
     constructor() {
@@ -229,7 +229,8 @@ document.addEventListener("DOMContentLoaded", function() {
     helpIconButton.addEventListener("click", function() {
 //        sound.src = "../audio/open.mp3";
         //window.parent.playSample((window.parent.samples)[1], 0);
-        window.parent.playSample(iframeSamples[1], 0);
+        //window.parent.playSample(iframeSamples[1], 0);
+        parent.playSample1();
         //parent.playSample(parent.samples[1], 0);
         //document.getElementById('sound').play();
         openHelpModal();
@@ -240,7 +241,8 @@ document.addEventListener("DOMContentLoaded", function() {
     helpModalCloseButton.addEventListener("click", function() {
 //        sound.src = "../audio/close.mp3";
         //window.parent.playSample((window.parent.samples)[3], 0);
-        window.parent.playSample(iframeSamples[3], 0);
+        //window.parent.playSample(iframeSamples[3], 0);
+        parent.playSample3();
         //parent.playSample(parent.samples[3], 0);
         //document.getElementById('sound').play();
         helpModal.style.display = "none";
@@ -314,7 +316,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     radio.addEventListener("change", function() {
 //                        sound.src = "../audio/select.mp3";
                         //window.parent.playSample((window.parent.samples)[2], 0);
-                        window.parent.playSample(iframeSamples[2], 0);
+                        //window.parent.playSample(iframeSamples[2], 0);
+                        parent.playSample2();
                         //parent.playSample(parent.samples[2], 0);
                         if (document.getElementById('default-mode').checked) {
                             //sound.src = "../audio/select.mp3";
@@ -346,7 +349,8 @@ document.addEventListener("DOMContentLoaded", function() {
     settingsIconButton.addEventListener("click", function() {
 //        sound.src = "../audio/open.mp3";
         //window.parent.playSample((window.parent.samples)[1], 0);
-        window.parent.playSample(iframeSamples[1], 0);
+        //window.parent.playSample(iframeSamples[1], 0);
+        parent.playSample1();
         //parent.playSample(parent.samples[1], 0);
         openSettingsModal();
     });
@@ -357,7 +361,8 @@ document.addEventListener("DOMContentLoaded", function() {
         resetInactivityTimer(); // Reset activity timer so it doesn't pop up as soon as settings is closed
 //        sound.src = "../audio/close.mp3";
         //window.parent.playSample((window.parent.samples)[3], 0);
-        window.parent.playSample(iframeSamples[3], 0);
+        //window.parent.playSample(iframeSamples[3], 0);
+        parent.playSample3();
         //parent.playSample(parent.samples[3], 0);
         settingsModal.style.display = "none";
     });
