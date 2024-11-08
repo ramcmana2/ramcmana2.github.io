@@ -8,7 +8,7 @@
 
 // const audioContext = new(window.AudioContext || window.webkitAudioContext)();
 // audioContext.createMediaElementSource(sound);
-
+let samples;
 function onClick() {
 	//let launch_sound = new Audio("../audio/launch.ogg");
 	//launch_sound.play();
