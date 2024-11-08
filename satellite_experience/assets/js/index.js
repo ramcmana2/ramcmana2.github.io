@@ -25,7 +25,7 @@ function onClick() {
 //	sound.src = "../audio/launch.mp3";
 	audioContext = new AudioContext();
 	//audioContext = new(window.AudioContext || window.webkitAudioContext)();
-	initializeSamples();
+	initializeSounds();
 	// setupSamples(samplePaths).then((response) => {
 	// 	samples = response;
 	// 	playFirstSample(samples[0], 0);
