@@ -10,6 +10,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const mainContainer = document.getElementById('main-container');
     const upperButton = document.getElementById('upper-button');
     const lowerButton = document.getElementById('lower-button');
+    
+
 
     // Initialize SpaceScene
     let spaceScene = new SpaceScene({
@@ -23,6 +25,16 @@ window.addEventListener("DOMContentLoaded", () => {
     const settingsModal = new SettingsModal();
     const mainStateManager = new MainStateManager(spaceScene, mainContainer, upperButton, lowerButton, missionContentManager);
 
+    // Volume
+    // set initial volume from local storage
+    const savedVolume = localStorage.getItem("volumeSetting");
+    if (savedVolume !== null) {
+        // volumeSlider.value = savedVolume;
+        parent.setVolume(savedVolume / 100);
+    } else {
+        parent.setVolume(volumeSlider.value / 100);
+    }
+    
     // Connect settings modal to help modal inactivity timer
     settingsModal.resetInactivityTimer = () => helpModal._setupInactivityTimer();
 });
