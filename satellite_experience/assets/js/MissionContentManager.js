@@ -38,14 +38,14 @@ export default class MissionContentManager {
 
         const phaseImageMap = {
             //'launch': '../assets/images/spectrometers.png',
-            'launch': '../assets/images/0-mission_launch2.png',
-            'assist': '../assets/images/1-gravity_assist2.png',
+            'launch': '../assets/images/0-mission_launch.png',
+            'assist': '../assets/images/1-gravity_assist.png',
             'a': '../assets/images/2-orbit_a.png',
-            'b1': '../assets/images/3-orbit_b1.jpg',
-            'd': '../assets/images/4-orbit_d.webp',
+            'b1': '../assets/images/3-orbit_b1.png',
+            'd': '../assets/images/4-orbit_d.png',
             'c': '../assets/images/5-orbit_c.png',
-            'b2': '../assets/images/6-orbit_b2.jpg',
-            'end': '../assets/images/7-mission_end.jpg'
+            'b2': '../assets/images/6-orbit_b2.png',
+            'end': '../assets/images/7-mission_end.png'
         };
 
         const phaseTitle = phaseTitleMap[phaseId] || 'No Title';
