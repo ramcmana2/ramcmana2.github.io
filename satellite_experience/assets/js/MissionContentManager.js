@@ -38,8 +38,8 @@ export default class MissionContentManager {
 
         const phaseImageMap = {
             //'launch': '../assets/images/spectrometers.png',
-            'launch': '../assets/images/0-mission_launch.png',
-            'assist': '../assets/images/1-gravity_assist.png',
+            'launch': '../assets/images/0-mission_launch2.png',
+            'assist': '../assets/images/1-gravity_assist2.png',
             'a': '../assets/images/2-orbit_a.png',
             'b1': '../assets/images/3-orbit_b1.jpg',
             'd': '../assets/images/4-orbit_d.webp',
