@@ -58,7 +58,7 @@ export default class MissionContentManager {
             'launch1': '',
             'assist0': '../assets/images/1-gravity_assist.PNG',
             'assist1': '',
-            'a0': '../assets/images/2-orbit_a.PNG',
+            'a0': '../assets/images/2-orbit_a.png',
             'a1': '',
             'b10': '../assets/images/3-orbit_b1.png',
             'b11': '',
