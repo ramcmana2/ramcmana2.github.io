@@ -396,7 +396,8 @@ export default class SpaceScene {
         //instructionsGroup.position.set(0, 22, -40); //best so far...
         //instructionsGroup.position.set(0, 22, -50);
         //instructionsGroup.position.set(-10, 22, -40);
-        instructionsGroup.position.set(-1, 22, -40);
+        //instructionsGroup.position.set(-1, 22, -40);
+        instructionsGroup.position.set(-2, 22, -40);
 
         // Create instructions label
         const instructionsLabelDiv = document.createElement('div');
