@@ -378,7 +378,9 @@ export default class SpaceScene {
         instructionsGroup.visible = false;
         this._instructionsGroup = instructionsGroup;
         this._camera.add(instructionsGroup);
-        instructionsGroup.position.set(0, 0, 0);
+        //instructionsGroup.position.set(0, 3, -5.75);
+        //instructionsGroup.position.set(0, 0, 0);
+        instructionsGroup.position.set(0, 3, 0);
 
         // Create instructions label
         const instructionsLabelDiv = document.createElement('div');
