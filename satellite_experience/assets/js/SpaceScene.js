@@ -5,6 +5,8 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.mod
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/GLTFLoader.js';
 import { CSS2DRenderer, CSS2DObject } from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/renderers/CSS2DRenderer.js';
+import HelpModal from './HelpModal.js';
+import { TextureLoader } from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js';
 
 export default class SpaceScene {
     /*
@@ -12,11 +14,12 @@ export default class SpaceScene {
      */
 
     // Constructor
-    constructor(options = {}) {
+    constructor(options = {}, helpModal) {
         this._bubbles = [];
         this._phases = [];
         this._currentPhaseIndex = 0;
         this._updateInstrumentContent = options.updateInstrumentContent;
+        this._helpModal = helpModal;
         this._Initialize();
         this._mainState = 'main';
     }
@@ -132,12 +135,17 @@ export default class SpaceScene {
     _LoadingScreen() {
         let loading = document.getElementById("loading-container");
 
-        setTimeout(function() {
+        setTimeout(() => {
             loading.style.opacity = 0;
-            setTimeout(function() {
+            setTimeout(() => {
                 loading.style.display = "none";
+                this._AfterLoadingScreen();
             }, 500);
         }, 2000);
+    }
+
+    _AfterLoadingScreen() {
+        this._helpModal._loadHelpModalContent();
     }
 
     // Setup camera, camera limits, and camera position
@@ -145,7 +153,7 @@ export default class SpaceScene {
         const fov = 60;
         const aspect = window.innerWidth / window.innerHeight;
         const near = 1.0;
-        const far = 1000.0;
+        const far = 15000.0;
         this._camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
         this._camera.position.set(0, 0, 10); // Set initial camera position for better view of the satellite
     }
@@ -159,50 +167,85 @@ export default class SpaceScene {
     // Setup lighting for scene
     _Lighting() {
         // Ambient Light
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); // Increase intensity
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
         this._scene.add(ambientLight);
-
-        // Directional Light
-        const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1.0);
-        directionalLight.position.set(75, 100, 30);
-        directionalLight.castShadow = true;
-        directionalLight.shadow.bias = -0.001;
-        directionalLight.shadow.mapSize.set(2048, 2048);
-        this._scene.add(directionalLight);
-
-        // Point Light
-        const pointLight = new THREE.PointLight(0xffffff, 1.5, 100); // Bright point light
-        pointLight.position.set(0, 10, 10); // Position it above the scene
-        this._scene.add(pointLight);
+    
+        // Load the sun texture
+        const textureLoader = new THREE.TextureLoader();
+        const sunTexture = textureLoader.load('../assets/images/sun.png');
+    
+        // Create Sun Sprite
+        const sunMaterial = new THREE.SpriteMaterial({
+            map: sunTexture,
+            color: 0xFFDF30,
+            transparent: true,
+            blending: THREE.AdditiveBlending,
+        });
+    
+        const sunSprite = new THREE.Sprite(sunMaterial);
+        sunSprite.scale.set(500, 500, 1);
+        sunSprite.position.set(-5000, 3000, 5000); // Sun distance from origin
+        sunSprite.frustumCulled = false;
+        this._scene.add(sunSprite);
+    
+        // Add Directional Light at the sun's position
+        const sunLight = new THREE.DirectionalLight(0xFFFFFF, 3);
+        sunLight.position.copy(sunSprite.position);
+        sunLight.castShadow = true;
+    
+        // Configure shadow properties
+        sunLight.shadow.bias = -0.0001;
+        sunLight.shadow.mapSize.width = 2048;
+        sunLight.shadow.mapSize.height = 2048;
+    
+        // Adjust the shadow camera to encompass the satellite
+        const d = 100;
+        sunLight.shadow.camera.left = -d;
+        sunLight.shadow.camera.right = d;
+        sunLight.shadow.camera.top = d;
+        sunLight.shadow.camera.bottom = -d;
+        sunLight.shadow.camera.near = 1;
+        sunLight.shadow.camera.far = 10000;
+    
+        // Set the target of the light to the origin
+        sunLight.target.position.set(0, 0, 0);
+        this._scene.add(sunLight.target);
+    
+        this._scene.add(sunLight);
     }
 
     // Setup orbit controls around center
     _Controls() {
-        const controls = new OrbitControls(this._camera, this._threejs.domElement);
-        controls.target.set(0, 0, 0); // Center the controls on the satellite
+        this._controls = new OrbitControls(this._camera, this._threejs.domElement);
+        this._controls.target.set(0, 0, 0); // Center the controls on the satellite
 
-        controls.enableZoom = true;
-        controls.minDistance = 3;
-        controls.maxDistance = 1000;
-        controls.enablePan = false;
-        controls.screenSpacePanning = false;
+        this._controls.enableZoom = true;
+        this._controls.minDistance = 3;
+        this._controls.maxDistance = 1000;
+        this._controls.enablePan = false;
+        this._controls.screenSpacePanning = false;
 
-        controls.update();
+        // Rotate the camera
+        this._controls.autoRotate = true;
+        this._controls.autoRotateSpeed = 0.2;
+
+        this._controls.update();
     }
 
     // Load skybox textures and create skybox cube
     _Skybox() {
         const loader = new THREE.CubeTextureLoader();
         const texture = loader.load([
-            '../assets/images/skybox/space_ft.png',
-            '../assets/images/skybox/space_bk.png',
-            '../assets/images/skybox/space_up.png',
-            '../assets/images/skybox/space_dn.png',
-            '../assets/images/skybox/space_lf.png',
-            '../assets/images/skybox/space_rt.png',
+            '../assets/images/skybox/right.png',
+            '../assets/images/skybox/left.png',
+            '../assets/images/skybox/top.png',
+            '../assets/images/skybox/bottom.png',
+            '../assets/images/skybox/front.png',
+            '../assets/images/skybox/back.png',
         ], undefined, undefined, (error) => {
             console.error('Error loading skybox texture:', error);
         });
+
         this._scene.background = texture;
     }
 
@@ -378,26 +421,6 @@ export default class SpaceScene {
         instructionsGroup.visible = false;
         this._instructionsGroup = instructionsGroup;
         this._camera.add(instructionsGroup);
-        //instructionsGroup.position.set(0, 3, -5.75);
-        //instructionsGroup.position.set(0, 0, 0);
-        //instructionsGroup.position.set(0, 3, 0);
-        //instructionsGroup.position.set(0, 3, -10);
-        //instructionsGroup.position.set(0, 5, -10);
-        //instructionsGroup.position.set(0, 10, -20);
-        //instructionsGroup.position.set(0, 15, -30);
-        //instructionsGroup.position.set(0, 16, -40);
-        //instructionsGroup.position.set(0, 16, -40);
-        //instructionsGroup.position.set(0, 19, -39);
-        //instructionsGroup.position.set(0, 3, -39);
-        //instructionsGroup.position.set(0, 24, -39);
-        //instructionsGroup.position.set(0, 20, -39);
-        //instructionsGroup.position.set(0, 23, -39);
-        //instructionsGroup.position.set(0, 22, -39);
-        //instructionsGroup.position.set(0, 22, -40);
-        //instructionsGroup.position.set(0, 22, -50);
-        //instructionsGroup.position.set(-10, 22, -40);
-        //instructionsGroup.position.set(-1, 22, -40); //best so far...
-        //instructionsGroup.position.set(-2, 22, -40);
         instructionsGroup.position.set(-1.1, 22, -40);
 
         // Create instructions label
@@ -495,24 +518,24 @@ export default class SpaceScene {
             this._scene.add(model); // Add model to scene
             this._model = model;
 
+            // Enable shadow casting
+            model.traverse((child) => {
+                if (child.isMesh) {
+                    child.castShadow = true;
+                    child.receiveShadow = false;
+                }
+            });
+
             // Define phases for the timeline
             const phases = [
-                { phaseLabel: 'Launch', phaseId: 'launch0', phaseYear: 2023, phaseMonth: 9, phaseLineHeight: 'long' },
-                { phaseLabel: 'Launch', phaseId: 'launch1', phaseYear: 2023, phaseMonth: 9, phaseLineHeight: 'long' },
-                { phaseLabel: 'Gravity Assist', phaseId: 'assist0', phaseYear: 2026, phaseMonth: 3, phaseLineHeight: 'short' },
-                { phaseLabel: 'Gravity Assist', phaseId: 'assist1', phaseYear: 2026, phaseMonth: 3, phaseLineHeight: 'short' },
-                { phaseLabel: 'A', phaseId: 'a0', phaseYear: 2029, phaseMonth: 7, phaseLineHeight: 'short' },
-                { phaseLabel: 'A', phaseId: 'a1', phaseYear: 2029, phaseMonth: 7, phaseLineHeight: 'short' },
-                { phaseLabel: 'B1', phaseId: 'b10', phaseYear: 2029, phaseMonth: 9, phaseLineHeight: 'long' },
-                { phaseLabel: 'B1', phaseId: 'b11', phaseYear: 2029, phaseMonth: 9, phaseLineHeight: 'long' },
-                { phaseLabel: 'D', phaseId: 'd0', phaseYear: 2030, phaseMonth: 4, phaseLineHeight: 'short' },
-                { phaseLabel: 'D', phaseId: 'd1', phaseYear: 2030, phaseMonth: 4, phaseLineHeight: 'short' },
-                { phaseLabel: 'C', phaseId: 'c0', phaseYear: 2031, phaseMonth: 0, phaseLineHeight: 'short' },
-                { phaseLabel: 'C', phaseId: 'c1', phaseYear: 2031, phaseMonth: 0, phaseLineHeight: 'short' },
-                { phaseLabel: 'B2', phaseId: 'b20', phaseYear: 2031, phaseMonth: 4, phaseLineHeight: 'long' },
-                { phaseLabel: 'B2', phaseId: 'b21', phaseYear: 2031, phaseMonth: 4, phaseLineHeight: 'long' },
-                { phaseLabel: 'End', phaseId: 'end0', phaseYear: 2031, phaseMonth: 10, phaseLineHeight: 'short' },
-                { phaseLabel: 'End', phaseId: 'end1', phaseYear: 2031, phaseMonth: 10, phaseLineHeight: 'short' },
+                { phaseLabel: 'Launch', phaseId: 'launch', phaseYear: 2023, phaseMonth: 9, phaseLineHeight: 'long' },
+                { phaseLabel: 'Gravity Assist', phaseId: 'assist', phaseYear: 2026, phaseMonth: 3, phaseLineHeight: 'short' },
+                { phaseLabel: 'A', phaseId: 'a', phaseYear: 2029, phaseMonth: 7, phaseLineHeight: 'short' },
+                { phaseLabel: 'B1', phaseId: 'b1', phaseYear: 2029, phaseMonth: 9, phaseLineHeight: 'long' },
+                { phaseLabel: 'D', phaseId: 'd', phaseYear: 2030, phaseMonth: 4, phaseLineHeight: 'short' },
+                { phaseLabel: 'C', phaseId: 'c', phaseYear: 2031, phaseMonth: 0, phaseLineHeight: 'short' },
+                { phaseLabel: 'B2', phaseId: 'b2', phaseYear: 2031, phaseMonth: 4, phaseLineHeight: 'long' },
+                { phaseLabel: 'End', phaseId: 'end', phaseYear: 2031, phaseMonth: 10, phaseLineHeight: 'short' },
             ];
 
             // Create timeline with phases
@@ -547,10 +570,13 @@ export default class SpaceScene {
         requestAnimationFrame(() => {
             this._RAF();
 
-            // Simple model rotation
-            if (this._model) {
-                this._model.rotation.y += 0.0002;
-            }
+            // // Simple model rotation
+            // if (this._model) {
+            //     this._model.rotation.y += 0.0002;
+            // }
+
+            // Update controls rotation
+            this._controls.update();
 
             // Render the scene and the labels
             this._threejs.render(this._scene, this._camera);
