@@ -27,6 +27,7 @@ async function findDistanceByDateFromFile(targetDate) {
     }
 
 }
+
 function getCurrentDateFormatted() {
     const date = new Date();
 
@@ -37,39 +38,27 @@ function getCurrentDateFormatted() {
     return `${year}-${month}-${day}`;
 }
 
-var missionCompletionTime = new Date("2029-Jun-16").getTime();
-//var missionCompletionTime = new Date("2029-Jun-16T00:00:00.000").getTime();
-//var missionCompletionTime = 1876262400000;
-//console.log("" + missionCompletionTime);
+//var missionCompletionTime = new Date("2029-Jun-16").getTime();
+var missionCompletionTime = 1876262400000;
 var x = setInterval(function() {
-  var currentDate = new Date().getTime();
-  //var currentDate = Date.now();
-  //console.log("" + currentDate);
+  //var currentDate = new Date().getTime();
+  var currentDate = Date.now();
   var distance = missionCompletionTime - currentDate;
-  //console.log("" + distance);
 
   var years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
-  //console.log("" + years);
   var days = Math.floor(distance / (1000 * 60 * 60 * 24)) - (years*365);
-  //console.log("" + days);
   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  //console.log("" + hours);
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  //console.log("" + minutes);
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  //console.log("" + seconds);
 
-  //document.getElementById("timeRemaining").innerHTML = "Mission Accomplished: " + years + "y " + days + "d " + hours + "h "
-  //+ minutes.toString() + "m " + seconds + "s ";
-  document.getElementById("timeRemaining").textContent = "Mission Accomplished: " + years + "y " + days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
+  document.getElementById("timeRemaining").innerHTML = "Mission Accomplished: " + years + "y " + days + "d " + hours + "h "
+  + minutes.toString() + "m " + seconds + "s ";
 
   if (distance < 0) {
     clearInterval(x);
     document.getElementById("timeRemaining").innerHTML = "Mission Accomplished"
   }
 }, 1000);
-
 
 export default class MainStateManager {
     /*
