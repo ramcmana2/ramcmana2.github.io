@@ -56,7 +56,9 @@ var x = setInterval(function() {
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
   //console.log("" + seconds);
 
-  document.getElementById("timeRemaining").innerHTML = "Mission Accomplished: " + years + "y " + days + "d " + hours + "h "
+  //document.getElementById("timeRemaining").innerHTML = "Mission Accomplished: " + years + "y " + days + "d " + hours + "h "
+  //+ minutes.toString() + "m " + seconds + "s ";
+  document.getElementById("timeRemaining").textContent = "Mission Accomplished: " + years + "y " + days + "d " + hours + "h "
   + minutes.toString() + "m " + seconds + "s ";
 
   if (distance < 0) {
