@@ -38,7 +38,8 @@ function getCurrentDateFormatted() {
 }
 
 //var missionCompletionTime = new Date("2029-Jun-16").getTime();
-var missionCompletionTime = new Date("2029-Jun-16T00:00:00.000").getTime();
+//var missionCompletionTime = new Date("2029-Jun-16T00:00:00.000").getTime();
+var missionCompletionTime = 1876262400000;
 //console.log("" + missionCompletionTime);
 var x = setInterval(function() {
   //var currentDate = new Date().getTime();
