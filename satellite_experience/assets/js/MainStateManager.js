@@ -37,8 +37,8 @@ function getCurrentDateFormatted() {
     return `${year}-${month}-${day}`;
 }
 
-var missionCompletionTime = new Date("2029-Jun-16").getTime();
-//var missionCompletionTime = new Date("2029-Jun-16T00:00:00").getTime();
+//var missionCompletionTime = new Date("2029-Jun-16").getTime();
+var missionCompletionTime = new Date("2029-Jun-16T00:00:00.000").getTime();
 //console.log("" + missionCompletionTime);
 var x = setInterval(function() {
   //var currentDate = new Date().getTime();
@@ -61,7 +61,7 @@ var x = setInterval(function() {
   //document.getElementById("timeRemaining").innerHTML = "Mission Accomplished: " + years + "y " + days + "d " + hours + "h "
   //+ minutes.toString() + "m " + seconds + "s ";
   document.getElementById("timeRemaining").textContent = "Mission Accomplished: " + years + "y " + days + "d " + hours + "h "
-  + minutes.toString() + "m " + seconds + "s ";
+  + minutes + "m " + seconds + "s ";
 
   if (distance < 0) {
     clearInterval(x);
