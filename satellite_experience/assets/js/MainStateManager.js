@@ -36,20 +36,28 @@ function getCurrentDateFormatted() {
 
     return `${year}-${month}-${day}`;
 }
-console.log("This is happening");
+//console.log("This is happening");
 var missionCompletionTime = new Date("2029-Jun-16").getTime();
+console.log("" + missionCompletionTime);
 var x = setInterval(function() {
   var currentDate = new Date().getTime();
+  console.log("" + currentDate);
   var distance = missionCompletionTime - currentDate;
+  console.log("" + distance);
 
   var years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
+  console.log("" + years);
   var days = Math.floor(distance / (1000 * 60 * 60 * 24)) - (years*365);
+  console.log("" + days);
   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  console.log("" + hours);
   var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  console.log("" + minutes);
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  console.log("" + seconds);
 
-  document.getElementById("timeRemaining").innerHTML = "Mission Accomplished: " + years.toString() + "y " + days.toString() + "d " + hours.toString() + "h "
-  + minutes.toString() + "m " + seconds.toString() + "s ";
+  document.getElementById("timeRemaining").innerHTML = "Mission Accomplished: " + years + "y " + days + "d " + hours + "h "
+  + minutes.toString() + "m " + seconds + "s ";
 
   if (distance < 0) {
     clearInterval(x);
