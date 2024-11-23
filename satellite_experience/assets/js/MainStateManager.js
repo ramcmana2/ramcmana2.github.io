@@ -36,7 +36,7 @@ function getCurrentDateFormatted() {
 
     return `${year}-${month}-${day}`;
 }
-
+console.log("This is happening");
 var missionCompletionTime = new Date("2029-Jun-16").getTime();
 var x = setInterval(function() {
   var currentDate = new Date().getTime();

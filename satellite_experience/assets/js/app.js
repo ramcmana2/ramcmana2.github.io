@@ -5,7 +5,7 @@ import SettingsModal from './SettingsModal.js';
 import InstrumentContentManager from './InstrumentContentManager.js';
 import MissionContentManager from './MissionContentManager.js';
 
-let i = 0;
+//let i = 0;
 
 window.addEventListener("DOMContentLoaded", () => {
     // Main elements
@@ -26,8 +26,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const missionContentManager = new MissionContentManager(spaceScene, mainContainer);
     const settingsModal = new SettingsModal();
     const mainStateManager = new MainStateManager(spaceScene, mainContainer, upperButton, lowerButton, missionContentManager);
-    console.log("" + i);
-    i++;
+    //console.log("" + i);
+    //i++;
 
     // Volume
     // set initial volume from local storage
