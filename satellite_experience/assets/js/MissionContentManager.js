@@ -72,7 +72,7 @@ export default class MissionContentManager {
         };
 
         const phaseVideoMap = {
-            'launch': 'https://www.youtube.com/embed/AwCiHscmEQE?si=tpt9JAahRNdKdGyZ',
+            'launch0': 'https://www.youtube.com/embed/AwCiHscmEQE?si=tpt9JAahRNdKdGyZ',
         }
 
         const phaseTitle = phaseTitleMap[phaseId] || 'No Title';
