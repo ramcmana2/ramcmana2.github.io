@@ -39,7 +39,7 @@ export default class HelpModal {
             if (this._helpModal && 
                 (event.target.id === 'help-modal-close'
                 || !container.contains(event.target))) {
-                parent.playSound3();
+                parent.playCloseSound();
                 this.close();
             }
         });
@@ -50,7 +50,7 @@ export default class HelpModal {
 
     // Load help modal content
     _loadHelpModalContent() {
-        parent.playSound1();
+        parent.playOpenSound();
         const xhr = new XMLHttpRequest();
         xhr.open('GET', 'help_modal.html', true);
         xhr.onreadystatechange = () => {
