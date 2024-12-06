@@ -1,7 +1,7 @@
 let audioContext;
 let gainNode;
 let sounds;
-const audioFilePaths = ["../audio/launch.mp3",
+const audioFilePaths = ["../audio/dunes.mp3",
 						"../audio/open.mp3",
 						"../audio/select.mp3",
 						"../audio/close.mp3"]
@@ -39,38 +39,37 @@ function loop(audioBuffer, startSecond, durationMilliseconds) {
 	}, durationMilliseconds);
 }
 
-function playLaunchSound(audioBuffer, time) {
+function playFirstSound(audioBuffer, time) {
 	const soundSource = audioContext.createBufferSource();
 	soundSource.buffer = audioBuffer;
 	soundSource.connect(gainNode);
 	soundSource.start(time);
 	setTimeout(function() {
-		loop(audioBuffer, 10, 62000);
-	}, 72000);
+		loop(audioBuffer, 10, 324000);
+	}, 334000);
 }
 
 function initializeSounds() {
-	audioContext = new AudioContext();
-	//audioContext = new (window.AudioContext || window.webkitAudioContext)();
+	audioContext = new (window.AudioContext || window.webkitAudioContext)();
 	gainNode = audioContext.createGain();
 	gainNode.connect(audioContext.destination);
 
 	setupSounds(audioFilePaths).then((response) => {
 		sounds = response;
-		playLaunchSound(sounds[0], 0);
+		playFirstSound(sounds[0], 0);
 	})
 }
 
 // Play specific sounds
-function playOpenSound() {
+function playSound1() {
 	playSound(sounds[1], 0);
 }
 
-function playSelectSound() {
+function playSound2() {
 	playSound(sounds[2], 0);
 }
 
-function playCloseSound() {
+function playSound3() {
 	playSound(sounds[3], 0);
 }
 
@@ -83,6 +82,6 @@ function setVolume(level) {
 
 // Expose volume control functions globally
 window.setVolume = setVolume;
-window.playOpenSound = playOpenSound;
-window.playSelectSound = playSelectSound;
-window.playCloseSound = playCloseSound;
+window.playSound1 = playSound1;
+window.playSound2 = playSound2;
+window.playSound3 = playSound3;

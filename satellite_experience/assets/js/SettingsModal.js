@@ -40,7 +40,7 @@ export default class SettingsModal {
                 (event.target.id === 'settings-modal-close'
                 || !container.contains(event.target))) {
                 console.log(event.target.id);
-                parent.playCloseSound();
+                parent.playSound3();
                 this.close();
             }
         });
@@ -48,7 +48,7 @@ export default class SettingsModal {
 
     // Load settings modal content
     _loadSettingsModalContent() {
-        parent.playOpenSound();
+        parent.playSound1();
         const xhr = new XMLHttpRequest();
         xhr.open('GET', 'settings_modal.html', true);
         xhr.onreadystatechange = () => {
@@ -75,7 +75,7 @@ export default class SettingsModal {
 
         radioSetting.forEach(radio => {
             radio.addEventListener('change', () => {
-                parent.playSelectSound();
+                parent.playSound2();
                 if (document.getElementById('default-mode').checked) {
                     this.cssFile.href = '../assets/css/styles.css';
                     localStorage.setItem('theme', "default-mode");

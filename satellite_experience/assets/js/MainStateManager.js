@@ -27,6 +27,7 @@ async function findDistanceByDateFromFile(targetDate) {
     }
 
 }
+
 function getCurrentDateFormatted() {
     const date = new Date();
 
@@ -51,14 +52,13 @@ var x = setInterval(function() {
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
   document.getElementById("timeRemaining").innerHTML = "Mission Accomplished: " + years + "y " + days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
+  + minutes.toString() + "m " + seconds + "s ";
 
   if (distance < 0) {
     clearInterval(x);
     document.getElementById("timeRemaining").innerHTML = "Mission Accomplished"
   }
 }, 1000);
-
 
 export default class MainStateManager {
     /*
@@ -144,7 +144,7 @@ export default class MainStateManager {
     _setupEventListeners() {
         // Upper button
         this._upperButton.addEventListener('click', () => {
-            parent.playSelectSound();
+            parent.playSound2();
             if (this.mainState === 'main') {
                 this.updateMainState('mission');
             } else {
@@ -154,7 +154,7 @@ export default class MainStateManager {
 
         // Lower button
         this._lowerButton.addEventListener('click', () => {
-            parent.playSelectSound();
+            parent.playSound2();
             if (this.mainState === 'main') {
                 this.updateMainState('instrument');
             } else if (this.mainState === 'mission') {
