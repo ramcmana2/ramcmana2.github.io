@@ -47,12 +47,12 @@ body {
 .navigation-button-container {
   position: absolute;
   bottom: 2%;
-  left: 50%;
+  left: 48%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: row;
   align-items: baseline;
-  width: 95%;
+  width: 80%;
   max-width: 800px;
   z-index: 5;
   justify-content: space-around;
@@ -90,7 +90,6 @@ body {
   background-color: rgba(32, 22, 47, 0.8);
   border-radius: 10px;
   font-size: 14px;
-  font-family: "OCR A Std, monospace";
   padding: 20px;
   margin-left: 10px;
   margin-right: 10px;
@@ -108,7 +107,6 @@ body {
 
 #timeRemaining {
   font-size: 16px;
-  font-family: "OCR A Std, monospace";
   justify-self: center !important;
   width: 90%;
   background-color: rgba(32, 22, 47, 0.2);
@@ -192,6 +190,18 @@ body {
   z-index: 5;
   box-sizing: border-box;
   bottom: 7%;
+}
+
+@media only screen and (min-height: 700px) {
+  #mission-content {
+    bottom: 0%;
+  }
+}
+
+@media only screen and (min-height: 1000px) {
+  #mission-content {
+    bottom: -10%;
+  }
 }
 
 #phase-title-container {
