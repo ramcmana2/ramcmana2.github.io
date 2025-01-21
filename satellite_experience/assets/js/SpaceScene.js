@@ -7,6 +7,7 @@ import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/js
 import { CSS2DRenderer, CSS2DObject } from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/renderers/CSS2DRenderer.js';
 import HelpModal from './HelpModal.js';
 import { TextureLoader } from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js';
+import TWEEN from 'https://cdn.jsdelivr.net/npm/@tweenjs/tween.js@18.6.4/dist/tween.esm.js';
 
 export default class SpaceScene {
     /*
@@ -16,6 +17,7 @@ export default class SpaceScene {
     // Constructor
     constructor(options = {}, helpModal) {
         this._bubbles = [];
+        this._currentInstrumentIndex = 0;
         this._phases = [];
         this._currentPhaseIndex = 0;
         this._updateInstrumentContent = options.updateInstrumentContent;
@@ -32,11 +34,8 @@ export default class SpaceScene {
         // Instrument State
         if (newMainState === 'instrument') {
             this._showBubbles();
-            this._showInstructions();
         } else {
-            this.deselectBubbles();
             this._hideBubbles();
-            this._hideInstructions();
         }
 
         // Mission State
@@ -49,19 +48,19 @@ export default class SpaceScene {
         }
     }
 
-    // Unhighlight bubbles
-    deselectBubbles() {
-        if (this._bubbles) {
-            this._bubbles.forEach(bubble => {
+
+    click(bubbleId) {
+        this._bubbles.forEach(bubble => {
                 const bubbleMaterial = bubble.material;
                 const bubbleLabelDiv = bubble.bubbleLabel.element;
                 const bubbleProgressLabelDiv = bubble.bubbleProgressLabel.element;
 
-                bubbleMaterial.opacity = 0.5;
-                bubbleLabelDiv.style.opacity = '0.5';
-                bubbleProgressLabelDiv.style.opacity = '0.5';
+                if(bubble.bubbleId===bubbleId) {
+                    bubbleMaterial.opacity = 0.2;
+                    bubbleLabelDiv.style.opacity = '0.2';
+                    bubbleProgressLabelDiv.style.opacity = '0.2';
+                }
             });
-        }
     }
 
     // Go to next phase
@@ -85,6 +84,29 @@ export default class SpaceScene {
     // Get current phase id
     getCurrentPhase() {
         return this._phases[this._currentPhaseIndex].phaseId;
+    }
+
+    // Go to next instrument
+    prevInstrument() {
+        this._currentInstrumentIndex--;
+        if (this._currentInstrumentIndex < 0) {
+            this._currentInstrumentIndex = this._bubbles.length - 1;
+        }
+        this._updateBubbleSelection();
+    }
+
+    // Go to previous instrument
+    nextInstrument() {
+        this._currentInstrumentIndex++;
+        if (this._currentInstrumentIndex >= this._bubbles.length) {
+            this._currentInstrumentIndex = 0;
+        }
+        this._updateBubbleSelection();
+    }
+
+    // Get current instrument id
+    getCurrentInstrument() {
+        return this._bubbles[this._currentInstrumentIndex].bubbleId;
     }
 
     /*
@@ -184,7 +206,7 @@ export default class SpaceScene {
     
         const sunSprite = new THREE.Sprite(sunMaterial);
         sunSprite.scale.set(500, 500, 1);
-        sunSprite.position.set(-5000, 3000, 5000); // Sun distance from origin
+        sunSprite.position.set(-5000, 3000, 1000); // Sun distance from origin
         sunSprite.frustumCulled = false;
         this._scene.add(sunSprite);
     
@@ -218,17 +240,27 @@ export default class SpaceScene {
     _Controls() {
         this._controls = new OrbitControls(this._camera, this._threejs.domElement);
         this._controls.target.set(0, 0, 0); // Center the controls on the satellite
-
+    
+        // Set initial camera rotation using spherical coordinates
+        const radius = 10;
+        const theta = THREE.MathUtils.degToRad(195);
+        const phi = THREE.MathUtils.degToRad(75);
+        this._setCameraFromSpherical(radius, phi, theta);
+    
+        // Ensure the camera is looking at the target
+        this._camera.lookAt(this._controls.target);
+    
         this._controls.enableZoom = true;
         this._controls.minDistance = 3;
         this._controls.maxDistance = 1000;
         this._controls.enablePan = false;
         this._controls.screenSpacePanning = false;
-
-        // Rotate the camera
+    
+        // Rotate the camera automatically
         this._controls.autoRotate = true;
         this._controls.autoRotateSpeed = 0.2;
-
+    
+        // Update controls to reflect the new position and rotation
         this._controls.update();
     }
 
@@ -415,30 +447,6 @@ export default class SpaceScene {
         timelineGroup.add(triangle);
     }
 
-    _createInstructions() {
-        // Create instructions group
-        const instructionsGroup = new THREE.Group();
-        instructionsGroup.visible = false;
-        this._instructionsGroup = instructionsGroup;
-        this._camera.add(instructionsGroup);
-        instructionsGroup.position.set(-1.1, 22, -40);
-
-        // Create instructions label
-        const instructionsLabelDiv = document.createElement('div');
-        instructionsLabelDiv.className = 'label';
-        instructionsLabelDiv.textContent = 'Click on a circle to interact with that instrument.';
-        instructionsLabelDiv.style.color = 'white';
-        instructionsLabelDiv.style.opacity = '0.5';
-        //instructionsLabelDiv.style.fontSize = '12px';
-        instructionsLabelDiv.style.fontSize = '14px';
-        instructionsLabelDiv.style.pointerEvents = 'none';
-
-        const instructionsLabel = new CSS2DObject(instructionsLabelDiv);
-        instructionsLabel.position.set(1.05, -0.8, 0);
-        instructionsLabel.visible = false;
-        instructionsGroup.add(instructionsLabel);
-    }
-
     // Create a bubble, bubble label, and bubble progress label
     _createBubble(model, labelText, bubbleId, x, y, z) {
         // Create bubble
@@ -462,7 +470,7 @@ export default class SpaceScene {
         const bubbleMaterial = new THREE.SpriteMaterial({
             map: bubbleTexture,
             transparent: true,
-            opacity: 0.5,
+            opacity: 0.8,
         });
         const bubble = new THREE.Sprite(bubbleMaterial);
         bubble.scale.set(2, 2, 2); // Set bubble scale
@@ -476,7 +484,7 @@ export default class SpaceScene {
         bubbleLabelDiv.className = 'label';
         bubbleLabelDiv.textContent = labelText;
         bubbleLabelDiv.style.color = 'white';
-        bubbleLabelDiv.style.opacity = '0.5';
+        bubbleLabelDiv.style.opacity = '0.8';
         bubbleLabelDiv.style.fontSize = '14px';
         bubbleLabelDiv.style.maxWidth = '200px';
         bubbleLabelDiv.style.textAlign = 'center';
@@ -491,7 +499,7 @@ export default class SpaceScene {
         bubbleProgressLabelDiv.className = 'label';
         bubbleProgressLabelDiv.textContent = ''; // Initially empty
         bubbleProgressLabelDiv.style.color = 'white';
-        bubbleProgressLabelDiv.style.opacity = '0.5';
+        bubbleProgressLabelDiv.style.opacity = '0.8';
         bubbleProgressLabelDiv.style.fontSize = '12px';
         bubbleProgressLabelDiv.style.maxWidth = '200px';
         bubbleProgressLabelDiv.style.textAlign = 'center';
@@ -528,34 +536,56 @@ export default class SpaceScene {
 
             // Define phases for the timeline
             const phases = [
-                { phaseLabel: 'Launch', phaseId: 'launch0', phaseYear: 2023, phaseMonth: 9, phaseLineHeight: 'long' },
-                { phaseLabel: 'Launch', phaseId: 'launch1', phaseYear: 2023, phaseMonth: 9, phaseLineHeight: 'long' },
-                { phaseLabel: 'Gravity Assist', phaseId: 'assist0', phaseYear: 2026, phaseMonth: 3, phaseLineHeight: 'short' },
-                { phaseLabel: 'Gravity Assist', phaseId: 'assist1', phaseYear: 2026, phaseMonth: 3, phaseLineHeight: 'short' },
-                { phaseLabel: 'A', phaseId: 'a0', phaseYear: 2029, phaseMonth: 7, phaseLineHeight: 'short' },
-                { phaseLabel: 'A', phaseId: 'a1', phaseYear: 2029, phaseMonth: 7, phaseLineHeight: 'short' },
-                { phaseLabel: 'B1', phaseId: 'b10', phaseYear: 2029, phaseMonth: 9, phaseLineHeight: 'long' },
-                { phaseLabel: 'B1', phaseId: 'b11', phaseYear: 2029, phaseMonth: 9, phaseLineHeight: 'long' },
-                { phaseLabel: 'D', phaseId: 'd0', phaseYear: 2030, phaseMonth: 4, phaseLineHeight: 'short' },
-                { phaseLabel: 'D', phaseId: 'd1', phaseYear: 2030, phaseMonth: 4, phaseLineHeight: 'short' },
-                { phaseLabel: 'C', phaseId: 'c0', phaseYear: 2031, phaseMonth: 0, phaseLineHeight: 'short' },
-                { phaseLabel: 'C', phaseId: 'c1', phaseYear: 2031, phaseMonth: 0, phaseLineHeight: 'short' },
-                { phaseLabel: 'B2', phaseId: 'b20', phaseYear: 2031, phaseMonth: 4, phaseLineHeight: 'long' },
-                { phaseLabel: 'B2', phaseId: 'b21', phaseYear: 2031, phaseMonth: 4, phaseLineHeight: 'long' },
-                { phaseLabel: 'End', phaseId: 'end0', phaseYear: 2031, phaseMonth: 10, phaseLineHeight: 'short' },
-                { phaseLabel: 'End', phaseId: 'end1', phaseYear: 2031, phaseMonth: 10, phaseLineHeight: 'short' },
+                { phaseLabel: 'Launch', phaseId: 'launch', phaseYear: 2023, phaseMonth: 9, phaseLineHeight: 'long' },
+                { phaseLabel: 'Gravity Assist', phaseId: 'assist', phaseYear: 2026, phaseMonth: 3, phaseLineHeight: 'short' },
+                { phaseLabel: 'A', phaseId: 'a', phaseYear: 2029, phaseMonth: 7, phaseLineHeight: 'short' },
+                { phaseLabel: 'B1', phaseId: 'b1', phaseYear: 2029, phaseMonth: 9, phaseLineHeight: 'long' },
+                { phaseLabel: 'D', phaseId: 'd', phaseYear: 2030, phaseMonth: 4, phaseLineHeight: 'short' },
+                { phaseLabel: 'C', phaseId: 'c', phaseYear: 2031, phaseMonth: 0, phaseLineHeight: 'short' },
+                { phaseLabel: 'B2', phaseId: 'b2', phaseYear: 2031, phaseMonth: 4, phaseLineHeight: 'long' },
+                { phaseLabel: 'End', phaseId: 'end', phaseYear: 2031, phaseMonth: 10, phaseLineHeight: 'short' },
             ];
 
             // Create timeline with phases
             this._createTimeline(phases);
-            this._createInstructions();
 
-            // Create bubble and push to bubble list
-            this._bubbles.push(this._createBubble(model, 'Gamma Ray and Neutron Spectrometer', 'spectrometer', -2, -3, 3.5));
-            this._bubbles.push(this._createBubble(model, 'X-Band High Gain Antenna', 'antenna', -3.75, 0, 2.75));
-            this._bubbles.push(this._createBubble(model, 'Multispectral Imager', 'imager', -0.5, -2.5, -0.6));
-            this._bubbles.push(this._createBubble(model, 'Deep Space Optical Communication', 'communication', -0.5, 3.5, -0.6));
-            this._bubbles.push(this._createBubble(model, 'Magnetometer', 'detection', -4.75, -3, 1));
+            // Create bubbles
+            let bubble = this._createBubble(model, 'Gamma Ray and Neutron Spectrometer', 'spectrometer', -4.5, -2, 1.75);
+            // Assign target angles directly after creation
+            bubble.targetAngles = { radius: 2, phi: THREE.MathUtils.degToRad(-105), theta: THREE.MathUtils.degToRad(-20) };
+            this._bubbles.push(bubble);
+
+            bubble = this._createBubble(model, 'X-Band High Gain Antenna', 'antenna', -4.5, 1, 0);
+            bubble.targetAngles = { radius: 2, phi: THREE.MathUtils.degToRad(-75), theta: THREE.MathUtils.degToRad(5) };
+            this._bubbles.push(bubble);
+
+            bubble = this._createBubble(model, 'Multispectral Imager', 'imager', -0.5, -3, 0);
+            bubble.targetAngles = { radius: 2, phi: THREE.MathUtils.degToRad(-165), theta: THREE.MathUtils.degToRad(0) };
+            this._bubbles.push(bubble);
+
+            bubble = this._createBubble(model, 'Deep Space Optical Communication', 'communication', -0.5, 2.5, 0);
+            bubble.targetAngles = { radius: 2, phi: THREE.MathUtils.degToRad(-10), theta: THREE.MathUtils.degToRad(45) };
+            this._bubbles.push(bubble);
+
+            bubble = this._createBubble(model, 'Magnetometer', 'detection', -4.5, -2, -1.75);
+            bubble.targetAngles = { radius: 2, phi: THREE.MathUtils.degToRad(-105), theta: THREE.MathUtils.degToRad(20) };
+            this._bubbles.push(bubble);
+
+            bubble = this._createBubble(model, 'SPT-140 Engines', 'propulsion', 3, 3, 0);
+            bubble.targetAngles = { radius: 2, phi: THREE.MathUtils.degToRad(25), theta: THREE.MathUtils.degToRad(0) };
+            this._bubbles.push(bubble);
+
+            bubble = this._createBubble(model, 'SPT-140 Engines', 'propulsion', 3, -3.5, 0);
+            bubble.targetAngles = { radius: 2, phi: THREE.MathUtils.degToRad(135), theta: THREE.MathUtils.degToRad(0) };
+            this._bubbles.push(bubble);
+
+            bubble = this._createBubble(model, 'Solar Array', 'arrays', 1, 0, 13);
+            bubble.targetAngles = { radius: 7, phi: THREE.MathUtils.degToRad(85), theta: THREE.MathUtils.degToRad(85) };
+            this._bubbles.push(bubble);
+
+            bubble = this._createBubble(model, 'Solar Array', 'arrays', 1, 0, -13);
+            bubble.targetAngles = { radius: 7, phi: THREE.MathUtils.degToRad(85), theta: THREE.MathUtils.degToRad(-85) };
+            this._bubbles.push(bubble);
 
             // Store clickable objects
             this._clickableObjects = this._bubbles.slice();
@@ -577,10 +607,8 @@ export default class SpaceScene {
         requestAnimationFrame(() => {
             this._RAF();
 
-            // // Simple model rotation
-            // if (this._model) {
-            //     this._model.rotation.y += 0.0002;
-            // }
+            // Update tween
+            TWEEN.update();
 
             // Update controls rotation
             this._controls.update();
@@ -635,28 +663,6 @@ export default class SpaceScene {
         }
     }
 
-    _showInstructions() {
-        if (this._instructionsGroup) {
-            this._instructionsGroup.visible = true;
-            this._instructionsGroup.traverse((child) => {
-                if (child instanceof CSS2DObject) {
-                    child.visible = true;
-                }
-            });
-        }
-    }
-
-    _hideInstructions() {
-        if (this._instructionsGroup) {
-            this._instructionsGroup.visible = false;
-            this._instructionsGroup.traverse((child) => {
-                if (child instanceof CSS2DObject) {
-                    child.visible = false;
-                }
-            });
-        }
-    }
-
     _updatePhaseSelection() {
         this._phases.forEach((phase, index) => {
             const isSelected = index === this._currentPhaseIndex;
@@ -664,6 +670,16 @@ export default class SpaceScene {
             phase.phaseLine.material.opacity = opacity;
             phase.phaseLabel.element.style.opacity = opacity.toString();
         });
+    }
+
+    _updateBubbleSelection() {
+        const selectedBubble = this._bubbles[this._currentInstrumentIndex];
+        if (selectedBubble) {
+            this._enterInstrumentDetail(selectedBubble);
+            selectedBubble.material.opacity = 0.2;
+            selectedBubble.bubbleLabel.element.style.opacity = '0.2';
+            selectedBubble.bubbleProgressLabel.element.style.opacity = '0.2';
+        }
     }
 
     // Check for intersection with clickable objects at position
@@ -682,32 +698,25 @@ export default class SpaceScene {
 
             // If a bubble was selected
             if (selectedBubble) {
-                parent.playOpenSound();
+                window.sfxManager.playSound("select");
                 // Mark the selected bubble as viewed
-                selectedBubble.bubbleProgressLabel.element.textContent = '(viewed)';
-
-                // Deselect other bubbles
-                this._bubbles.forEach(bubble => {
-                    const bubbleMaterial = bubble.material;
-                    const bubbleLabelDiv = bubble.bubbleLabel.element;
-                    const bubbleProgressLabelDiv = bubble.bubbleProgressLabel.element;
-
-                    // Selected bubble
-                    if (bubble === selectedBubble) {
-                        bubbleMaterial.opacity = 0.9;
-                        bubbleLabelDiv.style.opacity = '0.9';
-                        bubbleProgressLabelDiv.style.opacity = '0.9';
-
-                        // Unselected bubbles
-                    } else {
-                        bubbleMaterial.opacity = 0.5;
-                        bubbleLabelDiv.style.opacity = '0.5';
-                        bubbleProgressLabelDiv.style.opacity = '0.5';
-                    }
-                });
+                selectedBubble.material.opacity = 0.2;
+                selectedBubble.bubbleLabel.element.style.opacity = '0.2';
+                selectedBubble.bubbleProgressLabel.element.style.opacity = '0.2';
 
                 // Update instrument content based on selected bubble
                 this._updateInstrumentContent(selectedBubble.bubbleId);
+
+                // Enter instrument detail state and animate
+                if (this._mainState === 'instrument') {
+                    this._enterInstrumentDetail(selectedBubble);
+                }
+            }
+
+        // If no intersects and in a detail state, exit detail state
+        } else {
+            if (this._instrumentDetailState) {
+                this.exitInstrumentDetail();
             }
         }
     }
@@ -743,5 +752,78 @@ export default class SpaceScene {
                 this._performRaycast(touchVector);
             }
         }
+    }
+
+    _getCurrentSpherical() {
+        const x = this._camera.position.x;
+        const y = this._camera.position.y;
+        const z = this._camera.position.z;
+        const radius = Math.sqrt(x*x + y*y + z*z);
+        const phi = Math.acos(y / radius);
+        const theta = Math.atan2(z, x);
+        return { radius, phi, theta };
+    }
+
+    _setCameraFromSpherical(radius, phi, theta) {
+        const x = radius * Math.sin(phi) * Math.cos(theta);
+        const y = radius * Math.cos(phi);
+        const z = radius * Math.sin(phi) * Math.sin(theta);
+        this._camera.position.set(x, y, z);
+        this._camera.lookAt(0, 0, 0);
+    }
+
+    _animateSpherical(targetRadius, targetPhi, targetTheta, onComplete) {
+        const current = this._getCurrentSpherical();
+        const start = { r: current.radius, p: current.phi, t: current.theta };
+        const end = { r: targetRadius, p: targetPhi, t: targetTheta };
+
+        new TWEEN.Tween(start)
+            .to({ r: end.r, p: end.p, t: end.t }, 2000) // 2000 ms animation
+            .easing(TWEEN.Easing.Quadratic.Out)
+            .onUpdate(() => {
+                this._setCameraFromSpherical(start.r, start.p, start.t);
+                this._controls.update();
+            })
+            .onComplete(() => {
+                if (onComplete) onComplete();
+            })
+            .start();
+    }
+
+    _enterInstrumentDetail(selectedBubble) {
+        // Check if theres already an instrument selected
+        if (this._instrumentDetailState && this._instrumentSelectedBubble && this._instrumentSelectedBubble !== selectedBubble) {
+            this._instrumentSelectedBubble.visible = true;
+            this._instrumentSelectedBubble.material.opacity = 0.3;
+            this._instrumentSelectedBubble.bubbleLabel.element.style.opacity = '0.5';
+            this._instrumentSelectedBubble.bubbleProgressLabel.element.style.opacity = '0.5';
+        }
+    
+        // Now set the new bubble as the selected one
+        this._instrumentSelectedBubble = selectedBubble;
+        this._instrumentSelectedBubble.visible = false;
+    
+        this._controls.autoRotate = false;
+        this._instrumentDetailState = true;
+    
+        // Animate camera to the bubble's target angles
+        const targetAngles = selectedBubble.targetAngles;
+        if (targetAngles) {
+            this._animateSpherical(
+                targetAngles.radius,
+                targetAngles.phi,
+                targetAngles.theta,
+                () => {
+                    // Animation complete
+                }
+            );
+        }
+    }
+
+    exitInstrumentDetail() {
+        this._controls.autoRotate = true;
+        this._instrumentDetailState = null;
+        this._instrumentSelectedBubble.visible = true;
+        this._instrumentSelectedBubble = null;
     }
 }
