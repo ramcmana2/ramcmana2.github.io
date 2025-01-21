@@ -58,7 +58,6 @@ html {
   padding-left: 5%;
   padding-right: 5%;
   text-align: center;
-  margin-left: 10%;
 }
 
 .logo {
@@ -76,8 +75,9 @@ html {
 
 h1 {
   padding: 30px;
-  /*align-self: center;*/
+  align-self: center;
   color: white;
+  margin-left: 10%;
 }
 
 .team-member {
