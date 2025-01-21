@@ -49,8 +49,8 @@ html {
 .about-title {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-self: center;
+  /*justify-content: center;*/
+  /*align-self: center;*/
   background-image: linear-gradient(to right, #302144, #000000);
   /*align-items: stretch;*/
   height: 15%;
