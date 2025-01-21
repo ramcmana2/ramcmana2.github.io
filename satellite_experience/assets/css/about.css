@@ -1,11 +1,11 @@
 /* Basic reset for consistent styling across browsers */
 body,
 html {
-  /*margin: 0;*/
-  margin: 10%;
+  margin: 0;
   width: 100%;
   height: 100%;
-  padding: 0;
+  padding: 10%;
+  /*padding: 0;*/
   box-sizing: border-box;
   font-family: Arial, sans-serif;
 }
