@@ -118,6 +118,7 @@ h1 {
 
 .citation-container {
   /*margin-top: 150px;*/
+  margin-top: 30px;
   display: flex;
   width: 400px;
   text-align: left;
@@ -139,5 +140,9 @@ h1 {
 
 .disclaimer {
   color: white;
-  
+  font-size: 8px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
