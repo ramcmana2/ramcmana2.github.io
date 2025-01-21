@@ -28,8 +28,7 @@ html {
   width: 100%;
   top: 0;
   left: 0;
-  /*justify-content: center;*/
-  justify-content: space-between;
+  justify-content: center;
   margin: 0;
   /* gap: 10px; */
   /* margin-bottom: 50vh; */
@@ -53,12 +52,12 @@ html {
   justify-content: center;
   align-self: center;
   background-image: linear-gradient(to right, #302144, #000000);
-  align-items: stretch;
+  /*align-items: stretch;*/
   height: 15%;
   width: 100%;
   padding-left: 5%;
   padding-right: 5%;
-  text-align: center;
+  /*text-align: center;*/
 }
 
 .logo {
