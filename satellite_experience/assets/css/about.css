@@ -52,12 +52,13 @@ html {
   justify-content: space-between;
   align-self: center;
   background-image: linear-gradient(to right, #302144, #000000);
-  /*align-items: stretch;*/
+  align-items: stretch;
   height: 15%;
   width: 100%;
   padding-left: 5%;
   padding-right: 5%;
-  /*text-align: center;*/
+  text-align: center;
+  margin-left: 10%;
 }
 
 .logo {
