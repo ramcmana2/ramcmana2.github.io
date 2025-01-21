@@ -117,7 +117,7 @@ h1 {
 }
 
 .citation-container {
-  margin-top: 150px;
+  /*margin-top: 150px;*/
   display: flex;
   width: 400px;
   text-align: left;
