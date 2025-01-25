@@ -44,6 +44,11 @@ export default class SettingsModal {
                 }
             }
         });
+
+        document.getElementById("button0").addEventListener('click', () => setSetting('default-mode'));
+        //document.getElementById("button1").addEventListener('click', () => setSetting('default-mode'));
+        //document.getElementById("button2").addEventListener('click', () => setSetting('default-mode'));
+        //document.getElementById("button3").addEventListener('click', () => setSetting('default-mode'));
     }
 
     // Load settings modal content
