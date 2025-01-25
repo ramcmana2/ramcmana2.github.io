@@ -450,12 +450,13 @@ body {
 
 .invisibuttons {
   width: 100%;
-  border-radius: 5px;
+  /*border-radius: 5px;*/
   display: flex;
   justify-content: space-between;
   /*background: transparent;*/
   /*border: none;*/
   color: #FFFFFF;
+  z-index: 50;
 }
 
 #default-mode,
