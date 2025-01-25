@@ -14,7 +14,6 @@ export default class SettingsModal {
         this.settingsIconButton = document.getElementById('settings-icon-button');
         this.cssFile = document.createElement("link");
         this.cssFile.rel = "stylesheet";
-        //this.button0 = document.getElementById("button0");
 
         this._initialize();
     }
@@ -22,10 +21,6 @@ export default class SettingsModal {
     // Close settings modal
     close() {
         this.settingsModal.style.display = 'none';
-    }
-
-    setSetting(radioButtonID) {
-        document.getElementById(radioButtonID).click();
     }
 
     /*
@@ -49,14 +44,6 @@ export default class SettingsModal {
                 }
             }
         });
-
-        // this.button0.addEventListener('click', function() {
-        //     setSetting('default-mode');
-        // });
-        //document.getElementById("button0").addEventListener('click', () => this.setSetting('default-mode'));
-        //document.getElementById("button1").addEventListener('click', () => setSetting('default-mode'));
-        //document.getElementById("button2").addEventListener('click', () => setSetting('default-mode'));
-        //document.getElementById("button3").addEventListener('click', () => setSetting('default-mode'));
     }
 
     // Load settings modal content
@@ -80,6 +67,9 @@ export default class SettingsModal {
         const radioSetting = document.querySelectorAll('input[name="setting"]');
         const savedSelection = localStorage.getItem('theme');
         const button0 = document.getElementById("button0");
+        const button1 = document.getElementById("button1");
+        //const button2 = document.getElementById("button2");
+        //const button3 = document.getElementById("button3");
         if (savedSelection) {
             const radioToSelect = document.querySelector(`input[name="setting"][value="${savedSelection}"]`);
             if (radioToSelect) {
@@ -128,6 +118,6 @@ export default class SettingsModal {
             document.getElementById('default-mode').click();
             //this.setSetting('default-mode');
         });
+        button1.addEventListener('click', () => document.getElementById('high-contrast-mode').click());
     }
-
 }
