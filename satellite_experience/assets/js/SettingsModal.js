@@ -24,6 +24,10 @@ export default class SettingsModal {
         this.settingsModal.style.display = 'none';
     }
 
+    setSetting(radioButtonID) {
+        document.getElementById(radioButtonID).click();
+    }
+
     /*
      * Private methods
      */
@@ -125,7 +129,4 @@ export default class SettingsModal {
         });
     }
 
-    setSetting(radioButtonID) {
-        document.getElementById(radioButtonID).click();
-    }
 }
