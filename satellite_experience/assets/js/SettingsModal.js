@@ -14,6 +14,7 @@ export default class SettingsModal {
         this.settingsIconButton = document.getElementById('settings-icon-button');
         this.cssFile = document.createElement("link");
         this.cssFile.rel = "stylesheet";
+        this.button0 = document.getElementById("button0");
 
         this._initialize();
     }
@@ -45,7 +46,8 @@ export default class SettingsModal {
             }
         });
 
-        document.getElementById("button0").addEventListener('click', () => this.setSetting('default-mode'));
+        button0.addEventListener('click', () => setSetting('default-mode'));
+        //document.getElementById("button0").addEventListener('click', () => this.setSetting('default-mode'));
         //document.getElementById("button1").addEventListener('click', () => setSetting('default-mode'));
         //document.getElementById("button2").addEventListener('click', () => setSetting('default-mode'));
         //document.getElementById("button3").addEventListener('click', () => setSetting('default-mode'));
