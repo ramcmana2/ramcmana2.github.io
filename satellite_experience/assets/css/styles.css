@@ -433,6 +433,7 @@ body {
 .settings-modal-light-mode,
 .settings-modal-color-blind-mode,
 .settings-modal-volume {
+  position: relative;
   width: 100%;
   text-align: left;
   margin-bottom: 1px;
@@ -449,9 +450,12 @@ body {
 }
 
 .invisibuttons {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: block;
   width: 100%;
-  background-color: rgba(255, 255, 255, 0.05);
+  /*background-color: rgba(255, 255, 255, 0.05);*/
   /*text-align: left;*/
   margin-bottom: 1px;
   margin-top: 10px;
@@ -461,7 +465,7 @@ body {
   /*justify-content: space-between;*/
   /*background: transparent;*/
   border: none;
-  /*color: #FFFFFF;*/
+  color: #FFFFFF;
   /*z-index: 50;*/
 }
 
