@@ -449,8 +449,9 @@ body {
 }
 
 .invisibuttons {
-  background: transparent;
-  border: none;
+  /*background: transparent;*/
+  /*border: none;*/
+  color: red;
 }
 
 #default-mode,
