@@ -449,18 +449,21 @@ body {
 }
 
 .invisibuttons {
+  background-color:#d33;
+  box-sizing: border-box;
   width: 100%;
-  text-align: left;
-  margin-bottom: 1px;
-  margin-top: 10px;
-  padding: 15px 10px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
+  /*width: 100%;*/
+  /*text-align: left;*/
+  /*margin-bottom: 1px;*/
+  /*margin-top: 10px;*/
+  /*padding: 15px 10px;*/
+  /*border-radius: 5px;*/
+  /*display: flex;*/
+  /*justify-content: space-between;*/
   /*background: transparent;*/
   /*border: none;*/
-  color: #FFFFFF;
-  z-index: 50;
+  /*color: #FFFFFF;*/
+  /*z-index: 50;*/
 }
 
 #default-mode,
