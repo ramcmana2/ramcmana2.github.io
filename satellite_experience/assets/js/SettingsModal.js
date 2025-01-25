@@ -125,7 +125,8 @@ export default class SettingsModal {
         });
 
         button0.addEventListener('click', function() {
-            this.setSetting('default-mode');
+            document.getElementById('default-mode').click();
+            //this.setSetting('default-mode');
         });
     }
 
