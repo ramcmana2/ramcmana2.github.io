@@ -448,6 +448,11 @@ body {
   margin-top: 20%;
 }
 
+.invisibuttons {
+  background: transparent;
+  border: none;
+}
+
 #default-mode,
 #high-contrast-mode,
 #light-mode,

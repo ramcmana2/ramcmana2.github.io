@@ -110,4 +110,8 @@ export default class SettingsModal {
             localStorage.setItem("volumeSetting", volumeValue);
         });
     }
+
+    setSetting(radioButtonID) {
+        document.getElementById(radioButtonID).click();
+    }
 }
