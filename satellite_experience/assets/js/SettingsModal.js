@@ -14,7 +14,7 @@ export default class SettingsModal {
         this.settingsIconButton = document.getElementById('settings-icon-button');
         this.cssFile = document.createElement("link");
         this.cssFile.rel = "stylesheet";
-        this.button0 = document.getElementById("button0");
+        //this.button0 = document.getElementById("button0");
 
         this._initialize();
     }
@@ -46,9 +46,9 @@ export default class SettingsModal {
             }
         });
 
-        this.button0.addEventListener('click', function() {
-            setSetting('default-mode');
-        });
+        // this.button0.addEventListener('click', function() {
+        //     setSetting('default-mode');
+        // });
         //document.getElementById("button0").addEventListener('click', () => this.setSetting('default-mode'));
         //document.getElementById("button1").addEventListener('click', () => setSetting('default-mode'));
         //document.getElementById("button2").addEventListener('click', () => setSetting('default-mode'));
@@ -75,6 +75,7 @@ export default class SettingsModal {
         const settingThemeLink = document.getElementById('setting-theme');
         const radioSetting = document.querySelectorAll('input[name="setting"]');
         const savedSelection = localStorage.getItem('theme');
+        const button0 = document.getElementById("button0");
         if (savedSelection) {
             const radioToSelect = document.querySelector(`input[name="setting"][value="${savedSelection}"]`);
             if (radioToSelect) {
@@ -117,6 +118,10 @@ export default class SettingsModal {
             const volumeValue = volumeSlider.value;
             window.sfxManager.setVolume(volumeValue / 100);
             localStorage.setItem("volumeSetting", volumeValue);
+        });
+
+        button0.addEventListener('click', function() {
+            setSetting('default-mode');
         });
     }
 
