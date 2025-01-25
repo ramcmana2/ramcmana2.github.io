@@ -46,7 +46,7 @@ export default class SettingsModal {
             }
         });
 
-        this.button0.addEventListener('click', () => setSetting('default-mode'));
+        this.button0.addEventListener('click', () => this.setSetting('default-mode'));
         //document.getElementById("button0").addEventListener('click', () => this.setSetting('default-mode'));
         //document.getElementById("button1").addEventListener('click', () => setSetting('default-mode'));
         //document.getElementById("button2").addEventListener('click', () => setSetting('default-mode'));
