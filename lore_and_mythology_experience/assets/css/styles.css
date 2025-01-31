@@ -65,12 +65,14 @@ canvas {
 
 #close_help {
   position: absolute;
-  top: 16vh;
-  left: calc(80vw - 10vw);
+  top: 12vh;
+  left: calc(80vw - 16vw);
   font-family: "Papyrus", fantasy;
+  font-size: 16px;
 }
 
 #help_modal_title {
+  position: absolute;
   color: black;
   font-family: "Papyrus", fantasy;
   font-size: 24px;
@@ -107,6 +109,8 @@ canvas {
 .text_box {
   border-color: black;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
 }
 
 .instructions {
