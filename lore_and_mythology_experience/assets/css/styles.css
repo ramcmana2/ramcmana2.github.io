@@ -49,7 +49,7 @@ canvas {
 
 #help_modal {
   display: none;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: transparent;
   margin: auto;
   /*padding: 20px;*/
   /*width: 80vw;*/
@@ -58,9 +58,11 @@ canvas {
 }
 
 #papyrus_horizontal {
+  position: absolute;
   width: 80vw;
   display: block;
   margin: auto;
+  background-color: transparent;
 }
 
 #close_help {
@@ -73,6 +75,8 @@ canvas {
 
 #help_modal_title {
   position: absolute;
+  top: 12vh;
+  left: calc(49vw);
   color: black;
   font-family: "Papyrus", fantasy;
   font-size: 24px;
