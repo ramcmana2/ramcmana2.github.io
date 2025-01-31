@@ -49,4 +49,15 @@ canvas {
 
 #help_modal {
   display: none;
+  background-color: rgba(0, 0, 0, 0.8); /* Make background slightly opaque */
+  margin: 10% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 375px;
+  border-radius: 12px;
+  /*color: white;*/
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 20;
 }
