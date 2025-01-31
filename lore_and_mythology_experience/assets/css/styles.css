@@ -59,6 +59,12 @@ canvas {
   z-index: 20;
 }
 
+#help_modal_title {
+  color: black;
+  font-family: "Papyrus", fantasy;
+  font-size: 24;
+}
+
 #papyrus_horizontal {
   width: 80vw;
 }
@@ -66,16 +72,35 @@ canvas {
 #close_help {
   position: absolute;
   top: 5px;
-  right: calc(80vw - 5px);
+  left: calc(80vw - 5px);
 }
 
-.swipe_and_tap {
+.swipe {
   position: absolute;
+  top: 20vh;
+  left: 20vw;
   display: flex;
   justify-content: space-between;
 }
 
-#help_modal_title {
-  color: black;
-  font-family: "Papyrus", fantasy;
+.tap {
+  position: absolute;
+  top: 20vh;
+  left: calc(80vw - 20vw);
+  display: flex;
+  justify-content: space-between;
+}
+
+#swipe {
+  position: relative;
+  width: 20vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+#tap {
+  position: relative;
+  width: 20vw;
+  display: flex;
+  justify-content: space-between;
 }
