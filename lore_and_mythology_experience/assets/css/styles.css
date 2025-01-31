@@ -46,3 +46,7 @@ canvas {
   pointer-events: none;
   display: none;
 }
+
+#help_modal {
+  display: none;
+}
