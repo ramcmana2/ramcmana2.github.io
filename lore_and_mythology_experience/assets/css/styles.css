@@ -52,12 +52,25 @@ canvas {
   background-color: rgba(0, 0, 0, 0.8); /* Make background slightly opaque */
   margin: 10% auto;
   padding: 20px;
-  width: 80%;
-  max-width: 375px;
+  width: 80vh;
   border-radius: 12px;
-  /*color: white;*/
   position: relative;
-  max-height: 90vh;
   overflow-y: auto;
   z-index: 20;
+}
+
+#papyrus_horizonal {
+  width: 80vw;
+}
+
+#close_help {
+  position: absolute;
+  top: 5px;
+  right: calc(80vw - 5px);
+}
+
+.swipe_and_tap {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
 }
