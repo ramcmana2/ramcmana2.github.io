@@ -67,9 +67,10 @@ canvas {
   position: absolute;
   top: 16vh;
   left: calc(80vw - 10vw);
+  font-family: "Papyrus", fantasy;
 }
 
-.help_modal_title {
+#help_modal_title {
   color: black;
   font-family: "Papyrus", fantasy;
   font-size: 24;
@@ -78,19 +79,21 @@ canvas {
 .swipe {
   position: absolute;
   top: 50vh;
-  left: 20vw;
+  left: 30vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: "Papyrus", fantasy;
 }
 
 .tap {
   position: absolute;
   top: 50vh;
-  left: calc(80vw - 20vw);
+  left: calc(80vw - 30vw);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-family: "Papyrus", fantasy;
 }
 
 #swipe {
