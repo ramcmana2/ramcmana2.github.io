@@ -52,7 +52,7 @@ canvas {
   background-color: rgba(0, 0, 0, 0.8); /* Make background slightly opaque */
   margin: 10% auto;
   padding: 20px;
-  width: 80vh;
+  width: 80vw;
   border-radius: 12px;
   position: relative;
   overflow-y: auto;
@@ -73,4 +73,9 @@ canvas {
   position: absolute;
   display: flex;
   justify-content: space-between;
+}
+
+#help_modal_title {
+  color: black;
+  font-family: "Papyrus", fantasy;
 }
