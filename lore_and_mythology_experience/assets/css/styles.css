@@ -52,7 +52,7 @@ canvas {
   background-color: transparent;
   margin: auto;
   /*padding: 20px;*/
-  /*width: 80vw;*/
+  width: 80vw;
   border-radius: 12px;
   position: relative;
 }
@@ -63,6 +63,8 @@ canvas {
   display: block;
   margin: auto;
   background-color: transparent;
+  padding: 10vw
+  /*align-self: center;*/
 }
 
 #close_help {
