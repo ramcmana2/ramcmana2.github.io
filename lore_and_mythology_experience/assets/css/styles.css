@@ -49,18 +49,18 @@ canvas {
 
 #help_modal {
   display: none;
-  background-color: rgba(0, 0, 0, 0.2);
-  margin: 10% auto;
-  padding: 20px;
-  width: 80vw;
+  background-color: rgba(0, 0, 0, 0);
+  margin: auto;
+  /*padding: 20px;*/
+  /*width: 80vw;*/
   border-radius: 12px;
   position: relative;
-  overflow-y: auto;
-  z-index: 20;
 }
 
 #papyrus_horizontal {
   width: 80vw;
+  display: block;
+  margin: auto;
 }
 
 #close_help {
