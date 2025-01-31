@@ -59,7 +59,7 @@ canvas {
   z-index: 20;
 }
 
-#help_modal_title {
+.help_modal_title {
   color: black;
   font-family: "Papyrus", fantasy;
   font-size: 24;
@@ -71,8 +71,8 @@ canvas {
 
 #close_help {
   position: absolute;
-  top: 5px;
-  left: calc(80vw - 5px);
+  top: 20vh;
+  left: calc(80vw - 5vw);
 }
 
 .swipe {
@@ -92,15 +92,9 @@ canvas {
 }
 
 #swipe {
-  position: relative;
   width: 20vw;
-  display: flex;
-  justify-content: space-between;
 }
 
 #tap {
-  position: relative;
   width: 20vw;
-  display: flex;
-  justify-content: space-between;
 }
