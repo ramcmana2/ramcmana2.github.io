@@ -73,7 +73,7 @@ canvas {
 #help_modal_title {
   color: black;
   font-family: "Papyrus", fantasy;
-  font-size: 24;
+  font-size: 24px;
 }
 
 .swipe {
@@ -102,4 +102,13 @@ canvas {
 
 #tap {
   width: 10vw;
+}
+
+.text_box {
+  border-color: black;
+  border-radius: 5px;
+}
+
+.instructions {
+  text-align: center;
 }
