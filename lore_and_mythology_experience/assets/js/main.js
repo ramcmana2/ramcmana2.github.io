@@ -53,16 +53,24 @@ function createStarField() {
 const stars = createStarField();
 scene.add(stars);
 
+// Get the camera's aspect ratio, FOV, and near/far planes
+// const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+
+// Define the camera's vertical and horizontal bounds
+const cameraHeight = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
+const cameraWidth = cameraHeight * camera.aspect;
+
 // Add a glowing metorite
+const metoriteX = Math.random() * cameraWidth - cameraWidth / 2;
+const metoriteY = Math.random() * cameraHeight - cameraHeight / 2;
 const metoriteGeometry = new THREE.SphereGeometry(1, 32, 32);
 const metoriteMaterial = new THREE.MeshStandardMaterial({
     color: 0x0088ff,
     emissive: 0x002244,
 });
 const metorite = new THREE.Mesh(metoriteGeometry, metoriteMaterial);
-metorite.position.set(2, 0, -3);
+metorite.position.set(metoriteX, metoriteY, -3);
 scene.add(metorite);
-metorite.visible = false;
 
 // Add lighting
 const ambientLight = new THREE.AmbientLight(0x404040, 2);
@@ -99,31 +107,12 @@ const telescopeLens = new THREE.Mesh(telescopeLensGeometry, telescopeLensMateria
 telescopeLens.position.set(0, -2, 3.1);
 scene.add(telescopeLens);
 
-// Scope behavior
+// Circle behavior
 const scope = document.getElementById('scope');
-
-// Raycaster setup
-const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2()
 
 function moveScope(event) {
     scope.style.left = `${event.clientX - scope.offsetWidth / 2}px`;
     scope.style.top = `${event.clientY - scope.offsetHeight / 2}px`;
-
-    // Convert to world position
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-    // Perform raycast
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObject(metorite);
-
-    // hide/show metorite
-    if (intersects.length > 0) {
-        metorite.visible = true;
-    } else {
-        metorite.visible = false;
-    }
 }
 
 document.addEventListener('mousedown', (event) => {
@@ -139,8 +128,6 @@ document.addEventListener('mousemove', (event) => {
 
 document.addEventListener('mouseup', () => {
     scope.style.display = 'none';
-    // hide metorite
-    metorite.visible = false;
 });
 
 // Animate the scene
