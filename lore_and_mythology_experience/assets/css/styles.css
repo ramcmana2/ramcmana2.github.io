@@ -70,16 +70,12 @@ canvas {
   /*background-color: transparent;*/
   /*padding: 10vw*/
   background-color: rgba(32, 22, 47, 0.8); /* Make background slightly opaque */
-  margin: 10% auto;
-  padding: 20px;
-  width: 80%;
-  max-width: 375px;
+  width: 80vw;
+  height: calc(0.75 * 80vw);
   border-radius: 12px;
-  color: white;
   position: relative;
-  max-height: 90vh;
-  overflow-y: auto;
-  z-index: 20;
+  top: calc((100vh - 0.75 * 80vw) / 2);
+  left: calc((100vw - 80vw) / 2);
 }
 
 #close_help {
