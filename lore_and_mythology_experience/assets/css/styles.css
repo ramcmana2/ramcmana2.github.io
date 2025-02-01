@@ -84,7 +84,8 @@ canvas {
   top: calc((0.09 * 0.75 * 80vw) + (0.5 * 100vh) - (0.5 * 0.75 * 80vw));
   left: calc(0.9 * 80vw);
   font-family: "Papyrus", fantasy;
-  font-size: 36px;
+  /*font-size: 36px;*/
+  font-size: calc(0.04 * 0.75 * 80vw);
   cursor: pointer;
 }
 
