@@ -55,13 +55,31 @@ canvas {
   /*width: 80vw;*/
   /*border-radius: 12px;*/
   /*position: relative;*/
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 #papyrus_horizontal {
-  position: absolute;
-  width: 80vw;
-  background-color: transparent;
-  padding: 10vw
+  /*position: absolute;*/
+  /*width: 80vw;*/
+  /*background-color: transparent;*/
+  /*padding: 10vw*/
+  background-color: rgba(32, 22, 47, 0.8); /* Make background slightly opaque */
+  margin: 10% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 375px;
+  border-radius: 12px;
+  color: white;
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 20;
 }
 
 #close_help {
