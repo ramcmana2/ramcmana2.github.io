@@ -80,8 +80,8 @@ canvas {
 
 #close_help {
   position: absolute;
-  top: 22vh;
-  left: calc(80vw - 8vw);
+  top: calc(0.18 * 0.75 * 80vw);
+  left: calc(0.9 * 80vw);
   font-family: "Papyrus", fantasy;
   font-size: 36px;
   cursor: pointer;
@@ -89,17 +89,17 @@ canvas {
 
 #help_modal_title {
   position: absolute;
-  top: 30vh;
-  left: calc(46vw);
-  color: black;
+  top: calc(0.33 * 0.75 * 80vw);
+  left: calc(0.57 * 80vw);
+  /*color: black;*/
   font-family: "Papyrus", fantasy;
   font-size: 48px;
 }
 
 .swipe {
   position: absolute;
-  top: 52vh;
-  left: 34vw;
+  top: calc(0.57 * 0.75 * 80vw);
+  left: calc(0.42 * 80vw);
   display: flex;
   flex-direction: column;
   /*justify-content: space-between;*/
@@ -108,8 +108,8 @@ canvas {
 
 .tap {
   position: absolute;
-  top: 49.3vh;
-  left: calc(80vw - 24vw);
+  top: calc(0.55 * 0.75 * 80vw);
+  left: calc(0.67 * 80vw);
   display: flex;
   flex-direction: column;
   /*justify-content: space-between;*/
@@ -117,14 +117,14 @@ canvas {
 }
 
 #swipe {
-  width: 9vw;
+  width: calc(0.12 * 80vw);
   align-self: center;
 }
 
 #tap {
-  width: 9vw;
+  width: calc(0.12 * 80vw);
   align-self: center;
-  padding: 12.5px;
+  padding: 9px;
 }
 
 .text_box {
