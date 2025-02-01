@@ -69,7 +69,7 @@ canvas {
   /*width: 80vw;*/
   /*background-color: transparent;*/
   /*padding: 10vw*/
-  background-color: rgba(32, 22, 47, 0.8); /* Make background slightly opaque */
+  background-color: rgba(32, 22, 47, 0.8);
   width: 80vw;
   height: calc(0.75 * 80vw);
   border-radius: 12px;
@@ -107,7 +107,6 @@ canvas {
   left: calc(0.42 * 80vw);
   display: flex;
   flex-direction: column;
-  /*justify-content: space-between;*/
   font-family: "Papyrus", fantasy;
 }
 
@@ -123,14 +122,14 @@ canvas {
   left: calc(0.67 * 80vw);
   display: flex;
   flex-direction: column;
-  /*justify-content: space-between;*/
   font-family: "Papyrus", fantasy;
 }
 
 #tap {
   width: calc(0.12 * 80vw);
   align-self: center;
-  padding: 9px;
+  /*padding: 9px;*/
+  padding: 0.6vw;
 }
 
 .text_box {
@@ -138,7 +137,8 @@ canvas {
   border-width: thin;
   border-color: black;
   border-radius: 5px;
-  padding: 16px;
+  /*padding: 16px;*/
+  padding: 1vw;
   display: flex;
   flex-direction: column;
 }
