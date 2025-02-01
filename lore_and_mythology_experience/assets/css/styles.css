@@ -145,4 +145,5 @@ canvas {
 
 .instructions {
   text-align: center;
+  font-size: calc(0.02 * 0.75 * 80vw);
 }
