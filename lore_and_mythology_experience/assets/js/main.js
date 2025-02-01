@@ -53,24 +53,15 @@ function createStarField() {
 const stars = createStarField();
 scene.add(stars);
 
-// Get the camera's aspect ratio, FOV, and near/far planes
-// const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-
-// Define the camera's vertical and horizontal bounds
-const cameraHeight = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
-const cameraWidth = cameraHeight * camera.aspect;
-
 // Add a glowing metorite
-const metoriteX = Math.random() * cameraWidth - cameraWidth / 2;
-const metoriteY = Math.random() * cameraHeight - cameraHeight / 2;
-const metoriteGeometry = new THREE.SphereGeometry(1, 32, 32);
-const metoriteMaterial = new THREE.MeshStandardMaterial({
+const planetGeometry = new THREE.SphereGeometry(1, 32, 32);
+const planetMaterial = new THREE.MeshStandardMaterial({
     color: 0x0088ff,
     emissive: 0x002244,
 });
-const metorite = new THREE.Mesh(metoriteGeometry, metoriteMaterial);
-metorite.position.set(metoriteX, metoriteY, -3);
-scene.add(metorite);
+const planet = new THREE.Mesh(planetGeometry, planetMaterial);
+planet.position.set(2, 0, -3);
+scene.add(planet);
 
 // Add lighting
 const ambientLight = new THREE.AmbientLight(0x404040, 2);
@@ -137,7 +128,7 @@ function animate() {
     stars.rotation.x += 0.0005;
     stars.rotation.y += 0.0005;
 
-    metorite.rotation.y += 0.01;
+    planet.rotation.y += 0.01;
 
     renderer.render(scene, camera);
 }
