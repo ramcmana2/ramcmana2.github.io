@@ -1,6 +1,6 @@
 
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js";
-import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js";
+// import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js";
 // import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/GLTFLoader.js";
 // import {
 //     CSS2DRenderer,
@@ -53,16 +53,24 @@ function createStarField() {
 const stars = createStarField();
 scene.add(stars);
 
+// Get the camera's aspect ratio, FOV, and near/far planes
+// const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+
+// Define the camera's vertical and horizontal bounds
+const cameraHeight = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
+const cameraWidth = cameraHeight * camera.aspect;
+
 // Add a glowing metorite
+const metoriteX = Math.random() * cameraWidth - cameraWidth / 2;
+const metoriteY = Math.random() * cameraHeight - cameraHeight / 2;
 const metoriteGeometry = new THREE.SphereGeometry(1, 32, 32);
 const metoriteMaterial = new THREE.MeshStandardMaterial({
     color: 0x0088ff,
     emissive: 0x002244,
 });
 const metorite = new THREE.Mesh(metoriteGeometry, metoriteMaterial);
-metorite.position.set(2, 0, -3);
+metorite.position.set(metoriteX, metoriteY, -3);
 scene.add(metorite);
-metorite.visible = false;
 
 // Add lighting
 const ambientLight = new THREE.AmbientLight(0x404040, 2);
@@ -99,90 +107,26 @@ const telescopeLens = new THREE.Mesh(telescopeLensGeometry, telescopeLensMateria
 telescopeLens.position.set(0, -2, 3.1);
 scene.add(telescopeLens);
 
-// Scope behavior
+// Circle behavior
 const scope = document.getElementById('scope');
-
-// Raycaster setup
-const raycaster = new THREE.Raycaster();
-const mouse = new THREE.Vector2()
-
-// OrbitControls 
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-controls.enableRotate = false;
-controls.enablePan = false;
-controls.enableZoom = false;
-
-let isZoom = false;
 
 function moveScope(event) {
     scope.style.left = `${event.clientX - scope.offsetWidth / 2}px`;
     scope.style.top = `${event.clientY - scope.offsetHeight / 2}px`;
-
-    // Convert to world position
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-    // Perform raycast
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObject(metorite);
-
-
-    // hide/show metorite
-    if (intersects.length > 0) {
-        // pause zoom
-        if (isZoom) return;
-        isZoom = true;
-        scope.style.display = 'none';
-
-        metorite.visible = true;
-        const targetPoint = intersects[0].point;
-
-        // Move the camera closer instead of directly to the point
-        const zoomFactor = 0.5;
-        const newCameraPosition = camera.position.clone().lerp(targetPoint, zoomFactor);
-
-        // Animate the zoom effect
-        const duration = 1000;
-        const startTime = performance.now();
-        const startPos = camera.position.clone();
-        const startTarget = controls.target.clone();
-
-        function animateZoom(time) {
-            const elapsed = time - startTime;
-            const t = Math.min(elapsed / duration, 1);
-
-            // Interpolate camera position and focus target
-            camera.position.lerpVectors(startPos, newCameraPosition, t);
-            controls.target.lerpVectors(startTarget, targetPoint, t);
-            controls.update();
-
-            if (t < 1) {
-                requestAnimationFrame(animateZoom);
-            } else {
-                isZoom = false;
-            }
-        }
-
-        requestAnimationFrame(animateZoom);
-    }
 }
 
 document.addEventListener('mousedown', (event) => {
-    if (isZoom) return;
     scope.style.display = 'block';
     moveScope(event);
 });
 
 document.addEventListener('mousemove', (event) => {
-    if (isZoom) return;
     if (scope.style.display === 'block') {
         moveScope(event);
     }
 });
 
 document.addEventListener('mouseup', () => {
-    if (isZoom) return;
     scope.style.display = 'none';
 });
 
