@@ -91,27 +91,20 @@ canvas {
 
 #help_modal_title {
   position: absolute;
-  top: calc(0.33 * 0.75 * 80vw);
+  /*top: calc(0.33 * 0.75 * 80vw);*/
+  top: calc((0.22 * 0.75 * 80vw) + (0.5 * 100vh) - (0.5 * 0.75 * 80vw));
   left: calc(0.57 * 80vw);
   /*color: black;*/
   font-family: "Papyrus", fantasy;
-  font-size: 48px;
+  /*font-size: 48px;*/
+  font-size: calc(0.06 * 0.75 * 80vw);
 }
 
 .swipe {
   position: absolute;
-  top: calc(0.57 * 0.75 * 80vw);
+  /*top: calc(0.57 * 0.75 * 80vw);*/
+  top: calc((0.48 * 0.75 * 80vw) + (0.5 * 100vh) - (0.5 * 0.75 * 80vw));
   left: calc(0.42 * 80vw);
-  display: flex;
-  flex-direction: column;
-  /*justify-content: space-between;*/
-  font-family: "Papyrus", fantasy;
-}
-
-.tap {
-  position: absolute;
-  top: calc(0.55 * 0.75 * 80vw);
-  left: calc(0.67 * 80vw);
   display: flex;
   flex-direction: column;
   /*justify-content: space-between;*/
@@ -121,6 +114,17 @@ canvas {
 #swipe {
   width: calc(0.12 * 80vw);
   align-self: center;
+}
+
+.tap {
+  position: absolute;
+  /*top: calc(0.55 * 0.75 * 80vw);*/
+  top: calc((0.46 * 0.75 * 80vw) + (0.5 * 100vh) - (0.5 * 0.75 * 80vw));
+  left: calc(0.67 * 80vw);
+  display: flex;
+  flex-direction: column;
+  /*justify-content: space-between;*/
+  font-family: "Papyrus", fantasy;
 }
 
 #tap {
