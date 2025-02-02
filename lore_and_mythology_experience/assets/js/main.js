@@ -57,6 +57,7 @@ scene.add(stars);
 const loader = new GLTFLoader();
 loader.load('../assets/models/asteroid.glb', (gltf) => {
     const asteroid = gltf.scene;
+    model.scale.set(0.25, 0.25, 0.25);
     asteroid.position.set(0, 0, 0);
     scene.add(asteroid);
 });
@@ -137,6 +138,8 @@ function animate() {
     stars.rotation.y += 0.0005;
 
     planet.rotation.y += 0.01;
+
+    asteroid.rotation.y += 0.01;
 
     renderer.render(scene, camera);
 }
