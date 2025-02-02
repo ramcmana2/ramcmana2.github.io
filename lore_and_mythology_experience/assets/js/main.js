@@ -1,7 +1,7 @@
 
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js";
 // import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js";
-// import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/GLTFLoader.js";
+import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/GLTFLoader.js";
 // import {
 //     CSS2DRenderer,
 //     CSS2DObject,
@@ -52,6 +52,14 @@ function createStarField() {
 
 const stars = createStarField();
 scene.add(stars);
+
+// Add the asteroid
+const loader = new GLTFLoader();
+loader.load('../assets/models/asteroid.glb', (gltf) => {
+    const asteroid = gltf.scene;
+    asteroid.position.set(0, 0, 0);
+    scene.add(asteroid);
+});
 
 // Add a glowing metorite
 const planetGeometry = new THREE.SphereGeometry(1, 32, 32);
