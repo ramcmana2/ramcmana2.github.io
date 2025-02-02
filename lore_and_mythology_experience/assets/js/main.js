@@ -55,9 +55,10 @@ scene.add(stars);
 
 // Add the asteroid
 const loader = new GLTFLoader();
+var asteroid;
 loader.load('../assets/models/asteroid.glb', (gltf) => {
-    const asteroid = gltf.scene;
-    model.scale.set(0.25, 0.25, 0.25);
+    asteroid = gltf.scene;
+    asteroid.scale.set(0.25, 0.25, 0.25);
     asteroid.position.set(0, 0, 0);
     scene.add(asteroid);
 });
