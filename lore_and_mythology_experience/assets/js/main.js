@@ -140,7 +140,7 @@ function animate() {
 
     planet.rotation.y += 0.01;
 
-    asteroid.rotation.y += 0.01;
+    asteroid.rotateY(-0.01);
 
     renderer.render(scene, camera);
 }
