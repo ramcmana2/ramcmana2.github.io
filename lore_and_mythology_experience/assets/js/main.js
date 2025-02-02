@@ -140,7 +140,7 @@ function animate() {
 
     planet.rotation.y += 0.01;
 
-    //asteroid.rotation.y -= 0.01;
+    asteroid.rotation.y -= 0.01;
     //asteroid.rotateY(-0.01);
     //asteroid.rotateOnAxis(THREE.Vector3(0, 1, 0), -0.01);
 
