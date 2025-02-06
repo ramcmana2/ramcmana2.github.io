@@ -156,8 +156,8 @@ function showAnnibale() {
         infos[0].setAttribute("style", "text-align: center; font-size: calc(0.02 * 0.75 * 80vw); z-index: 21;");
     }
 
-    calc(((100vh - 40vw) / 2) + (0.5 * 100vh) - (0.5 * 40vw))
-    calc((100vw - 40vw) / 2)
+    //calc(((100vh - 40vw) / 2) + (0.5 * 100vh) - (0.5 * 40vw))
+    //calc((100vw - 40vw) / 2)
 }
 
 document.addEventListener('mousedown', (event) => {
