@@ -128,6 +128,7 @@ scene.add(telescopeLens);
 // Circle behavior
 const scope = document.getElementById('scope');
 
+const raycaster = new THREE.Raycaster();
 function moveScope(event) {
     scope.style.left = `${event.clientX - scope.offsetWidth / 2}px`;
     scope.style.top = `${event.clientY - scope.offsetHeight / 2}px`;
