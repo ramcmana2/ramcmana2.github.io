@@ -62,6 +62,34 @@ const planet = new THREE.Mesh(planetGeometry, planetMaterial);
 planet.position.set(2, 0, -3);
 scene.add(planet);
 
+
+
+const planetMaterial2 = new THREE.MeshStandardMaterial({
+    color: 0x008800,
+    emissive: 0x002244,
+});
+const planet2 = new THREE.Mesh(planetGeometry, planetMaterial2);
+planet2.position.set(0, 2, -3);
+scene.add(planet2);
+
+const planetMaterial3 = new THREE.MeshStandardMaterial({
+    color: 0x0000ff,
+    emissive: 0x002244,
+});
+const planet3 = new THREE.Mesh(planetGeometry, planetMaterial3);
+planet3.position.set(0, 0, -3);
+scene.add(planet3);
+
+const planetMaterial4 = new THREE.MeshStandardMaterial({
+    color: 0x8888ff,
+    emissive: 0x002244,
+});
+const planet4 = new THREE.Mesh(planetGeometry, planetMaterial4);
+planet4.position.set(2, 2, -3);
+scene.add(planet4);
+
+
+
 // Add lighting
 const ambientLight = new THREE.AmbientLight(0x404040, 2);
 scene.add(ambientLight);
