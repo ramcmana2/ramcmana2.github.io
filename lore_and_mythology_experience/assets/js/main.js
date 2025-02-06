@@ -62,34 +62,6 @@ const planet = new THREE.Mesh(planetGeometry, planetMaterial);
 planet.position.set(2, 0, -3);
 scene.add(planet);
 
-
-
-const planetMaterial2 = new THREE.MeshStandardMaterial({
-    color: 0x008800,
-    emissive: 0x002244,
-});
-const planet2 = new THREE.Mesh(planetGeometry, planetMaterial2);
-planet2.position.set(0, 2, -3);
-scene.add(planet2);
-
-const planetMaterial3 = new THREE.MeshStandardMaterial({
-    color: 0x0000ff,
-    emissive: 0x002244,
-});
-const planet3 = new THREE.Mesh(planetGeometry, planetMaterial3);
-planet3.position.set(0, 0, -3);
-scene.add(planet3);
-
-const planetMaterial4 = new THREE.MeshStandardMaterial({
-    color: 0x8888ff,
-    emissive: 0x002244,
-});
-const planet4 = new THREE.Mesh(planetGeometry, planetMaterial4);
-planet4.position.set(2, 2, -3);
-scene.add(planet4);
-
-
-
 // Add lighting
 const ambientLight = new THREE.AmbientLight(0x404040, 2);
 scene.add(ambientLight);
@@ -136,25 +108,39 @@ function moveScope(event) {
     console.log(planet.position.getComponent(0), planet.position.getComponent(1));
     //console.log(event.clientX, event.clientY);
     console.log((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1);
-    //if mouse
 
     raycaster.setFromCamera(new THREE.Vector2((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1), camera);
     const intersects = raycaster.intersectObject(planet);
+
     if (intersects.length > 0) {
-        console.log(1);
+        //console.log(1);
+        showAnnibale();
     }
-    const intersects2 = raycaster.intersectObject(planet2);
-    if (intersects2.length > 0) {
-        console.log(2);
+    else {
+        document.getElementById("annibale_modal").setAttribute("style", "display: 'none'");
     }
-    const intersects3 = raycaster.intersectObject(planet3);
-    if (intersects3.length > 0) {
-        console.log(3);
-    }
-    const intersects4 = raycaster.intersectObject(planet4);
-    if (intersects4.length > 0) {
-        console.log(4);
-    }
+}
+
+function showAnnibale() {
+    const annibale_div = document.createElement("div");
+    annibale_div.setAttribute("id", "annibale_modal");
+    annibale_div.setAttribute("style", "display: 'block'; position: fixed; z-index: 20; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);");
+
+    let annibale_innerHTML = "";
+    annibale_innerHTML += `<img src="../assets/images/annibale.jpg" id="annibale"/>
+                           <img src="../assets/images/papyrus_scroll_double_sided.png" id="papyrus_double_sided"/>
+                           <div id="scroll_text_box">
+                             <span class="info">On March 17, 1852, the Italian astronomer</span>
+                             <span class="info">Annibale de Gasparis discovered the 16th</span>
+                             <span class="info">asteroid in the main asteroid belt</span>
+                             <span class="info">between Mars and Jupiter.</span>
+                             <span class="info">De Gasparis named this asteroid Psyche.</span>
+                           </div>`;
+    annibale_div.innerHTML = annibale_innerHTML;
+    document.getElementById("annibale").setAttribute("style", "background-color: transparent; width: 50vw; height: calc(1.25 * 50vw); border-radius: 12px; position: relative; top: calc(((100vh - 1.25 * 50vw) / 2) / 2); left: calc((100vw - 50vw) / 2);");
+    document.getElementById("papyrus_double_sided").setAttribute("style", "background-color: transparent; width: 50vw; height: calc(1.25 * 50vw); border-radius: 12px; position: relative; top: calc(((100vh - 1.25 * 50vw) / 2) + (((100vh - 1.25 * 50vw) / 2) / 2)); left: calc((100vw - 50vw) / 2);");
+    document.getElementById("scroll_text_box").setAttribute("style", "border-style: solid; border-width: thin; border-color: black; border-radius: 5px; padding: 1vw; display: flex; flex-direction: column;");
+    document.getElementsByClassName("info").setAttribute("style", "text-align: center; font-size: calc(0.02 * 0.75 * 80vw);");
 }
 
 document.addEventListener('mousedown', (event) => {
