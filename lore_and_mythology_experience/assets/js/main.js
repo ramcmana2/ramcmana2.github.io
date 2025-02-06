@@ -105,7 +105,8 @@ function moveScope(event) {
     scope.style.top = `${event.clientY - scope.offsetHeight / 2}px`;
 
     console.log(planet.position.getComponent(0), planet.position.getComponent(1));
-    console.log(event.clientX, event.clientY);
+    //console.log(event.clientX, event.clientY);
+    console.log((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1);
     //if mouse
 }
 
