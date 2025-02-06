@@ -144,10 +144,13 @@ function showAnnibale() {
     //document.getElementById("scroll_text_box").setAttribute("style", "border-style: solid; border-width: thin; border-color: black; border-radius: 5px; padding: 1vw; display: flex; flex-direction: column;");
     //document.getElementsByClassName("info").setAttribute("style", "text-align: center; font-size: calc(0.02 * 0.75 * 80vw);");
 
-    document.getElementById("annibale").setAttribute("style", "background-color: transparent; width: calc(0.8 * 40vh); height: 40vh; border-radius: 12px; position: relative; top: calc(((100vh - 40vh) / 2) + (((100vh - 40vh) / 2) / 2)); left: calc((100vw - 0.8 * 40vh) / 2);");
-    document.getElementById("papyrus_double_sided").setAttribute("style", "background-color: transparent; width: 80vw; height: 80vw; border-radius: 12px; position: relative; top: calc(((100vh - 80vw) / 2) / 2); left: calc((100vw - 80vw) / 2);");
+    document.getElementById("annibale").setAttribute("style", "background-color: transparent; width: calc(0.8 * 40vh); height: 40vh; border-radius: 12px; position: relative; top: calc(((100vh - 40vh) / 2) - (((100vh - 40vh) / 2) / 2)); left: calc((100vw - 0.8 * 40vh) / 2);");
+    document.getElementById("papyrus_double_sided").setAttribute("style", "background-color: transparent; width: 40vw; height: 40vw; border-radius: 12px; position: relative; top: calc(((100vh - 40vw) / 2) / 2); left: calc((100vw - 40vw) / 2);");
     document.getElementById("scroll_text_box").setAttribute("style", "border-style: solid; border-width: thin; border-color: black; border-radius: 5px; padding: 1vw; display: flex; flex-direction: column;");
-    document.getElementsByClassName("info").setAttribute("style", "text-align: center; font-size: calc(0.02 * 0.75 * 80vw);");
+    var infos = document.getElementsByClassName("info");
+    for (var i = 0; i < infos.length; i++) {
+        infos[0].setAttribute("style", "text-align: center; font-size: calc(0.02 * 0.75 * 80vw);");
+    }
 }
 
 document.addEventListener('mousedown', (event) => {
