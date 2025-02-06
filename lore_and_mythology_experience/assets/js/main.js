@@ -1,7 +1,6 @@
-
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js";
 // import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js";
-import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/GLTFLoader.js";
+// import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/GLTFLoader.js";
 // import {
 //     CSS2DRenderer,
 //     CSS2DObject,
@@ -52,16 +51,6 @@ function createStarField() {
 
 const stars = createStarField();
 scene.add(stars);
-
-// Add the asteroid
-const loader = new GLTFLoader();
-var asteroid;
-loader.load('../assets/models/asteroid.glb', (gltf) => {
-    asteroid = gltf.scene;
-    asteroid.scale.set(0.25, 0.25, 0.25);
-    asteroid.position.set(0, 0, 0);
-    scene.add(asteroid);
-});
 
 // Add a glowing metorite
 const planetGeometry = new THREE.SphereGeometry(1, 32, 32);
@@ -140,8 +129,6 @@ function animate() {
 
     planet.rotation.y += 0.01;
 
-    if (asteroid) asteroid.rotation.y -= 0.01;
-
     renderer.render(scene, camera);
 }
 
@@ -152,4 +139,19 @@ window.addEventListener("resize", () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
+});
+
+// load papyrus scroll introduction
+document.addEventListener("DOMContentLoaded", function () {
+    fetch('intro.html')
+        .then(response => response.text())
+        .then(data => {
+            document.body.insertAdjacentHTML('beforeend', data);
+
+            import('./intro.js')
+                .then(module => {
+                    module.openPopup();
+                })
+                .catch(error => console.error("Failed to load intro.js:", error));
+        });
 });
