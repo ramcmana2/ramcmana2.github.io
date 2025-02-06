@@ -138,8 +138,13 @@ function showAnnibale() {
                            </div>`;
     annibale_div.innerHTML = annibale_innerHTML;
     document.body.appendChild(annibale_div);
-    
-    document.getElementById("annibale").setAttribute("style", "background-color: transparent; width: 50vw; height: calc(1.25 * 50vw); border-radius: 12px; position: relative; top: calc(((100vh - 1.25 * 50vw) / 2) / 2); left: calc((100vw - 50vw) / 2);");
+
+    //document.getElementById("annibale").setAttribute("style", "background-color: transparent; width: 50vw; height: calc(1.25 * 50vw); border-radius: 12px; position: relative; top: calc(((100vh - 1.25 * 50vw) / 2) / 2); left: calc((100vw - 50vw) / 2);");
+    //document.getElementById("papyrus_double_sided").setAttribute("style", "background-color: transparent; width: 50vw; height: calc(1.25 * 50vw); border-radius: 12px; position: relative; top: calc(((100vh - 1.25 * 50vw) / 2) + (((100vh - 1.25 * 50vw) / 2) / 2)); left: calc((100vw - 50vw) / 2);");
+    //document.getElementById("scroll_text_box").setAttribute("style", "border-style: solid; border-width: thin; border-color: black; border-radius: 5px; padding: 1vw; display: flex; flex-direction: column;");
+    //document.getElementsByClassName("info").setAttribute("style", "text-align: center; font-size: calc(0.02 * 0.75 * 80vw);");
+
+    document.getElementById("annibale").setAttribute("style", "background-color: transparent; width: calc(0.8 * 40vh); height: 40vh; border-radius: 12px; position: relative; top: calc(((100vh - 40vh) / 2) / 2); left: calc((100vw - 0.8 * 40vh) / 2);");
     document.getElementById("papyrus_double_sided").setAttribute("style", "background-color: transparent; width: 50vw; height: calc(1.25 * 50vw); border-radius: 12px; position: relative; top: calc(((100vh - 1.25 * 50vw) / 2) + (((100vh - 1.25 * 50vw) / 2) / 2)); left: calc((100vw - 50vw) / 2);");
     document.getElementById("scroll_text_box").setAttribute("style", "border-style: solid; border-width: thin; border-color: black; border-radius: 5px; padding: 1vw; display: flex; flex-direction: column;");
     document.getElementsByClassName("info").setAttribute("style", "text-align: center; font-size: calc(0.02 * 0.75 * 80vw);");
