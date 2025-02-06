@@ -136,6 +136,24 @@ function moveScope(event) {
     //console.log(event.clientX, event.clientY);
     console.log((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1);
     //if mouse
+
+    raycaster.setFromCamera(new THREE.Vector2((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1), camera);
+    const intersects = raycaster.intersectObject(planet);
+    if (intersects.length > 0) {
+        console.log(1);
+    }
+    const intersects2 = raycaster.intersectObject(planet2);
+    if (intersects2.length > 0) {
+        console.log(2);
+    }
+    const intersects3 = raycaster.intersectObject(planet3);
+    if (intersects3.length > 0) {
+        console.log(3);
+    }
+    const intersects4 = raycaster.intersectObject(planet4);
+    if (intersects4.length > 0) {
+        console.log(4);
+    }
 }
 
 document.addEventListener('mousedown', (event) => {
