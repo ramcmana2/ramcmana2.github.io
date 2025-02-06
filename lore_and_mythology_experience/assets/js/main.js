@@ -104,7 +104,7 @@ function moveScope(event) {
     scope.style.left = `${event.clientX - scope.offsetWidth / 2}px`;
     scope.style.top = `${event.clientY - scope.offsetHeight / 2}px`;
 
-    console.log(metorite.position());
+    console.log(planet.position());
     console.log(event.clientX, event.clientY);
     //if mouse
 }
