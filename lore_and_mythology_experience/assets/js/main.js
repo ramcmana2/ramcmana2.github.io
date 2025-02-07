@@ -117,7 +117,10 @@ function moveScope(event) {
         showAnnibale();
     }
     else {
-        document.getElementById("annibale_modal").setAttribute("style", "display: 'none'");
+        document.getElementById("annibale_modal").setAttribute("style", "display: 'none';");
+        document.getElementById("annibale").setAttribute("style", "display: 'none';");
+        document.getElementById("papyrus_double_sided").setAttribute("style", "display: 'none';");
+        document.getElementById("scroll_text_box").setAttribute("style", "display: 'none';");
     }
 }
 
