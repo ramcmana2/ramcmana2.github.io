@@ -171,7 +171,7 @@ function showAnnibale() {
         annibool = true;
     }
     else {
-        document.getElementById("annibale_modal").setAttribute("style", "display: 'block'");
+        document.getElementById("annibale_modal").setAttribute("style", "display: 'block'; position: fixed; z-index: 20; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);");
     }
 }
 
