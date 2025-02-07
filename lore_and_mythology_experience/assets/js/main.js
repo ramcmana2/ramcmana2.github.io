@@ -175,6 +175,9 @@ function showAnnibale() {
     }
     else {
         document.getElementById("annibale_modal").setAttribute("style", "display: 'block'; position: fixed; z-index: 20; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5);");
+        document.getElementById("annibale").setAttribute("style", "background-color: transparent; width: calc(0.8 * 40vh); height: 40vh; border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 40vh); left: calc(50vw - ((0.8 * 40vh + 10vh) / 2));");
+        document.getElementById("papyrus_double_sided").setAttribute("style", "background-color: transparent; width: 40vh; height: 40vh; border-radius: 12px; position: absolute; top: 50vh; left: calc(50vw - (40vh / 2));");
+        document.getElementById("scroll_text_box").setAttribute("style", "display: flex; flex-direction: column; position: absolute; width: 40vh; height: calc(40vh / 2); top: calc(50vh + ((40vh / 1.7) / 1.7)); left: calc(50vw - (40vh / 2));");
     }
 }
 
