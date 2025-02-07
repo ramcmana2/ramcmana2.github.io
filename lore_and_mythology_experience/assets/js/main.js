@@ -159,12 +159,12 @@ function showAnnibale() {
     //calc(((100vh - 40vw) / 2) + (0.5 * 100vh) - (0.5 * 40vw))
     //calc((100vw - 40vw) / 2)
 
-    document.getElementById("annibale").setAttribute("style", "background-color: transparent; width: calc(0.8 * 40vh); height: 40vh; border-radius: 12px; padding: 5vh; position: absolute; top: 0; left: calc(50vw - ((0.8 * 50vh) / 2));");
+    document.getElementById("annibale").setAttribute("style", "background-color: transparent; width: calc(0.8 * 40vh); height: 40vh; border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 40vh); left: calc(50vw - ((0.8 * 40vh + 10vh) / 2));");
     document.getElementById("papyrus_double_sided").setAttribute("style", "background-color: transparent; width: 40vh; height: 40vh; border-radius: 12px; position: absolute; top: 50vh; left: calc(50vw - (40vh / 2));");
     document.getElementById("scroll_text_box").setAttribute("style", "display: flex; flex-direction: column; position: absolute; width: 40vh; height: calc(40vh / 2); top: calc(50vh + ((40vh / 1.7) / 1.7)); left: calc(50vw - (40vh / 2));");
     var infos = document.getElementsByClassName("info");
     for (var i = 0; i < infos.length; i++) {
-        infos[i].setAttribute("style", "text-align: center; font-size: calc(0.05 * 40vh); z-index: 21;");
+        infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh); z-index: 21;");
     }
 }
 
