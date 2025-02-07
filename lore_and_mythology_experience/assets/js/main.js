@@ -168,7 +168,7 @@ function showAnnibale() {
         for (var i = 0; i < infos.length; i++) {
             infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh); z-index: 21;");
         }
-        anniool = true;
+        annibool = true;
     }
     else {
         document.getElementById("annibale_modal").setAttribute("style", "display: 'block'");
