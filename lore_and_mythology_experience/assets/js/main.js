@@ -1,5 +1,7 @@
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js";
-// import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js";
+import SettingsModal from './SettingsModal.js';
+import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js";
+import { startPhases } from "./phases.js";
 // import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/GLTFLoader.js";
 // import {
 //     CSS2DRenderer,
@@ -52,15 +54,25 @@ function createStarField() {
 const stars = createStarField();
 scene.add(stars);
 
+// Get the camera's aspect ratio, FOV, and near/far planes
+// const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+
+// Define the camera's vertical and horizontal bounds
+const cameraHeight = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
+const cameraWidth = cameraHeight * camera.aspect;
+
 // Add a glowing metorite
-const planetGeometry = new THREE.SphereGeometry(1, 32, 32);
-const planetMaterial = new THREE.MeshStandardMaterial({
+const metoriteX = Math.random() * cameraWidth - cameraWidth / 2;
+const metoriteY = Math.random() * cameraHeight - cameraHeight / 2;
+const metoriteGeometry = new THREE.SphereGeometry(1, 32, 32);
+const metoriteMaterial = new THREE.MeshStandardMaterial({
     color: 0x0088ff,
     emissive: 0x002244,
 });
-const planet = new THREE.Mesh(planetGeometry, planetMaterial);
-planet.position.set(2, 0, -3);
-scene.add(planet);
+const metorite = new THREE.Mesh(metoriteGeometry, metoriteMaterial);
+metorite.position.set(metoriteX, metoriteY, -3);
+scene.add(metorite);
+metorite.visible = false;
 
 // Add lighting
 const ambientLight = new THREE.AmbientLight(0x404040, 2);
@@ -97,111 +109,167 @@ const telescopeLens = new THREE.Mesh(telescopeLensGeometry, telescopeLensMateria
 telescopeLens.position.set(0, -2, 3.1);
 scene.add(telescopeLens);
 
-// Circle behavior
+// Scope behavior
 const scope = document.getElementById('scope');
 
+// Raycaster setup
 const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2()
+
+// OrbitControls 
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = false;
+controls.enableRotate = false;
+controls.enablePan = false;
+controls.enableZoom = false;
+
+const settingsModal = new SettingsModal();
+
+let isZoom = false;
+let count = 0;
+
+window.scopeDisabled = false;
+
 function moveScope(event) {
-    scope.style.left = `${event.clientX - scope.offsetWidth / 2}px`;
-    scope.style.top = `${event.clientY - scope.offsetHeight / 2}px`;
+    if (event.touches) {
+        scope.style.left = `${event.touches[event.touches.length - 1].clientX - scope.offsetWidth / 2}px`;
+        scope.style.top = `${event.touches[event.touches.length - 1].clientY - scope.offsetHeight / 2}px`;
 
-    console.log(planet.position.getComponent(0), planet.position.getComponent(1));
-    //console.log(event.clientX, event.clientY);
-    console.log((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1);
+        // Convert to world position
+        mouse.x = (event.touches[event.touches.length - 1].clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.touches[event.touches.length - 1].clientY / window.innerHeight) * 2 + 1;
 
-    raycaster.setFromCamera(new THREE.Vector2((event.clientX / window.innerWidth) * 2 - 1, -(event.clientY / window.innerHeight) * 2 + 1), camera);
-    const intersects = raycaster.intersectObject(planet);
+    } else {
+        scope.style.left = `${event.clientX - scope.offsetWidth / 2}px`;
+        scope.style.top = `${event.clientY - scope.offsetHeight / 2}px`;
+        // Convert to world position
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+    }
+    // Perform raycast
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObject(metorite);
 
+    // hide/show metorite
     if (intersects.length > 0) {
-        //console.log(1);
-        showAnnibale();
+        // pause zoom
+        if (isZoom) return;
+        isZoom = true;
+        scope.style.display = 'none';
+
+        metorite.visible = true;
+        const targetPoint = intersects[0].point;
+
+        // Move the camera closer instead of directly to the point
+        const zoomFactor = 0.5;
+        const newCameraPosition = camera.position.clone().lerp(targetPoint, zoomFactor);
+
+        // Animate the zoom effect
+        const duration = 1000;
+        const startTime = performance.now();
+        const startPos = camera.position.clone();
+        const startTarget = controls.target.clone();
+
+        function animateZoom(time) {
+            const elapsed = time - startTime;
+            const t = Math.min(elapsed / duration, 1);
+
+            // Interpolate camera position and focus target
+            camera.position.lerpVectors(startPos, newCameraPosition, t);
+            controls.target.lerpVectors(startTarget, targetPoint, t);
+            controls.update();
+
+            if (t < 1) {
+                requestAnimationFrame(animateZoom);
+            } else {
+                settingsModal.applyAMPIModalStyles();
+                starFieldTransistion();
+            }
+        }
+        requestAnimationFrame(animateZoom);
     }
-    else {
-        document.getElementById("annibale_modal").setAttribute("style", "display: 'none';");
-        document.getElementById("annibale").setAttribute("style", "display: 'none';");
-        document.getElementById("papyrus_double_sided").setAttribute("style", "display: 'none';");
-        document.getElementById("scroll_text_box").setAttribute("style", "display: 'none';");
-    }
+    count = 100;
 }
 
-let annibool = false;
-function showAnnibale() {
-    if (!annibool) {
-        const annibale_div = document.createElement("div");
-        annibale_div.setAttribute("id", "annibale_modal");
-        annibale_div.setAttribute("style", "display: 'block'; position: fixed; z-index: 20; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 1);");
+const starTransistionGeometry = new THREE.BufferGeometry();
+let isStarTransition = false;
 
-        let annibale_innerHTML = "";
-        annibale_innerHTML += `<img src="../assets/images/annibale.jpg" id="annibale"/>
-                               <img src="../assets/images/papyrus_scroll_double_sided.png" id="papyrus_double_sided"/>
-                               <div id="scroll_text_box">
-                                 <span class="info">On March 17, 1852, the Italian astronomer</span>
-                                 <span class="info">Annibale de Gasparis discovered the 16th</span>
-                                 <span class="info">asteroid in the main asteroid belt</span>
-                                 <span class="info">between Mars and Jupiter.</span>
-                                 <span class="info">De Gasparis named this asteroid Psyche.</span>
-                               </div>`;
-        annibale_div.innerHTML = annibale_innerHTML;
-        document.body.appendChild(annibale_div);
+function starFieldTransistion() {
+    scene.remove(stars);
 
-        //document.getElementById("annibale").setAttribute("style", "background-color: transparent; width: 50vw; height: calc(1.25 * 50vw); border-radius: 12px; position: relative; top: calc(((100vh - 1.25 * 50vw) / 2) / 2); left: calc((100vw - 50vw) / 2);");
-        //document.getElementById("papyrus_double_sided").setAttribute("style", "background-color: transparent; width: 50vw; height: calc(1.25 * 50vw); border-radius: 12px; position: relative; top: calc(((100vh - 1.25 * 50vw) / 2) + (((100vh - 1.25 * 50vw) / 2) / 2)); left: calc((100vw - 50vw) / 2);");
-        //document.getElementById("scroll_text_box").setAttribute("style", "border-style: solid; border-width: thin; border-color: black; border-radius: 5px; padding: 1vw; display: flex; flex-direction: column;");
-        //document.getElementsByClassName("info").setAttribute("style", "text-align: center; font-size: calc(0.02 * 0.75 * 80vw);");
+    // Starfield parameters
+    const starCount = 2000;
+    const starPositions = new Float32Array(starCount * 3);
 
-        // document.getElementById("annibale").setAttribute("style", "background-color: transparent; width: calc(0.8 * 40vh); height: 40vh; border-radius: 12px; position: relative; top: calc(((100vh - 40vh) / 2) - (((100vh - 40vh) / 2) / 2)); left: calc((100vw - 0.8 * 40vh) / 2);");
-        // document.getElementById("papyrus_double_sided").setAttribute("style", "background-color: transparent; width: 40vw; height: 40vw; border-radius: 12px; position: relative; top: calc(((100vh - 40vw) / 2) / 2); left: calc((100vw - 40vw) / 2);");
-        // document.getElementById("scroll_text_box").setAttribute("style", "border-style: solid; border-width: thin; border-color: black; border-radius: 5px; padding: 1vw; display: flex; flex-direction: column;");
-
-        // document.getElementById("annibale").setAttribute("style", "background-color: transparent; width: calc(0.8 * 40vh); height: 40vh; border-radius: 12px; position: relative; top: calc(((100vh - 40vh) / 2) - (((100vh - 40vh) / 2) / 2)); left: calc((100vw - 0.8 * 40vh) / 2);");
-        // document.getElementById("papyrus_double_sided").setAttribute("style", "background-color: transparent; width: 40vw; height: 40vw; border-radius: 12px; position: absolute; top: 50vh; left: calc((100vw - 40vw) / 2);");
-        // document.getElementById("scroll_text_box").setAttribute("style", "border-style: solid; border-width: thin; border-color: black; border-radius: 5px; padding: 1vw; display: flex; flex-direction: column; position: absolute; top: calc(50vh + (40vh / 2)); left: calc(((100vw - 40vw) / 2) + ((40vw / 2) / 2));");
-        // var infos = document.getElementsByClassName("info");
-        // for (var i = 0; i < infos.length; i++) {
-        //     infos[i].setAttribute("style", "text-align: center; font-size: calc(0.02 * 0.75 * 80vw); z-index: 21;");
-        // }
-
-        //calc(((100vh - 40vw) / 2) + (0.5 * 100vh) - (0.5 * 40vw))
-        //calc((100vw - 40vw) / 2)
-
-        document.getElementById("annibale").setAttribute("style", "background-color: transparent; width: calc(0.8 * 40vh); height: 40vh; border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 40vh); left: calc(50vw - ((0.8 * 40vh + 10vh) / 2));");
-        document.getElementById("papyrus_double_sided").setAttribute("style", "background-color: transparent; width: 40vh; height: 40vh; border-radius: 12px; position: absolute; top: 50vh; left: calc(50vw - (40vh / 2));");
-        document.getElementById("scroll_text_box").setAttribute("style", "display: flex; flex-direction: column; position: absolute; width: 40vh; height: calc(40vh / 2); top: calc(50vh + ((40vh / 1.69) / 1.69)); left: calc(50vw - (40vh / 2));");
-        var infos = document.getElementsByClassName("info");
-        for (var i = 0; i < infos.length; i++) {
-            infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh); z-index: 21;");
-        }
-        annibool = true;
+    for (let i = 0; i < starCount; i++) {
+        let x = (Math.random() - 0.5) * 2000;
+        let y = (Math.random() - 0.5) * 2000;
+        let z = Math.random() * 2000;
+        starPositions[i * 3] = x;
+        starPositions[i * 3 + 1] = y;
+        starPositions[i * 3 + 2] = z;
     }
-    else {
-        document.getElementById("annibale_modal").setAttribute("style", "display: 'block'; position: fixed; z-index: 20; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 1);");
-        document.getElementById("annibale").setAttribute("style", "background-color: transparent; width: calc(0.8 * 40vh); height: 40vh; border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 40vh); left: calc(50vw - ((0.8 * 40vh + 10vh) / 2));");
-        document.getElementById("papyrus_double_sided").setAttribute("style", "background-color: transparent; width: 40vh; height: 40vh; border-radius: 12px; position: absolute; top: 50vh; left: calc(50vw - (40vh / 2));");
-        document.getElementById("scroll_text_box").setAttribute("style", "display: flex; flex-direction: column; position: absolute; width: 40vh; height: calc(40vh / 2); top: calc(50vh + ((40vh / 1.69) / 1.69)); left: calc(50vw - (40vh / 2));");
-    }
+
+    starTransistionGeometry.setAttribute("position", new THREE.BufferAttribute(starPositions, 3));
+
+    const starMaterial = new THREE.PointsMaterial({
+        color: 0xffffff,
+        size: 2,
+        transparent: true,
+        opacity: 0.8
+    });
+
+    const starTransistion = new THREE.Points(starTransistionGeometry, starMaterial);
+    scene.add(starTransistion);
+    isStarTransition = true;
+
+    // Camera position adjustment
+    camera.position.z += 1000;
+    metorite.position.z += 1000;
+    pointLight.position.z += 1000;
+
+    setTimeout(() => {
+        camera.position.z = 0;
+        pointLight.position.z = 0;
+        isStarTransition = false;
+        metorite.visible = false;
+        console.log('Transitioning to phases');
+        startPhases();
+    }, 2000);
 }
 
 document.addEventListener('mousedown', (event) => {
+    if (window.scopeDisabled) return;
+
     scope.style.display = 'block';
     moveScope(event);
 });
 
-document.addEventListener('mousemove', (event) => {
+
+document.addEventListener('pointermove', (event) => {
+    if (window.scopeDisabled) return;
+
     if (scope.style.display === 'block') {
         moveScope(event);
     }
 });
 
 document.addEventListener('mouseup', () => {
+    if (window.scopeDisabled) return;
+
     scope.style.display = 'none';
 });
 
 document.addEventListener('touchstart', (event) => {
+    if (window.scopeDisabled) return;
+
     scope.style.display = 'block';
     moveScope(event);
 });
 
 document.addEventListener('touchend', () => {
+    if (window.scopeDisabled) return;
+
     scope.style.display = 'none';
 });
 
@@ -209,11 +277,26 @@ document.addEventListener('touchend', () => {
 function animate() {
     requestAnimationFrame(animate);
 
-    stars.rotation.x += 0.0005;
-    stars.rotation.y += 0.0005;
+    if (isStarTransition) {
+        // Move stars toward the camera (warp effect)
+        const positions = starTransistionGeometry.attributes.position.array;
+        for (let i = 0; i < positions.length; i += 3) {
+            // move forward
+            positions[i + 2] -= 10;
 
-    planet.rotation.y += 0.01;
-
+            // Reset stars when they pass the camera
+            if (positions[i + 2] < 0) {
+                positions[i] = (Math.random() - 0.5) * 2000;
+                positions[i + 1] = (Math.random() - 0.5) * 2000;
+                positions[i + 2] = 2000;
+            }
+        }
+        starTransistionGeometry.attributes.position.needsUpdate = true;
+    } else {
+        stars.rotation.x += 0.0005;
+        stars.rotation.y += 0.0005;
+        metorite.rotation.y += 0.01;
+    }
     renderer.render(scene, camera);
 }
 
