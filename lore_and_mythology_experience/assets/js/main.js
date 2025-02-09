@@ -54,6 +54,16 @@ function createStarField() {
 const stars = createStarField();
 scene.add(stars);
 
+// Add the asteroid
+const loader = new GLTFLoader();
+var asteroid;
+loader.load('../assets/models/asteroid.glb', (gltf) => {
+    asteroid = gltf.scene;
+    asteroid.scale.set(0.25, 0.25, 0.25);
+    asteroid.position.set(0, 0, 0);
+    scene.add(asteroid);
+});
+
 // Get the camera's aspect ratio, FOV, and near/far planes
 // const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
 
@@ -297,6 +307,9 @@ function animate() {
         stars.rotation.y += 0.0005;
         metorite.rotation.y += 0.01;
     }
+
+    if (asteroid) asteroid.rotation.y -= 0.01;
+
     renderer.render(scene, camera);
 }
 
