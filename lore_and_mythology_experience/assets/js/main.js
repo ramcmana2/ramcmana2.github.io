@@ -589,7 +589,7 @@ function resetAutoHelp() {
 //autoHelp();
 initializeAutoHelp();
 //const inactivityTimer = setTimeout(triggerAutoHelp, 70000);
-const inactivityTimer = setTimeout(triggerAutoHelp, 70000);
+let inactivityTimer = setTimeout(triggerAutoHelp, 70000);
   
 
 // Handle window resizing
