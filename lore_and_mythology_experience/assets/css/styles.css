@@ -215,7 +215,7 @@ canvas {
   position: absolute;
   /*top: calc((0.48 * 0.75 * 90vw) + (0.5 * 100vh) - (0.5 * 0.75 * 90vw));*/
   /*left: calc(0.42 * 90vw);*/
-  top: calc((0.47 * 0.75 * 90vw) + (0.5 * 100vh) - (0.5 * 0.75 * 90vw));
+  top: calc((0.46 * 0.75 * 90vw) + (0.5 * 100vh) - (0.5 * 0.75 * 90vw));
   left: calc(0.29 * 90vw);
   display: flex;
   flex-direction: column;
@@ -232,7 +232,7 @@ canvas {
   position: absolute;
   /*top: calc((0.46 * 0.75 * 90vw) + (0.5 * 100vh) - (0.5 * 0.75 * 90vw));*/
   /*left: calc(0.67 * 90vw);*/
-  top: calc((0.45 * 0.75 * 90vw) + (0.5 * 100vh) - (0.5 * 0.75 * 90vw));
+  top: calc((0.44 * 0.75 * 90vw) + (0.5 * 100vh) - (0.5 * 0.75 * 90vw));
   left: calc(0.58 * 90vw);
   display: flex;
   flex-direction: column;
