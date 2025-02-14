@@ -202,7 +202,7 @@ canvas {
   /*top: calc((0.22 * 0.75 * 90vw) + (0.5 * 100vh) - (0.5 * 0.75 * 90vw));*/
   top: calc((0.18 * 0.75 * 85vw) + (0.5 * 100vh) - (0.5 * 0.75 * 85vw));
   /*left: calc(0.57 * 90vw);*/
-  left: calc(0.52 * 85vw);
+  left: calc(0.53 * 85vw);
   /*color: black;*/
   font-family: "Papyrus", fantasy;
   /*font-size: calc(0.06 * 0.75 * 90vw);*/
@@ -231,7 +231,7 @@ canvas {
   /*top: calc((0.46 * 0.75 * 90vw) + (0.5 * 100vh) - (0.5 * 0.75 * 90vw));*/
   /*left: calc(0.67 * 90vw);*/
   top: calc((0.439 * 0.75 * 85vw) + (0.5 * 100vh) - (0.5 * 0.75 * 85vw));
-  left: calc(0.61 * 90vw);
+  left: calc(0.58 * 90vw);
   display: flex;
   flex-direction: column;
   font-family: "Papyrus", fantasy;
