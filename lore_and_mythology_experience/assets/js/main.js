@@ -553,6 +553,43 @@ function warpStars() {
 
     stars.geometry.attributes.position.needsUpdate = true;
 }
+
+function initializeAutoHelp() {
+    ['mousemove', 'keydown', 'click', 'touchstart', 'scroll'].forEach(event => {
+        window.addEventListener(event, resetAutoHelp);
+    });
+    //setTimeout(setAutoHelp, 70000);
+}
+// function triggerAutoHelp() {
+//     document.getElementById("help-icon-button").click();
+// }
+function resetAutoHelp() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(document.getElementById("help-icon-button").click(), 70000);
+
+    //     // Start inactivity timer
+    // _setupInactivityTimer() {
+    //     const resetTimer = () => {
+    //         clearTimeout(this.inactivityTimer);
+    //         this.inactivityTimer = setTimeout(() => {
+    //             if (document.getElementById('settings-modal').style.display !== 'flex') {
+    //                 this._loadHelpModalContent();
+    //             }
+    //         }, this._inactivityTime);
+    //     };
+
+    //     ['mousemove', 'keydown', 'click', 'touchstart', 'scroll'].forEach(event => {
+    //         window.addEventListener(event, resetTimer);
+    //     });
+
+    //     resetTimer();
+    // }
+}
+//setTimeout(autoHelp, 70000);
+//autoHelp();
+initializeAutoHelp();
+//const inactivityTimer = setTimeout(triggerAutoHelp, 70000);
+const inactivityTimer = setTimeout(document.getElementById("help-icon-button").click(), 70000);
   
 
 // Handle window resizing
