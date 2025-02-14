@@ -560,12 +560,12 @@ function initializeAutoHelp() {
     });
     //setTimeout(setAutoHelp, 70000);
 }
-// function triggerAutoHelp() {
-//     document.getElementById("help-icon-button").click();
-// }
+function triggerAutoHelp() {
+    document.getElementById("help-icon-button").click();
+}
 function resetAutoHelp() {
     clearTimeout(inactivityTimer);
-    inactivityTimer = setTimeout(document.getElementById("help-icon-button").click(), 70000);
+    inactivityTimer = setTimeout(triggerAutoHelp, 70000);
 
     //     // Start inactivity timer
     // _setupInactivityTimer() {
@@ -589,7 +589,7 @@ function resetAutoHelp() {
 //autoHelp();
 initializeAutoHelp();
 //const inactivityTimer = setTimeout(triggerAutoHelp, 70000);
-const inactivityTimer = setTimeout(document.getElementById("help-icon-button").click(), 70000);
+const inactivityTimer = setTimeout(triggerAutoHelp, 70000);
   
 
 // Handle window resizing
