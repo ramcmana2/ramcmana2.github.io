@@ -27,42 +27,203 @@ const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-// Create stars
-function createStarField() {
-    const starGeometry = new THREE.BufferGeometry();
-    const starMaterial = new THREE.PointsMaterial({
-        color: 0xffffff,
-        size: 0.05,
-    });
-
-    const starVertices = [];
-    for (let i = 0; i < 10000; i++) {
-        const x = (Math.random() - 0.5) * 1000;
-        const y = (Math.random() - 0.5) * 1000;
-        const z = (Math.random() - 0.5) * 1000;
-        starVertices.push(x, y, z);
+// Common Fractal Noise algorithm implementation using perlin
+function fractalNoise2(x, y, octaves=4, lacunarity=2, persistence=0.5) {
+    let frequency = 1.0;
+    let amplitude = 1.0;
+    let sum = 0.0;
+    let maxValue = 0.0;
+  
+    for (let i = 0; i < octaves; i++) {
+        const val = noise.perlin2(x * frequency, y * frequency);
+        sum += val * amplitude;
+    
+        maxValue += amplitude;
+        amplitude *= persistence;
+        frequency *= lacunarity;
     }
 
-    starGeometry.setAttribute(
-        "position",
-        new THREE.Float32BufferAttribute(starVertices, 3),
-    );
-
-    return new THREE.Points(starGeometry, starMaterial);
+    return sum / maxValue;
 }
 
+function generateSpaceCloudTexture(width, height, scale = 2.0) {
+    const size = width * height;
+    const data = new Uint8Array(4 * size);
+    
+    // Generate texture image
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            // Use fractal noise to get background texture value
+            const nx = x / width - 0.5;
+            const ny = y / height - 0.5;
+            const val = fractalNoise2(
+                nx * scale,
+                ny * scale,
+                5,
+                2.0,
+                0.5
+            );
+            const v = (val + 1) / 2.0;
+    
+            // Map values to color
+            const r = 0.0 + 0.12* v;
+            const g = 0.0 + 0.07 * v;
+            const b = 0.0 + 0.2 * v;
+            
+            // Assign pixels
+            const i = (y * width + x) * 4;
+            data[i + 0] = Math.floor(r * 255);
+            data[i + 1] = Math.floor(g * 255);
+            data[i + 2] = Math.floor(b * 255);
+            data[i + 3] = 255;
+        }
+    }
+  
+    // Convert to a texture
+    const texture = new THREE.DataTexture(data, width, height, THREE.RGBAFormat);
+    texture.wrapS = THREE.MirroredRepeatWrapping;
+    texture.wrapT = THREE.MirroredRepeatWrapping;
+    texture.needsUpdate = true;
+  
+    return texture;
+}
+
+function createSpaceClouds() {
+    // Generate cloud texture using fractal noise
+    const cloudTexture = generateSpaceCloudTexture(1024, 1024, 25.0);
+  
+    // Turn into a mesh
+    const cloudMaterial = new THREE.MeshBasicMaterial({
+        map: cloudTexture,
+        side: THREE.BackSide,
+    });
+  
+    // Create space cloud sphere
+    const sphereGeometry = new THREE.SphereGeometry(800, 64, 64);
+    const spaceCloudSphere = new THREE.Mesh(sphereGeometry, cloudMaterial);
+  
+    return spaceCloudSphere;
+}
+
+function createStarField() {
+    const starCount = 10000; // Number of stars
+    const minDistance = 50; // Minimum distance from origin (camera)
+
+    // Initialize star field data
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(starCount * 3);
+    const colors = new Float32Array(starCount * 3);
+    const sizes = new Float32Array(starCount);
+
+    // For each star
+    for (let i = 0; i < starCount; i++) {
+        // Calculate star position
+        let x, y, z;
+        do {
+            x = (Math.random() - 0.5) * 1000;
+            y = (Math.random() - 0.5) * 1000;
+            z = (Math.random() - 0.5) * 1000;
+        } while (Math.sqrt(x * x + y * y + z * z) < minDistance);
+
+        positions[i * 3] = x;
+        positions[i * 3 + 1] = y;
+        positions[i * 3 + 2] = z;
+
+        // Calculate star size
+        sizes[i] = 2.0 + Math.random() * 1.5; 
+
+        // Calculate star tint
+        const tint = Math.random();
+        let r, g, b;
+        // White-Yellow
+        if (tint > 0.7) {
+            r = 1.0;
+            g = 0.85 + Math.random() * 0.15;
+            b = 0.7 + Math.random() * 0.1;
+        // Yellow-Orange
+        } else if (tint > 0.1) {
+            r = 1.0;
+            g = 0.7 + Math.random() * 0.3;
+            b = 0.4 + Math.random() * 0.2;
+        // White-Blue
+        } else {
+            r = 0.9;
+            g = 0.9;
+            b = 0.95 + Math.random() * 0.05;
+        }
+
+        colors[i * 3] = r;
+        colors[i * 3 + 1] = g;
+        colors[i * 3 + 2] = b;
+    }
+
+    // Assign attributes to geometry
+    geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+    geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+    geometry.setAttribute('size', new THREE.Float32BufferAttribute(sizes, 1));
+
+    // Vertex shader
+    const vertexShader = `
+        precision highp float;
+        attribute float size;
+        varying vec3 vColor;
+
+        void main() {
+            vColor = color;
+            vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+            gl_PointSize = size * (600.0 / -mvPosition.z);
+            gl_Position = projectionMatrix * mvPosition;
+        }
+    `;
+
+    // Fragment shader
+    const fragmentShader = `
+        precision highp float;
+        varying vec3 vColor;
+
+        void main() {
+            // Calculate star limits
+            vec2 coord = gl_PointCoord - vec2(0.5);
+            float dist = length(coord);
+            if (dist > 0.5) {
+                discard;
+            }
+
+            // Star core
+            float core = 1.0 - smoothstep(0.0, 0.08, dist);
+
+            // Star glow
+            float glow = 1.0 - smoothstep(0.08, 0.5, dist);
+            glow *= 0.5;
+
+            // Combine alphas
+            float alpha = core + glow;
+
+            // Set fragment (pixel)
+            gl_FragColor = vec4(vColor, alpha);
+        }
+    `;
+
+    // Material
+    const starMaterial = new THREE.ShaderMaterial({
+        vertexColors: true,
+        transparent: true,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+        vertexShader,
+        fragmentShader
+    });
+
+    return new THREE.Points(geometry, starMaterial);
+}
+
+// Add star field
 const stars = createStarField();
 scene.add(stars);
 
-// Add the asteroid
-const loader = new GLTFLoader();
-var asteroid;
-loader.load('../assets/models/asteroid.glb', (gltf) => {
-    asteroid = gltf.scene;
-    asteroid.scale.set(0.25, 0.25, 0.25);
-    asteroid.position.set(0, 0, 0);
-    scene.add(asteroid);
-});
+// Add space clouds
+const spaceCloudSphere = createSpaceClouds();
+scene.add(spaceCloudSphere);
 
 // Get the camera's aspect ratio, FOV, and near/far planes
 // const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
@@ -71,18 +232,43 @@ loader.load('../assets/models/asteroid.glb', (gltf) => {
 const cameraHeight = 2 * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
 const cameraWidth = cameraHeight * camera.aspect;
 
-// Add a glowing metorite
-const metoriteX = Math.random() * cameraWidth - cameraWidth / 2;
-const metoriteY = Math.random() * cameraHeight - cameraHeight / 2;
-const metoriteGeometry = new THREE.SphereGeometry(1, 32, 32);
-const metoriteMaterial = new THREE.MeshStandardMaterial({
-    color: 0x0088ff,
-    emissive: 0x002244,
+// Asteroid distance from edges of screen
+const MIN_X = 50;
+const MAX_X = window.innerWidth - 50;
+const MIN_Y = 100;
+const MAX_Y = window.innerHeight - 500;
+
+// Get random point within boundaries
+const asteroidX = Math.random() * (MAX_X - MIN_X) + MIN_X;
+const asteroidY = Math.random() * (MAX_Y - MIN_Y) + MIN_Y;
+
+// Convert to normalized coordinates
+const normalizedAsteroidX = ( asteroidX / window.innerWidth ) * 2 - 1;
+const normalizedAsteroidY = - ( asteroidY / window.innerHeight ) * 2 + 1;
+
+// Unproject from normalized coordinates to camera
+const asteroidVector = new THREE.Vector3(normalizedAsteroidX, normalizedAsteroidY, 1);
+asteroidVector.unproject(camera);
+
+// The ray from camera
+const cameraRay = asteroidVector.sub(camera.position).normalize();
+
+// Distance from camera to z plane
+const distanceFromCamera = (0 - camera.position.z) / cameraRay.z; 
+
+// Final position at z plane
+const asteroidPosition = camera.position.clone().add(cameraRay.multiplyScalar(distanceFromCamera));
+
+// Load asteroid
+const loader = new GLTFLoader();
+let asteroid;
+loader.load('../assets/models/asteroid.glb', (gltf) => {
+  asteroid = gltf.scene;
+  asteroid.scale.set(0.06, 0.06, 0.06);
+  asteroid.position.copy(asteroidPosition);
+  asteroid.visible = false;
+  scene.add(asteroid);
 });
-const metorite = new THREE.Mesh(metoriteGeometry, metoriteMaterial);
-metorite.position.set(metoriteX, metoriteY, -3);
-scene.add(metorite);
-metorite.visible = false;
 
 // Add lighting
 const ambientLight = new THREE.AmbientLight(0x404040, 2);
@@ -135,185 +321,239 @@ controls.enableZoom = false;
 
 const settingsModal = new SettingsModal();
 
-let isZoom = false;
-let count = 0;
+let holdTime = 0.0; // Time on asteroid
+const holdThreshold = 3.0; // Time to trigger zoom
+let isLockOn = false; // Scope is locked on
+let isZoom = false; // Camera zoom starts
 
 window.scopeDisabled = false;
 
-function moveScope(event) {
-    if (event.touches) {
-        scope.style.left = `${event.touches[event.touches.length - 1].clientX - scope.offsetWidth / 2}px`;
-        scope.style.top = `${event.touches[event.touches.length - 1].clientY - scope.offsetHeight / 2}px`;
-
-        // Convert to world position
-        mouse.x = (event.touches[event.touches.length - 1].clientX / window.innerWidth) * 2 - 1;
-        mouse.y = -(event.touches[event.touches.length - 1].clientY / window.innerHeight) * 2 + 1;
-
-    } else {
-        scope.style.left = `${event.clientX - scope.offsetWidth / 2}px`;
-        scope.style.top = `${event.clientY - scope.offsetHeight / 2}px`;
-        // Convert to world position
-        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-    }
-    // Perform raycast
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObject(metorite);
-
-    // hide/show metorite
-    if (intersects.length > 0) {
-        // pause zoom
-        if (isZoom) return;
-        isZoom = true;
-        scope.style.display = 'none';
-
-        metorite.visible = true;
-        const targetPoint = intersects[0].point;
-
-        // Move the camera closer instead of directly to the point
-        const zoomFactor = 0.5;
-        const newCameraPosition = camera.position.clone().lerp(targetPoint, zoomFactor);
-
-        // Animate the zoom effect
-        const duration = 1000;
-        const startTime = performance.now();
-        const startPos = camera.position.clone();
-        const startTarget = controls.target.clone();
-
-        function animateZoom(time) {
-            const elapsed = time - startTime;
-            const t = Math.min(elapsed / duration, 1);
-
-            // Interpolate camera position and focus target
-            camera.position.lerpVectors(startPos, newCameraPosition, t);
-            controls.target.lerpVectors(startTarget, targetPoint, t);
-            controls.update();
-
-            if (t < 1) {
-                requestAnimationFrame(animateZoom);
-            } else {
-                settingsModal.applyAMPIModalStyles();
-                starFieldTransistion();
-            }
-        }
-        requestAnimationFrame(animateZoom);
-    }
-    count = 100;
-}
-
+// Star transition
 const starTransistionGeometry = new THREE.BufferGeometry();
 let isStarTransition = false;
-
 function starFieldTransistion() {
-    scene.remove(stars);
-
-    // Starfield parameters
-    const starCount = 2000;
-    const starPositions = new Float32Array(starCount * 3);
-
-    for (let i = 0; i < starCount; i++) {
-        let x = (Math.random() - 0.5) * 2000;
-        let y = (Math.random() - 0.5) * 2000;
-        let z = Math.random() * 2000;
-        starPositions[i * 3] = x;
-        starPositions[i * 3 + 1] = y;
-        starPositions[i * 3 + 2] = z;
-    }
-
-    starTransistionGeometry.setAttribute("position", new THREE.BufferAttribute(starPositions, 3));
-
-    const starMaterial = new THREE.PointsMaterial({
-        color: 0xffffff,
-        size: 2,
-        transparent: true,
-        opacity: 0.8
-    });
-
-    const starTransistion = new THREE.Points(starTransistionGeometry, starMaterial);
-    scene.add(starTransistion);
     isStarTransition = true;
-
-    // Camera position adjustment
-    camera.position.z += 1000;
-    metorite.position.z += 1000;
-    pointLight.position.z += 1000;
 
     setTimeout(() => {
         camera.position.z = 0;
         pointLight.position.z = 0;
         isStarTransition = false;
-        metorite.visible = false;
+        asteroid.visible = false;
         console.log('Transitioning to phases');
         startPhases();
     }, 2000);
 }
 
-document.addEventListener('mousedown', (event) => {
+// Move scope event
+function moveScope(event) {
+    if (!scope || window.scopeDisabled) return;
+    
+    if (event.touches) {
+        scope.style.left = `${event.touches[0].clientX - scope.offsetWidth / 2}px`;
+        scope.style.top = `${event.touches[0].clientY - scope.offsetHeight / 2}px`;
+    } else {
+        scope.style.left = `${event.clientX - scope.offsetWidth / 2}px`;
+        scope.style.top = `${event.clientY - scope.offsetHeight / 2}px`;
+    }
+}
+
+// Pointer events
+function onPointerDown(event) {
     if (window.scopeDisabled) return;
 
     scope.style.display = 'block';
     moveScope(event);
-});
+}
 
-
-document.addEventListener('pointermove', (event) => {
+function onPointerMove(event) {
     if (window.scopeDisabled) return;
 
     if (scope.style.display === 'block') {
         moveScope(event);
     }
-});
-
-document.addEventListener('mouseup', () => {
+}
+  
+function onPointerUp() {
     if (window.scopeDisabled) return;
 
     scope.style.display = 'none';
-});
+}
 
-document.addEventListener('touchstart', (event) => {
-    if (window.scopeDisabled) return;
+// Attach pointer events
+document.addEventListener('mousedown', onPointerDown);
+document.addEventListener('pointermove', onPointerMove);
+document.addEventListener('mouseup', onPointerUp);
 
-    scope.style.display = 'block';
-    moveScope(event);
-});
-
-document.addEventListener('touchend', () => {
-    if (window.scopeDisabled) return;
-
-    scope.style.display = 'none';
-});
+document.addEventListener('touchstart', onPointerDown);
+document.addEventListener('touchmove', onPointerMove);
+document.addEventListener('touchend', onPointerUp);
 
 // Animate the scene
+let lastTime = performance.now();
 function animate() {
     requestAnimationFrame(animate);
 
-    if (isStarTransition) {
-        // Move stars toward the camera (warp effect)
-        const positions = starTransistionGeometry.attributes.position.array;
-        for (let i = 0; i < positions.length; i += 3) {
-            // move forward
-            positions[i + 2] -= 10;
+    const now = performance.now();
+    const delta = (now - lastTime) / 1000.0;
+    lastTime = now;
 
-            // Reset stars when they pass the camera
-            if (positions[i + 2] < 0) {
-                positions[i] = (Math.random() - 0.5) * 2000;
-                positions[i + 1] = (Math.random() - 0.5) * 2000;
-                positions[i + 2] = 2000;
-            }
-        }
-        starTransistionGeometry.attributes.position.needsUpdate = true;
+    // Star transition
+    if (isStarTransition) {
+        warpStars();
+
+    // Normal stars
     } else {
-        stars.rotation.x += 0.0005;
-        stars.rotation.y += 0.0005;
-        metorite.rotation.y += 0.01;
+        stars.rotation.x += 0.00002;
+        stars.rotation.y += 0.00002;
     }
 
-    if (asteroid) asteroid.rotation.y -= 0.01;
+    // Check if in scope
+    if (!isLockOn && asteroid && scope.style.display === 'block') {
+        checkAsteroidInScope(delta);
+    }
 
+    // Render
     renderer.render(scene, camera);
 }
-
 animate();
+
+function checkAsteroidInScope(delta) {
+    // Get scope position
+    const scopeRectangle = scope.getBoundingClientRect();
+    const scopeX = scopeRectangle.left + scopeRectangle.width / 2;
+    const scopeY = scopeRectangle.top + scopeRectangle.height / 2;
+    const scopeRadius = scopeRectangle.width / 2;
+  
+    // Distance from scope to asteroid
+    const deltaX = asteroidX - scopeX;
+    const deltaY = asteroidY - scopeY;
+    const distance = Math.sqrt(deltaX*deltaX + deltaY*deltaY);
+  
+    // If within scope, increase hold time
+    if (distance <= scopeRadius) {
+        // Make visible
+        asteroid.visible = true;
+
+        // Asteroid rotation
+        asteroid.rotation.x += 0.002;
+        asteroid.rotation.y += 0.002;
+
+        // Increase hold time
+        holdTime += delta;
+    
+        // If in scope long enough, lock on
+        if (holdTime >= holdThreshold) {
+            lockOn();
+        }
+
+    // Reset if asteroid leaves scope
+    } else {
+      asteroid.visible = false;
+      holdTime = 0;
+    }
+}
+
+function lockOn() {
+    isLockOn = true;
+    window.scopeDisabled = true;
+  
+    // Get current scope and asteroid positions
+    const scopeRectangle = scope.getBoundingClientRect();
+    const startLeft = parseFloat(scope.style.left);
+    const startTop = parseFloat(scope.style.top);
+    const endLeft = asteroidX - scopeRectangle.width / 2;
+    const endTop = asteroidY - scopeRectangle.height / 2;
+  
+    const duration = 1000; // ms for scope to move
+    const startTime = performance.now();
+  
+    function animateScopeToAsteroid(tNow) {
+        const elapsed = tNow - startTime;
+        const t = Math.min(elapsed / duration, 1);
+    
+        // Move scope to asteroid
+        const newLeft = startLeft + (endLeft - startLeft) * t;
+        const newTop = startTop + (endTop - startTop) * t;
+        scope.style.left = newLeft + 'px';
+        scope.style.top = newTop + 'px';
+
+        // Asteroid rotation
+        asteroid.rotation.x += 0.002;
+        asteroid.rotation.y += 0.002;
+    
+        // Animate movement
+        if (t < 1) {
+            requestAnimationFrame(animateScopeToAsteroid);
+        
+        // Start camera zoom
+        } else {
+            startCameraZoom();
+        }
+    }
+
+    requestAnimationFrame(animateScopeToAsteroid);
+}
+
+function startCameraZoom() {
+    isZoom = true;
+    scope.style.display = 'none';
+  
+    const duration = 2000;
+    const startTime = performance.now();
+  
+    // Start camera/controls position
+    const startCameraPos = camera.position.clone();
+    const startTarget = controls.target.clone();
+  
+    // End camera/controls positions
+    const endCameraPos = asteroid.position.clone().add(new THREE.Vector3(0, 0, 1.5));
+    const endTarget = asteroid.position.clone();
+  
+    // Start/End asteroid scale
+    const startScale = asteroid.scale.clone();
+    const endScale = new THREE.Vector3(0.25, 0.25, 0.25);
+  
+    function animateZoom(time) {
+        const elapsed = time - startTime;
+        const t = Math.min(elapsed / duration, 1);
+    
+        // Move camera/controls
+        camera.position.lerpVectors(startCameraPos, endCameraPos, t);
+        controls.target.lerpVectors(startTarget, endTarget, t);
+    
+        // Asteroid rotation
+        asteroid.rotation.x += 0.002;
+        asteroid.rotation.y += 0.002;
+
+        // Increase asteroid scale
+        const currentScale = new THREE.Vector3().lerpVectors(startScale, endScale, t);
+        asteroid.scale.copy(currentScale);
+    
+        controls.update();
+    
+        // Animate zoom
+        if (t < 1) {
+            requestAnimationFrame(animateZoom);
+        
+        // Start star field transition
+        } else {
+            settingsModal.applyAMPIModalStyles();
+            starFieldTransistion();
+        }
+    }
+    
+    requestAnimationFrame(animateZoom);
+}
+
+function warpStars() {
+    const starPos = stars.geometry.attributes.position.array;
+    for (let i = 0; i < starPos.length; i += 3) {
+        starPos[i + 2] -= 0.5;
+    }
+
+    stars.geometry.attributes.position.needsUpdate = true;
+}
+  
 
 // Handle window resizing
 window.addEventListener("resize", () => {
@@ -323,7 +563,7 @@ window.addEventListener("resize", () => {
 });
 
 // load papyrus scroll introduction
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
     fetch('intro.html')
         .then(response => response.text())
         .then(data => {
