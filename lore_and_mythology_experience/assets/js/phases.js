@@ -21,7 +21,7 @@ const phases = {
         text: [
             ""
         ]
-    }
+    },
     asteroid1: {
         image: "../assets/images/chrysalis/asteroid.png",
         alt: "image of asteroid",
@@ -127,7 +127,7 @@ const phases = {
         text: [
             ""
         ]
-    }
+    },
     psychegoddess1: { // psyche goddess part1
         image: "../assets/images/goddess_psyche/psyche_opening_box.png",
         //image: "../assets/images/goddess_psyche/psyche_opening_box_sketch.png",
@@ -187,7 +187,7 @@ const phases = {
         text: [
             ""
         ]
-    }
+    },
     psychegoddess5: { // psyche goddess part5
         image: "../assets/images/goddess_psyche/asteroid.png",
         alt: "psyche asteroid",
