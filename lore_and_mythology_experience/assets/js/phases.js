@@ -12,7 +12,7 @@ const phases = {
     annibale2: {
         image: "../assets/images/annibale.jpg",
         alt: "image of astronomer Annibale De Gasparis",
-        duration: 8000,
+        duration: 9000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
         text: [
             "On March 17, 1852, the Italian astronomer",
@@ -43,7 +43,7 @@ const phases = {
     asteroid2: {
         image: "../assets/images/chrysalis/asteroid.png",
         alt: "image of asteroid",
-        duration: 8000,
+        duration: 9000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
         text: [
             "The asteroid Psyche has the",
@@ -55,7 +55,7 @@ const phases = {
     chrysalis1: {
         image: "../assets/images/chrysalis/asteroid.png",
         alt: "Asteroid Psyche in the Chrysalis phase",
-        duration: 8000,
+        duration: 5000,
         scroll: "",
         text: [
             ""
@@ -67,7 +67,7 @@ const phases = {
     chrysalis2: {
         image: "",
         alt: "image of chrysalis",
-        duration: 8000,
+        duration: 5000,
         scroll: "",
         text: [
             ""
@@ -79,7 +79,7 @@ const phases = {
     chrysalis3: {
         image: "",
         alt: "image of chrysalis stars",
-        duration: 8000,
+        duration: 5000,
         scroll: "",
         text: [
             ""
@@ -106,7 +106,7 @@ const phases = {
     chrysalis5: {
         image: "",
         alt: "Asteroid Psyche butterfly emerges from chrysalis",
-        duration: 8000,
+        duration: 9000,
         //duration: 10000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
         text: [
@@ -125,7 +125,7 @@ const phases = {
         image: "",
         alt: "image of butterfly stars",
         //alt: "Chrysalis and butterfly vector images",
-        duration: 8000,
+        duration: 5000,
         //duration: 2000,
         scroll: "",
         text: [
@@ -176,7 +176,7 @@ const phases = {
         image: "../assets/images/goddess_psyche/psyche_opening_box.png",
         //image: "../assets/images/goddess_psyche/psyche_opening_box_sketch.png",
         alt: "image of Psyche goddess opening pandora's box.",
-        duration: 8000,
+        duration: 9000,
         //duration: 10000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
         text: [
@@ -202,7 +202,7 @@ const phases = {
         image: "../assets/images/goddess_psyche/psyche_passing_out.png",
         //image: "../assets/images/goddess_psyche/psyche_sleeping_sketch.png",
         alt: "image of Psyche goddess in a deep, dark sleep.",
-        duration: 8000,
+        duration: 5000,
         //duration: 7000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
         text: [
@@ -226,7 +226,7 @@ const phases = {
         image: "../assets/images/goddess_psyche/psyche_passing_out_vector.png",
         //image: "../assets/images/goddess_psyche/psyche_sleeping_vector.png",
         alt: "outline and stars vector image of Psyche goddess in a deep, dark sleep",
-        duration: 8000,
+        duration: 5000,
         //duration: 5000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
         text: [
@@ -238,7 +238,7 @@ const phases = {
         image: "../assets/images/goddess_psyche/psyche_passing_out_stars.png",
         //image: "../assets/images/goddess_psyche/psyche_sleeping_stars.png",
         alt: "psyche sleeping stars",
-        duration: 8000,
+        duration: 5000,
         //duration: 5000,
         scroll: "",
         text: [
@@ -268,7 +268,7 @@ const phases = {
         image: "../assets/images/goddess_psyche/asteroid.png",
         alt: "psyche asteroid",
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
-        duration: 8000,
+        duration: 5000,
         //duration: 5000,
         text: [
             "The asteroid Psyche finds herself in",
@@ -279,7 +279,7 @@ const phases = {
         image: "../assets/images/goddess_psyche/asteroid.png",
         alt: "psyche asteroid",
         scroll: "",
-        duration: 8000,
+        duration: 5000,
         //duration: 5000,
         text: [
             ""
