@@ -28,7 +28,7 @@ const phases = {
     chrysalis1: {
         image: "../assets/images/chrysalis/asteroid.png",
         alt: "Asteroid Psyche in the Chrysalis phase",
-        duration: 6000,
+        duration: 4000,
         scroll: "",
         text: [
             ""
@@ -125,7 +125,7 @@ const phases = {
     psychegoddess4: { // psyche goddess part4
         image: "../assets/images/goddess_psyche/psyche_passing_out_stars.png",
         alt: "psyche sleeping stars",
-        duration: 6000,
+        duration: 4000,
         scroll: "",
         text: [
             ""
