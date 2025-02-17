@@ -41,7 +41,8 @@ const phases = {
         ],
         additionalImages: [
             { src: "../assets/images/chrysalis/chrysalis.png", id: "chrysalis", position: "absolute", top: "0", left: "0" },
-            { src: "../assets/images/chrysalis/butterfly.png", id: "butterfly", position: "absolute", top: "10px", left: "10px" },
+            { src: "../assets/images/chrysalis/butterfly.png", id: "butterfly", position: "absolute", top: "0", left: "0" },
+            //{ src: "../assets/images/chrysalis/butterfly.png", id: "butterfly", position: "absolute", top: "10px", left: "10px" },
         ]
     },
     chrysalis3: {
@@ -54,7 +55,8 @@ const phases = {
         ],
         additionalImages: [
             { src: "../assets/images/chrysalis/chrysalis.png", id: "chrysalis", position: "absolute", top: "0", left: "0" },
-            { src: "../assets/images/chrysalis/butterfly.png", id: "butterfly", position: "absolute", top: "10px", left: "10px" },
+            { src: "../assets/images/chrysalis/butterfly.png", id: "butterfly", position: "absolute", top: "0", left: "0" },
+            //{ src: "../assets/images/chrysalis/butterfly.png", id: "butterfly", position: "absolute", top: "10px", left: "10px" },
         ]
     },
     chrysalis4: {
@@ -66,12 +68,15 @@ const phases = {
             ""
         ],
         additionalImages: [
-            { src: "../assets/images/chrysalis/chrysalis2.png", id: "chrysalis2", position: "absolute", top: "10px", left: "10px" },
-            { src: "../assets/images/chrysalis/butterfly2.png", id: "butterfly2", position: "absolute", top: "10px", left: "10px" },
+            { src: "../assets/images/chrysalis/chrysalis_stars.png", id: "chrysalis2", position: "absolute", top: "0", left: "0" },
+            { src: "../assets/images/chrysalis/butterfly_stars.png", id: "butterfly2", position: "absolute", top: "0", left: "0" },
+            //{ src: "../assets/images/chrysalis/chrysalis2.png", id: "chrysalis2", position: "absolute", top: "10px", left: "10px" },
+            //{ src: "../assets/images/chrysalis/butterfly2.png", id: "butterfly2", position: "absolute", top: "10px", left: "10px" },
         ]
     },
     psychegoddess1: { // psyche goddess part1
-        image: "../assets/images/goddess_psyche/psyche_opening_box_sketch.png",
+        image: "../assets/images/goddess_psyche/psyche_opening_box.png",
+        //image: "../assets/images/goddess_psyche/psyche_opening_box_sketch.png",
         alt: "image of Psyche goddess opening pandora's box.",
         duration: 10000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
@@ -84,7 +89,8 @@ const phases = {
         ]
     },
     psychegoddess2: { // psyche goddess part2
-        image: "../assets/images/goddess_psyche/psyche_sleeping_sketch.png",
+        image: "../assets/images/goddess_psyche/psyche_passing_out.png",
+        //image: "../assets/images/goddess_psyche/psyche_sleeping_sketch.png",
         alt: "image of Psyche goddess in a deep, dark sleep.",
         duration: 7000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
@@ -95,7 +101,8 @@ const phases = {
         ]
     },
     psychegoddess3: { // psyche goddess part3
-        image: "../assets/images/goddess_psyche/psyche_sleeping_vector.png",
+        image: "../assets/images/goddess_psyche/psyche_passing_out_vector.png",
+        //image: "../assets/images/goddess_psyche/psyche_sleeping_vector.png",
         alt: "outline and stars vector image of Psyche goddess in a deep, dark sleep",
         duration: 5000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
@@ -105,7 +112,8 @@ const phases = {
         ]
     },
     psychegoddess4: { // psyche goddess part4
-        image: "../assets/images/goddess_psyche/psyche_sleeping_stars.png",
+        image: "../assets/images/goddess_psyche/psyche_passing_out_stars.png",
+        //image: "../assets/images/goddess_psyche/psyche_sleeping_stars.png",
         alt: "psyche sleeping stars",
         duration: 5000,
         scroll: "",
@@ -254,15 +262,19 @@ function showPhase(phase) {
                 overlayImage.setAttribute("id", image.id);
                 // add position styles for stacking additional images on top of phase image
                 overlayImage.setAttribute("style", `position: ${image.position}; top: ${image.top}; left: ${image.left}; z-index: 15;`);
-                if (index === 0) {
-                    overlayImage.setAttribute("style","width: calc(0.8 * 20vh); height: 30vh;" +
-                        " border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 80vh);" +
-                        " left: calc(50vw - ((0.8 * 30vh + 10vh) / 2)); z-index: 21; transition: 1.5s;");
-                } else if (index === 1) {
-                    overlayImage.setAttribute("style","width: calc(0.8 * 30vh); height: 20vh;" +
-                        " border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 2vh);" +
-                        " left: calc(50vw - ((0.8 * 30vh + 10vh) / 2)); z-index: 21; transition: 1.5s;");
-                }
+                // if (index === 0) {
+                //     overlayImage.setAttribute("style","width: calc(0.8 * 20vh); height: 30vh;" +
+                //         " border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 80vh);" +
+                //         " left: calc(50vw - ((0.8 * 30vh + 10vh) / 2)); z-index: 21; transition: 1.5s;");
+                // } else if (index === 1) {
+                //     overlayImage.setAttribute("style","width: calc(0.8 * 30vh); height: 20vh;" +
+                //         " border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 2vh);" +
+                //         " left: calc(50vw - ((0.8 * 30vh + 10vh) / 2)); z-index: 21; transition: 1.5s;");
+                // }
+                overlayImage.setAttribute("style",
+                    "background-color: transparent; width: calc(0.8 * 40vh); height: 40vh;" +
+                    " border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 40vh);" +
+                    " left: calc(50vw - ((0.8 * 40vh + 10vh) / 2)); z-index: 10; transition: 1.5s;");
                 document.body.appendChild(overlayImage);
             });
         }
