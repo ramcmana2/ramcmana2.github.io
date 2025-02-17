@@ -141,7 +141,7 @@ const phases = {
             "a similar dark, dreamless sleep..."
         ]
     },
-    psychegoddess6: { // psyche goddess part5
+    psychegoddess6: { // psyche goddess part6
         image: "../assets/images/goddess_psyche/asteroid.png",
         alt: "psyche asteroid",
         scroll: "",
@@ -150,7 +150,7 @@ const phases = {
             ""
         ]
     },
-    psychegoddess7: { // psyche goddess part6
+    psychegoddess7: { // psyche goddess part7
         image: "../assets/images/goddess_psyche/asteroid.png",
         alt: "psyche asteroid core",
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
@@ -273,7 +273,7 @@ function showPhase(phase) {
                 overlayImage.setAttribute("src", image.src);
                 overlayImage.setAttribute("id", image.id);
                 // add position styles for stacking additional images on top of phase image
-                overlayImage.setAttribute("style", `position: ${image.position}; top: ${image.top}; left: ${image.left}; z-index: 15;`);
+                //overlayImage.setAttribute("style", `position: ${image.position}; top: ${image.top}; left: ${image.left}; z-index: 15;`);
                 // if (index === 0) {
                 //     overlayImage.setAttribute("style","width: calc(0.8 * 20vh); height: 30vh;" +
                 //         " border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 80vh);" +
