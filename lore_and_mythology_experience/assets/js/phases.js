@@ -13,6 +13,24 @@ const phases = {
             "De Gasparis named this asteroid Psyche."
         ]
     },
+    buffer1: {
+        image: "",
+        alt: "no image",
+        scroll: "",
+        duration: 2000,
+        text: [
+            ""
+        ]
+    }
+    asteroid: {
+        image: "../assets/images/chrysalis/asteroid.png",
+        alt: "image of asteroid",
+        duration: 8000,
+        scroll: "",
+        text: [
+            ""
+        ],
+    },
     chrysalis1: {
         image: "../assets/images/chrysalis/asteroid.png",
         alt: "Asteroid Psyche in the Chrysalis phase",
@@ -29,9 +47,34 @@ const phases = {
         ],
     },
     chrysalis2: {
-        image: "../assets/images/chrysalis/asteroid.png",
+        image: "",
+        alt: "image of chrysalis",
+        duration: 8000,
+        scroll: "",
+        text: [
+            ""
+        ],
+        additionalImages: [
+            { src: "../assets/images/chrysalis/chrysalis.png", id: "chrysalis", position: "absolute", top: "0", left: "0" },
+        ],
+    },
+    chrysalis3: {
+        image: "",
+        alt: "image of chrysalis stars",
+        duration: 8000,
+        scroll: "",
+        text: [
+            ""
+        ],
+        additionalImages: [
+            { src: "../assets/images/chrysalis/chrysalis_stars.png", id: "chrysalis", position: "absolute", top: "0", left: "0" },
+        ],
+    },
+    chrysalis4: {
+        image: "",
         alt: "Asteroid Psyche butterfly emerges from chrysalis",
-        duration: 10000,
+        duration: 8000,
+        //duration: 10000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
         text: [
             "In Greek mythology, the breath of life leaves",
@@ -40,45 +83,57 @@ const phases = {
             "This breath of life is called Psyche."
         ],
         additionalImages: [
-            { src: "../assets/images/chrysalis/chrysalis.png", id: "chrysalis", position: "absolute", top: "0", left: "0" },
+            //{ src: "../assets/images/chrysalis/chrysalis.png", id: "chrysalis", position: "absolute", top: "0", left: "0" },
             { src: "../assets/images/chrysalis/butterfly.png", id: "butterfly", position: "absolute", top: "0", left: "0" },
             //{ src: "../assets/images/chrysalis/butterfly.png", id: "butterfly", position: "absolute", top: "10px", left: "10px" },
         ]
     },
-    chrysalis3: {
+    chrysalis5: {
         image: "",
-        alt: "Chrysalis and butterfly vector images",
+        alt: "image of butterfly stars",
+        //alt: "Chrysalis and butterfly vector images",
+        duration: 8000,
+        //duration: 2000,
+        scroll: "",
+        text: [
+            ""
+        ],
+        additionalImages: [
+            //{ src: "../assets/images/chrysalis/chrysalis.png", id: "chrysalis", position: "absolute", top: "0", left: "0" },
+            { src: "../assets/images/chrysalis/butterfly_stars.png", id: "butterfly", position: "absolute", top: "0", left: "0" },
+            //{ src: "../assets/images/chrysalis/butterfly.png", id: "butterfly", position: "absolute", top: "10px", left: "10px" },
+        ]
+    },
+    // chrysalis5: {
+    //     image: "",
+    //     alt: "Chrysalis and butterfly vector stars images",
+    //     duration: 5000,
+    //     scroll: "",
+    //     text: [
+    //         ""
+    //     ],
+    //     additionalImages: [
+    //         { src: "../assets/images/chrysalis/chrysalis_stars.png", id: "chrysalis2", position: "absolute", top: "0", left: "0" },
+    //         { src: "../assets/images/chrysalis/butterfly_stars.png", id: "butterfly2", position: "absolute", top: "0", left: "0" },
+    //         //{ src: "../assets/images/chrysalis/chrysalis2.png", id: "chrysalis2", position: "absolute", top: "10px", left: "10px" },
+    //         //{ src: "../assets/images/chrysalis/butterfly2.png", id: "butterfly2", position: "absolute", top: "10px", left: "10px" },
+    //     ]
+    // },
+    buffer2: {
+        image: "",
+        alt: "no image",
+        scroll: "",
         duration: 2000,
-        scroll: "",
         text: [
             ""
-        ],
-        additionalImages: [
-            { src: "../assets/images/chrysalis/chrysalis.png", id: "chrysalis", position: "absolute", top: "0", left: "0" },
-            { src: "../assets/images/chrysalis/butterfly.png", id: "butterfly", position: "absolute", top: "0", left: "0" },
-            //{ src: "../assets/images/chrysalis/butterfly.png", id: "butterfly", position: "absolute", top: "10px", left: "10px" },
         ]
-    },
-    chrysalis4: {
-        image: "",
-        alt: "Chrysalis and butterfly vector stars images",
-        duration: 5000,
-        scroll: "",
-        text: [
-            ""
-        ],
-        additionalImages: [
-            { src: "../assets/images/chrysalis/chrysalis_stars.png", id: "chrysalis2", position: "absolute", top: "0", left: "0" },
-            { src: "../assets/images/chrysalis/butterfly_stars.png", id: "butterfly2", position: "absolute", top: "0", left: "0" },
-            //{ src: "../assets/images/chrysalis/chrysalis2.png", id: "chrysalis2", position: "absolute", top: "10px", left: "10px" },
-            //{ src: "../assets/images/chrysalis/butterfly2.png", id: "butterfly2", position: "absolute", top: "10px", left: "10px" },
-        ]
-    },
+    }
     psychegoddess1: { // psyche goddess part1
         image: "../assets/images/goddess_psyche/psyche_opening_box.png",
         //image: "../assets/images/goddess_psyche/psyche_opening_box_sketch.png",
         alt: "image of Psyche goddess opening pandora's box.",
-        duration: 10000,
+        duration: 8000,
+        //duration: 10000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
         text: [
             "In Greek mythology, Psyche, driven by",
@@ -92,7 +147,8 @@ const phases = {
         image: "../assets/images/goddess_psyche/psyche_passing_out.png",
         //image: "../assets/images/goddess_psyche/psyche_sleeping_sketch.png",
         alt: "image of Psyche goddess in a deep, dark sleep.",
-        duration: 7000,
+        duration: 8000,
+        //duration: 7000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
         text: [
             "However, instead of beauty,",
@@ -104,7 +160,8 @@ const phases = {
         image: "../assets/images/goddess_psyche/psyche_passing_out_vector.png",
         //image: "../assets/images/goddess_psyche/psyche_sleeping_vector.png",
         alt: "outline and stars vector image of Psyche goddess in a deep, dark sleep",
-        duration: 5000,
+        duration: 8000,
+        //duration: 5000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
         text: [
             "Psyche finds herself in",
@@ -115,15 +172,28 @@ const phases = {
         image: "../assets/images/goddess_psyche/psyche_passing_out_stars.png",
         //image: "../assets/images/goddess_psyche/psyche_sleeping_stars.png",
         alt: "psyche sleeping stars",
-        duration: 5000,
+        duration: 8000,
+        //duration: 5000,
         scroll: "",
-        text: [""]
+        text: [
+            ""
+        ]
     },
+    buffer3: {
+        image: "",
+        alt: "no image",
+        scroll: "",
+        duration: 2000,
+        text: [
+            ""
+        ]
+    }
     psychegoddess5: { // psyche goddess part5
         image: "../assets/images/goddess_psyche/asteroid.png",
         alt: "psyche asteroid",
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
-        duration: 5000,
+        duration: 8000,
+        //duration: 5000,
         text: [
             "The asteroid Psyche finds herself in",
             "a similar dark, dreamless sleep..."
@@ -133,7 +203,8 @@ const phases = {
         image: "../assets/images/goddess_psyche/asteroid.png",
         alt: "psyche asteroid",
         scroll: "",
-        duration: 5000,
+        duration: 8000,
+        //duration: 5000,
         text: [
             ""
         ]
@@ -142,7 +213,8 @@ const phases = {
         image: "../assets/images/goddess_psyche/asteroid.png",
         alt: "psyche asteroid",
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
-        duration: 10000,
+        duration: 8000,
+        //duration: 10000,
         text: [
             "Just as Psyche's curiosity led her to open",
             "the fateful box, revealing the unexpected,",
