@@ -1,14 +1,14 @@
 // TODO: store phase data in json file
 const phases = {
-    annibale1: {
-        image: "../assets/images/annibale.jpg",
-        alt: "image of astronomer Annibale De Gasparis",
-        duration: 2000,
-        scroll: "",
-        text: [
-            ""
-        ]
-    },
+    // annibale1: {
+    //     image: "../assets/images/annibale.jpg",
+    //     alt: "image of astronomer Annibale De Gasparis",
+    //     duration: 2000,
+    //     scroll: "",
+    //     text: [
+    //         ""
+    //     ]
+    // },
     annibale2: {
         image: "../assets/images/annibale.jpg",
         alt: "image of astronomer Annibale De Gasparis",
@@ -22,24 +22,24 @@ const phases = {
             "De Gasparis named this asteroid Psyche."
         ]
     },
-    buffer1: {
-        image: "",
-        alt: "no image",
-        scroll: "",
-        duration: 2000,
-        text: [
-            ""
-        ]
-    },
-    asteroid1: {
-        image: "../assets/images/chrysalis/asteroid.png",
-        alt: "image of asteroid",
-        duration: 2000,
-        scroll: "",
-        text: [
-            ""
-        ],
-    },
+    // buffer1: {
+    //     image: "",
+    //     alt: "no image",
+    //     scroll: "",
+    //     duration: 2000,
+    //     text: [
+    //         ""
+    //     ]
+    // },
+    // asteroid1: {
+    //     image: "../assets/images/chrysalis/asteroid.png",
+    //     alt: "image of asteroid",
+    //     duration: 2000,
+    //     scroll: "",
+    //     text: [
+    //         ""
+    //     ],
+    // },
     asteroid2: {
         image: "../assets/images/chrysalis/asteroid.png",
         alt: "image of asteroid",
@@ -55,7 +55,7 @@ const phases = {
     chrysalis1: {
         image: "../assets/images/chrysalis/asteroid.png",
         alt: "Asteroid Psyche in the Chrysalis phase",
-        duration: 4000,
+        duration: 8000,
         scroll: "",
         text: [
             ""
@@ -67,7 +67,7 @@ const phases = {
     chrysalis2: {
         image: "",
         alt: "image of chrysalis",
-        duration: 4000,
+        duration: 8000,
         scroll: "",
         text: [
             ""
@@ -79,7 +79,7 @@ const phases = {
     chrysalis3: {
         image: "",
         alt: "image of chrysalis stars",
-        duration: 4000,
+        duration: 8000,
         scroll: "",
         text: [
             ""
@@ -88,21 +88,21 @@ const phases = {
             { src: "../assets/images/chrysalis/chrysalis_stars.png", id: "chrysalis", position: "absolute", top: "0", left: "0" },
         ],
     },
-    chrysalis4: {
-        image: "",
-        alt: "Asteroid Psyche butterfly emerges from chrysalis",
-        duration: 2000,
-        //duration: 10000,
-        scroll: "",
-        text: [
-            ""
-        ],
-        additionalImages: [
-            //{ src: "../assets/images/chrysalis/chrysalis.png", id: "chrysalis", position: "absolute", top: "0", left: "0" },
-            { src: "../assets/images/chrysalis/butterfly.png", id: "butterfly", position: "absolute", top: "0", left: "0" },
-            //{ src: "../assets/images/chrysalis/butterfly.png", id: "butterfly", position: "absolute", top: "10px", left: "10px" },
-        ]
-    },
+    // chrysalis4: {
+    //     image: "",
+    //     alt: "Asteroid Psyche butterfly emerges from chrysalis",
+    //     duration: 2000,
+    //     //duration: 10000,
+    //     scroll: "",
+    //     text: [
+    //         ""
+    //     ],
+    //     additionalImages: [
+    //         //{ src: "../assets/images/chrysalis/chrysalis.png", id: "chrysalis", position: "absolute", top: "0", left: "0" },
+    //         { src: "../assets/images/chrysalis/butterfly.png", id: "butterfly", position: "absolute", top: "0", left: "0" },
+    //         //{ src: "../assets/images/chrysalis/butterfly.png", id: "butterfly", position: "absolute", top: "10px", left: "10px" },
+    //     ]
+    // },
     chrysalis5: {
         image: "",
         alt: "Asteroid Psyche butterfly emerges from chrysalis",
@@ -125,7 +125,7 @@ const phases = {
         image: "",
         alt: "image of butterfly stars",
         //alt: "Chrysalis and butterfly vector images",
-        duration: 4000,
+        duration: 8000,
         //duration: 2000,
         scroll: "",
         text: [
@@ -152,26 +152,26 @@ const phases = {
     //         //{ src: "../assets/images/chrysalis/butterfly2.png", id: "butterfly2", position: "absolute", top: "10px", left: "10px" },
     //     ]
     // },
-    buffer2: {
-        image: "",
-        alt: "no image",
-        scroll: "",
-        duration: 2000,
-        text: [
-            ""
-        ]
-    },
-    psychegoddess1: { // psyche goddess part1
-        image: "../assets/images/goddess_psyche/psyche_opening_box.png",
-        //image: "../assets/images/goddess_psyche/psyche_opening_box_sketch.png",
-        alt: "image of Psyche goddess opening pandora's box.",
-        duration: 2000,
-        //duration: 10000,
-        scroll: "",
-        text: [
-            ""
-        ]
-    },
+    // buffer2: {
+    //     image: "",
+    //     alt: "no image",
+    //     scroll: "",
+    //     duration: 2000,
+    //     text: [
+    //         ""
+    //     ]
+    // },
+    // psychegoddess1: { // psyche goddess part1
+    //     image: "../assets/images/goddess_psyche/psyche_opening_box.png",
+    //     //image: "../assets/images/goddess_psyche/psyche_opening_box_sketch.png",
+    //     alt: "image of Psyche goddess opening pandora's box.",
+    //     duration: 2000,
+    //     //duration: 10000,
+    //     scroll: "",
+    //     text: [
+    //         ""
+    //     ]
+    // },
     psychegoddess2: { // psyche goddess part1
         image: "../assets/images/goddess_psyche/psyche_opening_box.png",
         //image: "../assets/images/goddess_psyche/psyche_opening_box_sketch.png",
@@ -187,17 +187,17 @@ const phases = {
             "for Aphrodite to use."
         ]
     },
-    psychegoddess3: { // psyche goddess part2
-        image: "../assets/images/goddess_psyche/psyche_passing_out.png",
-        //image: "../assets/images/goddess_psyche/psyche_sleeping_sketch.png",
-        alt: "image of Psyche goddess in a deep, dark sleep.",
-        duration: 2000,
-        //duration: 7000,
-        scroll: "",
-        text: [
-            ""
-        ]
-    },
+    // psychegoddess3: { // psyche goddess part2
+    //     image: "../assets/images/goddess_psyche/psyche_passing_out.png",
+    //     //image: "../assets/images/goddess_psyche/psyche_sleeping_sketch.png",
+    //     alt: "image of Psyche goddess in a deep, dark sleep.",
+    //     duration: 2000,
+    //     //duration: 7000,
+    //     scroll: "",
+    //     text: [
+    //         ""
+    //     ]
+    // },
     psychegoddess4: { // psyche goddess part2
         image: "../assets/images/goddess_psyche/psyche_passing_out.png",
         //image: "../assets/images/goddess_psyche/psyche_sleeping_sketch.png",
@@ -211,17 +211,17 @@ const phases = {
             "that overwhelms Psyche."
         ]
     },
-    psychegoddess5: { // psyche goddess part3
-        image: "../assets/images/goddess_psyche/psyche_passing_out_vector.png",
-        //image: "../assets/images/goddess_psyche/psyche_sleeping_vector.png",
-        alt: "outline and stars vector image of Psyche goddess in a deep, dark sleep",
-        duration: 8000,
-        //duration: 5000,
-        scroll: "",
-        text: [
-            ""
-        ]
-    },
+    // psychegoddess5: { // psyche goddess part3
+    //     image: "../assets/images/goddess_psyche/psyche_passing_out_vector.png",
+    //     //image: "../assets/images/goddess_psyche/psyche_sleeping_vector.png",
+    //     alt: "outline and stars vector image of Psyche goddess in a deep, dark sleep",
+    //     duration: 8000,
+    //     //duration: 5000,
+    //     scroll: "",
+    //     text: [
+    //         ""
+    //     ]
+    // },
     psychegoddess6: { // psyche goddess part3
         image: "../assets/images/goddess_psyche/psyche_passing_out_vector.png",
         //image: "../assets/images/goddess_psyche/psyche_sleeping_vector.png",
@@ -238,32 +238,32 @@ const phases = {
         image: "../assets/images/goddess_psyche/psyche_passing_out_stars.png",
         //image: "../assets/images/goddess_psyche/psyche_sleeping_stars.png",
         alt: "psyche sleeping stars",
-        duration: 4000,
+        duration: 8000,
         //duration: 5000,
         scroll: "",
         text: [
             ""
         ]
     },
-    buffer3: {
-        image: "",
-        alt: "no image",
-        scroll: "",
-        duration: 2000,
-        text: [
-            ""
-        ]
-    },
-    psychegoddess8: { // psyche goddess part5
-        image: "../assets/images/goddess_psyche/asteroid.png",
-        alt: "psyche asteroid",
-        duration: 2000,
-        //duration: 5000,
-        scroll: "",
-        text: [
-            ""
-        ]
-    },
+    // buffer3: {
+    //     image: "",
+    //     alt: "no image",
+    //     scroll: "",
+    //     duration: 2000,
+    //     text: [
+    //         ""
+    //     ]
+    // },
+    // psychegoddess8: { // psyche goddess part5
+    //     image: "../assets/images/goddess_psyche/asteroid.png",
+    //     alt: "psyche asteroid",
+    //     duration: 2000,
+    //     //duration: 5000,
+    //     scroll: "",
+    //     text: [
+    //         ""
+    //     ]
+    // },
     psychegoddess9: { // psyche goddess part5
         image: "../assets/images/goddess_psyche/asteroid.png",
         alt: "psyche asteroid",
@@ -279,7 +279,7 @@ const phases = {
         image: "../assets/images/goddess_psyche/asteroid.png",
         alt: "psyche asteroid",
         scroll: "",
-        duration: 4000,
+        duration: 8000,
         //duration: 5000,
         text: [
             ""
