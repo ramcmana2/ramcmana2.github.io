@@ -205,7 +205,7 @@ function showPhase(phase) {
         phase_div.setAttribute("id", "phase_modal");
         phase_div.setAttribute("style", "display: block; position: fixed;" +
             " z-index: 20; left: 0; top: 0; width: 100%; height: 100%; " +
-            "background-color: rgba(0, 0, 0); overflow: hidden; transition: 1.5s;");
+            "background-color: rgba(0, 0, 0, 0.2); overflow: hidden; transition: 1.5s;");
 
         let phase_innerHTML = "";
 
@@ -274,7 +274,7 @@ function showPhase(phase) {
                 overlayImage.setAttribute("style",
                     "background-color: transparent; width: calc(0.8 * 40vh); height: 40vh;" +
                     " border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 40vh);" +
-                    " left: calc(50vw - ((0.8 * 40vh + 10vh) / 2)); z-index: 10; transition: 1.5s;");
+                    " left: calc(50vw - ((0.8 * 40vh + 10vh) / 2)); z-index: 21; transition: 1.5s;");
                 document.body.appendChild(overlayImage);
             });
         }
