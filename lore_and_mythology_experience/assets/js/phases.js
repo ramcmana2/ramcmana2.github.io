@@ -1,6 +1,6 @@
 // TODO: store phase data in json file
 const phases = {
-    annibale: {
+    annibale1: {
         image: "../assets/images/annibale.jpg",
         alt: "image of astronomer Annibale De Gasparis",
         duration: 8000,
@@ -22,7 +22,7 @@ const phases = {
             ""
         ]
     }
-    asteroid: {
+    asteroid1: {
         image: "../assets/images/chrysalis/asteroid.png",
         alt: "image of asteroid",
         duration: 8000,
