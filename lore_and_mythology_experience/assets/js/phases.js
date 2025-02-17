@@ -26,21 +26,21 @@ const phases = {
         image: "../assets/images/chrysalis/asteroid.png",
         alt: "image of asteroid",
         duration: 8000,
-        scroll: "",
-        text: [
-            ""
-        ],
-    },
-    chrysalis1: {
-        image: "../assets/images/chrysalis/asteroid.png",
-        alt: "Asteroid Psyche in the Chrysalis phase",
-        duration: 8000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
         text: [
             "The asteroid Psyche has the",
             "resemblance of a chrysalis.",
             "In Greek, the word for chrysalis is 'cyrsos',",
             "meaning gold, gold-colored, or wealth."
+        ],
+    },
+    chrysalis1: {
+        image: "../assets/images/chrysalis/asteroid.png",
+        alt: "Asteroid Psyche in the Chrysalis phase",
+        duration: 8000,
+        scroll: "",
+        text: [
+            ""
         ],
         additionalImages: [
             { src: "../assets/images/chrysalis/chrysalis.png", id: "chrysalis", position: "absolute", top: "0", left: "0" },
@@ -213,7 +213,7 @@ const phases = {
         image: "../assets/images/goddess_psyche/asteroid.png",
         alt: "psyche asteroid",
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
-        duration: 8000,
+        duration: 12000,
         //duration: 10000,
         text: [
             "Just as Psyche's curiosity led her to open",
