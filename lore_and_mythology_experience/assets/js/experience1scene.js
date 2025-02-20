@@ -94,7 +94,7 @@ export function experience1() {
     const x = radius * Math.sin(phi) * Math.cos(theta);
     const y = radius * Math.cos(phi);
     const z = radius * Math.sin(phi) * Math.sin(theta);
-    _camera.position.set(x, y + 3, z + 3);
+    _camera.position.set(x + 3, y, z);
     _camera.lookAt(0, 0, 0);
     //_camera.rotateOnAxis(new THREE.Vector3(0, 1, 0), Math.PI / 12);
 
