@@ -165,5 +165,6 @@ export function experience1() {
 
         // Render the scene and the labels
         _threejs.render(_scene, _camera);
+        console.log("should have rendered the scene by now...");
     });
 }
