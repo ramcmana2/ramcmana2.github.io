@@ -155,16 +155,22 @@ export function experience1() {
     });
 
     // Start rendering
-    requestAnimationFrame(() => {
+    animate();
+    // requestAnimationFrame(() => {
 
-        // Update tween
-        TWEEN.update();
+    //     // Update tween
+    //     TWEEN.update();
 
-        // Update controls rotation
-        _controls.update();
+    //     // Update controls rotation
+    //     _controls.update();
 
-        // Render the scene and the labels
-        _threejs.render(_scene, _camera);
-        console.log("should have rendered the scene by now...");
-    });
+    //     // Render the scene and the labels
+    //     _threejs.render(_scene, _camera);
+    //     console.log("should have rendered the scene by now...");
+    // });
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+    _threejs.render(_scene, _camera);
 }
