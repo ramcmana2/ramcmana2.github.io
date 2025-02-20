@@ -97,8 +97,8 @@ export function experience1() {
     const x = radius * Math.sin(phi) * Math.cos(theta);
     const y = radius * Math.cos(phi);
     const z = radius * Math.sin(phi) * Math.sin(theta);
-    _camera.position.set(x, y, z);
-    _camera.lookAt(0, 0, 0);
+    _camera.position.set(x - 3, y + 3, z);
+    _camera.lookAt(0, 3, 0);
     //_camera.rotateOnAxis(new THREE.Vector3(0, 1, 0), Math.PI / 12);
 
     // Ensure the camera is looking at the target
@@ -141,8 +141,8 @@ export function experience1() {
         // Configure model
         const model = gltf.scene;
         model.scale.set(0.25, 0.25, 0.25); // Set model scale
-        model.position.set(0, 0, 0); // Set model position
-        model.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI / 6);
+        model.position.set(0, 3, 0); // Set model position
+        model.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI / 8);
         _scene.add(model); // Add model to scene
         //let _model = model;
 
