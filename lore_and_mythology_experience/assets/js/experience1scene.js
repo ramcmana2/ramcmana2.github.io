@@ -135,7 +135,7 @@ export function experience1() {
         model.scale.set(0.25, 0.25, 0.25); // Set model scale
         model.position.set(0, 0, 0); // Set model position
         _scene.add(model); // Add model to scene
-        _model = model;
+        //let _model = model;
 
         // Enable shadow casting
         model.traverse((child) => {
