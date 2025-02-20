@@ -2,7 +2,6 @@ import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.mod
 import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/GLTFLoader.js';
 import { TextureLoader } from 'https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js';
-import TWEEN from 'https://cdn.jsdelivr.net/npm/@tweenjs/tween.js@18.6.4/dist/tween.esm.js';
 
 export function experience1() {
 
@@ -133,7 +132,7 @@ export function experience1() {
         // Configure model
         const model = gltf.scene;
         model.scale.set(0.25, 0.25, 0.25); // Set model scale
-        model.position.set(0, 0, 0); // Set model position
+        model.position.set(0, 5, 0); // Set model position
         _scene.add(model); // Add model to scene
         //let _model = model;
 
@@ -159,30 +158,4 @@ export function experience1() {
         _threejs.render(_scene, _camera);
     }
     _threejs.setAnimationLoop(animate);
-
-    // animate(() => {
-    //     _threejs.render(_scene, _camera);
-    // });
-
-    // requestAnimationFrame(animate(_threejs, _scene, _camera) => {
-    //     animate();
-
-    //     // Update tween
-    //     TWEEN.update();
-
-    //     // Update controls rotation
-    //     _controls.update();
-
-    //     // Render the scene and the labels
-    //     _threejs.render(_scene, _camera);
-    //     console.log("should have rendered the scene by now...");
-    // });
 }
-
-// function animate() {
-//     requestAnimationFrame(animate);
-// }
-
-// function animate() {
-//     renderer.render( scene, camera );
-// }

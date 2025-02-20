@@ -254,7 +254,7 @@ function showTimer(callback) {
     experience1();
     setTimeout(() => {
         callback(); // Call the callback after timer is done
-    }, 10000);
+    }, 30000);
 }
 
 /*
