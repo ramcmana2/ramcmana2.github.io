@@ -155,9 +155,15 @@ export function experience1() {
     });
 
     // Start rendering
-    animate(() => {
+    function animate() {
         _threejs.render(_scene, _camera);
-    });
+    }
+    _threejs.setAnimationLoop(animate);
+
+    // animate(() => {
+    //     _threejs.render(_scene, _camera);
+    // });
+
     // requestAnimationFrame(animate(_threejs, _scene, _camera) => {
     //     animate();
 
@@ -173,6 +179,10 @@ export function experience1() {
     // });
 }
 
-function animate() {
-    requestAnimationFrame(animate);
-}
+// function animate() {
+//     requestAnimationFrame(animate);
+// }
+
+// function animate() {
+//     renderer.render( scene, camera );
+// }
