@@ -88,7 +88,7 @@ export function experience1() {
     // Set initial camera rotation using spherical coordinates
     const radius = 10;
     //const theta = THREE.MathUtils.degToRad(195);
-    const theta = THREE.MathUtils.degToRad(90);
+    const theta = THREE.MathUtils.degToRad(45);
     //const phi = THREE.MathUtils.degToRad(75);
     const phi = THREE.MathUtils.degToRad(90);
     const x = radius * Math.sin(phi) * Math.cos(theta);
