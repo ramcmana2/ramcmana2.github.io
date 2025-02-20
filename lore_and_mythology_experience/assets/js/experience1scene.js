@@ -93,11 +93,11 @@ export function experience1() {
     //const theta = THREE.MathUtils.degToRad(195);
     const theta = THREE.MathUtils.degToRad(180);
     //const phi = THREE.MathUtils.degToRad(75);
-    const phi = THREE.MathUtils.degToRad(40);
+    const phi = THREE.MathUtils.degToRad(45);
     const x = radius * Math.sin(phi) * Math.cos(theta);
     const y = radius * Math.cos(phi);
     const z = radius * Math.sin(phi) * Math.sin(theta);
-    _camera.position.set(x - 3, y, z);
+    _camera.position.set(x, y, z);
     _camera.lookAt(0, 0, 0);
     //_camera.rotateOnAxis(new THREE.Vector3(0, 1, 0), Math.PI / 12);
 
@@ -141,7 +141,8 @@ export function experience1() {
         // Configure model
         const model = gltf.scene;
         model.scale.set(0.25, 0.25, 0.25); // Set model scale
-        model.position.set(0, 3, 0); // Set model position
+        model.position.set(0, 0, 0); // Set model position
+        model.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI / 6);
         _scene.add(model); // Add model to scene
         //let _model = model;
 
