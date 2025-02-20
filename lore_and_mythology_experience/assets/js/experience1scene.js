@@ -82,8 +82,8 @@ export function experience1() {
     _scene.add(sunLight);
 
     // Initialize controls
-    let _controls = new OrbitControls(_camera, _threejs.domElement);
-    _controls.target.set(0, 0, 0); // Center the controls on the satellite
+    //let _controls = new OrbitControls(_camera, _threejs.domElement);
+    //_controls.target.set(0, 0, 0); // Center the controls on the satellite
 
     // Set initial camera rotation using spherical coordinates
     const radius = 10;
@@ -98,23 +98,23 @@ export function experience1() {
     _camera.lookAt(0, 0, 0);
 
     // Ensure the camera is looking at the target
-    _camera.lookAt(_controls.target);
+    //_camera.lookAt(_controls.target);
     //_camera.rotate.x = Math.PI / 4;
     //_camera.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI / 4);
 
     //_controls.enableZoom = true;
-    _controls.enableZoom = false;
+    //_controls.enableZoom = false;
     //_controls.minDistance = 3;
     //_controls.maxDistance = 1000;
-    _controls.enablePan = false;
-    _controls.screenSpacePanning = false;
+    //_controls.enablePan = false;
+    //_controls.screenSpacePanning = false;
 
     // Rotate the camera automatically
     //_controls.autoRotate = true;
     //_controls.autoRotateSpeed = 0.2;
 
     // Update controls to reflect the new position and rotation
-    _controls.update();
+    //_controls.update();
 
     // Initialize skybox
     const loader = new THREE.CubeTextureLoader();
