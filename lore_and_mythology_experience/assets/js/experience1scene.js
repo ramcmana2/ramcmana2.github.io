@@ -97,16 +97,18 @@ export function experience1() {
 
     // Ensure the camera is looking at the target
     _camera.lookAt(_controls.target);
+    _camera.rotate.x = Math.PI / 4;
 
-    _controls.enableZoom = true;
-    _controls.minDistance = 3;
-    _controls.maxDistance = 1000;
+    //_controls.enableZoom = true;
+    _controls.enableZoom = false;
+    //_controls.minDistance = 3;
+    //_controls.maxDistance = 1000;
     _controls.enablePan = false;
     _controls.screenSpacePanning = false;
 
     // Rotate the camera automatically
-    _controls.autoRotate = true;
-    _controls.autoRotateSpeed = 0.2;
+    //_controls.autoRotate = true;
+    //_controls.autoRotateSpeed = 0.2;
 
     // Update controls to reflect the new position and rotation
     _controls.update();
@@ -132,7 +134,7 @@ export function experience1() {
         // Configure model
         const model = gltf.scene;
         model.scale.set(0.25, 0.25, 0.25); // Set model scale
-        model.position.set(0, 5, 0); // Set model position
+        model.position.set(0, 3, 0); // Set model position
         _scene.add(model); // Add model to scene
         //let _model = model;
 
