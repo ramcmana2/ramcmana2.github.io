@@ -1,9 +1,10 @@
+import { startPhasesSMP } from "./phasesSMP.js";
 // TODO: store phase data in json file
 const phases = {
-    annibale1: {
+    annibale: {
         image: "../assets/images/annibale.jpg",
         alt: "image of astronomer Annibale De Gasparis",
-        duration: 10000,
+        duration: 8000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
         text: [
             "On March 17, 1852, the Italian astronomer",
@@ -13,10 +14,10 @@ const phases = {
             "De Gasparis named this asteroid Psyche."
         ]
     },
-    asteroid1: {
+    chrysalis1: {
         image: "../assets/images/chrysalis/asteroid.png",
-        alt: "image of asteroid",
-        duration: 10000,
+        alt: "Asteroid Psyche in the Chrysalis phase",
+        duration: 8000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
         text: [
             "The asteroid Psyche has the",
@@ -24,45 +25,12 @@ const phases = {
             "In Greek, the word for chrysalis is 'cyrsos',",
             "meaning gold, gold-colored, or wealth."
         ],
-    },
-    chrysalis1: {
-        image: "../assets/images/chrysalis/asteroid.png",
-        alt: "Asteroid Psyche in the Chrysalis phase",
-        duration: 4000,
-        scroll: "",
-        text: [
-            ""
-        ],
         additionalImages: [
             { src: "../assets/images/chrysalis/chrysalis.png", id: "chrysalis", position: "absolute", top: "0", left: "0" },
         ],
     },
     chrysalis2: {
-        image: "",
-        alt: "image of chrysalis",
-        duration: 4000,
-        scroll: "",
-        text: [
-            ""
-        ],
-        additionalImages: [
-            { src: "../assets/images/chrysalis/chrysalis.png", id: "chrysalis", position: "absolute", top: "0", left: "0" },
-        ],
-    },
-    chrysalis3: {
-        image: "",
-        alt: "image of chrysalis stars",
-        duration: 4000,
-        scroll: "",
-        text: [
-            ""
-        ],
-        additionalImages: [
-            { src: "../assets/images/chrysalis/chrysalis_stars.png", id: "chrysalis", position: "absolute", top: "0", left: "0" },
-        ],
-    },
-    chrysalis4: {
-        image: "",
+        image: "../assets/images/chrysalis/asteroid.png",
         alt: "Asteroid Psyche butterfly emerges from chrysalis",
         duration: 10000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
@@ -73,23 +41,38 @@ const phases = {
             "This breath of life is called Psyche."
         ],
         additionalImages: [
-            { src: "../assets/images/chrysalis/butterfly.png", id: "butterfly", position: "absolute", top: "0", left: "0" },
+            { src: "../assets/images/chrysalis/chrysalis.png", id: "chrysalis", position: "absolute", top: "0", left: "0" },
+            { src: "../assets/images/chrysalis/butterfly.png", id: "butterfly", position: "absolute", top: "10px", left: "10px" },
         ]
     },
-    chrysalis5: {
+    chrysalis3: {
         image: "",
-        alt: "image of butterfly stars",
-        duration: 4000,
+        alt: "Chrysalis and butterfly vector images",
+        duration: 2000,
         scroll: "",
         text: [
             ""
         ],
         additionalImages: [
-            { src: "../assets/images/chrysalis/butterfly_stars.png", id: "butterfly", position: "absolute", top: "0", left: "0" },
+            { src: "../assets/images/chrysalis/chrysalis.png", id: "chrysalis", position: "absolute", top: "0", left: "0" },
+            { src: "../assets/images/chrysalis/butterfly.png", id: "butterfly", position: "absolute", top: "10px", left: "10px" },
+        ]
+    },
+    chrysalis4: {
+        image: "",
+        alt: "Chrysalis and butterfly vector stars images",
+        duration: 5000,
+        scroll: "",
+        text: [
+            ""
+        ],
+        additionalImages: [
+            { src: "../assets/images/chrysalis/chrysalis2.png", id: "chrysalis2", position: "absolute", top: "10px", left: "10px" },
+            { src: "../assets/images/chrysalis/butterfly2.png", id: "butterfly2", position: "absolute", top: "10px", left: "10px" },
         ]
     },
     psychegoddess1: { // psyche goddess part1
-        image: "../assets/images/goddess_psyche/psyche_opening_box.png",
+        image: "../assets/images/goddess_psyche/psyche_opening_box_sketch.png",
         alt: "image of Psyche goddess opening pandora's box.",
         duration: 10000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
@@ -102,9 +85,9 @@ const phases = {
         ]
     },
     psychegoddess2: { // psyche goddess part2
-        image: "../assets/images/goddess_psyche/psyche_passing_out.png",
+        image: "../assets/images/goddess_psyche/psyche_sleeping_sketch.png",
         alt: "image of Psyche goddess in a deep, dark sleep.",
-        duration: 6000,
+        duration: 7000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
         text: [
             "However, instead of beauty,",
@@ -113,9 +96,9 @@ const phases = {
         ]
     },
     psychegoddess3: { // psyche goddess part3
-        image: "../assets/images/goddess_psyche/psyche_passing_out_vector.png",
+        image: "../assets/images/goddess_psyche/psyche_sleeping_vector.png",
         alt: "outline and stars vector image of Psyche goddess in a deep, dark sleep",
-        duration: 6000,
+        duration: 5000,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
         text: [
             "Psyche finds herself in",
@@ -123,38 +106,36 @@ const phases = {
         ]
     },
     psychegoddess4: { // psyche goddess part4
-        image: "../assets/images/goddess_psyche/psyche_passing_out_stars.png",
+        image: "../assets/images/goddess_psyche/psyche_sleeping_stars.png",
         alt: "psyche sleeping stars",
-        duration: 4000,
+        duration: 5000,
         scroll: "",
-        text: [
-            ""
-        ]
+        text: [""]
     },
     psychegoddess5: { // psyche goddess part5
         image: "../assets/images/goddess_psyche/asteroid.png",
-        alt: "psyche asteroid sleeping",
+        alt: "psyche asteroid",
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
-        duration: 6000,
+        duration: 5000,
         text: [
             "The asteroid Psyche finds herself in",
             "a similar dark, dreamless sleep..."
         ]
     },
-    psychegoddess6: { // psyche goddess part6
+    psychegoddess6: { // psyche goddess part5
         image: "../assets/images/goddess_psyche/asteroid.png",
         alt: "psyche asteroid",
         scroll: "",
-        duration: 4000,
+        duration: 5000,
         text: [
             ""
         ]
     },
-    psychegoddess7: { // psyche goddess part7
+    psychegoddess7: { // psyche goddess part6
         image: "../assets/images/goddess_psyche/asteroid.png",
-        alt: "psyche asteroid core",
+        alt: "psyche asteroid",
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
-        duration: 12000,
+        duration: 10000,
         text: [
             "Just as Psyche's curiosity led her to open",
             "the fateful box, revealing the unexpected,",
@@ -201,7 +182,7 @@ function displayPhase() {
 }
 
 function afterPhases() {
-    // TODO, what happens after the phases are done?
+    startPhasesSMP();
 }
 
 let phaseBool = false;
@@ -273,20 +254,16 @@ function showPhase(phase) {
                 overlayImage.setAttribute("src", image.src);
                 overlayImage.setAttribute("id", image.id);
                 // add position styles for stacking additional images on top of phase image
-                //overlayImage.setAttribute("style", `position: ${image.position}; top: ${image.top}; left: ${image.left}; z-index: 15;`);
-                // if (index === 0) {
-                //     overlayImage.setAttribute("style","width: calc(0.8 * 20vh); height: 30vh;" +
-                //         " border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 80vh);" +
-                //         " left: calc(50vw - ((0.8 * 30vh + 10vh) / 2)); z-index: 21; transition: 1.5s;");
-                // } else if (index === 1) {
-                //     overlayImage.setAttribute("style","width: calc(0.8 * 30vh); height: 20vh;" +
-                //         " border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 2vh);" +
-                //         " left: calc(50vw - ((0.8 * 30vh + 10vh) / 2)); z-index: 21; transition: 1.5s;");
-                // }
-                overlayImage.setAttribute("style",
-                    "background-color: transparent; width: calc(0.8 * 40vh); height: 40vh;" +
-                    " border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 40vh);" +
-                    " left: calc(50vw - ((0.8 * 40vh + 10vh) / 2)); z-index: 21; transition: 1.5s;");
+                overlayImage.setAttribute("style", `position: ${image.position}; top: ${image.top}; left: ${image.left}; z-index: 15;`);
+                if (index === 0) {
+                    overlayImage.setAttribute("style","width: calc(0.8 * 20vh); height: 30vh;" +
+                        " border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 80vh);" +
+                        " left: calc(50vw - ((0.8 * 30vh + 10vh) / 2)); z-index: 21; transition: 1.5s;");
+                } else if (index === 1) {
+                    overlayImage.setAttribute("style","width: calc(0.8 * 30vh); height: 20vh;" +
+                        " border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 2vh);" +
+                        " left: calc(50vw - ((0.8 * 30vh + 10vh) / 2)); z-index: 21; transition: 1.5s;");
+                }
                 document.body.appendChild(overlayImage);
             });
         }
@@ -298,8 +275,7 @@ function showPhase(phase) {
 
             // remove any overlay images for the phase
             const overlayImages = document.querySelectorAll(
-                '[id^="chrysalis"], [id^="butterfly"]');
-                //'[id^="chrysalis"], [id^="butterfly"], [id^="chrysalis2"], [id^="butterfly2"]');
+                '[id^="chrysalis"], [id^="butterfly"], [id^="chrysalis2"], [id^="butterfly2"]');
             overlayImages.forEach((img) => img.remove());
 
             phaseBool = false;
