@@ -90,7 +90,7 @@ export function experience1() {
     //const theta = THREE.MathUtils.degToRad(195);
     const theta = THREE.MathUtils.degToRad(180);
     //const phi = THREE.MathUtils.degToRad(75);
-    const phi = THREE.MathUtils.degToRad(90);
+    const phi = THREE.MathUtils.degToRad(180);
     const x = radius * Math.sin(phi) * Math.cos(theta);
     const y = radius * Math.cos(phi);
     const z = radius * Math.sin(phi) * Math.sin(theta);
