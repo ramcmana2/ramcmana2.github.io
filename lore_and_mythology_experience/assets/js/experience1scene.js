@@ -97,7 +97,8 @@ export function experience1() {
 
     // Ensure the camera is looking at the target
     _camera.lookAt(_controls.target);
-    _camera.rotate.x = Math.PI / 4;
+    //_camera.rotate.x = Math.PI / 4;
+    _camera.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI / 4);
 
     //_controls.enableZoom = true;
     _controls.enableZoom = false;
