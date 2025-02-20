@@ -1,3 +1,5 @@
+import { experience1 } from './experience1scene.js';
+
 /*
 * phasesSMP.js
 * This file handles SMP functions and phases.
@@ -249,6 +251,7 @@ function showLaunch(callback) {
  */
 function showTimer(callback) {
     console.log('Transitioning to satellite timer');
+    experience1();
     setTimeout(() => {
         callback(); // Call the callback after timer is done
     }, 5000);
