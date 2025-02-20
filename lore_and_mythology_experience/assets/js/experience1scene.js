@@ -96,7 +96,7 @@ export function experience1() {
     const z = radius * Math.sin(phi) * Math.sin(theta);
     _camera.position.set(x - 3, y, z);
     _camera.lookAt(0, 0, 0);
-    _camera.rotateOnAxis(new THREE.Vector3(0, 1, 0), Math.PI / 12);
+    //_camera.rotateOnAxis(new THREE.Vector3(0, 1, 0), Math.PI / 12);
 
     // Ensure the camera is looking at the target
     //_camera.lookAt(_controls.target);
