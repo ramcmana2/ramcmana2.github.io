@@ -94,7 +94,7 @@ export function experience1() {
     const x = radius * Math.sin(phi) * Math.cos(theta);
     const y = radius * Math.cos(phi);
     const z = radius * Math.sin(phi) * Math.sin(theta);
-    _camera.position.set(x, y, z);
+    _camera.position.set(x, y + 3, z);
     _camera.lookAt(0, 0, 0);
 
     // Ensure the camera is looking at the target
