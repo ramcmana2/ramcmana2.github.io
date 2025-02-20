@@ -142,7 +142,7 @@ export function experience1() {
         const model = gltf.scene;
         model.scale.set(0.25, 0.25, 0.25); // Set model scale
         model.position.set(0, 3, 0); // Set model position
-        model.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI / 90);
+        model.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI / 180);
         model.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI / 8);
         _scene.add(model); // Add model to scene
         //let _model = model;
