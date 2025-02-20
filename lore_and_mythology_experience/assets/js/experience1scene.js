@@ -128,8 +128,8 @@ export function experience1() {
     _scene.background = texture;
 
     // Initialize models
-    const loader = new GLTFLoader();
-    loader.load('../assets/models/satellite_light.glb', (gltf) => {
+    const gltfLoader = new GLTFLoader();
+    gltfLoader.load('../assets/models/satellite_light.glb', (gltf) => {
         // Configure model
         const model = gltf.scene;
         model.scale.set(0.25, 0.25, 0.25); // Set model scale
