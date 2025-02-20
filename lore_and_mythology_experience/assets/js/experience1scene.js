@@ -81,6 +81,9 @@ export function experience1() {
 
     _scene.add(sunLight);
 
+    const axesHelper = new THREE.AxesHelper(5);
+    _scene.add(axesHelper);
+
     // Initialize controls
     //let _controls = new OrbitControls(_camera, _threejs.domElement);
     //_controls.target.set(0, 0, 0); // Center the controls on the satellite
@@ -90,7 +93,7 @@ export function experience1() {
     //const theta = THREE.MathUtils.degToRad(195);
     const theta = THREE.MathUtils.degToRad(180);
     //const phi = THREE.MathUtils.degToRad(75);
-    const phi = THREE.MathUtils.degToRad(45);
+    const phi = THREE.MathUtils.degToRad(40);
     const x = radius * Math.sin(phi) * Math.cos(theta);
     const y = radius * Math.cos(phi);
     const z = radius * Math.sin(phi) * Math.sin(theta);
