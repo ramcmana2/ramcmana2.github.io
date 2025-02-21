@@ -97,8 +97,16 @@ export function experience1() {
     const x = radius * Math.sin(phi) * Math.cos(theta);
     const y = radius * Math.cos(phi);
     const z = radius * Math.sin(phi) * Math.sin(theta);
-    console.log(window.innerWidth);
-    _camera.position.set(x - 10, y, z);
+    let modelWidth = window.innerWidth;
+    if (modelWidth > 1300) {
+        modelWidth = 0;
+    }
+    else {
+        modelWidth = 10 - ((modelWidth - 300) / 100);
+    }
+    console.log(window.innerWidth); //1365
+    //_camera.position.set(x - 10, y, z);
+    _camera.position.set(x - modelWidth, y, z);
     _camera.lookAt(0, 0, 0);
     //_camera.rotateOnAxis(new THREE.Vector3(0, 1, 0), Math.PI / 12);
 
@@ -146,7 +154,7 @@ export function experience1() {
         // model.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI / 90);
         // model.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI / 8);
         // model.rotateOnAxis(new THREE.Vector3(0, 1, 0), Math.PI / 6);
-        model.rotateOnWorldAxis(new THREE.Vector3(1, 0, 0), Math.PI / 60);
+        model.rotateOnWorldAxis(new THREE.Vector3(1, 0, 0), Math.PI / 70);
         model.rotateOnWorldAxis(new THREE.Vector3(0, 0, 1), Math.PI / 8);
         model.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), Math.PI / 110);
         _scene.add(model); // Add model to scene
