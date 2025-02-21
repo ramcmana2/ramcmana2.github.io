@@ -104,7 +104,7 @@ export function experience1() {
     else {
         modelWidth = 10 - ((modelWidth - 300) / 100);
     }
-    console.log(window.innerWidth); //1365
+    console.log(window.innerWidth); // desktop = 1920, f12 = 1365, iphone15 = 393
     //_camera.position.set(x - 10, y, z);
     _camera.position.set(x - modelWidth, y, z);
     _camera.lookAt(0, 0, 0);
@@ -154,9 +154,14 @@ export function experience1() {
         // model.rotateOnAxis(new THREE.Vector3(1, 0, 0), Math.PI / 90);
         // model.rotateOnAxis(new THREE.Vector3(0, 0, 1), Math.PI / 8);
         // model.rotateOnAxis(new THREE.Vector3(0, 1, 0), Math.PI / 6);
+
+        // model.rotateOnWorldAxis(new THREE.Vector3(1, 0, 0), Math.PI / 70);
+        // model.rotateOnWorldAxis(new THREE.Vector3(0, 0, 1), Math.PI / 8);
+        // model.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), Math.PI / 110);
+
         model.rotateOnWorldAxis(new THREE.Vector3(1, 0, 0), Math.PI / 70);
         model.rotateOnWorldAxis(new THREE.Vector3(0, 0, 1), Math.PI / 8);
-        model.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), Math.PI / 110);
+        model.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), Math.PI / 60);
         _scene.add(model); // Add model to scene
         //let _model = model;
 
