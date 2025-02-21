@@ -160,7 +160,7 @@ export function experience1() {
         // model.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), Math.PI / 110);
 
         model.rotateOnWorldAxis(new THREE.Vector3(1, 0, 0), Math.PI / 140);
-        model.rotateOnWorldAxis(new THREE.Vector3(0, 0, 1), Math.PI / 9);
+        model.rotateOnWorldAxis(new THREE.Vector3(0, 0, 1), Math.PI / 10);
         //model.rotateOnWorldAxis(new THREE.Vector3(0, 1, 0), -Math.PI / 120);
         _scene.add(model); // Add model to scene
         //let _model = model;
