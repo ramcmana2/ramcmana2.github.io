@@ -39,7 +39,7 @@ img {
   width: 30px;
   height: 30px;
   cursor: pointer;
-  z-index: 20;
+  z-index: 50;
   user-select: all; /* allow copying */
 }
 
@@ -55,7 +55,7 @@ img {
   width: 30px;
   height: 30px;
   cursor: pointer;
-  z-index: 20;
+  z-index: 50;
   user-select: all; /* allow copying */
 }
 
