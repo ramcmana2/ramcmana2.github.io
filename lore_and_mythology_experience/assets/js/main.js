@@ -503,8 +503,7 @@ document.addEventListener('touchend', () => {
     scope.style.display = 'none';
 });
 // Attach pointer events
-//document.addEventListener('mousedown', onPointerDown);
-document.addEventListener('click', onPointerDown);
+document.addEventListener('mousedown', onPointerDown);
 document.addEventListener('pointermove', onPointerMove);
 document.addEventListener('mouseup', onPointerUp);
 
