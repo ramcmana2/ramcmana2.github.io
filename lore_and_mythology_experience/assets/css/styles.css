@@ -233,16 +233,16 @@ img {
 
 #help_modal_title {
   position: absolute;
-  top: calc(100vh - 85vh + ((0.11 * 0.75 * 85vh) / 2));
+  top: calc(100vh - 85vh + ((0.09 * 0.75 * 85vh) / 2));
   left: calc((100vw / 2) - (4 * 0.35 * 0.11 * 0.75 * 85vh));
   font-family: "Papyrus", fantasy;
-  font-size: calc(0.11 * 0.75 * 85vh);
+  font-size: calc(0.09 * 0.75 * 85vh);
 }
 
 .swipe {
   position: absolute;
   top: calc(3.3 * (100vh - 85vh));
-  left: calc(0.83 * 0.75 * 85vh);
+  left: calc((100vw / 2) - ((0.56 * 0.75 * 85vh) / 2));
   display: flex;
   flex-direction: column;
   font-family: "Papyrus", fantasy;
@@ -256,7 +256,7 @@ img {
 .tap {
   position: absolute;
   top: calc(3.17 * (100vh - 85vh));
-  left: calc(1.15 * 0.75 * 85vh);
+  left: calc((100vw / 2) + (0.04 * 0.75 * 85vh));
   display: flex;
   flex-direction: column;
   font-family: "Papyrus", fantasy;
