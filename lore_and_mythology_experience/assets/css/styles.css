@@ -41,6 +41,7 @@ img {
   cursor: pointer;
   z-index: 20;
   user-select: all; /* allow copying */
+  pointer-events: auto;
 }
 
 #help-icon-button::selection {
@@ -57,6 +58,7 @@ img {
   cursor: pointer;
   z-index: 20;
   user-select: all; /* allow copying */
+  pointer-events: auto;
 }
 
 #settings-icon-button::selection {
