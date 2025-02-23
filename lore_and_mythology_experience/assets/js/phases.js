@@ -217,7 +217,7 @@ function showPhase(phase) {
         phase_div.setAttribute("id", "phase_modal");
         phase_div.setAttribute("style", "display: block; position: fixed;" +
             " z-index: 20; left: 0; top: 0; width: 100%; height: 100%; " +
-            "background-color: rgba(0, 0, 0, 0.2); overflow: hidden; transition: 1.5s;");
+            "background-color: rgba(0, 0, 0, 0.2); overflow: hidden; transition: 1.5s; pointer-events: none;");
 
         let phase_innerHTML = "";
 
