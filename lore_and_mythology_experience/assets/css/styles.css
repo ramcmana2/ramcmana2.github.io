@@ -224,25 +224,25 @@ img {
 
 #close_help {
   position: absolute;
-  top: calc(100vh - 85vh - ((0.1 * 0.75 * 85vh) / 2));
+  top: calc(100vh - 85vh - ((0.09 * 0.75 * 85vh) / 2));
   left: calc((100vw / 2) + ((0.75 * 85vh) / 4));
   font-family: "Papyrus", fantasy;
-  font-size: calc(0.1 * 0.75 * 85vh);
+  font-size: calc(0.09 * 0.75 * 85vh);
   cursor: pointer;
 }
 
 #help_modal_title {
   position: absolute;
-  top: calc(100vh - 85vh + ((0.09 * 0.75 * 85vh) / 2));
+  top: calc(100vh - 85vh + ((0.11 * 0.75 * 85vh) / 2));
   left: calc((100vw / 2) - (4 * 0.35 * 0.11 * 0.75 * 85vh));
   font-family: "Papyrus", fantasy;
-  font-size: calc(0.09 * 0.75 * 85vh);
+  font-size: calc(0.11 * 0.75 * 85vh);
 }
 
 .swipe {
   position: absolute;
   top: calc(3.3 * (100vh - 85vh));
-  left: calc((100vw / 2) - ((0.56 * 0.75 * 85vh) / 2));
+  left: calc((100vw / 2) - (0.75 * 85vh / 2) + (0.22 * 0.75 * 85vh));
   display: flex;
   flex-direction: column;
   font-family: "Papyrus", fantasy;
@@ -256,7 +256,7 @@ img {
 .tap {
   position: absolute;
   top: calc(3.17 * (100vh - 85vh));
-  left: calc((100vw / 2) + (0.04 * 0.75 * 85vh));
+  left: calc((100vw / 2) + (0.75 * 85vh / 2) - (0.46 * 0.75 * 85vh));
   display: flex;
   flex-direction: column;
   font-family: "Papyrus", fantasy;
@@ -265,7 +265,7 @@ img {
 #tap {
   width: calc(0.2 * 0.75 * 85vh);
   align-self: center;
-  padding: 0.69vw;
+  padding: 0.99vh;
 }
 
 .text_box {
