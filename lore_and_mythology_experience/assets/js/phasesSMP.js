@@ -42,7 +42,7 @@ const phases = {
         ]
     },
     psycheGoddess: {
-        image: "../assets/images/goddess_psyche/psyche_sleeping_vector.png",
+        image: "../assets/images/goddess_psyche/psyche_passing_out_vector.png",
         alt: "Goddess Psyche sleeping vector.",
         duration: 4000,
         banner: "",
@@ -209,7 +209,7 @@ function showLaunch(callback) {
 
         // YouTube Iframe API
         let player;
-        window.onYouTubeIframeAPIReady = function () {
+        window.onYouTubeIframeAPIReady = function() {
             player = new YT.Player(iframe, {
                 events: {
                     'onStateChange': onPlayerStateChange
@@ -249,9 +249,139 @@ function showLaunch(callback) {
  */
 function showTimer(callback) {
     console.log('Transitioning to satellite timer');
+    // if days < x, " _ days until orbits begin"
+    // else if days < y, "_ days until mission completion"
+    // else, "mission complete"
+    /**
+     * The satellite is expected to be captured by Psyche's gravity in late July (2029).
+     * The satellite is then expected to orbit indefinitely thereafter, yet the 
+     * mission is said to conclude roughly 2 years after arrival (November of 2031).
+     */
+    // Launched: October 13th, 2023 @2:19PM (GMT)
+    var launchTime = 1697206740000;
+    // August 1st, 2029 (GMT)
+    var arrivalTime = 1880236800000;
+    // November 1st, 2031 (GMT)
+    var missionCompletionTime = 1951257600000;
+    // Demarcation of second leap day since launch (March 1st, 2028 GMT)
+    var leapDay = 1835481600000;
+
+    var millisecondsInASecond = 1000;
+    var millisecondsInAMinute = millisecondsInASecond * 60;
+    var millisecondsInAnHour = millisecondsInAMinute * 60;
+    var millisecondsInADay = millisecondsInAnHour * 24;
+    var millisecondsInAYear = millisecondsInADay * 365;
+
+    var currentTime = Date.now();
+    //var missionProgressSnapshot = missionCompletionTime - currentTime;
+    let message1 = "Mission Status: ";
+    let message2 = "";
+    let colHeadings = ["        | Since Launch | Since Arrival | Since Completion |", 
+                       "        | Since Launch | Since Arrival | Until Completion |", 
+                       "        | Since Launch | Until Arrival | Until Completion |", 
+                      ];
+    //let rowHeadings = ["years", "days", "hours", minutes", "seconds"];
+    let launchCountup = {"years": 0, "days": 0, "hours": 0, "minutes": 0, "seconds" 0};
+    let timeSinceLaunch = currentTime - launchTime;
+    if (currentTime >= leapDay) {
+        launchCountup["years"] = Math.floor((timeSinceLaunch - (2 * millisecondsInADay)) / millisecondsInAYear);
+    }
+    else {
+        launchCountup["years"] = Math.floor((timeSinceLaunch - (1 * millisecondsInADay)) / millisecondsInAYear);
+    }
+    timeSinceLaunch = timeSinceLaunch - (launchCountup["years"] * millisecondsInAYear);
+    launchCountup["days"] = Math.floor(timeSinceLaunch / millisecondsInADay);
+    timeSinceLaunch = timeSinceLaunch - (launchCountup["days"] * millisecondsInADay);
+    launchCountup["hours"] = Math.floor(timeSinceLaunch / millisecondsInAnHour);
+    timeSinceLaunch = timeSinceLaunch - (launchCountup["hours"] * millisecondsInAnHour);
+    launchCountup["minutes"] = Math.floor(timeSinceLaunch / millisecondsInAMinute);
+    timeSinceLaunch = timeSinceLaunch - (launchCountup["minutes"] * millisecondsInAMinute);
+    launchCountup["seconds"] = Math.floor(timeSinceLaunch / millisecondsInASecond);
+
+    let arrivalCountdown = {"years": 0, "days": 0, "hours": 0, "minutes": 0, "seconds" 0};
+    let completionCountdown = {"years": 0, "days": 0, "hours": 0, "minutes": 0, "seconds" 0};
+    // let years = 0;
+    // let days = 0;
+    // let hours = 0;
+    // let minutes = 0;
+    // let seconds = 0;
+
+    let timeUntilArrival = arrivalTime - currentTime;
+    let timeSinceArrival = 0;
+    let timeUntilCompletion = missionCompletionTime - currentTime;
+    let timeSinceCompletion = 0;
+
+    if (currentTime >= missionCompletionTime) {
+        message1 += "complete."
+        //missionProgressSnapshot *= -1;
+
+        timeSinceArrival = currentTime - arrivalTime;
+
+        arrivalCountdown["years"] = Math.floor(timeSinceArrival / (millisecondsInAYear + (millisecondsInADay / 4)));
+        timeSinceArrival = timeSinceArrival - (arrivalCountdown["years"] * (millisecondsInAYear + (millisecondsInADay / 4)));
+        arrivalCountdown["days"] = Math.floor(timeSinceArrival / millisecondsInADay);
+        timeSinceArrival = timeSinceArrival - (arrivalCountdown["days"] * millisecondsInADay);
+        arrivalCountdown["hours"] = Math.floor(timeSinceArrival / millisecondsInAnHour);
+        timeSinceArrival = timeSinceArrival - (arrivalCountdown["hours"] * millisecondsInAnHour);
+        arrivalCountdown["minutes"] = Math.floor(timeSinceArrival / millisecondsInAMinute);
+        timeSinceArrival = timeSinceArrival - (arrivalCountdown["minutes"] * millisecondsInAMinute);
+        arrivalCountdown["seconds"] = Math.floor(timeSinceArrival / millisecondsInASecond);
+
+        timeSinceCompletion = currentTime - missionCompletionTime;
+
+        completionCountdown["years"] = Math.floor(timeSinceCompletion / (millisecondsInAYear + (millisecondsInADay / 4)));
+        timeSinceCompletion = timeSinceCompletion - (completionCountdown["years"] * (millisecondsInAYear + (millisecondsInADay / 4)));
+        completionCountdown["days"] = Math.floor(timeSinceCompletion / millisecondsInADay);
+        timeSinceCompletion = timeSinceCompletion - (completionCountdown["days"] * millisecondsInADay);
+        completionCountdown["hours"] = Math.floor(timeSinceCompletion / millisecondsInAnHour);
+        timeSinceCompletion = timeSinceCompletion - (completionCountdown["hours"] * millisecondsInAnHour);
+        completionCountdown["minutes"] = Math.floor(timeSinceCompletion / millisecondsInAMinute);
+        timeSinceCompletion = timeSinceCompletion - (completionCountdown["minutes"] * millisecondsInAMinute);
+        completionCountdown["seconds"] = Math.floor(timeSinceCompletion / millisecondsInASecond);
+
+        message2 = colHeadings[0];
+    }
+    else if (currentTime >= arrivalTime) {
+        message1 += "orbiting."
+
+        //years = 
+        //message2 = "_ days since arrival; _ days until mission completion."
+        message2 = colHeadings[1];
+    }
+    else {
+        message1 += "en route."
+        //message2 = "_ days until arrival; _ days until mission completion."
+        message2 = colHeadings[2];
+    }
+
+    let countdown = {
+        placeholder: {
+            image: "",
+            alt: "",
+            duration: 20000,
+            banner: "../assets/images/smp/smp-banner.png",
+            text: [
+                ("" + message1),
+                " ",
+                ("" + message2),
+                ("" + "        | Since Launch | Since Arrival | Since Completion |"),
+                ("" + "Years   | Since Launch | Since Arrival | Since Completion |"),
+                ("" + "Days    | Since Launch | Since Arrival | Since Completion |"),
+                ("" + "Hours   | Since Launch | Since Arrival | Since Completion |"),
+                ("" + "Minutes | Since Launch | Since Arrival | Since Completion |"),
+                ("" + "Seconds | Since Launch | Since Arrival | Since Completion |")
+            ]
+        }
+    }
+    const timerValues = Object.values(countdown);
+    const timerPhase = timerValues[0];
+
+    let countDownTimer = setInterval(function() {showPhase(timerPhase)}, 1000);
+
     setTimeout(() => {
+        clearInterval(countDownTimer);
         callback(); // Call the callback after timer is done
-    }, 5000);
+    }, 20000);
 }
 
 /*
@@ -356,7 +486,7 @@ function showPhase(phase) {
                 overlayImage.setAttribute("id", image.id);
                 // add position styles for stacking additional images on top of phase image
                 overlayImage.setAttribute("style", `position: ${image.position}; top: ${image.top}; left: ${image.left}; z-index: 15;`);
-                overlayImage.setAttribute("style","width: calc(0.8 * 55vh); height: auto" +
+                overlayImage.setAttribute("style", "width: calc(0.8 * 55vh); height: auto" +
                     " border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 75vh);" +
                     " left: calc(45vw - ((0.8 * 30vh + 10vh) / 2)); z-index: 21; transition: 1.5s ease-in-out;");
 
@@ -370,7 +500,7 @@ function showPhase(phase) {
             document.getElementById("phase_modal").remove();
 
             // remove any overlay images for the phase
-             const overlayImages = document.querySelectorAll('[id^="butterfly"]');
+            const overlayImages = document.querySelectorAll('[id^="butterfly"]');
             overlayImages.forEach((img) => img.remove());
 
             phaseBool = false;

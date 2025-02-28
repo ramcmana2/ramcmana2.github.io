@@ -300,7 +300,7 @@ function showPhase(phase) {
             // remove any overlay images for the phase
             const overlayImages = document.querySelectorAll(
                 '[id^="chrysalis"], [id^="butterfly"]');
-                //'[id^="chrysalis"], [id^="butterfly"], [id^="chrysalis2"], [id^="butterfly2"]');
+            //'[id^="chrysalis"], [id^="butterfly"], [id^="chrysalis2"], [id^="butterfly2"]');
             overlayImages.forEach((img) => img.remove());
 
             phaseBool = false;
