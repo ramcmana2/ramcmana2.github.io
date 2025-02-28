@@ -281,7 +281,7 @@ function showTimer(callback) {
                        "        | Since Launch | Until Arrival | Until Completion |", 
                       ];
     //let rowHeadings = ["years", "days", "hours", minutes", "seconds"];
-    let launchCountup = {"years": 0, "days": 0, "hours": 0, "minutes": 0, "seconds" 0};
+    let launchCountup = {"years": 0, "days": 0, "hours": 0, "minutes": 0, "seconds": 0};
     let timeSinceLaunch = currentTime - launchTime;
     if (currentTime >= leapDay) {
         launchCountup["years"] = Math.floor((timeSinceLaunch - (2 * millisecondsInADay)) / millisecondsInAYear);
@@ -298,8 +298,8 @@ function showTimer(callback) {
     timeSinceLaunch = timeSinceLaunch - (launchCountup["minutes"] * millisecondsInAMinute);
     launchCountup["seconds"] = Math.floor(timeSinceLaunch / millisecondsInASecond);
 
-    let arrivalCountdown = {"years": 0, "days": 0, "hours": 0, "minutes": 0, "seconds" 0};
-    let completionCountdown = {"years": 0, "days": 0, "hours": 0, "minutes": 0, "seconds" 0};
+    let arrivalCountdown = {"years": 0, "days": 0, "hours": 0, "minutes": 0, "seconds": 0};
+    let completionCountdown = {"years": 0, "days": 0, "hours": 0, "minutes": 0, "seconds": 0};
     // let years = 0;
     // let days = 0;
     // let hours = 0;
