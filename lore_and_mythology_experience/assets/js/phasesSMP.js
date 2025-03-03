@@ -363,10 +363,10 @@ function showTimer(callback) {
 
     for (let i = 0; i < 20; i++) {
         arrivalCountdown["seconds"] = arrivalCountdown["seconds"] + (arrivalIncrement * i);
-        arrivalCountdown["seconds"] = leadingZeros(arrivalCountdown["seconds"]);
+        //arrivalCountdown["seconds"] = leadingZeros(arrivalCountdown["seconds"]);
 
         completionCountdown["seconds"] = completionCountdown["seconds"] + (completionIncrement * i);
-        completionCountdown["seconds"] = leadingZeros(completionCountdown["seconds"]);
+        //completionCountdown["seconds"] = leadingZeros(completionCountdown["seconds"]);
 
         let countdown = {
             placeholder: {
@@ -383,7 +383,7 @@ function showTimer(callback) {
                     ("" + "Days    | Since Launch |      " + arrivalCountdown["days"] + "      |        " + completionCountdown["days"] + "         |"),
                     ("" + "Hours   | Since Launch |       " + arrivalCountdown["hours"] + "      |         " + completionCountdown["hours"] + "         |"),
                     ("" + "Minutes | Since Launch |       " + arrivalCountdown["minutes"] + "      |         " + completionCountdown["minutes"] + "         |"),
-                    ("" + "Seconds | Since Launch |       " + arrivalCountdown["seconds"] + "      |         " + completionCountdown["seconds"] + "         |")
+                    ("" + "Seconds | Since Launch |       " + leadingZeros(arrivalCountdown["seconds"]) + "      |         " + leadingZeros(completionCountdown["seconds"]) + "         |")
                 ]
             }
         }
@@ -485,7 +485,7 @@ function showCountdown(phase, count) {
     for (var i = 0; i < infos.length; i++) {
         // infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
         //     " z-index: 21; transition: 1.5s east-in;");
-        infos[i].setAttribute("style", "text-align: center; font-size: calc(0.04 * 40vh);" +
+        infos[i].setAttribute("style", "text-align: center; font-size: calc(0.035 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in;");
     }
 
