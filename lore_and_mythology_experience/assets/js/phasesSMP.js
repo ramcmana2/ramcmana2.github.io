@@ -438,7 +438,7 @@ function leadingZeros(number, days=false) {
         }
     }
     else {
-        for (i = stringNum.length; i < 3; i++) {
+        for (let i = stringNum.length; i < 3; i++) {
             stringNum = "0" + stringNum;
         }
         return stringNum;
