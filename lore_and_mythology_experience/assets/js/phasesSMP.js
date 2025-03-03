@@ -371,9 +371,8 @@ function showTimer(callback) {
                 banner: "../assets/images/smp/smp-banner.png",
                 text: [
                     ("" + message1),
-                    " ",
+                    "---------------------------------------------------------",
                     ("" + message2),
-                    ("" + "        | Since Launch | Since Arrival | Since Completion |"),
                     ("" + "Years   | Since Launch | " + arrivalCountdown["years"] + " | " + completionCountdown["years"] + " |"),
                     ("" + "Days    | Since Launch | " + arrivalCountdown["days"] + " | " + completionCountdown["days"] + " |"),
                     ("" + "Hours   | Since Launch | " + arrivalCountdown["hours"] + " | " + completionCountdown["hours"] + " |"),
@@ -591,12 +590,10 @@ function showCountdown(phase, count) {
         document.getElementById("phase_modal").innerHTML = phase_innerHTML;
     }
 
-    if (count == 0) {
-        document.getElementById("banner").setAttribute("style",
-            "background-color: transparent; width: calc(30vw + 15vh); height: auto; border-radius: 12px;" +
-            " position: absolute; top: 70%; left: 50%;" +
-            " z-index: 5; transition: 1.5s ease-in-out; transform: translate(-50%, -50%);");
-    }
+    document.getElementById("banner").setAttribute("style",
+        "background-color: transparent; width: calc(30vw + 15vh); height: auto; border-radius: 12px;" +
+        " position: absolute; top: 70%; left: 50%;" +
+        " z-index: 5; transition: 1.5s ease-in-out; transform: translate(-50%, -50%);");
 
     if (phase.text.some(line => line !== "")) {
         const text = document.getElementById("banner_text_box");
