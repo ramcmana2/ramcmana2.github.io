@@ -550,26 +550,38 @@ function showCountdown(phase, count) {
         phase_div.setAttribute("style", "display: block; position: fixed;" +
             " z-index: 20; left: 0; top: 0; width: 100%; height: 100%; " +
             "background-color: rgba(0, 0, 0, 0.2); overflow: hidden; transition: 1.5s; font-size: 16px");
-    }
 
-    let phase_innerHTML = "";
+        let phase_innerHTML = "";
 
-    if (count == 0) {
         phase_innerHTML += `<img src="${phase.banner}" id="banner"/>`;
+
+        if (phase.text.some(line => line !== "")) {
+            phase_innerHTML += `<div id="banner_text_box">`;
+            phase.text.forEach((line) => {
+                phase_innerHTML += `<span class="info">${line}</span>`;
+            });
+            phase_innerHTML += `</div>`;
+        }
+
+        phase_innerHTML += ``;
+        phase_div.innerHTML = phase_innerHTML;
+        document.body.appendChild(phase_div);
     }
+    else {
+        let phase_innerHTML = "";
 
-    if (phase.text.some(line => line !== "")) {
-        phase_innerHTML += `<div id="banner_text_box">`;
-        phase.text.forEach((line) => {
-            phase_innerHTML += `<span class="info">${line}</span>`;
-        });
-        phase_innerHTML += `</div>`;
+        if (phase.text.some(line => line !== "")) {
+            phase_innerHTML += `<div id="banner_text_box">`;
+            phase.text.forEach((line) => {
+                phase_innerHTML += `<span class="info">${line}</span>`;
+            });
+            phase_innerHTML += `</div>`;
+        }
+
+        phase_innerHTML += ``;
+
+        document.getElementById("phase_modal").innerHTML = phase_innerHTML;
     }
-
-    phase_innerHTML += ``;
-
-    phase_div.innerHTML = phase_innerHTML;
-    document.body.appendChild(phase_div);
 
     if (count == 0) {
         document.getElementById("banner").setAttribute("style",
