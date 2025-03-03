@@ -362,6 +362,7 @@ function showTimer(callback) {
     }
 
     for (let i = 0; i < 20; i++) {
+        arrivalCountdown["seconds"] = leadingZeros(arrivalCountdown["seconds"]);
         let countdown = {
             placeholder: {
                 image: "",
@@ -605,7 +606,9 @@ function showCountdown(phase, count) {
 
     var infos = document.getElementsByClassName("info");
     for (var i = 0; i < infos.length; i++) {
-        infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
+        // infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
+        //     " z-index: 21; transition: 1.5s east-in;");
+        infos[i].setAttribute("style", "text-align: center; font-size: calc(0.03 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in;");
     }
 
