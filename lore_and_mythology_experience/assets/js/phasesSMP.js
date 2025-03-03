@@ -377,12 +377,20 @@ function showTimer(callback) {
     const timerValues = Object.values(countdown);
     const timerPhase = timerValues[0];
 
-    let countDownTimer = setInterval(function() {showPhase(timerPhase)}, 1000);
+    for (i = 0; i < 20; i++) {
+        setTimeout(function() {showCountdown(timerPhase, i)}, 1000 * i);
+    }
 
     setTimeout(() => {
-        clearInterval(countDownTimer);
-        callback(); // Call the callback after timer is done
+        callback();
     }, 20000);
+
+    // let countDownTimer = setInterval(function() {showPhase(timerPhase)}, 1000);
+
+    // setTimeout(() => {
+    //     clearInterval(countDownTimer);
+    //     callback(); // Call the callback after timer is done
+    // }, 20000);
 }
 
 function leadingZeros(number, days=false) {
@@ -529,4 +537,67 @@ function showPhase(phase) {
         document.getElementById("phase_modal").setAttribute("style", "display: none;");
         phaseBool = false;
     }
+}
+
+function showCountdown(phase, count) {
+    console.log('Transitioning to countdown phase');
+
+    // set up html and css
+    const phase_div = document.createElement("div");
+    phase_div.setAttribute("id", "phase_modal");
+    phase_div.setAttribute("style", "display: block; position: fixed;" +
+        " z-index: 20; left: 0; top: 0; width: 100%; height: 100%; " +
+        "background-color: rgba(0, 0, 0, 0.2); overflow: hidden; transition: 1.5s; font-size: 16px");
+
+    let phase_innerHTML = "";
+
+    if (count == 0) {
+        phase_innerHTML += `<img src="${phase.banner}" id="banner"/>`;
+    }
+
+    if (phase.text.some(line => line !== "")) {
+        phase_innerHTML += `<div id="banner_text_box">`;
+        phase.text.forEach((line) => {
+            phase_innerHTML += `<span class="info">${line}</span>`;
+        });
+        phase_innerHTML += `</div>`;
+    }
+
+    phase_innerHTML += ``;
+
+    phase_div.innerHTML = phase_innerHTML;
+    document.body.appendChild(phase_div);
+
+    if (count == 0) {
+        document.getElementById("banner").setAttribute("style",
+            "background-color: transparent; width: calc(30vw + 15vh); height: auto; border-radius: 12px;" +
+            " position: absolute; top: 70%; left: 50%;" +
+            " z-index: 5; transition: 1.5s ease-in-out; transform: translate(-50%, -50%);");
+    }
+
+    if (phase.text.some(line => line !== "")) {
+        const text = document.getElementById("banner_text_box");
+        text.setAttribute("style", " display: flex; flex-direction: column; position: absolute;" +
+            " top: 80%; left: 43%; transform: translate(-50%, -50%);" +
+            " color: #C9FFFC; font-size: 2rem; font-family: 'Comfortaa', Arial, sans-serif; text-align: center;" +
+            " z-index: 10; padding: 10px 20px; border-radius: 8px; transform: translate(-50%, -50%);");
+    }
+
+    var infos = document.getElementsByClassName("info");
+    for (var i = 0; i < infos.length; i++) {
+        infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
+            " z-index: 21; transition: 1.5s east-in;");
+    }
+
+    // clear phase after 20 seconds
+    if (count == 19) {
+        setTimeout(() => {
+        document.getElementById("phase_modal").remove();
+    }, 1000);
+
+// else {
+//     // Hide the current phase modal if it's already showing
+//     document.getElementById("phase_modal").setAttribute("style", "display: none;");
+//     phaseBool = false;
+// }
 }
