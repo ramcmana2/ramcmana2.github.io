@@ -377,7 +377,7 @@ function showTimer(callback) {
     const timerValues = Object.values(countdown);
     const timerPhase = timerValues[0];
 
-    for (i = 0; i < 20; i++) {
+    for (let i = 0; i < 20; i++) {
         setTimeout(function() {showCountdown(timerPhase, i)}, 1000 * i);
     }
 
