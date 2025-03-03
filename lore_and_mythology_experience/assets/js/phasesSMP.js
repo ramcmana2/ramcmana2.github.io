@@ -487,7 +487,7 @@ function showCountdown(phase, count) {
         // infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
         //     " z-index: 21; transition: 1.5s east-in;");
         infos[i].setAttribute("style", "text-align: center; font-size: calc(0.032 * 40vh);" +
-            " z-index: 21; transition: 1.5s east-in;");
+            " z-index: 21; transition: 1.5s east-in; white-space: pre;");
     }
 
     // clear phase after 20 seconds
