@@ -399,7 +399,7 @@ function showTimer(callback) {
                 banner: "../assets/images/smp/smp-banner.png",
                 text: [
                     ("" + message1),
-                    "---------------------------------------------------------",
+                    "------------------------------------------------------------------------",
                     ("" + message2),
                     //    "        | Since Launch | Since Arrival | Since Completion |"
                     ("" + "Years   | Since Launch |       " + leadingZeros(arrivalCountdown["years"]) + "      |         " + leadingZeros(completionCountdown["years"]) + "         |"),
@@ -509,12 +509,13 @@ function showCountdown(phase, count) {
     for (var i = 0; i < infos.length; i++) {
         // infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
         //     " z-index: 21; transition: 1.5s east-in;");
-        infos[i].setAttribute("style", "text-align: left; font-size: calc(0.03 * 40vh);" +
+        infos[i].setAttribute("style", "text-align: left; font-size: calc(0.025 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in; white-space: pre;");
     }
 
     // clear phase after 20 seconds
-    if (count == 19) {
+    //if (count == 19) {
+    if (count == 60) {
         setTimeout(() => {
             document.getElementById("phase_modal").remove();
         }, 1000);
