@@ -373,11 +373,11 @@ function showTimer(callback) {
                     ("" + message1),
                     "---------------------------------------------------------",
                     ("" + message2),
-                    ("" + "Years   | Since Launch | " + arrivalCountdown["years"] + " | " + completionCountdown["years"] + " |"),
-                    ("" + "Days    | Since Launch | " + arrivalCountdown["days"] + " | " + completionCountdown["days"] + " |"),
-                    ("" + "Hours   | Since Launch | " + arrivalCountdown["hours"] + " | " + completionCountdown["hours"] + " |"),
-                    ("" + "Minutes | Since Launch | " + arrivalCountdown["minutes"] + " | " + completionCountdown["minutes"] + " |"),
-                    ("" + "Seconds | Since Launch | " + (arrivalCountdown["seconds"] + arrivalIncrement) + " | " + (completionCountdown["seconds"] + completionIncrement) + " |")
+                    ("" + "Years   | Since Launch |       " + arrivalCountdown["years"] + "      |         " + completionCountdown["years"] + "         |"),
+                    ("" + "Days    | Since Launch |      " + arrivalCountdown["days"] + "      |        " + completionCountdown["days"] + "         |"),
+                    ("" + "Hours   | Since Launch |       " + arrivalCountdown["hours"] + "      |         " + completionCountdown["hours"] + "         |"),
+                    ("" + "Minutes | Since Launch |       " + arrivalCountdown["minutes"] + "      |         " + completionCountdown["minutes"] + "         |"),
+                    ("" + "Seconds | Since Launch |       " + (arrivalCountdown["seconds"] + (arrivalIncrement * i)) + "      |         " + (completionCountdown["seconds"] + (completionIncrement * i)) + "         |")
                 ]
             }
         }
