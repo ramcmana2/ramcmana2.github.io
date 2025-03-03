@@ -277,9 +277,9 @@ function showTimer(callback) {
     //var missionProgressSnapshot = missionCompletionTime - currentTime;
     let message1 = "Mission Status: ";
     let message2 = "";
-    let colHeadings = ["|_________| Since Launch | Since Arrival | Since Completion |", 
-                       "|_________| Since Launch | Since Arrival | Until Completion |", 
-                       "|_________| Since Launch | Until Arrival | Until Completion |", 
+    let colHeadings = ["        | Since Launch | Since Arrival | Since Completion |", 
+                       "        | Since Launch | Since Arrival | Until Completion |", 
+                       "        | Since Launch | Until Arrival | Until Completion |", 
                       ];
     //let rowHeadings = ["years", "days", "hours", minutes", "seconds"];
     let launchCountup = {"years": 0, "days": 0, "hours": 0, "minutes": 0, "seconds": 0};
@@ -379,12 +379,12 @@ function showTimer(callback) {
                     ("" + message1),
                     "---------------------------------------------------------",
                     ("" + message2),
-                    //    "|_________| Since Launch | Since Arrival | Since Completion |"
-                    ("" + "| Years   | Since Launch |       " + arrivalCountdown["years"] + "      |         " + completionCountdown["years"] + "         |"),
-                    ("" + "| Days    | Since Launch |      " + arrivalCountdown["days"] + "      |        " + completionCountdown["days"] + "         |"),
-                    ("" + "| Hours   | Since Launch |       " + arrivalCountdown["hours"] + "      |         " + completionCountdown["hours"] + "         |"),
-                    ("" + "| Minutes | Since Launch |       " + arrivalCountdown["minutes"] + "      |         " + completionCountdown["minutes"] + "         |"),
-                    ("" + "| Seconds | Since Launch |       " + leadingZeros(arrivalCountdown["seconds"]) + "      |         " + leadingZeros(completionCountdown["seconds"]) + "         |")
+                    //    "        | Since Launch | Since Arrival | Since Completion |"
+                    ("" + "Years   | Since Launch |       " + arrivalCountdown["years"] + "      |         " + completionCountdown["years"] + "         |"),
+                    ("" + "Days    | Since Launch |      " + arrivalCountdown["days"] + "      |        " + completionCountdown["days"] + "         |"),
+                    ("" + "Hours   | Since Launch |       " + arrivalCountdown["hours"] + "      |         " + completionCountdown["hours"] + "         |"),
+                    ("" + "Minutes | Since Launch |       " + arrivalCountdown["minutes"] + "      |         " + completionCountdown["minutes"] + "         |"),
+                    ("" + "Seconds | Since Launch |       " + leadingZeros(arrivalCountdown["seconds"]) + "      |         " + leadingZeros(completionCountdown["seconds"]) + "         |")
                 ]
             }
         }
@@ -396,7 +396,7 @@ function showTimer(callback) {
 
     setTimeout(() => {
         callback();
-    }, 20000);
+    }, 30000);
 
     // let countDownTimer = setInterval(function() {showPhase(timerPhase)}, 1000);
 
@@ -486,7 +486,7 @@ function showCountdown(phase, count) {
     for (var i = 0; i < infos.length; i++) {
         // infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
         //     " z-index: 21; transition: 1.5s east-in;");
-        infos[i].setAttribute("style", "text-align: left; font-size: calc(0.032 * 40vh);" +
+        infos[i].setAttribute("style", "text-align: left; font-size: calc(0.03 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in; white-space: pre;");
     }
 
