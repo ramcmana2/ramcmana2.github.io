@@ -362,10 +362,10 @@ function showTimer(callback) {
     }
 
     for (let i = 0; i < 20; i++) {
-        arrivalCountdown["seconds"] = arrivalCountdown["seconds"] + (arrivalIncrement * i);
+        arrivalCountdown["seconds"] = arrivalCountdown["seconds"] + arrivalIncrement;
         //arrivalCountdown["seconds"] = leadingZeros(arrivalCountdown["seconds"]);
 
-        completionCountdown["seconds"] = completionCountdown["seconds"] + (completionIncrement * i);
+        completionCountdown["seconds"] = completionCountdown["seconds"] + completionIncrement;
         //completionCountdown["seconds"] = leadingZeros(completionCountdown["seconds"]);
 
         let countdown = {
@@ -485,7 +485,7 @@ function showCountdown(phase, count) {
     for (var i = 0; i < infos.length; i++) {
         // infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
         //     " z-index: 21; transition: 1.5s east-in;");
-        infos[i].setAttribute("style", "text-align: center; font-size: calc(0.035 * 40vh);" +
+        infos[i].setAttribute("style", "text-align: center; font-size: calc(0.032 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in;");
     }
 
