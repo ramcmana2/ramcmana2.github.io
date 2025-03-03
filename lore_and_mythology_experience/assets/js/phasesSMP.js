@@ -361,7 +361,8 @@ function showTimer(callback) {
         message2 = colHeadings[2];
     }
 
-    for (let i = 0; i < 20; i++) {
+    //for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < 61; i++) {
         arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + arrivalIncrement);
         //arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + arrivalIncrement) % 60;
         //arrivalCountdown["seconds"] = leadingZeros(arrivalCountdown["seconds"]);
@@ -417,7 +418,8 @@ function showTimer(callback) {
 
     setTimeout(() => {
         callback();
-    }, 60000);
+    //}, 20000);
+    }, 61000);
 
     // let countDownTimer = setInterval(function() {showPhase(timerPhase)}, 1000);
 
