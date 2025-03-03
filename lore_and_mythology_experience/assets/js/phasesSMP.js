@@ -277,9 +277,9 @@ function showTimer(callback) {
     //var missionProgressSnapshot = missionCompletionTime - currentTime;
     let message1 = "Mission Status: ";
     let message2 = "";
-    let colHeadings = ["        | Since Launch | Since Arrival | Since Completion |", 
-                       "        | Since Launch | Since Arrival | Until Completion |", 
-                       "        | Since Launch | Until Arrival | Until Completion |", 
+    let colHeadings = ["|_________| Since Launch | Since Arrival | Since Completion |", 
+                       "|_________| Since Launch | Since Arrival | Until Completion |", 
+                       "|_________| Since Launch | Until Arrival | Until Completion |", 
                       ];
     //let rowHeadings = ["years", "days", "hours", minutes", "seconds"];
     let launchCountup = {"years": 0, "days": 0, "hours": 0, "minutes": 0, "seconds": 0};
@@ -379,11 +379,12 @@ function showTimer(callback) {
                     ("" + message1),
                     "---------------------------------------------------------",
                     ("" + message2),
-                    ("" + "Years   | Since Launch |       " + arrivalCountdown["years"] + "      |         " + completionCountdown["years"] + "         |"),
-                    ("" + "Days    | Since Launch |      " + arrivalCountdown["days"] + "      |        " + completionCountdown["days"] + "         |"),
-                    ("" + "Hours   | Since Launch |       " + arrivalCountdown["hours"] + "      |         " + completionCountdown["hours"] + "         |"),
-                    ("" + "Minutes | Since Launch |       " + arrivalCountdown["minutes"] + "      |         " + completionCountdown["minutes"] + "         |"),
-                    ("" + "Seconds | Since Launch |       " + leadingZeros(arrivalCountdown["seconds"]) + "      |         " + leadingZeros(completionCountdown["seconds"]) + "         |")
+                    //    "|_________| Since Launch | Since Arrival | Since Completion |"
+                    ("" + "| Years   | Since Launch |       " + arrivalCountdown["years"] + "      |         " + completionCountdown["years"] + "         |"),
+                    ("" + "| Days    | Since Launch |      " + arrivalCountdown["days"] + "      |        " + completionCountdown["days"] + "         |"),
+                    ("" + "| Hours   | Since Launch |       " + arrivalCountdown["hours"] + "      |         " + completionCountdown["hours"] + "         |"),
+                    ("" + "| Minutes | Since Launch |       " + arrivalCountdown["minutes"] + "      |         " + completionCountdown["minutes"] + "         |"),
+                    ("" + "| Seconds | Since Launch |       " + leadingZeros(arrivalCountdown["seconds"]) + "      |         " + leadingZeros(completionCountdown["seconds"]) + "         |")
                 ]
             }
         }
