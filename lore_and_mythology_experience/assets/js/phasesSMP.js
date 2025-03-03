@@ -592,8 +592,9 @@ function showCountdown(phase, count) {
     // clear phase after 20 seconds
     if (count == 19) {
         setTimeout(() => {
-        document.getElementById("phase_modal").remove();
-    }, 1000);
+            document.getElementById("phase_modal").remove();
+        }, 1000);
+    }
 
 // else {
 //     // Hide the current phase modal if it's already showing
