@@ -262,7 +262,8 @@ function showTimer(callback) {
     // August 1st, 2029 (GMT)
     var arrivalTime = 1880236800000;
     // November 1st, 2031 (GMT)
-    var missionCompletionTime = 1951257600000;
+    //var missionCompletionTime = 1951257600000;
+    var missionCompletionTime = 1; // FOR TESTING!
     // Demarcation of second leap day since launch (March 1st, 2028 GMT)
     var leapDay = 1835481600000;
 
@@ -354,30 +355,30 @@ function showTimer(callback) {
         message2 = colHeadings[2];
     }
 
-    let countdown = {
-        placeholder: {
-            image: "",
-            alt: "",
-            //duration: 20000,
-            duration: 1000,
-            banner: "../assets/images/smp/smp-banner.png",
-            text: [
-                ("" + message1),
-                " ",
-                ("" + message2),
-                ("" + "        | Since Launch | Since Arrival | Since Completion |"),
-                ("" + "Years   | Since Launch | Since Arrival | Since Completion |"),
-                ("" + "Days    | Since Launch | Since Arrival | Since Completion |"),
-                ("" + "Hours   | Since Launch | Since Arrival | Since Completion |"),
-                ("" + "Minutes | Since Launch | Since Arrival | Since Completion |"),
-                ("" + "Seconds | Since Launch | Since Arrival | Since Completion |")
-            ]
-        }
-    }
-    const timerValues = Object.values(countdown);
-    const timerPhase = timerValues[0];
-
     for (let i = 0; i < 20; i++) {
+        let countdown = {
+            placeholder: {
+                image: "",
+                alt: "",
+                //duration: 20000,
+                duration: 1000,
+                banner: "../assets/images/smp/smp-banner.png",
+                text: [
+                    ("" + message1),
+                    " ",
+                    ("" + message2),
+                    ("" + "        | Since Launch | Since Arrival | Since Completion |"),
+                    ("" + "Years   | Since Launch | " + arrivalCountdown["years"] + " | " + completionCountdown["years"] + " |"),
+                    ("" + "Days    | Since Launch | " + arrivalCountdown["days"] + " | " + completionCountdown["days"] + " |"),
+                    ("" + "Hours   | Since Launch | " + arrivalCountdown["hours"] + " | " + completionCountdown["hours"] + " |"),
+                    ("" + "Minutes | Since Launch | " + arrivalCountdown["minutes"] + " | " + completionCountdown["minutes"] + " |"),
+                    ("" + "Seconds | Since Launch | " + arrivalCountdown["seconds"] + " | " + completionCountdown["seconds"] + " |")
+                ]
+            }
+        }
+        let timerValues = Object.values(countdown);
+        let timerPhase = timerValues[0];
+
         setTimeout(function() {showCountdown(timerPhase, i)}, 1000 * i);
     }
 
@@ -542,12 +543,14 @@ function showPhase(phase) {
 function showCountdown(phase, count) {
     console.log('Transitioning to countdown phase');
 
-    // set up html and css
-    const phase_div = document.createElement("div");
-    phase_div.setAttribute("id", "phase_modal");
-    phase_div.setAttribute("style", "display: block; position: fixed;" +
-        " z-index: 20; left: 0; top: 0; width: 100%; height: 100%; " +
-        "background-color: rgba(0, 0, 0, 0.2); overflow: hidden; transition: 1.5s; font-size: 16px");
+    if (count == 0) {
+        // set up html and css
+        const phase_div = document.createElement("div");
+        phase_div.setAttribute("id", "phase_modal");
+        phase_div.setAttribute("style", "display: block; position: fixed;" +
+            " z-index: 20; left: 0; top: 0; width: 100%; height: 100%; " +
+            "background-color: rgba(0, 0, 0, 0.2); overflow: hidden; transition: 1.5s; font-size: 16px");
+    }
 
     let phase_innerHTML = "";
 
