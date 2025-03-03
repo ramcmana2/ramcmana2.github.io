@@ -263,7 +263,7 @@ function showTimer(callback) {
     var arrivalTime = 1880236800000;
     // November 1st, 2031 (GMT)
     //var missionCompletionTime = 1951257600000;
-    var missionCompletionTime = 1; // FOR TESTING!
+    var missionCompletionTime = 1000000000000; // FOR TESTING!
     // Demarcation of second leap day since launch (March 1st, 2028 GMT)
     var leapDay = 1835481600000;
 
@@ -312,8 +312,14 @@ function showTimer(callback) {
     let timeUntilCompletion = missionCompletionTime - currentTime;
     let timeSinceCompletion = 0;
 
+    let launchIncrement = 1;
+    let arrivalIncrement = 0;
+    let completionIncrement = 0;
+
     if (currentTime >= missionCompletionTime) {
         message1 += "complete."
+        arrivalIncrement = 1;
+        completionIncrement = 1;
         //missionProgressSnapshot *= -1;
 
         timeSinceArrival = currentTime - arrivalTime;
@@ -372,7 +378,7 @@ function showTimer(callback) {
                     ("" + "Days    | Since Launch | " + arrivalCountdown["days"] + " | " + completionCountdown["days"] + " |"),
                     ("" + "Hours   | Since Launch | " + arrivalCountdown["hours"] + " | " + completionCountdown["hours"] + " |"),
                     ("" + "Minutes | Since Launch | " + arrivalCountdown["minutes"] + " | " + completionCountdown["minutes"] + " |"),
-                    ("" + "Seconds | Since Launch | " + arrivalCountdown["seconds"] + " | " + completionCountdown["seconds"] + " |")
+                    ("" + "Seconds | Since Launch | " + (arrivalCountdown["seconds"] + arrivalIncrement) + " | " + (completionCountdown["seconds"] + completionIncrement) + " |")
                 ]
             }
         }
@@ -569,6 +575,8 @@ function showCountdown(phase, count) {
     }
     else {
         let phase_innerHTML = "";
+
+        phase_innerHTML += `<img src="${phase.banner}" id="banner"/>`;
 
         if (phase.text.some(line => line !== "")) {
             phase_innerHTML += `<div id="banner_text_box">`;
