@@ -275,7 +275,7 @@ function showTimer(callback) {
 
     var currentTime = Date.now();
     //var missionProgressSnapshot = missionCompletionTime - currentTime;
-    let message1 = "Mission Status: ";
+    let message1 = "                    Mission Status: ";
     let message2 = "";
     let colHeadings = ["        | Since Launch | Since Arrival | Since Completion |", 
                        "        | Since Launch | Since Arrival | Until Completion |", 
@@ -362,11 +362,32 @@ function showTimer(callback) {
     }
 
     for (let i = 0; i < 20; i++) {
-        arrivalCountdown["seconds"] = arrivalCountdown["seconds"] + arrivalIncrement;
+        arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + arrivalIncrement);
+        //arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + arrivalIncrement) % 60;
         //arrivalCountdown["seconds"] = leadingZeros(arrivalCountdown["seconds"]);
 
-        completionCountdown["seconds"] = completionCountdown["seconds"] + completionIncrement;
+        arrivalCountdown["minutes"] += Math.floor(arrivalCountdown["seconds"] / 60);
+        arrivalCountdown["hours"] += Math.floor(arrivalCountdown["minutes"] / 60);
+        arrivalCountdown["days"] += Math.floor(arrivalCountdown["hours"] / 24);
+        arrivalCountdown["years"] += Math.floor(arrivalCountdown["days"] / 365);
+
+        arrivalCountdown["seconds"] = arrivalCountdown["seconds"] % 60;
+        arrivalCountdown["minutes"] = arrivalCountdown["minutes"] % 60;
+        arrivalCountdown["hours"] = arrivalCountdown["hours"] % 24;
+        arrivalCountdown["days"] = arrivalCountdown["days"] % 365;
+
+        completionCountdown["seconds"] = (completionCountdown["seconds"] + completionIncrement) % 60;
         //completionCountdown["seconds"] = leadingZeros(completionCountdown["seconds"]);
+
+        completionCountdown["minutes"] += Math.floor(completionCountdown["seconds"] / 60);
+        completionCountdown["hours"] += Math.floor(completionCountdown["minutes"] / 60);
+        completionCountdown["days"] += Math.floor(completionCountdown["hours"] / 24);
+        completionCountdown["years"] += Math.floor(completionCountdown["days"] / 365);
+
+        completionCountdown["seconds"] = completionCountdown["seconds"] % 60;
+        completionCountdown["minutes"] = completionCountdown["minutes"] % 60;
+        completionCountdown["hours"] = completionCountdown["hours"] % 24;
+        completionCountdown["days"] = completionCountdown["days"] % 365;
 
         let countdown = {
             placeholder: {
@@ -380,10 +401,10 @@ function showTimer(callback) {
                     "---------------------------------------------------------",
                     ("" + message2),
                     //    "        | Since Launch | Since Arrival | Since Completion |"
-                    ("" + "Years   | Since Launch |       " + arrivalCountdown["years"] + "      |         " + completionCountdown["years"] + "         |"),
-                    ("" + "Days    | Since Launch |      " + arrivalCountdown["days"] + "      |        " + completionCountdown["days"] + "         |"),
-                    ("" + "Hours   | Since Launch |       " + arrivalCountdown["hours"] + "      |         " + completionCountdown["hours"] + "         |"),
-                    ("" + "Minutes | Since Launch |       " + arrivalCountdown["minutes"] + "      |         " + completionCountdown["minutes"] + "         |"),
+                    ("" + "Years   | Since Launch |       " + leadingZeros(arrivalCountdown["years"]) + "      |         " + leadingZeros(completionCountdown["years"]) + "         |"),
+                    ("" + "Days    | Since Launch |      " + leadingZeros(arrivalCountdown["days"]) + "      |        " + leadingZeros(completionCountdown["days"]) + "         |"),
+                    ("" + "Hours   | Since Launch |       " + leadingZeros(arrivalCountdown["hours"]) + "      |         " + leadingZeros(completionCountdown["hours"]) + "         |"),
+                    ("" + "Minutes | Since Launch |       " + leadingZeros(arrivalCountdown["minutes"], true) + "      |         " + leadingZeros(completionCountdown["minutes"], true) + "         |"),
                     ("" + "Seconds | Since Launch |       " + leadingZeros(arrivalCountdown["seconds"]) + "      |         " + leadingZeros(completionCountdown["seconds"]) + "         |")
                 ]
             }
@@ -396,7 +417,7 @@ function showTimer(callback) {
 
     setTimeout(() => {
         callback();
-    }, 30000);
+    }, 60000);
 
     // let countDownTimer = setInterval(function() {showPhase(timerPhase)}, 1000);
 
