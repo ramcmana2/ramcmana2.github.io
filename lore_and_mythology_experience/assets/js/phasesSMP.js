@@ -358,7 +358,8 @@ function showTimer(callback) {
         placeholder: {
             image: "",
             alt: "",
-            duration: 20000,
+            //duration: 20000,
+            duration: 1000,
             banner: "../assets/images/smp/smp-banner.png",
             text: [
                 ("" + message1),
@@ -382,6 +383,24 @@ function showTimer(callback) {
         clearInterval(countDownTimer);
         callback(); // Call the callback after timer is done
     }, 20000);
+}
+
+function leadingZeros(number, days=false) {
+    let stringNum = number.toString();
+    if (!days) {
+        if (stringNum.length == 1) {
+            return "0" + stringNum;
+        }
+        else {
+            return stringNum;
+        }
+    }
+    else {
+        for (i = stringNum.length; i < 3; i++) {
+            stringNum = "0" + stringNum;
+        }
+        return stringNum;
+    }
 }
 
 /*
