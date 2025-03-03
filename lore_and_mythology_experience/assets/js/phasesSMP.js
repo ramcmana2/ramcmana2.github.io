@@ -486,7 +486,7 @@ function showCountdown(phase, count) {
     for (var i = 0; i < infos.length; i++) {
         // infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
         //     " z-index: 21; transition: 1.5s east-in;");
-        infos[i].setAttribute("style", "text-align: center; font-size: calc(0.032 * 40vh);" +
+        infos[i].setAttribute("style", "text-align: left; font-size: calc(0.032 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in; white-space: pre;");
     }
 
