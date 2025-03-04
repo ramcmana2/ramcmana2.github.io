@@ -400,13 +400,14 @@ function showTimer(callback) {
                 text: [
                     ("" + message1),
                     "------------------------------------------------------------------------",
-                    ("" + message2),
+                    // ("" + message2),
                     //    "        | Since Launch | Since Arrival | Since Completion |"
-                    ("" + "Years   | Since Launch |       " + leadingZeros(arrivalCountdown["years"]) + "      |         " + leadingZeros(completionCountdown["years"]) + "         |"),
-                    ("" + "Days    | Since Launch |      " + leadingZeros(arrivalCountdown["days"]) + "      |        " + leadingZeros(completionCountdown["days"]) + "         |"),
-                    ("" + "Hours   | Since Launch |       " + leadingZeros(arrivalCountdown["hours"]) + "      |         " + leadingZeros(completionCountdown["hours"]) + "         |"),
-                    ("" + "Minutes | Since Launch |       " + leadingZeros(arrivalCountdown["minutes"], true) + "      |         " + leadingZeros(completionCountdown["minutes"], true) + "         |"),
-                    ("" + "Seconds | Since Launch |       " + leadingZeros(arrivalCountdown["seconds"]) + "      |         " + leadingZeros(completionCountdown["seconds"]) + "         |")
+                    // ("" + "Years   | Since Launch |       " + leadingZeros(arrivalCountdown["years"]) + "      |         " + leadingZeros(completionCountdown["years"]) + "         |"),
+                    // ("" + "Days    | Since Launch |      " + leadingZeros(arrivalCountdown["days"]) + "      |        " + leadingZeros(completionCountdown["days"]) + "         |"),
+                    // ("" + "Hours   | Since Launch |       " + leadingZeros(arrivalCountdown["hours"]) + "      |         " + leadingZeros(completionCountdown["hours"]) + "         |"),
+                    // ("" + "Minutes | Since Launch |       " + leadingZeros(arrivalCountdown["minutes"], true) + "      |         " + leadingZeros(completionCountdown["minutes"], true) + "         |"),
+                    // ("" + "Seconds | Since Launch |       " + leadingZeros(arrivalCountdown["seconds"]) + "      |         " + leadingZeros(completionCountdown["seconds"]) + "         |")
+                    ("" + "<table><tr><th></th><th>Since Launch</th><th>Until Arrival</th><th>Until Completion</th></tr><tr><tr><td>Years</td><td>1</td><td>2</td><td>3</td></tr><td>Days</td><td>100</td><td>200</td><td>300</td></tr><tr><td>Hours</td><td>1</td><td>2</td><td>3</td></tr><tr><td>Minutes</td><td>10</td><td>20</td><td>30</td></tr><tr><td>Seconds</td><td>1</td><td>2</td><td>3</td></tr></table>")
                 ]
             }
         }
@@ -481,7 +482,15 @@ function showCountdown(phase, count) {
 
         if (phase.text.some(line => line !== "")) {
             phase_innerHTML += `<div id="banner_text_box">`;
+            // let lineNum = 0;
             phase.text.forEach((line) => {
+                // if (lineNum == 0) {
+                //     phase_innerHTML += `<span class="info">${line}</span>`;
+                // }
+                // else {
+                //     phase_innerHTML += line;
+                // }
+                // lineNum += 1;
                 phase_innerHTML += `<span class="info">${line}</span>`;
             });
             phase_innerHTML += `</div>`;
