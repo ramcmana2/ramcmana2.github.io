@@ -428,7 +428,7 @@ function showTimer(callback) {
         launchCountup["hours"] = launchCountup["hours"] % 24;
         launchCountup["days"] = launchCountup["days"] % 365;
 
-        arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + arrivalIncrement);
+        arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + arrivalIncrement) % 60;
         //arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + arrivalIncrement) % 60;
         //arrivalCountdown["seconds"] = leadingZeros(arrivalCountdown["seconds"]);
 
