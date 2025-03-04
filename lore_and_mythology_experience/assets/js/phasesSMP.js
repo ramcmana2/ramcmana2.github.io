@@ -275,11 +275,16 @@ function showTimer(callback) {
 
     var currentTime = Date.now();
     //var missionProgressSnapshot = missionCompletionTime - currentTime;
-    let message1 = "                    Mission Status: ";
+    // let message1 = "                    Mission Status: ";
+    let message1 = "Mission Status: ";
     let message2 = "";
-    let colHeadings = ["        | Since Launch | Since Arrival | Since Completion |", 
-                       "        | Since Launch | Since Arrival | Until Completion |", 
-                       "        | Since Launch | Until Arrival | Until Completion |", 
+    // let colHeadings = ["        | Since Launch | Since Arrival | Since Completion |", 
+    //                    "        | Since Launch | Since Arrival | Until Completion |", 
+    //                    "        | Since Launch | Until Arrival | Until Completion |", 
+    //                   ];
+    let colHeadings = [["|", "Since Launch |", "Since Arrival |", "Since Completion"], 
+                       ["|", "Since Launch |", "Since Arrival |", "Until Completion"], 
+                       ["|", "Since Launch |", "Until Arrival |", "Until Completion"] 
                       ];
     //let rowHeadings = ["years", "days", "hours", minutes", "seconds"];
     let launchCountup = {"years": 0, "days": 0, "hours": 0, "minutes": 0, "seconds": 0};
@@ -408,7 +413,7 @@ function showTimer(callback) {
                     // ("" + "Minutes | Since Launch |       " + leadingZeros(arrivalCountdown["minutes"], true) + "      |         " + leadingZeros(completionCountdown["minutes"], true) + "         |"),
                     // ("" + "Seconds | Since Launch |       " + leadingZeros(arrivalCountdown["seconds"]) + "      |         " + leadingZeros(completionCountdown["seconds"]) + "         |")
                     // ("" + "<table><tr><th class='rowHeader'>|</th><th>Since Launch  |</th><th>Until Arrival  |</th><th>Until Completion</th></tr><tr><tr><td class='rowHeader'>Years |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["years"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["years"]) + "</td></tr><td class='rowHeader'>Days |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["days"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["days"]) + "</td></tr><tr><td class='rowHeader'>Hours |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["hours"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["hours"]) + "</td></tr><tr><td class='rowHeader'>Minutes |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["minutes"], true) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["minutes"], true) + "</td></tr><tr><td class='rowHeader'>Seconds |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["seconds"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["seconds"]) + "</td></tr></table>")
-                    ("" + "<table><tr><th class='rowHeader'>|</th><th>Since Launch  |</th><th>Until Arrival  |</th><th>Until Completion</th></tr><tr><tr><td class='rowHeader'>Years |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + arrivalCountdown["years"] + "</td><td class='dataCells'>" + completionCountdown["years"] + "</td></tr><td class='rowHeader'>Days |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + arrivalCountdown["days"] + "</td><td class='dataCells'>" + completionCountdown["days"] + "</td></tr><tr><td class='rowHeader'>Hours |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + arrivalCountdown["hours"] + "</td><td class='dataCells'>" + completionCountdown["hours"] + "</td></tr><tr><td class='rowHeader'>Minutes |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + arrivalCountdown["minutes"] + "</td><td class='dataCells'>" + completionCountdown["minutes"] + "</td></tr><tr><td class='rowHeader'>Seconds |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + arrivalCountdown["seconds"] + "</td><td class='dataCells'>" + completionCountdown["seconds"] + "</td></tr></table>")
+                    ("" + "<table><tr><th class='rowHeader'>" + message2[0] + "</th><th>" + message2[1] + "</th><th>" + message2[2] + "</th><th>" + message2[3] + "</th></tr><tr><tr><td class='rowHeader'>Years |</td><td class='dataCells'>" + launchCountup["years"] + "</td><td class='dataCells'>" + arrivalCountdown["years"] + "</td><td class='dataCells'>" + completionCountdown["years"] + "</td></tr><td class='rowHeader'>Days |</td><td class='dataCells'>" + launchCountup["days"] + "</td><td class='dataCells'>" + arrivalCountdown["days"] + "</td><td class='dataCells'>" + completionCountdown["days"] + "</td></tr><tr><td class='rowHeader'>Hours |</td><td class='dataCells'>" + launchCountup["hours"] + "</td><td class='dataCells'>" + arrivalCountdown["hours"] + "</td><td class='dataCells'>" + completionCountdown["hours"] + "</td></tr><tr><td class='rowHeader'>Minutes |</td><td class='dataCells'>" + launchCountup["minutes"] + "</td><td class='dataCells'>" + arrivalCountdown["minutes"] + "</td><td class='dataCells'>" + completionCountdown["minutes"] + "</td></tr><tr><td class='rowHeader'>Seconds |</td><td class='dataCells'>" + launchCountup["seconds"] + "</td><td class='dataCells'>" + arrivalCountdown["seconds"] + "</td><td class='dataCells'>" + completionCountdown["seconds"] + "</td></tr></table>")
                 ]
             }
         }
