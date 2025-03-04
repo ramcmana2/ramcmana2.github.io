@@ -429,27 +429,54 @@ function showTimer(callback) {
         launchCountup["hours"] = launchCountup["hours"] % 24;
         launchCountup["days"] = launchCountup["days"] % 365;
 
-        //arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + 60 + arrivalIncrement) % 60;
-        //arrivalCountdown["seconds"] = arrivalCountdown["seconds"] + 60 + arrivalIncrement;
-        //arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + arrivalIncrement) % 60;
-        //arrivalCountdown["seconds"] = leadingZeros(arrivalCountdown["seconds"]);
+        arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + arrivalIncrement) % 60;
 
-        if (arrivalIncrement > 0) {
-            arrivalCountdown["seconds"] += arrivalIncrement;
+        if (arrivalCountdown["seconds"] == 0) {
+            arrivalCountdown["minutes"] = (arrivalCountdown["minutes"] + arrivalIncrement) % 60;
+            if (arrivalCountdown["minutes"] == 0) {
+                arrivalCountdown["hours"] = (arrivalCountdown["hours"] + arrivalIncrement) % 24;
+                if (arrivalCountdown["hours"] == 0) {
+                    arrivalCountdown["days"] = (arrivalCountdown["days"] + arrivalIncrement) % 365;
+                    if (arrivalCountdown["days"] == 0) {
+                        arrivalCountdown["years"] += arrivalIncrement;
+                    }
+                }
+            }
         }
-        else {
-            arrivalCountdown["seconds"] += 60 + arrivalIncrement;
-        }
+        
+        arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + 60) % 60;
+        arrivalCountdown["minutes"] = (arrivalCountdown["minutes"] + 60) % 60;
+        arrivalCountdown["hours"] = (arrivalCountdown["hours"] + 24) % 24;
+        arrivalCountdown["days"] = (arrivalCountdown["days"] + 365) % 365;
 
-        arrivalCountdown["minutes"] += Math.floor(arrivalCountdown["seconds"] / 60);
-        arrivalCountdown["hours"] += Math.floor(arrivalCountdown["minutes"] / 60);
-        arrivalCountdown["days"] += Math.floor(arrivalCountdown["hours"] / 24);
-        arrivalCountdown["years"] += Math.floor(arrivalCountdown["days"] / 365);
+        // //arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + 60 + arrivalIncrement) % 60;
+        // //arrivalCountdown["seconds"] = arrivalCountdown["seconds"] + 60 + arrivalIncrement;
+        // //arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + arrivalIncrement) % 60;
+        // //arrivalCountdown["seconds"] = leadingZeros(arrivalCountdown["seconds"]);
 
-        arrivalCountdown["seconds"] = arrivalCountdown["seconds"] % 60;
-        arrivalCountdown["minutes"] = arrivalCountdown["minutes"] % 60;
-        arrivalCountdown["hours"] = arrivalCountdown["hours"] % 24;
-        arrivalCountdown["days"] = arrivalCountdown["days"] % 365;
+        // // if (arrivalIncrement > 0) {
+        // //     arrivalCountdown["seconds"] += arrivalIncrement;
+        // // }
+        // // else {
+        // //     arrivalCountdown["seconds"] += arrivalIncrement;
+        // // }
+        // arrivalCountdown["seconds"] += arrivalIncrement;
+
+        // arrivalCountdown["minutes"] += Math.floor(arrivalCountdown["seconds"] / 60);
+        // arrivalCountdown["hours"] += Math.floor(arrivalCountdown["minutes"] / 60) * arrivalIncrement;
+        // arrivalCountdown["days"] += Math.floor(arrivalCountdown["hours"] / 24) * arrivalIncrement;
+        // arrivalCountdown["years"] += Math.floor(arrivalCountdown["days"] / 365) * arrivalIncrement;
+
+        // if (arrivalIncrement > 0) {
+        //     arrivalCountdown["seconds"] = arrivalCountdown["seconds"] % 60;
+        // }
+        // else {
+        //     arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + 60) % 60;
+        // }
+        // //arrivalCountdown["seconds"] = arrivalCountdown["seconds"] % 60;
+        // arrivalCountdown["minutes"] = arrivalCountdown["minutes"] % 60;
+        // arrivalCountdown["hours"] = arrivalCountdown["hours"] % 24;
+        // arrivalCountdown["days"] = arrivalCountdown["days"] % 365;
 
         //completionCountdown["seconds"] = (completionCountdown["seconds"] + 60 + completionIncrement) % 60;
         //completionCountdown["seconds"] = completionCountdown["seconds"] + 60 + completionIncrement;
