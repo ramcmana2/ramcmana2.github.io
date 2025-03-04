@@ -429,25 +429,62 @@ function showTimer(callback) {
         launchCountup["hours"] = launchCountup["hours"] % 24;
         launchCountup["days"] = launchCountup["days"] % 365;
 
-        arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + arrivalIncrement) % 60;
+        if (arrivalIncrement > 0) {
+            arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + arrivalIncrement) % 60;
 
-        if (arrivalCountdown["seconds"] == 0) {
-            arrivalCountdown["minutes"] = (arrivalCountdown["minutes"] + arrivalIncrement) % 60;
-            if (arrivalCountdown["minutes"] == 0) {
-                arrivalCountdown["hours"] = (arrivalCountdown["hours"] + arrivalIncrement) % 24;
-                if (arrivalCountdown["hours"] == 0) {
-                    arrivalCountdown["days"] = (arrivalCountdown["days"] + arrivalIncrement) % 365;
-                    if (arrivalCountdown["days"] == 0) {
-                        arrivalCountdown["years"] += arrivalIncrement;
+            if (arrivalCountdown["seconds"] == 0) {
+                arrivalCountdown["minutes"] = (arrivalCountdown["minutes"] + arrivalIncrement) % 60;
+                if (arrivalCountdown["minutes"] == 0) {
+                    arrivalCountdown["hours"] = (arrivalCountdown["hours"] + arrivalIncrement) % 24;
+                    if (arrivalCountdown["hours"] == 0) {
+                        arrivalCountdown["days"] = (arrivalCountdown["days"] + arrivalIncrement) % 365;
+                        if (arrivalCountdown["days"] == 0) {
+                            arrivalCountdown["years"] += arrivalIncrement;
+                        }
                     }
                 }
             }
         }
-        
-        arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + 60) % 60;
-        arrivalCountdown["minutes"] = (arrivalCountdown["minutes"] + 60) % 60;
-        arrivalCountdown["hours"] = (arrivalCountdown["hours"] + 24) % 24;
-        arrivalCountdown["days"] = (arrivalCountdown["days"] + 365) % 365;
+        else {
+            arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + 60 + arrivalIncrement) % 60;
+
+            if (arrivalCountdown["seconds"] == 59) {
+                arrivalCountdown["minutes"] = (arrivalCountdown["minutes"] + 60 + arrivalIncrement) % 60;
+                if (arrivalCountdown["minutes"] == 59) {
+                    arrivalCountdown["hours"] = (arrivalCountdown["hours"] + 24 + arrivalIncrement) % 24;
+                    if (arrivalCountdown["hours"] == 59) {
+                        arrivalCountdown["days"] = (arrivalCountdown["days"] + 365 + arrivalIncrement) % 365;
+                        if (arrivalCountdown["days"] == 59) {
+                            arrivalCountdown["years"] += arrivalIncrement;
+                        }
+                    }
+                }
+            }
+        }
+        // arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + 60) % 60;
+        // arrivalCountdown["minutes"] = (arrivalCountdown["minutes"] + 60) % 60;
+        // arrivalCountdown["hours"] = (arrivalCountdown["hours"] + 24) % 24;
+        // arrivalCountdown["days"] = (arrivalCountdown["days"] + 365) % 365;
+
+        // arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + arrivalIncrement) % 60;
+
+        // if (arrivalCountdown["seconds"] == 0) {
+        //     arrivalCountdown["minutes"] = (arrivalCountdown["minutes"] + arrivalIncrement) % 60;
+        //     if (arrivalCountdown["minutes"] == 0) {
+        //         arrivalCountdown["hours"] = (arrivalCountdown["hours"] + arrivalIncrement) % 24;
+        //         if (arrivalCountdown["hours"] == 0) {
+        //             arrivalCountdown["days"] = (arrivalCountdown["days"] + arrivalIncrement) % 365;
+        //             if (arrivalCountdown["days"] == 0) {
+        //                 arrivalCountdown["years"] += arrivalIncrement;
+        //             }
+        //         }
+        //     }
+        // }
+
+        // arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + 60) % 60;
+        // arrivalCountdown["minutes"] = (arrivalCountdown["minutes"] + 60) % 60;
+        // arrivalCountdown["hours"] = (arrivalCountdown["hours"] + 24) % 24;
+        // arrivalCountdown["days"] = (arrivalCountdown["days"] + 365) % 365;
 
         // //arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + 60 + arrivalIncrement) % 60;
         // //arrivalCountdown["seconds"] = arrivalCountdown["seconds"] + 60 + arrivalIncrement;
@@ -486,7 +523,7 @@ function showTimer(callback) {
             completionCountdown["seconds"] += completionIncrement;
         }
         else {
-            completionCountdown["seconds"] += 60 + completionIncrement;
+            completionCountdown["seconds"] = 60 - (completionCountdown["seconds"] + completionIncrement);
         }
 
         completionCountdown["minutes"] += Math.floor(completionCountdown["seconds"] / 60);
