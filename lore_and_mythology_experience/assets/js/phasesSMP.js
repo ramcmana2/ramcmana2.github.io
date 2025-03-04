@@ -407,7 +407,7 @@ function showTimer(callback) {
                     // ("" + "Hours   | Since Launch |       " + leadingZeros(arrivalCountdown["hours"]) + "      |         " + leadingZeros(completionCountdown["hours"]) + "         |"),
                     // ("" + "Minutes | Since Launch |       " + leadingZeros(arrivalCountdown["minutes"], true) + "      |         " + leadingZeros(completionCountdown["minutes"], true) + "         |"),
                     // ("" + "Seconds | Since Launch |       " + leadingZeros(arrivalCountdown["seconds"]) + "      |         " + leadingZeros(completionCountdown["seconds"]) + "         |")
-                    ("" + "<table><tr><th class='rowHeader'>|</th><th>Since Launch  |</th><th>Until Arrival  |</th><th>Until Completion</th></tr><tr><tr><td class='rowHeader'>Years |</td><td id='dataCells'>Since Launch</td><td id='dataCells'>2</td><td id='dataCells'>3</td></tr><td class='rowHeader'>Days |</td><td id='dataCells'>Since Launch</td><td id='dataCells'>200</td><td id='dataCells'>300</td></tr><tr><td class='rowHeader'>Hours |</td><td id='dataCells'>Since Launch</td><td id='dataCells'>2</td><td id='dataCells'>3</td></tr><tr><td class='rowHeader'>Minutes |</td><td id='dataCells'>Since Launch</td><td id='dataCells'>20</td><td id='dataCells'>30</td></tr><tr><td class='rowHeader'>Seconds |</td><td id='dataCells'>Since Launch</td><td id='dataCells'>2</td><td id='dataCells'>3</td></tr></table>")
+                    ("" + "<table><tr><th class='rowHeader'>|</th><th>Since Launch  |</th><th>Until Arrival  |</th><th>Until Completion</th></tr><tr><tr><td class='rowHeader'>Years |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["years"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["years"]) + "</td></tr><td class='rowHeader'>Days |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["days"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["days"]) + "</td></tr><tr><td class='rowHeader'>Hours |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["hours"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["hours"]) + "</td></tr><tr><td class='rowHeader'>Minutes |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["minutes"], true) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["minutes"], true) + "</td></tr><tr><td class='rowHeader'>Seconds |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["seconds"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["seconds"]) + "</td></tr></table>")
                 ]
             }
         }
@@ -522,7 +522,7 @@ function showCountdown(phase, count) {
         //     " z-index: 21; transition: 1.5s east-in; white-space: pre;");
     }
 
-    document.getElementById("rowHeader").setAttribute("style", "text-align: right;");
+    document.getElementsByClassName("rowHeader").setAttribute("style", "text-align: right;");
 
     document.getElementsByClassName("dataCells").setAttribute("style", "text-align: center;");
 
