@@ -462,7 +462,7 @@ function showTimer(callback) {
             completionCountdown["seconds"] += 60 + completionIncrement;
         }
 
-        completionCountdown["minutes"] += Math.floor(completionCountdown["seconds"] / 119);
+        completionCountdown["minutes"] += Math.floor(completionCountdown["seconds"] / 60);
         completionCountdown["hours"] += Math.floor(completionCountdown["minutes"] / 60);
         completionCountdown["days"] += Math.floor(completionCountdown["hours"] / 24);
         completionCountdown["years"] += Math.floor(completionCountdown["days"] / 365);
