@@ -522,9 +522,21 @@ function showCountdown(phase, count) {
         //     " z-index: 21; transition: 1.5s east-in; white-space: pre;");
     }
 
-    document.getElementsByClassName("rowHeader").setAttribute("style", "text-align: right;");
+    var rowHeaders = document.getElementsByClassName("rowHeader");
+    for (var j = 0; j < rowHeaders.length; j++) {
+        rowHeaders[j].setAttribute("style", "text-align: right; font-size: calc(0.045 * 40vh);" +
+            " z-index: 21; transition: 1.5s east-in;");
+    }
+    // document.getElementsByClassName("rowHeader").setAttribute("style", "text-align: right; font-size: calc(0.045 * 40vh);" +
+    //     " z-index: 21; transition: 1.5s east-in;");
 
-    document.getElementsByClassName("dataCells").setAttribute("style", "text-align: center;");
+    var dataCells = document.getElementsByClassName("dataCells");
+    for (var k = 0; k < dataCells.length; k++) {
+        dataCells[k].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
+            " z-index: 21; transition: 1.5s east-in;");
+    }
+    // document.getElementsByClassName("dataCells").setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
+    //     " z-index: 21; transition: 1.5s east-in;");
 
     // clear phase after 20 seconds
     //if (count == 19) {
