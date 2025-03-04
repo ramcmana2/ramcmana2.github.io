@@ -542,7 +542,7 @@ function showCountdown(phase, count) {
     }
 
     var colHeaders = document.getElementsByClassName("colHeader");
-    for (var l = 0; l < rowHeaders.length; l++) {
+    for (var l = 0; l < colHeaders.length; l++) {
         colHeaders[l].setAttribute("style", "text-align: center; font-size: calc(0.025 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in;");
     }
