@@ -430,11 +430,18 @@ function showTimer(callback) {
         launchCountup["days"] = launchCountup["days"] % 365;
 
         //arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + 60 + arrivalIncrement) % 60;
-        arrivalCountdown["seconds"] = arrivalCountdown["seconds"] + 60 + arrivalIncrement;
+        //arrivalCountdown["seconds"] = arrivalCountdown["seconds"] + 60 + arrivalIncrement;
         //arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + arrivalIncrement) % 60;
         //arrivalCountdown["seconds"] = leadingZeros(arrivalCountdown["seconds"]);
 
-        arrivalCountdown["minutes"] += Math.floor(arrivalCountdown["seconds"] / 120);
+        if (arrivalIncrement > 0) {
+            arrivalCountdown["seconds"] += arrivalIncrement;
+        }
+        else {
+            arrivalCountdown["seconds"] += 60 + arrivalIncrement;
+        }
+
+        arrivalCountdown["minutes"] += Math.floor(arrivalCountdown["seconds"] / 60);
         arrivalCountdown["hours"] += Math.floor(arrivalCountdown["minutes"] / 60);
         arrivalCountdown["days"] += Math.floor(arrivalCountdown["hours"] / 24);
         arrivalCountdown["years"] += Math.floor(arrivalCountdown["days"] / 365);
@@ -445,10 +452,17 @@ function showTimer(callback) {
         arrivalCountdown["days"] = arrivalCountdown["days"] % 365;
 
         //completionCountdown["seconds"] = (completionCountdown["seconds"] + 60 + completionIncrement) % 60;
-        completionCountdown["seconds"] = completionCountdown["seconds"] + 60 + completionIncrement;
+        //completionCountdown["seconds"] = completionCountdown["seconds"] + 60 + completionIncrement;
         //completionCountdown["seconds"] = leadingZeros(completionCountdown["seconds"]);
 
-        completionCountdown["minutes"] += Math.floor(completionCountdown["seconds"] / 120);
+        if (completionIncrement > 0) {
+            completionCountdown["seconds"] += completionIncrement;
+        }
+        else {
+            completionCountdown["seconds"] += 60 + completionIncrement;
+        }
+
+        completionCountdown["minutes"] += Math.floor(completionCountdown["seconds"] / 119);
         completionCountdown["hours"] += Math.floor(completionCountdown["minutes"] / 60);
         completionCountdown["days"] += Math.floor(completionCountdown["hours"] / 24);
         completionCountdown["years"] += Math.floor(completionCountdown["days"] / 365);
