@@ -407,7 +407,7 @@ function showTimer(callback) {
                     // ("" + "Hours   | Since Launch |       " + leadingZeros(arrivalCountdown["hours"]) + "      |         " + leadingZeros(completionCountdown["hours"]) + "         |"),
                     // ("" + "Minutes | Since Launch |       " + leadingZeros(arrivalCountdown["minutes"], true) + "      |         " + leadingZeros(completionCountdown["minutes"], true) + "         |"),
                     // ("" + "Seconds | Since Launch |       " + leadingZeros(arrivalCountdown["seconds"]) + "      |         " + leadingZeros(completionCountdown["seconds"]) + "         |")
-                    ("" + "<table><tr><th>        |</th><th>Since Launch |</th><th>Until Arrival |</th><th>Until Completion</th></tr><tr><tr><td>Years |</td><td>Since Launch</td><td>2</td><td>3</td></tr><td>Days |</td><td>Since Launch</td><td>200</td><td>300</td></tr><tr><td>Hours |</td><td>Since Launch</td><td>2</td><td>3</td></tr><tr><td>Minutes |</td><td>Since Launch</td><td>20</td><td>30</td></tr><tr><td>Seconds |</td><td>Since Launch</td><td>2</td><td>3</td></tr></table>")
+                    ("" + "<table><tr><th class='rowHeader'>|</th><th>Since Launch  |</th><th>Until Arrival  |</th><th>Until Completion</th></tr><tr><tr><td class='rowHeader'>Years |</td><td id='dataCells'>Since Launch</td><td id='dataCells'>2</td><td id='dataCells'>3</td></tr><td class='rowHeader'>Days |</td><td id='dataCells'>Since Launch</td><td id='dataCells'>200</td><td id='dataCells'>300</td></tr><tr><td class='rowHeader'>Hours |</td><td id='dataCells'>Since Launch</td><td id='dataCells'>2</td><td id='dataCells'>3</td></tr><tr><td class='rowHeader'>Minutes |</td><td id='dataCells'>Since Launch</td><td id='dataCells'>20</td><td id='dataCells'>30</td></tr><tr><td class='rowHeader'>Seconds |</td><td id='dataCells'>Since Launch</td><td id='dataCells'>2</td><td id='dataCells'>3</td></tr></table>")
                 ]
             }
         }
@@ -516,11 +516,15 @@ function showCountdown(phase, count) {
 
     var infos = document.getElementsByClassName("info");
     for (var i = 0; i < infos.length; i++) {
-        // infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
-        //     " z-index: 21; transition: 1.5s east-in;");
-        infos[i].setAttribute("style", "text-align: left; font-size: calc(0.025 * 40vh);" +
-            " z-index: 21; transition: 1.5s east-in; white-space: pre;");
+        infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
+            " z-index: 21; transition: 1.5s east-in;");
+        // infos[i].setAttribute("style", "text-align: left; font-size: calc(0.025 * 40vh);" +
+        //     " z-index: 21; transition: 1.5s east-in; white-space: pre;");
     }
+
+    document.getElementById("rowHeader").setAttribute("style", "text-align: right;");
+
+    document.getElementsByClassName("dataCells").setAttribute("style", "text-align: center;");
 
     // clear phase after 20 seconds
     //if (count == 19) {
