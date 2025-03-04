@@ -268,14 +268,14 @@ function showTimer(callback) {
     var leapDay = 1835481600000;
 
     // TEST CASE 1: launch < current < arrival < completion
-    var launchTime = 1697206740000;
-    var arrivalTime = 1951257500000;
-    var missionCompletionTime = 1951257600000;
+    // var launchTime = 1697206740000;
+    // var arrivalTime = 1951257500000;
+    // var missionCompletionTime = 1951257600000;
 
     // TEST CASE 2: launch < arrival < current < completion
-    // var launchTime = 1697206740000;
-    // var arrivalTime = 1697206750000;
-    // var missionCompletionTime = 1951257600000;
+    var launchTime = 1697206740000;
+    var arrivalTime = 1697206750000;
+    var missionCompletionTime = 1951257600000;
 
     // TEST CASE 3: launch < arrival < completion < current
     // var launchTime = 1697206740000;
