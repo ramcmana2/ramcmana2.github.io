@@ -262,8 +262,8 @@ function showTimer(callback) {
     // August 1st, 2029 (GMT)
     var arrivalTime = 1880236800000;
     // November 1st, 2031 (GMT)
-    //var missionCompletionTime = 1951257600000;
-    var missionCompletionTime = 1000000000000; // FOR TESTING!
+    var missionCompletionTime = 1951257600000;
+    //var missionCompletionTime = 1000000000000; // FOR TESTING!
     // Demarcation of second leap day since launch (March 1st, 2028 GMT)
     var leapDay = 1835481600000;
 
@@ -358,6 +358,28 @@ function showTimer(callback) {
         arrivalIncrement = 1;
         completionIncrement = -1;
 
+        timeSinceArrival = currentTime - arrivalTime;
+
+        arrivalCountdown["years"] = Math.floor(timeSinceArrival / (millisecondsInAYear + (millisecondsInADay / 4)));
+        timeSinceArrival = timeSinceArrival - (arrivalCountdown["years"] * (millisecondsInAYear + (millisecondsInADay / 4)));
+        arrivalCountdown["days"] = Math.floor(timeSinceArrival / millisecondsInADay);
+        timeSinceArrival = timeSinceArrival - (arrivalCountdown["days"] * millisecondsInADay);
+        arrivalCountdown["hours"] = Math.floor(timeSinceArrival / millisecondsInAnHour);
+        timeSinceArrival = timeSinceArrival - (arrivalCountdown["hours"] * millisecondsInAnHour);
+        arrivalCountdown["minutes"] = Math.floor(timeSinceArrival / millisecondsInAMinute);
+        timeSinceArrival = timeSinceArrival - (arrivalCountdown["minutes"] * millisecondsInAMinute);
+        arrivalCountdown["seconds"] = Math.floor(timeSinceArrival / millisecondsInASecond);
+
+        completionCountdown["years"] = Math.floor(timeUntilCompletion / (millisecondsInAYear + (millisecondsInADay / 4)));
+        timeUntilCompletion = timeUntilCompletion - (completionCountdown["years"] * (millisecondsInAYear + (millisecondsInADay / 4)));
+        completionCountdown["days"] = Math.floor(timeUntilCompletion / millisecondsInADay);
+        timeUntilCompletion = timeUntilCompletion - (completionCountdown["days"] * millisecondsInADay);
+        completionCountdown["hours"] = Math.floor(timeUntilCompletion / millisecondsInAnHour);
+        timeUntilCompletion = timeUntilCompletion - (completionCountdown["hours"] * millisecondsInAnHour);
+        completionCountdown["minutes"] = Math.floor(timeUntilCompletion / millisecondsInAMinute);
+        timeUntilCompletion = timeUntilCompletion - (completionCountdown["minutes"] * millisecondsInAMinute);
+        completionCountdown["seconds"] = Math.floor(timeUntilCompletion / millisecondsInASecond);
+
         //years = 
         //message2 = "_ days since arrival; _ days until mission completion."
         message2 = colHeadings[1];
@@ -366,6 +388,26 @@ function showTimer(callback) {
         message1 += "en route."
         arrivalIncrement = -1;
         completionIncrement = -1;
+
+        arrivalCountdown["years"] = Math.floor(timeUntilArrival / (millisecondsInAYear + (millisecondsInADay / 4)));
+        timeUntilArrival = timeUntilArrival - (arrivalCountdown["years"] * (millisecondsInAYear + (millisecondsInADay / 4)));
+        arrivalCountdown["days"] = Math.floor(timeUntilArrival / millisecondsInADay);
+        timeUntilArrival = timeUntilArrival - (arrivalCountdown["days"] * millisecondsInADay);
+        arrivalCountdown["hours"] = Math.floor(timeUntilArrival / millisecondsInAnHour);
+        timeUntilArrival = timeUntilArrival - (arrivalCountdown["hours"] * millisecondsInAnHour);
+        arrivalCountdown["minutes"] = Math.floor(timeUntilArrival / millisecondsInAMinute);
+        timeUntilArrival = timeUntilArrival - (arrivalCountdown["minutes"] * millisecondsInAMinute);
+        arrivalCountdown["seconds"] = Math.floor(timeUntilArrival / millisecondsInASecond);
+
+        completionCountdown["years"] = Math.floor(timeUntilCompletion / (millisecondsInAYear + (millisecondsInADay / 4)));
+        timeUntilCompletion = timeUntilCompletion - (completionCountdown["years"] * (millisecondsInAYear + (millisecondsInADay / 4)));
+        completionCountdown["days"] = Math.floor(timeUntilCompletion / millisecondsInADay);
+        timeUntilCompletion = timeUntilCompletion - (completionCountdown["days"] * millisecondsInADay);
+        completionCountdown["hours"] = Math.floor(timeUntilCompletion / millisecondsInAnHour);
+        timeUntilCompletion = timeUntilCompletion - (completionCountdown["hours"] * millisecondsInAnHour);
+        completionCountdown["minutes"] = Math.floor(timeUntilCompletion / millisecondsInAMinute);
+        timeUntilCompletion = timeUntilCompletion - (completionCountdown["minutes"] * millisecondsInAMinute);
+        completionCountdown["seconds"] = Math.floor(timeUntilCompletion / millisecondsInASecond);
 
         //message2 = "_ days until arrival; _ days until mission completion."
         message2 = colHeadings[2];
@@ -422,7 +464,7 @@ function showTimer(callback) {
                 banner: "../assets/images/smp/smp-banner.png",
                 text: [
                     ("" + message1),
-                    "----------------------------------------------",
+                    "---------------------------------------------",
                     // ("" + message2),
                     //    "        | Since Launch | Since Arrival | Since Completion |"
                     // ("" + "Years   | Since Launch |       " + leadingZeros(arrivalCountdown["years"]) + "      |         " + leadingZeros(completionCountdown["years"]) + "         |"),
