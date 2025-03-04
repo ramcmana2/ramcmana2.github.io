@@ -422,7 +422,7 @@ function showTimer(callback) {
                 banner: "../assets/images/smp/smp-banner.png",
                 text: [
                     ("" + message1),
-                    "------------------------------------------------------------",
+                    "----------------------------------------------",
                     // ("" + message2),
                     //    "        | Since Launch | Since Arrival | Since Completion |"
                     // ("" + "Years   | Since Launch |       " + leadingZeros(arrivalCountdown["years"]) + "      |         " + leadingZeros(completionCountdown["years"]) + "         |"),
