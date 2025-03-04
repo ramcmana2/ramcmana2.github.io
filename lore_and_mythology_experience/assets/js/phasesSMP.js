@@ -355,6 +355,8 @@ function showTimer(callback) {
     }
     else if (currentTime >= arrivalTime) {
         message1 += "orbiting."
+        arrivalIncrement = 1;
+        completionIncrement = -1;
 
         //years = 
         //message2 = "_ days since arrival; _ days until mission completion."
@@ -362,6 +364,9 @@ function showTimer(callback) {
     }
     else {
         message1 += "en route."
+        arrivalIncrement = -1;
+        completionIncrement = -1;
+
         //message2 = "_ days until arrival; _ days until mission completion."
         message2 = colHeadings[2];
     }
@@ -417,7 +422,7 @@ function showTimer(callback) {
                 banner: "../assets/images/smp/smp-banner.png",
                 text: [
                     ("" + message1),
-                    "---------------------------------------------------------------------------------",
+                    "------------------------------------------------------------",
                     // ("" + message2),
                     //    "        | Since Launch | Since Arrival | Since Completion |"
                     // ("" + "Years   | Since Launch |       " + leadingZeros(arrivalCountdown["years"]) + "      |         " + leadingZeros(completionCountdown["years"]) + "         |"),
