@@ -415,8 +415,8 @@ function showTimer(callback) {
 
     //for (let i = 0; i < 20; i++) {
     for (let i = 0; i < 61; i++) {
-        //launchCountup["seconds"] = (launchCountup["seconds"] + launchIncrement) % 60;
-        launchCountup["seconds"] = launchCountup["seconds"] + launchIncrement;
+        launchCountup["seconds"] = (launchCountup["seconds"] + launchIncrement);
+        //launchCountup["seconds"] = launchCountup["seconds"] + launchIncrement;
         //completionCountdown["seconds"] = leadingZeros(completionCountdown["seconds"]);
 
         launchCountup["minutes"] += Math.floor(launchCountup["seconds"] / 60);
@@ -434,7 +434,7 @@ function showTimer(callback) {
         //arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + arrivalIncrement) % 60;
         //arrivalCountdown["seconds"] = leadingZeros(arrivalCountdown["seconds"]);
 
-        arrivalCountdown["minutes"] += Math.floor((arrivalCountdown["seconds"] % 60) / 60);
+        arrivalCountdown["minutes"] += Math.floor(arrivalCountdown["seconds"] / 120);
         arrivalCountdown["hours"] += Math.floor(arrivalCountdown["minutes"] / 60);
         arrivalCountdown["days"] += Math.floor(arrivalCountdown["hours"] / 24);
         arrivalCountdown["years"] += Math.floor(arrivalCountdown["days"] / 365);
@@ -448,7 +448,7 @@ function showTimer(callback) {
         completionCountdown["seconds"] = completionCountdown["seconds"] + 60 + completionIncrement;
         //completionCountdown["seconds"] = leadingZeros(completionCountdown["seconds"]);
 
-        completionCountdown["minutes"] += Math.floor((completionCountdown["seconds"] % 60) / 60);
+        completionCountdown["minutes"] += Math.floor(completionCountdown["seconds"] / 120);
         completionCountdown["hours"] += Math.floor(completionCountdown["minutes"] / 60);
         completionCountdown["days"] += Math.floor(completionCountdown["hours"] / 24);
         completionCountdown["years"] += Math.floor(completionCountdown["days"] / 365);
