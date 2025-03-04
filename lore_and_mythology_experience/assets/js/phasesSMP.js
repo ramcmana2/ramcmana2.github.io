@@ -399,7 +399,7 @@ function showTimer(callback) {
                 banner: "../assets/images/smp/smp-banner.png",
                 text: [
                     ("" + message1),
-                    "-----------------------------------------------------------------------------",
+                    "---------------------------------------------------------------------------------",
                     // ("" + message2),
                     //    "        | Since Launch | Since Arrival | Since Completion |"
                     // ("" + "Years   | Since Launch |       " + leadingZeros(arrivalCountdown["years"]) + "      |         " + leadingZeros(completionCountdown["years"]) + "         |"),
@@ -517,7 +517,7 @@ function showCountdown(phase, count) {
 
     var infos = document.getElementsByClassName("info");
     for (var i = 0; i < infos.length; i++) {
-        infos[i].setAttribute("style", "text-align: center; font-size: calc(0.025 * 40vh);" +
+        infos[i].setAttribute("style", "text-align: center; font-size: calc(0.026 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in;");
         // infos[i].setAttribute("style", "text-align: left; font-size: calc(0.025 * 40vh);" +
         //     " z-index: 21; transition: 1.5s east-in; white-space: pre;");
@@ -525,7 +525,7 @@ function showCountdown(phase, count) {
 
     var rowHeaders = document.getElementsByClassName("rowHeader");
     for (var j = 0; j < rowHeaders.length; j++) {
-        rowHeaders[j].setAttribute("style", "text-align: right; font-size: calc(0.025 * 40vh);" +
+        rowHeaders[j].setAttribute("style", "text-align: right; font-size: calc(0.026 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in;");
     }
     // document.getElementsByClassName("rowHeader").setAttribute("style", "text-align: right; font-size: calc(0.045 * 40vh);" +
@@ -533,7 +533,7 @@ function showCountdown(phase, count) {
 
     var dataCells = document.getElementsByClassName("dataCells");
     for (var k = 0; k < dataCells.length; k++) {
-        dataCells[k].setAttribute("style", "text-align: center; font-size: calc(0.025 * 40vh);" +
+        dataCells[k].setAttribute("style", "text-align: center; font-size: calc(0.026 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in;");
     }
     // document.getElementsByClassName("dataCells").setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
