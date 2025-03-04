@@ -181,9 +181,8 @@ const phaseValues = Object.values(phases);
 
 // Start the phases
 export function startPhases() {
-    startPhasesSMP();
-    //phaseIndex = 0;
-    //displayPhase();
+    phaseIndex = 0;
+    displayPhase();
 }
 
 function displayPhase() {

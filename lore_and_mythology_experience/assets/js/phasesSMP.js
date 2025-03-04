@@ -249,9 +249,7 @@ function showLaunch(callback) {
  */
 function showTimer(callback) {
     console.log('Transitioning to satellite timer');
-    // if days < x, " _ days until orbits begin"
-    // else if days < y, "_ days until mission completion"
-    // else, "mission complete"
+
     /**
      * The satellite is expected to be captured by Psyche's gravity in late July (2029).
      * The satellite is then expected to orbit indefinitely thereafter, yet the 
@@ -259,11 +257,13 @@ function showTimer(callback) {
      */
     // Launched: October 13th, 2023 @2:19PM (GMT)
     var launchTime = 1697206740000;
+
     // August 1st, 2029 (GMT)
     var arrivalTime = 1880236800000;
+
     // November 1st, 2031 (GMT)
     var missionCompletionTime = 1951257600000;
-    //var missionCompletionTime = 1000000000000; // FOR TESTING!
+
     // Demarcation of second leap day since launch (March 1st, 2028 GMT)
     var leapDay = 1835481600000;
 
@@ -289,19 +289,16 @@ function showTimer(callback) {
     var millisecondsInAYear = millisecondsInADay * 365;
 
     var currentTime = Date.now();
-    //var missionProgressSnapshot = missionCompletionTime - currentTime;
-    // let message1 = "                    Mission Status: ";
+
     let message1 = "Mission Status: ";
     let message2 = "";
-    // let colHeadings = ["        | Since Launch | Since Arrival | Since Completion |", 
-    //                    "        | Since Launch | Since Arrival | Until Completion |", 
-    //                    "        | Since Launch | Until Arrival | Until Completion |", 
-    //                   ];
+
     let colHeadings = [["|", "Since Launch  |", "Since Arrival  |", "Since Completion "], 
                        ["|", "Since Launch  |", "Since Arrival  |", "Until Completion "], 
                        ["|", "Since Launch  |", "Until Arrival  |", "Until Completion "] 
                       ];
-    //let rowHeadings = ["years", "days", "hours", minutes", "seconds"];
+    //let rowHeadings = ["|", "years  |", "days  |", "hours  |", minutes  |", "seconds  |"];
+
     let launchCountup = {"years": 0, "days": 0, "hours": 0, "minutes": 0, "seconds": 0};
     let timeSinceLaunch = currentTime - launchTime;
     if (currentTime >= leapDay) {
@@ -321,11 +318,6 @@ function showTimer(callback) {
 
     let arrivalCountdown = {"years": 0, "days": 0, "hours": 0, "minutes": 0, "seconds": 0};
     let completionCountdown = {"years": 0, "days": 0, "hours": 0, "minutes": 0, "seconds": 0};
-    // let years = 0;
-    // let days = 0;
-    // let hours = 0;
-    // let minutes = 0;
-    // let seconds = 0;
 
     let timeUntilArrival = arrivalTime - currentTime;
     let timeSinceArrival = 0;
@@ -337,11 +329,9 @@ function showTimer(callback) {
     let completionIncrement = 0;
 
     if (currentTime >= missionCompletionTime) {
-        //message1 += "complete.";
         message1 += "Complete";
         arrivalIncrement = 1;
         completionIncrement = 1;
-        //missionProgressSnapshot *= -1;
 
         timeSinceArrival = currentTime - arrivalTime;
 
@@ -370,7 +360,6 @@ function showTimer(callback) {
         message2 = colHeadings[0];
     }
     else if (currentTime >= arrivalTime) {
-        //message1 += "orbiting.";
         message1 += "Orbiting";
         arrivalIncrement = 1;
         completionIncrement = -1;
@@ -397,12 +386,9 @@ function showTimer(callback) {
         timeUntilCompletion = timeUntilCompletion - (completionCountdown["minutes"] * millisecondsInAMinute);
         completionCountdown["seconds"] = Math.floor(timeUntilCompletion / millisecondsInASecond);
 
-        //years = 
-        //message2 = "_ days since arrival; _ days until mission completion."
         message2 = colHeadings[1];
     }
     else {
-        //message1 += "en route.";
         message1 += "En Route";
         arrivalIncrement = -1;
         completionIncrement = -1;
@@ -427,16 +413,11 @@ function showTimer(callback) {
         timeUntilCompletion = timeUntilCompletion - (completionCountdown["minutes"] * millisecondsInAMinute);
         completionCountdown["seconds"] = Math.floor(timeUntilCompletion / millisecondsInASecond);
 
-        //message2 = "_ days until arrival; _ days until mission completion."
         message2 = colHeadings[2];
     }
 
-    //for (let i = 0; i < 20; i++) {
-    for (let i = 0; i < 61; i++) {
+    for (let i = 0; i < 20; i++) {
         launchCountup["seconds"] += launchIncrement;
-        //launchCountup["seconds"] = (launchCountup["seconds"] + launchIncrement);
-        //launchCountup["seconds"] = launchCountup["seconds"] + launchIncrement;
-        //completionCountdown["seconds"] = leadingZeros(completionCountdown["seconds"]);
 
         launchCountup["minutes"] += Math.floor(launchCountup["seconds"] / 60);
         launchCountup["hours"] += Math.floor(launchCountup["minutes"] / 60);
@@ -480,80 +461,6 @@ function showTimer(callback) {
                 }
             }
         }
-        // arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + 60) % 60;
-        // arrivalCountdown["minutes"] = (arrivalCountdown["minutes"] + 60) % 60;
-        // arrivalCountdown["hours"] = (arrivalCountdown["hours"] + 24) % 24;
-        // arrivalCountdown["days"] = (arrivalCountdown["days"] + 365) % 365;
-
-        // arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + arrivalIncrement) % 60;
-
-        // if (arrivalCountdown["seconds"] == 0) {
-        //     arrivalCountdown["minutes"] = (arrivalCountdown["minutes"] + arrivalIncrement) % 60;
-        //     if (arrivalCountdown["minutes"] == 0) {
-        //         arrivalCountdown["hours"] = (arrivalCountdown["hours"] + arrivalIncrement) % 24;
-        //         if (arrivalCountdown["hours"] == 0) {
-        //             arrivalCountdown["days"] = (arrivalCountdown["days"] + arrivalIncrement) % 365;
-        //             if (arrivalCountdown["days"] == 0) {
-        //                 arrivalCountdown["years"] += arrivalIncrement;
-        //             }
-        //         }
-        //     }
-        // }
-
-        // arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + 60) % 60;
-        // arrivalCountdown["minutes"] = (arrivalCountdown["minutes"] + 60) % 60;
-        // arrivalCountdown["hours"] = (arrivalCountdown["hours"] + 24) % 24;
-        // arrivalCountdown["days"] = (arrivalCountdown["days"] + 365) % 365;
-
-        // //arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + 60 + arrivalIncrement) % 60;
-        // //arrivalCountdown["seconds"] = arrivalCountdown["seconds"] + 60 + arrivalIncrement;
-        // //arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + arrivalIncrement) % 60;
-        // //arrivalCountdown["seconds"] = leadingZeros(arrivalCountdown["seconds"]);
-
-        // // if (arrivalIncrement > 0) {
-        // //     arrivalCountdown["seconds"] += arrivalIncrement;
-        // // }
-        // // else {
-        // //     arrivalCountdown["seconds"] += arrivalIncrement;
-        // // }
-        // arrivalCountdown["seconds"] += arrivalIncrement;
-
-        // arrivalCountdown["minutes"] += Math.floor(arrivalCountdown["seconds"] / 60);
-        // arrivalCountdown["hours"] += Math.floor(arrivalCountdown["minutes"] / 60) * arrivalIncrement;
-        // arrivalCountdown["days"] += Math.floor(arrivalCountdown["hours"] / 24) * arrivalIncrement;
-        // arrivalCountdown["years"] += Math.floor(arrivalCountdown["days"] / 365) * arrivalIncrement;
-
-        // if (arrivalIncrement > 0) {
-        //     arrivalCountdown["seconds"] = arrivalCountdown["seconds"] % 60;
-        // }
-        // else {
-        //     arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + 60) % 60;
-        // }
-        // //arrivalCountdown["seconds"] = arrivalCountdown["seconds"] % 60;
-        // arrivalCountdown["minutes"] = arrivalCountdown["minutes"] % 60;
-        // arrivalCountdown["hours"] = arrivalCountdown["hours"] % 24;
-        // arrivalCountdown["days"] = arrivalCountdown["days"] % 365;
-
-        //completionCountdown["seconds"] = (completionCountdown["seconds"] + 60 + completionIncrement) % 60;
-        //completionCountdown["seconds"] = completionCountdown["seconds"] + 60 + completionIncrement;
-        //completionCountdown["seconds"] = leadingZeros(completionCountdown["seconds"]);
-
-        // if (completionIncrement > 0) {
-        //     completionCountdown["seconds"] += completionIncrement;
-        // }
-        // else {
-        //     completionCountdown["seconds"] = 60 - (completionCountdown["seconds"] + completionIncrement);
-        // }
-
-        // completionCountdown["minutes"] += Math.floor(completionCountdown["seconds"] / 60);
-        // completionCountdown["hours"] += Math.floor(completionCountdown["minutes"] / 60);
-        // completionCountdown["days"] += Math.floor(completionCountdown["hours"] / 24);
-        // completionCountdown["years"] += Math.floor(completionCountdown["days"] / 365);
-
-        // completionCountdown["seconds"] = completionCountdown["seconds"] % 60;
-        // completionCountdown["minutes"] = completionCountdown["minutes"] % 60;
-        // completionCountdown["hours"] = completionCountdown["hours"] % 24;
-        // completionCountdown["days"] = completionCountdown["days"] % 365;
 
         if (completionIncrement > 0) {
             completionCountdown["seconds"] = (completionCountdown["seconds"] + completionIncrement) % 60;
@@ -598,14 +505,6 @@ function showTimer(callback) {
                 text: [
                     ("" + message1),
                     "---------------------------------------------",
-                    // ("" + message2),
-                    //    "        | Since Launch | Since Arrival | Since Completion |"
-                    // ("" + "Years   | Since Launch |       " + leadingZeros(arrivalCountdown["years"]) + "      |         " + leadingZeros(completionCountdown["years"]) + "         |"),
-                    // ("" + "Days    | Since Launch |      " + leadingZeros(arrivalCountdown["days"]) + "      |        " + leadingZeros(completionCountdown["days"]) + "         |"),
-                    // ("" + "Hours   | Since Launch |       " + leadingZeros(arrivalCountdown["hours"]) + "      |         " + leadingZeros(completionCountdown["hours"]) + "         |"),
-                    // ("" + "Minutes | Since Launch |       " + leadingZeros(arrivalCountdown["minutes"], true) + "      |         " + leadingZeros(completionCountdown["minutes"], true) + "         |"),
-                    // ("" + "Seconds | Since Launch |       " + leadingZeros(arrivalCountdown["seconds"]) + "      |         " + leadingZeros(completionCountdown["seconds"]) + "         |")
-                    // ("" + "<table><tr><th class='rowHeader'>|</th><th>Since Launch  |</th><th>Until Arrival  |</th><th>Until Completion</th></tr><tr><tr><td class='rowHeader'>Years |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["years"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["years"]) + "</td></tr><td class='rowHeader'>Days |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["days"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["days"]) + "</td></tr><tr><td class='rowHeader'>Hours |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["hours"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["hours"]) + "</td></tr><tr><td class='rowHeader'>Minutes |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["minutes"], true) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["minutes"], true) + "</td></tr><tr><td class='rowHeader'>Seconds |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["seconds"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["seconds"]) + "</td></tr></table>")
                     ("" + "<table><tr><th class='rowHeader'>" + message2[0] + "</th><th class='colHeader'>" + message2[1] + "</th><th class='colHeader'>" + message2[2] + "</th><th class='colHeader'>" + message2[3] + "</th></tr><tr><tr><td class='rowHeader'>Years  |</td><td class='dataCells'>" + launchCountup["years"] + "</td><td class='dataCells'>" + arrivalCountdown["years"] + "</td><td class='dataCells'>" + completionCountdown["years"] + "</td></tr><td class='rowHeader'>Days  |</td><td class='dataCells'>" + launchCountup["days"] + "</td><td class='dataCells'>" + arrivalCountdown["days"] + "</td><td class='dataCells'>" + completionCountdown["days"] + "</td></tr><tr><td class='rowHeader'>Hours  |</td><td class='dataCells'>" + launchCountup["hours"] + "</td><td class='dataCells'>" + arrivalCountdown["hours"] + "</td><td class='dataCells'>" + completionCountdown["hours"] + "</td></tr><tr><td class='rowHeader'>Minutes  |</td><td class='dataCells'>" + launchCountup["minutes"] + "</td><td class='dataCells'>" + arrivalCountdown["minutes"] + "</td><td class='dataCells'>" + completionCountdown["minutes"] + "</td></tr><tr><td class='rowHeader'>Seconds  |</td><td class='dataCells'>" + launchCountup["seconds"] + "</td><td class='dataCells'>" + arrivalCountdown["seconds"] + "</td><td class='dataCells'>" + completionCountdown["seconds"] + "</td></tr></table>")
                 ]
             }
@@ -618,33 +517,7 @@ function showTimer(callback) {
 
     setTimeout(() => {
         callback();
-    //}, 20000);
-    }, 61000);
-
-    // let countDownTimer = setInterval(function() {showPhase(timerPhase)}, 1000);
-
-    // setTimeout(() => {
-    //     clearInterval(countDownTimer);
-    //     callback(); // Call the callback after timer is done
-    // }, 20000);
-}
-
-function leadingZeros(number, days=false) {
-    let stringNum = number.toString();
-    if (!days) {
-        if (stringNum.length == 1) {
-            return "0" + stringNum;
-        }
-        else {
-            return stringNum;
-        }
-    }
-    else {
-        for (let i = stringNum.length; i < 3; i++) {
-            stringNum = "0" + stringNum;
-        }
-        return stringNum;
-    }
+    }, 20000);
 }
 
 function showCountdown(phase, count) {
@@ -681,15 +554,7 @@ function showCountdown(phase, count) {
 
         if (phase.text.some(line => line !== "")) {
             phase_innerHTML += `<div id="banner_text_box">`;
-            // let lineNum = 0;
             phase.text.forEach((line) => {
-                // if (lineNum == 0) {
-                //     phase_innerHTML += `<span class="info">${line}</span>`;
-                // }
-                // else {
-                //     phase_innerHTML += line;
-                // }
-                // lineNum += 1;
                 phase_innerHTML += `<span class="info">${line}</span>`;
             });
             phase_innerHTML += `</div>`;
@@ -717,45 +582,32 @@ function showCountdown(phase, count) {
     for (var i = 0; i < infos.length; i++) {
         infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in;");
-        // infos[i].setAttribute("style", "text-align: left; font-size: calc(0.025 * 40vh);" +
-        //     " z-index: 21; transition: 1.5s east-in; white-space: pre;");
     }
 
     var colHeaders = document.getElementsByClassName("colHeader");
-    for (var l = 0; l < colHeaders.length; l++) {
-        colHeaders[l].setAttribute("style", "text-align: center; font-size: calc(0.025 * 40vh);" +
+    for (var j = 0; j < colHeaders.length; j++) {
+        colHeaders[j].setAttribute("style", "text-align: center; font-size: calc(0.025 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in; white-space: pre;");
     }
 
     var rowHeaders = document.getElementsByClassName("rowHeader");
-    for (var j = 0; j < rowHeaders.length; j++) {
-        rowHeaders[j].setAttribute("style", "text-align: right; font-size: calc(0.025 * 40vh);" +
+    for (var k = 0; k < rowHeaders.length; k++) {
+        rowHeaders[k].setAttribute("style", "text-align: right; font-size: calc(0.025 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in; white-space: pre;");
     }
-    // document.getElementsByClassName("rowHeader").setAttribute("style", "text-align: right; font-size: calc(0.045 * 40vh);" +
-    //     " z-index: 21; transition: 1.5s east-in;");
 
     var dataCells = document.getElementsByClassName("dataCells");
-    for (var k = 0; k < dataCells.length; k++) {
-        dataCells[k].setAttribute("style", "text-align: center; font-size: calc(0.025 * 40vh);" +
+    for (var l = 0; l < dataCells.length; l++) {
+        dataCells[l].setAttribute("style", "text-align: center; font-size: calc(0.025 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in;");
     }
-    // document.getElementsByClassName("dataCells").setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
-    //     " z-index: 21; transition: 1.5s east-in;");
 
     // clear phase after 20 seconds
-    //if (count == 19) {
-    if (count == 60) {
+    if (count == 19) {
         setTimeout(() => {
             document.getElementById("phase_modal").remove();
         }, 1000);
     }
-
-// else {
-//     // Hide the current phase modal if it's already showing
-//     document.getElementById("phase_modal").setAttribute("style", "display: none;");
-//     phaseBool = false;
-// }
 }
 
 /*
