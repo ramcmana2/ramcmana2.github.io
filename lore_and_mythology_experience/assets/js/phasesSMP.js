@@ -273,14 +273,14 @@ function showTimer(callback) {
     // var missionCompletionTime = 1951257600000;
 
     // TEST CASE 2: launch < arrival < current < completion
-    var launchTime = 1697206740000;
-    var arrivalTime = 1697206750000;
-    var missionCompletionTime = 1951257600000;
-
-    // TEST CASE 3: launch < arrival < completion < current
     // var launchTime = 1697206740000;
     // var arrivalTime = 1697206750000;
-    // var missionCompletionTime = 1697206760000;
+    // var missionCompletionTime = 1951257600000;
+
+    // TEST CASE 3: launch < arrival < completion < current
+    var launchTime = 1697206740000;
+    var arrivalTime = 1697206750000;
+    var missionCompletionTime = 1697206760000;
 
     var millisecondsInASecond = 1000;
     var millisecondsInAMinute = millisecondsInASecond * 60;
@@ -338,7 +338,7 @@ function showTimer(callback) {
 
     if (currentTime >= missionCompletionTime) {
         //message1 += "complete.";
-        message1 += "Complete.";
+        message1 += "Complete";
         arrivalIncrement = 1;
         completionIncrement = 1;
         //missionProgressSnapshot *= -1;
@@ -371,7 +371,7 @@ function showTimer(callback) {
     }
     else if (currentTime >= arrivalTime) {
         //message1 += "orbiting.";
-        message1 += "Orbiting.";
+        message1 += "Orbiting";
         arrivalIncrement = 1;
         completionIncrement = -1;
 
@@ -403,7 +403,7 @@ function showTimer(callback) {
     }
     else {
         //message1 += "en route.";
-        message1 += "En Route.";
+        message1 += "En Route";
         arrivalIncrement = -1;
         completionIncrement = -1;
 
