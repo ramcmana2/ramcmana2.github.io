@@ -407,7 +407,8 @@ function showTimer(callback) {
                     // ("" + "Hours   | Since Launch |       " + leadingZeros(arrivalCountdown["hours"]) + "      |         " + leadingZeros(completionCountdown["hours"]) + "         |"),
                     // ("" + "Minutes | Since Launch |       " + leadingZeros(arrivalCountdown["minutes"], true) + "      |         " + leadingZeros(completionCountdown["minutes"], true) + "         |"),
                     // ("" + "Seconds | Since Launch |       " + leadingZeros(arrivalCountdown["seconds"]) + "      |         " + leadingZeros(completionCountdown["seconds"]) + "         |")
-                    ("" + "<table><tr><th class='rowHeader'>|</th><th>Since Launch  |</th><th>Until Arrival  |</th><th>Until Completion</th></tr><tr><tr><td class='rowHeader'>Years |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["years"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["years"]) + "</td></tr><td class='rowHeader'>Days |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["days"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["days"]) + "</td></tr><tr><td class='rowHeader'>Hours |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["hours"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["hours"]) + "</td></tr><tr><td class='rowHeader'>Minutes |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["minutes"], true) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["minutes"], true) + "</td></tr><tr><td class='rowHeader'>Seconds |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["seconds"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["seconds"]) + "</td></tr></table>")
+                    // ("" + "<table><tr><th class='rowHeader'>|</th><th>Since Launch  |</th><th>Until Arrival  |</th><th>Until Completion</th></tr><tr><tr><td class='rowHeader'>Years |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["years"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["years"]) + "</td></tr><td class='rowHeader'>Days |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["days"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["days"]) + "</td></tr><tr><td class='rowHeader'>Hours |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["hours"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["hours"]) + "</td></tr><tr><td class='rowHeader'>Minutes |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["minutes"], true) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["minutes"], true) + "</td></tr><tr><td class='rowHeader'>Seconds |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + leadingZeros(arrivalCountdown["seconds"]) + "</td><td class='dataCells'>" + leadingZeros(completionCountdown["seconds"]) + "</td></tr></table>")
+                    ("" + "<table><tr><th class='rowHeader'>|</th><th>Since Launch  |</th><th>Until Arrival  |</th><th>Until Completion</th></tr><tr><tr><td class='rowHeader'>Years |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + arrivalCountdown["years"] + "</td><td class='dataCells'>" + completionCountdown["years"] + "</td></tr><td class='rowHeader'>Days |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + arrivalCountdown["days"] + "</td><td class='dataCells'>" + completionCountdown["days"] + "</td></tr><tr><td class='rowHeader'>Hours |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + arrivalCountdown["hours"] + "</td><td class='dataCells'>" + completionCountdown["hours"] + "</td></tr><tr><td class='rowHeader'>Minutes |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + arrivalCountdown["minutes"] + "</td><td class='dataCells'>" + completionCountdown["minutes"] + "</td></tr><tr><td class='rowHeader'>Seconds |</td><td class='dataCells'>Since Launch</td><td class='dataCells'>" + arrivalCountdown["seconds"] + "</td><td class='dataCells'>" + completionCountdown["seconds"] + "</td></tr></table>")
                 ]
             }
         }
@@ -516,7 +517,7 @@ function showCountdown(phase, count) {
 
     var infos = document.getElementsByClassName("info");
     for (var i = 0; i < infos.length; i++) {
-        infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
+        infos[i].setAttribute("style", "text-align: center; font-size: calc(0.025 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in;");
         // infos[i].setAttribute("style", "text-align: left; font-size: calc(0.025 * 40vh);" +
         //     " z-index: 21; transition: 1.5s east-in; white-space: pre;");
@@ -524,7 +525,7 @@ function showCountdown(phase, count) {
 
     var rowHeaders = document.getElementsByClassName("rowHeader");
     for (var j = 0; j < rowHeaders.length; j++) {
-        rowHeaders[j].setAttribute("style", "text-align: right; font-size: calc(0.045 * 40vh);" +
+        rowHeaders[j].setAttribute("style", "text-align: right; font-size: calc(0.025 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in;");
     }
     // document.getElementsByClassName("rowHeader").setAttribute("style", "text-align: right; font-size: calc(0.045 * 40vh);" +
@@ -532,7 +533,7 @@ function showCountdown(phase, count) {
 
     var dataCells = document.getElementsByClassName("dataCells");
     for (var k = 0; k < dataCells.length; k++) {
-        dataCells[k].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
+        dataCells[k].setAttribute("style", "text-align: center; font-size: calc(0.025 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in;");
     }
     // document.getElementsByClassName("dataCells").setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
