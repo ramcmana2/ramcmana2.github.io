@@ -407,7 +407,7 @@ function showTimer(callback) {
                     // ("" + "Hours   | Since Launch |       " + leadingZeros(arrivalCountdown["hours"]) + "      |         " + leadingZeros(completionCountdown["hours"]) + "         |"),
                     // ("" + "Minutes | Since Launch |       " + leadingZeros(arrivalCountdown["minutes"], true) + "      |         " + leadingZeros(completionCountdown["minutes"], true) + "         |"),
                     // ("" + "Seconds | Since Launch |       " + leadingZeros(arrivalCountdown["seconds"]) + "      |         " + leadingZeros(completionCountdown["seconds"]) + "         |")
-                    ("" + "<table><tr><th>________| </th><th>Since Launch | </th><th>Until Arrival | </th><th>Until Completion |</th></tr><tr><tr><td>Years</td><td>1</td><td>2</td><td>3</td></tr><td>Days</td><td>100</td><td>200</td><td>300</td></tr><tr><td>Hours</td><td>1</td><td>2</td><td>3</td></tr><tr><td>Minutes</td><td>10</td><td>20</td><td>30</td></tr><tr><td>Seconds</td><td>1</td><td>2</td><td>3</td></tr></table>")
+                    ("" + "<table><tr><th>_______</th><th>| Since Launch </th><th>| Until Arrival </th><th>| Until Completion</th></tr><tr><tr><td>Years</td><td>1</td><td>2</td><td>3</td></tr><td>Days</td><td>100</td><td>200</td><td>300</td></tr><tr><td>Hours</td><td>1</td><td>2</td><td>3</td></tr><tr><td>Minutes</td><td>10</td><td>20</td><td>30</td></tr><tr><td>Seconds</td><td>1</td><td>2</td><td>3</td></tr></table>")
                 ]
             }
         }
