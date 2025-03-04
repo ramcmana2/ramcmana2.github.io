@@ -415,7 +415,8 @@ function showTimer(callback) {
 
     //for (let i = 0; i < 20; i++) {
     for (let i = 0; i < 61; i++) {
-        launchCountup["seconds"] = (launchCountup["seconds"] + launchIncrement);
+        launchCountup["seconds"] += launchIncrement;
+        //launchCountup["seconds"] = (launchCountup["seconds"] + launchIncrement);
         //launchCountup["seconds"] = launchCountup["seconds"] + launchIncrement;
         //completionCountdown["seconds"] = leadingZeros(completionCountdown["seconds"]);
 
@@ -519,22 +520,55 @@ function showTimer(callback) {
         //completionCountdown["seconds"] = completionCountdown["seconds"] + 60 + completionIncrement;
         //completionCountdown["seconds"] = leadingZeros(completionCountdown["seconds"]);
 
+        // if (completionIncrement > 0) {
+        //     completionCountdown["seconds"] += completionIncrement;
+        // }
+        // else {
+        //     completionCountdown["seconds"] = 60 - (completionCountdown["seconds"] + completionIncrement);
+        // }
+
+        // completionCountdown["minutes"] += Math.floor(completionCountdown["seconds"] / 60);
+        // completionCountdown["hours"] += Math.floor(completionCountdown["minutes"] / 60);
+        // completionCountdown["days"] += Math.floor(completionCountdown["hours"] / 24);
+        // completionCountdown["years"] += Math.floor(completionCountdown["days"] / 365);
+
+        // completionCountdown["seconds"] = completionCountdown["seconds"] % 60;
+        // completionCountdown["minutes"] = completionCountdown["minutes"] % 60;
+        // completionCountdown["hours"] = completionCountdown["hours"] % 24;
+        // completionCountdown["days"] = completionCountdown["days"] % 365;
+
         if (completionIncrement > 0) {
-            completionCountdown["seconds"] += completionIncrement;
+            completionCountdown["seconds"] = (completionCountdown["seconds"] + completionIncrement) % 60;
+
+            if (completionCountdown["seconds"] == 0) {
+                completionCountdown["minutes"] = (completionCountdown["minutes"] + completionIncrement) % 60;
+                if (completionCountdown["minutes"] == 0) {
+                    completionCountdown["hours"] = (completionCountdown["hours"] + completionIncrement) % 24;
+                    if (completionCountdown["hours"] == 0) {
+                        completionCountdown["days"] = (completionCountdown["days"] + completionIncrement) % 365;
+                        if (completionCountdown["days"] == 0) {
+                            completionCountdown["years"] += completionIncrement;
+                        }
+                    }
+                }
+            }
         }
         else {
-            completionCountdown["seconds"] = 60 - (completionCountdown["seconds"] + completionIncrement);
+            completionCountdown["seconds"] = (completionCountdown["seconds"] + 60 + completionIncrement) % 60;
+
+            if (completionCountdown["seconds"] == 59) {
+                completionCountdown["minutes"] = (completionCountdown["minutes"] + 60 + completionIncrement) % 60;
+                if (completionCountdown["minutes"] == 59) {
+                    completionCountdown["hours"] = (completionCountdown["hours"] + 24 + completionIncrement) % 24;
+                    if (completionCountdown["hours"] == 59) {
+                        completionCountdown["days"] = (completionCountdown["days"] + 365 + completionIncrement) % 365;
+                        if (completionCountdown["days"] == 59) {
+                            completionCountdown["years"] += completionIncrement;
+                        }
+                    }
+                }
+            }
         }
-
-        completionCountdown["minutes"] += Math.floor(completionCountdown["seconds"] / 60);
-        completionCountdown["hours"] += Math.floor(completionCountdown["minutes"] / 60);
-        completionCountdown["days"] += Math.floor(completionCountdown["hours"] / 24);
-        completionCountdown["years"] += Math.floor(completionCountdown["days"] / 365);
-
-        completionCountdown["seconds"] = completionCountdown["seconds"] % 60;
-        completionCountdown["minutes"] = completionCountdown["minutes"] % 60;
-        completionCountdown["hours"] = completionCountdown["hours"] % 24;
-        completionCountdown["days"] = completionCountdown["days"] % 365;
 
         let countdown = {
             placeholder: {
