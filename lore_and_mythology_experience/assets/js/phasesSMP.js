@@ -368,6 +368,19 @@ function showTimer(callback) {
 
     //for (let i = 0; i < 20; i++) {
     for (let i = 0; i < 61; i++) {
+        launchCountup["seconds"] = (launchCountup["seconds"] + launchIncrement) % 60;
+        //completionCountdown["seconds"] = leadingZeros(completionCountdown["seconds"]);
+
+        launchCountup["minutes"] += Math.floor(launchCountup["seconds"] / 60);
+        launchCountup["hours"] += Math.floor(launchCountup["minutes"] / 60);
+        launchCountup["days"] += Math.floor(launchCountup["hours"] / 24);
+        launchCountup["years"] += Math.floor(launchCountup["days"] / 365);
+
+        launchCountup["seconds"] = launchCountup["seconds"] % 60;
+        launchCountup["minutes"] = launchCountup["minutes"] % 60;
+        launchCountup["hours"] = launchCountup["hours"] % 24;
+        launchCountup["days"] = launchCountup["days"] % 365;
+
         arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + arrivalIncrement);
         //arrivalCountdown["seconds"] = (arrivalCountdown["seconds"] + arrivalIncrement) % 60;
         //arrivalCountdown["seconds"] = leadingZeros(arrivalCountdown["seconds"]);
@@ -522,7 +535,7 @@ function showCountdown(phase, count) {
 
     var infos = document.getElementsByClassName("info");
     for (var i = 0; i < infos.length; i++) {
-        infos[i].setAttribute("style", "text-align: center; font-size: calc(0.026 * 40vh);" +
+        infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in;");
         // infos[i].setAttribute("style", "text-align: left; font-size: calc(0.025 * 40vh);" +
         //     " z-index: 21; transition: 1.5s east-in; white-space: pre;");
@@ -530,7 +543,7 @@ function showCountdown(phase, count) {
 
     var rowHeaders = document.getElementsByClassName("rowHeader");
     for (var j = 0; j < rowHeaders.length; j++) {
-        rowHeaders[j].setAttribute("style", "text-align: right; font-size: calc(0.026 * 40vh);" +
+        rowHeaders[j].setAttribute("style", "text-align: right; font-size: calc(0.025 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in;");
     }
     // document.getElementsByClassName("rowHeader").setAttribute("style", "text-align: right; font-size: calc(0.045 * 40vh);" +
@@ -538,7 +551,7 @@ function showCountdown(phase, count) {
 
     var dataCells = document.getElementsByClassName("dataCells");
     for (var k = 0; k < dataCells.length; k++) {
-        dataCells[k].setAttribute("style", "text-align: center; font-size: calc(0.026 * 40vh);" +
+        dataCells[k].setAttribute("style", "text-align: center; font-size: calc(0.025 * 40vh);" +
             " z-index: 21; transition: 1.5s east-in;");
     }
     // document.getElementsByClassName("dataCells").setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
