@@ -278,9 +278,9 @@ function showTimer(callback) {
     // var missionCompletionTime = 1951257600000;
 
     // TEST CASE 3: launch < arrival < completion < current
-    var launchTime = 1697206740000;
-    var arrivalTime = 1697206750000;
-    var missionCompletionTime = 1697206760000;
+    // var launchTime = 1697206740000;
+    // var arrivalTime = 1697206750000;
+    // var missionCompletionTime = 1697206760000;
 
     var millisecondsInASecond = 1000;
     var millisecondsInAMinute = millisecondsInASecond * 60;
@@ -724,13 +724,13 @@ function showCountdown(phase, count) {
     var colHeaders = document.getElementsByClassName("colHeader");
     for (var l = 0; l < colHeaders.length; l++) {
         colHeaders[l].setAttribute("style", "text-align: center; font-size: calc(0.025 * 40vh);" +
-            " z-index: 21; transition: 1.5s east-in;");
+            " z-index: 21; transition: 1.5s east-in; white-space: pre;");
     }
 
     var rowHeaders = document.getElementsByClassName("rowHeader");
     for (var j = 0; j < rowHeaders.length; j++) {
         rowHeaders[j].setAttribute("style", "text-align: right; font-size: calc(0.025 * 40vh);" +
-            " z-index: 21; transition: 1.5s east-in;");
+            " z-index: 21; transition: 1.5s east-in; white-space: pre;");
     }
     // document.getElementsByClassName("rowHeader").setAttribute("style", "text-align: right; font-size: calc(0.045 * 40vh);" +
     //     " z-index: 21; transition: 1.5s east-in;");
