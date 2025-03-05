@@ -322,8 +322,8 @@ function createAsteroidBelt(scene) {
     const numAsteroids = 500;
     const beltRadius = 50;
     const beltThickness = 10;
-    const asteroidGeometry = new THREE.SphereGeometry(0.5, 8, 8);
-    //const asteroidGeometry = new THREE.SphereGeometry(0.5, 256, 256);
+    // const asteroidGeometry = new THREE.SphereGeometry(0.5, 8, 8);
+    const asteroidGeometry = new THREE.SphereGeometry(0.5, 256, 256);
     const asteroidMaterial = new THREE.MeshStandardMaterial({
         map: generateAsteroidTexture(),
         roughness: 1,
