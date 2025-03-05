@@ -1,22 +1,30 @@
+import {AudioManager} from "./AudioManager.js";
+
 const telescope = document.getElementById("telescope");
+
 
 function telescopeClickedHandler() {
     window.location.href = '../pages/main_page.html'
 }
 
-telescope.addEventListener('click', telescopeClickedHandler)
-
-var opacity = 0;
-var intervalID = 0;
-var scroll = document.getElementById("scroll");
-var clickDialog = document.getElementById("scrollClick");
-var telescopeBackground = document.getElementById("telescopeBg");
-var blinkIn = 0;
+let opacity = 0;
+let intervalID = 0;
+const scroll = document.getElementById("scroll");
+const clickDialog = document.getElementById("scrollClick");
+const telescopeBackground = document.getElementById("telescopeBg");
+let blinkIn = 0;
 window.onload = fadeIn;
 
 function fadeIn() {
+    audioLoad();
     clearInterval(intervalID);
     intervalID = setInterval(showScroll, 10);
+}
+
+function audioLoad() {
+        const audioManager = new AudioManager("context");
+        audioManager.play();
+        audioManager.setVolume(0.5);
 }
 
 function fadeOut() {
@@ -24,10 +32,6 @@ function fadeOut() {
     intervalID = setInterval(hideScroll, 10);
 }
 
-function blink() {
-    clearInterval(intervalID);
-    intervalID = setInterval(blinkTelescope, 10);
-}
 
 function showScroll() {
     opacity = Number(window.getComputedStyle(scroll)
@@ -49,15 +53,16 @@ function hideScroll() {
         scroll.style.opacity = opacity;
     } else {
         clearInterval(intervalID);
+        telescope.addEventListener('click', telescopeClickedHandler)
         intervalID = setInterval(blinkTelescope, 75);
         clickDialog.style.opacity = 1;
     }
 }
 
 function blinkTelescope() {
-    var currentColor = window.getComputedStyle(telescopeBackground).getPropertyValue("background-color");
-    var rgba = currentColor.match(/rgba?\((\d+), (\d+), (\d+), ([\d.]+)\)/);
-    var opacity;
+    const currentColor = window.getComputedStyle(telescopeBackground).getPropertyValue("background-color");
+    const rgba = currentColor.match(/rgba?\((\d+), (\d+), (\d+), ([\d.]+)\)/);
+    let opacity;
 
     if (rgba) {
         opacity = parseFloat(rgba[4]);
