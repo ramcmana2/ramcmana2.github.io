@@ -3,6 +3,7 @@ import SettingsModal from './SettingsModal.js';
 import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js";
 import { startPhases } from "./phases.js";
 import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/GLTFLoader.js";
+import { startPhasesSMP } from "./phasesSMP.js";
 // import {
 //     CSS2DRenderer,
 //     CSS2DObject,
@@ -210,7 +211,8 @@ function createStarField() {
 
         // Adjust the radius based on aspect ratio
         // Using the smaller dimension (height or width) for the radius
-        float adjustedRadius = uCircleRadius * (uResolution.y / uResolution.x);
+        float minDim = min(uResolution.x, uResolution.y);
+        float adjustedRadius = uCircleRadius * (minDim / uResolution.x); 
 
         // Calculate distance from draggable circle (center and radius)
         float screenDistX = abs(fragPos.x - uCirclePos.x) / adjustedRadius;
@@ -233,11 +235,6 @@ function createStarField() {
     }
 `;
 
-    // calculate scope radius
-    document.getElementById('scope').style.display = 'block';
-    const aspect = window.innerWidth / window.innerHeight;
-    const scopeRadius = document.getElementById('scope').offsetWidth / 2 / window.innerWidth * aspect;
-
     // Material
     starMaterial = new THREE.ShaderMaterial({
         vertexColors: true,
@@ -248,14 +245,13 @@ function createStarField() {
         fragmentShader,
         uniforms: {
             uCirclePos: { value: new THREE.Vector2(0.5, 0.5) },
-            uCircleRadius: { value: scopeRadius },
+            uCircleRadius: { value: 0.16 },
             uBlurEnabled: { value: true },
             uBlurCircle: { value: false },
             uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) }
         }
     });
 
-    document.getElementById('scope').style.display = 'none';
     return new THREE.Points(geometry, starMaterial);
 }
 
@@ -285,54 +281,14 @@ function getMaxX() {
     return frustumWidth / 2;
 }
 
-function generateAsteroidTexture() {
-    const size = 512;
-    const canvas = document.createElement("canvas");
-    canvas.width = size;
-    canvas.height = size;
-    const ctx = canvas.getContext("2d");
-
-    // Fill with a base color
-    ctx.fillStyle = "#444";
-    ctx.fillRect(0, 0, size, size);
-
-    // Create craters 
-    for (let i = 0; i < 10; i++) {
-        const x = Math.random() * size;
-        const y = Math.random() * size;
-        const r = Math.random() * (size / 8) + (size / 10);
-
-        // Outer glow
-        const gradient = ctx.createRadialGradient(x, y, r * 0.3, x, y, r);
-        gradient.addColorStop(0, "rgba(20, 20, 20, 1)");
-        gradient.addColorStop(0.7, "rgba(50, 50, 50, 1)");
-        gradient.addColorStop(1, "rgba(90, 90, 90, 0.6)");
-
-        ctx.beginPath();
-        ctx.arc(x, y, r, 0, Math.PI * 2);
-        ctx.fillStyle = gradient;
-        ctx.fill();
-    }
-
-    return new THREE.CanvasTexture(canvas);
-}
-
 // create and add asteroid belt
 function createAsteroidBelt(scene) {
     const numAsteroids = 500;
     const beltRadius = 50;
     const beltThickness = 10;
-    // const asteroidGeometry = new THREE.SphereGeometry(0.5, 8, 8);
-    const asteroidGeometry = new THREE.SphereGeometry(0.5, 256, 256);
-    const asteroidMaterial = new THREE.MeshStandardMaterial({
-        map: generateAsteroidTexture(),
-        roughness: 1,
-        metalness: 0,
-        emissive: new THREE.Color(0x111111)
-    });
+    const asteroidGeometry = new THREE.SphereGeometry(0.5, 8, 8);
+    const asteroidMaterial = new THREE.MeshBasicMaterial({ color: 0x3a3a3a });
 
-    asteroidGeometry.computeBoundingBox();
-    asteroidGeometry.computeVertexNormals();
 
     while (true) {
         const asteroidAngle = Math.random() * Math.PI * 2;
@@ -354,14 +310,6 @@ function createAsteroidBelt(scene) {
 
         const asteroid = new THREE.Mesh(asteroidGeometry, asteroidMaterial);
         asteroid.position.set(x, y, z);
-        const scale = Math.random() * 1.5 + 0.5;
-        asteroid.scale.set(scale, scale, scale);
-
-        asteroid.rotation.set(
-            Math.random() * Math.PI * 2,
-            Math.random() * Math.PI * 2,
-            Math.random() * Math.PI * 2
-        );
 
         scene.add(asteroid);
     }
@@ -402,11 +350,13 @@ loader.load('../assets/models/asteroid.glb', (gltf) => {
     scene.add(asteroid);
 });
 
+// Add lighting
+const ambientLight = new THREE.AmbientLight(0x404040, 2);
+scene.add(ambientLight);
 
-// lighting
-const light = new THREE.DirectionalLight(0xffffff, 1);
-light.position.set(5, 5, 5);
-scene.add(light);
+const pointLight = new THREE.PointLight(0xffffff, 1.5);
+pointLight.position.set(5, 5, 5);
+scene.add(pointLight);
 
 // Scope behavior
 const scope = document.getElementById('scope');
@@ -504,6 +454,7 @@ function starFieldTransistion() {
 
     setTimeout(() => {
         camera.position.z = 0;
+        pointLight.position.z = 0;
         isStarTransition = false;
         asteroid.visible = false;
         console.log('Transitioning to phases');
@@ -747,4 +698,19 @@ window.addEventListener("resize", () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     starMaterial.uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
     camera.updateProjectionMatrix();
+});
+
+// load papyrus scroll introduction
+document.addEventListener("DOMContentLoaded", function() {
+    fetch('intro.html')
+        .then(response => response.text())
+        .then(data => {
+            document.body.insertAdjacentHTML('beforeend', data);
+
+            import('./intro.js')
+                .then(module => {
+                    module.openPopup();
+                })
+                .catch(error => console.error("Failed to load intro.js:", error));
+        });
 });

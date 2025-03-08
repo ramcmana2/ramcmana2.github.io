@@ -20,8 +20,8 @@ img {
   font-weight: bold;
   color: white;
   background: transparent;
-  visibility: visible;
-  opacity: 1;
+  visibility: hidden;
+  opacity: 0;
   transition: 1.5s;
   user-select: all; /* allow copying */
 }
