@@ -1,6 +1,6 @@
-import ProgressBar from './progressBar.js';
+// import ProgressBar from './progressBar.js';
 
-const pBar = new ProgressBar(0);
+// const pBar = new ProgressBar(0);
 
 const telescopeBackground = document.getElementById("telescopeBg");
 
