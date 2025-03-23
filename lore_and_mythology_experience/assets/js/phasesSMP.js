@@ -7,6 +7,7 @@
 // Data for SMP-l phases
 const phases = {
     psycheSatellite1: {
+        title: "The Psyche Satellite Resembles a Butterfly",
         image: "../assets/images/smp/psyche-satellite.png",
         alt: "Psyche satellite with wings like a butterfly.",
         duration: 2000,
@@ -19,8 +20,9 @@ const phases = {
         ],
     },
     psycheSatellite2: {
+        title: "The Psyche Satellite Resembles a Butterfly",
         image: "../assets/images/smp/psyche-satellite.png",
-        alt: "Asteroid Psyche in the Chrysalis phase",
+        alt: "Satellite Psyche with wings like a butterfly",
         duration: 2000,
         banner: "../assets/images/smp/smp-banner.png",
         text: [
@@ -34,34 +36,8 @@ const phases = {
         ],
     },
     quote1: {
+        title: "Conclusion",
         image: "../assets/images/goddess_psyche/asteroid.png",
-        alt: "",
-        duration: 2000,
-        banner: "",
-        text: [
-            ""
-        ]
-    },
-    psycheGoddess: {
-        image: "../assets/images/goddess_psyche/psyche_passing_out_vector.png",
-        alt: "Goddess Psyche sleeping vector.",
-        duration: 2000,
-        banner: "",
-        text: [
-            ""
-        ]
-    },
-    blank2: {
-        image: "",
-        alt: "",
-        duration: 2000,
-        banner: "",
-        text: [
-            ""
-        ]
-    },
-    finale: {
-        image: "",
         alt: "",
         duration: 2000,
         banner: "../assets/images/smp/smp-banner.png",
@@ -72,6 +48,7 @@ const phases = {
         ]
     },
     quote2: {
+        title: "Conclusion",
         image: "../assets/images/goddess_psyche/psyche_drinking_ambrosia.png",
         alt: "",
         duration: 2000,
@@ -84,9 +61,10 @@ const phases = {
         ]
     },
     quote3: {
+        title: "Conclusion",
         image: "../assets/images/goddess_psyche/asteroid.png",
         alt: "",
-        duration: 6000,
+        duration: 2000,
         banner: "../assets/images/smp/smp-banner.png",
         text: [
             " “only that the achieved",
@@ -145,7 +123,7 @@ function showSMPIntro(callback) {
         Object.assign(introDiv.style, {
             top: "100%",
             left: "50%",
-            color: "#C9FFFC",
+            color: "white",
             background: "rgba(0, 0, 0, 0.2)",
             transform: "translate(-50%, -50%)",
             fontSize: "20px",
@@ -528,7 +506,7 @@ function showTimer(callback) {
     }, 20000);
 }
 
-function showCountdown(phase, count) {
+function showCountdown(phase, count, callback) {
     console.log('Transitioning to countdown phase');
 
     if (count == 0) {
@@ -626,7 +604,7 @@ function showCountdown(phase, count) {
 * afterPhases
 * handler after phases show
  */
-function afterPhases() {
+function afterPhasesSMP() {
     if (!finaleBool) {
         finaleBool = true;
 
@@ -712,6 +690,12 @@ function showPhase(phase) {
 
         let phase_innerHTML = "";
 
+        if (phase.title && phase.title.length > 0) {
+            phase_innerHTML += `<div id="phase-title">`;
+            phase_innerHTML += `<span class="title">${phase.title}</span>`;
+            phase_innerHTML += `</div>`;
+        }
+
         if (phase.image && phase.image.length > 0) {
             phase_innerHTML += `<img src="${phase.image}" id="phase"/>`;
         }
@@ -732,6 +716,15 @@ function showPhase(phase) {
 
         phase_div.innerHTML = phase_innerHTML;
         document.body.appendChild(phase_div);
+
+        // add style to phase title
+        if (phase.title && phase.title.length > 0) {
+            document.getElementById("phase-title").setAttribute(
+                "style", "text-align: center; font-size: calc(0.08 * 40vh);" +
+                " z-index: 21; transition: 1.5s; top: 5vh; color: white; position: absolute; " +
+                "left: 50%; transform: translateX(-50%); width: 80%; max-width: 90vw;" +
+                "font-family: 'Comfortaa', Arial, sans-serif;");
+        }
 
         // add styles to the phase image and banner
         if (phase.image && phase.image.length > 0) {
@@ -832,7 +825,7 @@ function showPhase(phase) {
         nextButton.id = "next-btn";
         nextButton.setAttribute("style", `
             position: absolute;
-            bottom: 30px;
+            bottom: 15px;
             left: 50%;
             transform: translateX(-50%);
             width: 200px;
