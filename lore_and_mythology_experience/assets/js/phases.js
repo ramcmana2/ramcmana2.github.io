@@ -2,6 +2,7 @@ import { startPhasesSMP } from "./phasesSMP.js";
 import ProgressBar from './progressBar.js';
 
 const pBar = new ProgressBar(2);
+pBar.initialize();
 // TODO: store phase data in json file
 const phases = {
     annibale1: {

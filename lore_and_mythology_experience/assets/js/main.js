@@ -6,6 +6,7 @@ import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/js
 import ProgressBar from './progressBar.js';
 
 const pBar = new ProgressBar(1);
+pBar.initialize();
 // import {
 //     CSS2DRenderer,
 //     CSS2DObject,
