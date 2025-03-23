@@ -7,6 +7,7 @@ import ProgressBar from './progressBar.js';
 
 const pBar = new ProgressBar(1);
 pBar.initialize();
+pBar.drawProgressBar();
 // import {
 //     CSS2DRenderer,
 //     CSS2DObject,

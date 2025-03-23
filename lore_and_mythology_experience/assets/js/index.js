@@ -2,6 +2,7 @@ import ProgressBar from './progressBar.js';
 
 const pBar = new ProgressBar(0);
 pBar.initialize();
+pBar.drawProgressBar();
 
 // function onClick() {
 //     let iframe = document.createElement('iframe');

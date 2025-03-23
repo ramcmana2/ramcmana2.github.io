@@ -3,6 +3,7 @@ import ProgressBar from './progressBar.js';
 
 const pBar = new ProgressBar(2);
 pBar.initialize();
+pBar.drawProgressBar();
 // TODO: store phase data in json file
 const phases = {
     annibale1: {
