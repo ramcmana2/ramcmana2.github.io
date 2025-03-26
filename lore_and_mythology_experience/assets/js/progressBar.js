@@ -87,7 +87,7 @@ export default function testIframe(currentProgress) {
     progressBar.setAttribute("style", "width: 100vw; height: 20px; background-color: rgba(200, 200, 200, 0.2); position: absolute; top: calc(100vh - 20px); z-index: 100; display: block;");
     let progressBars = document.createElement("div");
     progressBars.setAttribute("id", "progressBars");
-    progressBars.setAttribute("style", "width: calc(progress * 10vw); height: 20px; background-color: rgba(0, 200, 0, 0.2); position: absolute; top: calc(100vh - 20px); z-index: 100; display: block;");
+    progressBars.setAttribute("style", "width: calc(" + progress + " * 10vw); height: 20px; background-color: rgba(0, 200, 0, 0.2); position: absolute; top: calc(100vh - 20px); z-index: 100; display: block;");
     document.body.appendChild(progressBar);
     document.body.appendChild(progressBars);
 
