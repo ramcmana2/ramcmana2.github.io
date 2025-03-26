@@ -78,6 +78,6 @@
 
 
 
-export function testIframe() {
+export default function testIframe() {
 	console.log("does this even work?");
 }
