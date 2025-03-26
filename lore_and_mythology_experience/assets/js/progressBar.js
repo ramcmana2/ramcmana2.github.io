@@ -88,11 +88,11 @@ export default function incrementProgressBar(currentProgress) {
 	let progressBar = document.createElement("div");
     progressBar.setAttribute("id", "progressBar");
     //progressBar.setAttribute("style", "width: 100vw; height: 20px; background-color: rgba(200, 200, 200, 0.2); position: absolute; top: calc(100vh - 20px); z-index: 100; display: block;");
-    progressBar.setAttribute("style", "width: 100vw; height: 10px; background-color: rgb(200, 200, 200); position: absolute; top: calc(100vh - 20px); z-index: 100; display: block;");
+    progressBar.setAttribute("style", "width: 100vw; height: 10px; background-color: rgb(200, 200, 200); position: absolute; top: calc(100vh - 10px); z-index: 100; display: block;");
     let progressBars = document.createElement("div");
     progressBars.setAttribute("id", "progressBars");
     //progressBars.setAttribute("style", "width: calc(" + progress + " * " + progressUnits + "vw); height: 20px; background-color: rgba(0, 200, 0, 0.2); position: absolute; top: calc(100vh - 20px); z-index: 100; display: block;");
-    progressBars.setAttribute("style", "width: calc(" + progress + " * " + progressUnits + "vw); height: 10px; background-color: rgb(0, 200, 0); position: absolute; top: calc(100vh - 20px); z-index: 100; display: block;");
+    progressBars.setAttribute("style", "width: calc(" + progress + " * " + progressUnits + "vw); height: 10px; background-color: rgb(0, 200, 0); position: absolute; top: calc(100vh - 10px); z-index: 100; display: block;");
     document.body.appendChild(progressBar);
     document.body.appendChild(progressBars);
 
