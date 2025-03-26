@@ -20,7 +20,8 @@ function telescopeClickedHandler() {
     //iframePBar.drawProgressBar();
     //parentDocument.pBar.drawProgressBar();
     //myIframeFunction();
-    window.top.testIframe();
+    //window.top.testIframe();
+    top.testIframe();
     //parent.testIframe();
     window.location.href = '../pages/main_page.html'
 }
