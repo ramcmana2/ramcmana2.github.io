@@ -1,9 +1,9 @@
 import { startPhasesSMP } from "./phasesSMP.js";
-import ProgressBar from './progressBar.js';
+//import ProgressBar from './progressBar.js';
 
-const pBar = new ProgressBar(2);
-pBar.initialize();
-pBar.drawProgressBar();
+// const pBar = new ProgressBar(2);
+// pBar.initialize();
+// pBar.drawProgressBar();
 // TODO: store phase data in json file
 const phases = {
     annibale1: {
@@ -356,7 +356,8 @@ function nextPhase() {
   
     // Move to next phase
     phaseIndex++;
-    pBar.drawProgressBar();
+    //pBar.drawProgressBar();
+    window.top.testIframe();
     if (phaseIndex < phaseValues.length) {
         console.log("Current Phase Index:", phaseIndex, "Total Phases:", phaseValues.length);
         showPhase(phaseValues[phaseIndex]);

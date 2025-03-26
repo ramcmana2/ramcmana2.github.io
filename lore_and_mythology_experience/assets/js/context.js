@@ -6,9 +6,9 @@
 
 // const parentDocument = window.parent.document;
 
-function myIframeFunction() {
-    parent.ProgressBar.drawProgressBar();
-};
+// function myIframeFunction() {
+//     parent.ProgressBar.drawProgressBar();
+// };
 
 const telescopeBackground = document.getElementById("telescopeBg");
 
@@ -19,7 +19,9 @@ function telescopeClickedHandler() {
     //const iframePBar = parent.pBar;
     //iframePBar.drawProgressBar();
     //parentDocument.pBar.drawProgressBar();
-    myIframeFunction();
+    //myIframeFunction();
+    window.top.testIframe();
+    //parent.testIframe();
     window.location.href = '../pages/main_page.html'
 }
 

@@ -3,11 +3,11 @@ import SettingsModal from './SettingsModal.js';
 import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js";
 import { startPhases } from "./phases.js";
 import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/GLTFLoader.js";
-import ProgressBar from './progressBar.js';
+//import ProgressBar from './progressBar.js';
 
-const pBar = new ProgressBar(1);
-pBar.initialize();
-pBar.drawProgressBar();
+// const pBar = new ProgressBar(1);
+// pBar.initialize();
+// pBar.drawProgressBar();
 // import {
 //     CSS2DRenderer,
 //     CSS2DObject,
@@ -787,7 +787,8 @@ function startCameraZoom() {
             // Start star field transition
         } else {
             settingsModal.applyAMPIModalStyles();
-            pBar.drawProgressBar();
+            //pBar.drawProgressBar();
+            window.top.testIframe();
             starFieldTransistion();
         }
     }
