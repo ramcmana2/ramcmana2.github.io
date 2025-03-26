@@ -1,5 +1,6 @@
 import { startPhasesSMP } from "./phasesSMP.js";
 //import ProgressBar from './progressBar.js';
+import testIframe from './progressBar.js';
 
 // const pBar = new ProgressBar(2);
 // pBar.initialize();
@@ -357,7 +358,8 @@ function nextPhase() {
     // Move to next phase
     phaseIndex++;
     //pBar.drawProgressBar();
-    window.top.testIframe();
+    //window.top.testIframe();
+    testIframe(4 + phaseIndex);
     if (phaseIndex < phaseValues.length) {
         console.log("Current Phase Index:", phaseIndex, "Total Phases:", phaseValues.length);
         showPhase(phaseValues[phaseIndex]);
