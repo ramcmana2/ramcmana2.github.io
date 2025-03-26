@@ -229,6 +229,7 @@ function showLaunch(callback) {
             modal.remove();
         }
         launchBool = false;
+        incrementProgressBar(15);
         callback();
     }
 }
