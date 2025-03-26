@@ -4,7 +4,11 @@
 
 //const iframePBar = parent.pBar;
 
-const parentDocument = window.parent.document;
+// const parentDocument = window.parent.document;
+
+function myIframeFunction() {
+    parent.ProgressBar.drawProgressBar();
+};
 
 const telescopeBackground = document.getElementById("telescopeBg");
 
@@ -14,7 +18,8 @@ function telescopeClickedHandler() {
     //window.parent.pBar.drawProgressBar();
     //const iframePBar = parent.pBar;
     //iframePBar.drawProgressBar();
-    parentDocument.pBar.drawProgressBar();
+    //parentDocument.pBar.drawProgressBar();
+    myIframeFunction();
     window.location.href = '../pages/main_page.html'
 }
 
