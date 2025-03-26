@@ -6,7 +6,7 @@ import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/js
 //import ProgressBar from './progressBar.js';
 import testIframe from './progressBar.js';
 
-testIframe(2);
+testIframe(1);
 
 // const pBar = new ProgressBar(1);
 // pBar.initialize();
@@ -792,7 +792,7 @@ function startCameraZoom() {
             settingsModal.applyAMPIModalStyles();
             //pBar.drawProgressBar();
             //window.top.testIframe();
-            testIframe(3);
+            testIframe(2);
             starFieldTransistion();
         }
     }

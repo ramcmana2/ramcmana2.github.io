@@ -12,7 +12,7 @@ import testIframe from './progressBar.js';
 //     parent.ProgressBar.drawProgressBar();
 // };
 
-testIframe(1);
+testIframe(0);
 
 const telescopeBackground = document.getElementById("telescopeBg");
 
@@ -27,7 +27,7 @@ function telescopeClickedHandler() {
     //window.top.testIframe();
     //top.testIframe();
     //parent.testIframe();
-    testIframe(2);
+    testIframe(1);
     window.location.href = '../pages/main_page.html'
 }
 
