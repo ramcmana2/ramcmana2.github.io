@@ -4,9 +4,9 @@ import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.118/examples
 import { startPhases } from "./phases.js";
 import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/GLTFLoader.js";
 //import ProgressBar from './progressBar.js';
-import testIframe from './progressBar.js';
+import incrementProgressBar from './progressBar.js';
 
-testIframe(1);
+incrementProgressBar(1);
 
 // const pBar = new ProgressBar(1);
 // pBar.initialize();
@@ -792,7 +792,7 @@ function startCameraZoom() {
             settingsModal.applyAMPIModalStyles();
             //pBar.drawProgressBar();
             //window.top.testIframe();
-            testIframe(2);
+            incrementProgressBar(2);
             starFieldTransistion();
         }
     }

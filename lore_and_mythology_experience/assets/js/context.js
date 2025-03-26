@@ -1,6 +1,6 @@
 // import ProgressBar from './progressBar.js';
 
-import testIframe from './progressBar.js';
+import incrementProgressBar from './progressBar.js';
 
 // const pBar = new ProgressBar(0);
 
@@ -12,7 +12,7 @@ import testIframe from './progressBar.js';
 //     parent.ProgressBar.drawProgressBar();
 // };
 
-testIframe(0);
+incrementProgressBar(0);
 
 const telescopeBackground = document.getElementById("telescopeBg");
 
@@ -27,7 +27,7 @@ function telescopeClickedHandler() {
     //window.top.testIframe();
     //top.testIframe();
     //parent.testIframe();
-    testIframe(1);
+    incrementProgressBar(1);
     window.location.href = '../pages/main_page.html'
 }
 

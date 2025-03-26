@@ -4,6 +4,10 @@
 * @author: Nicole Garcia
  */
 
+ import incrementProgressBar from './progressBar.js';
+
+ incrementProgressBar(14);
+
 // Data for SMP-l phases
 const phases = {
     psycheSatellite1: {
@@ -858,6 +862,7 @@ function nextPhaseSMP() {
   
     // Move to next phase
     phaseIndex++;
+    incrementProgressBar(14 + phaseIndex);
     if (phaseIndex < phaseValues.length) {
         console.log("Current Phase Index:", phaseIndex, "Total Phases:", phaseValues.length);
         showPhase(phaseValues[phaseIndex]);
