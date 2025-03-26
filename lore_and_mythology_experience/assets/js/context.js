@@ -1,6 +1,6 @@
 // import ProgressBar from './progressBar.js';
 
-//import testIframe from './progressBar.js';
+import testIframe from './progressBar.js';
 
 // const pBar = new ProgressBar(0);
 
@@ -24,7 +24,8 @@ function telescopeClickedHandler() {
     //myIframeFunction();
     //window.top.testIframe();
     //top.testIframe();
-    parent.testIframe();
+    //parent.testIframe();
+    testIframe();
     window.location.href = '../pages/main_page.html'
 }
 
