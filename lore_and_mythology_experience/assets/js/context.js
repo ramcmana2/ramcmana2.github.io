@@ -6,7 +6,8 @@ const telescopeBackground = document.getElementById("telescopeBg");
 
 function telescopeClickedHandler() {
     //parent.pBar.drawProgressBar();
-    window.opener.pBar.drawProgressBar();
+    //window.opener.pBar.drawProgressBar();
+    window.parent.pBar.drawProgressBar();
     window.location.href = '../pages/main_page.html'
 }
 
