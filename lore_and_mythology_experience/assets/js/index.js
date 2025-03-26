@@ -4,8 +4,9 @@ import ProgressBar from './progressBar.js';
 // pBar.initialize();
 // pBar.drawProgressBar();
 
-ProgressBar.initialize();
-ProgressBar.drawProgressBar();
+const pBar = ProgressBar;
+pBar.initialize();
+pBar.drawProgressBar();
 
 // function onClick() {
 //     let iframe = document.createElement('iframe');
