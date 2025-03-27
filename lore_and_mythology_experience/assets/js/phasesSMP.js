@@ -556,7 +556,7 @@ function showTimer(callback) {
 
             let phase_innerHTML = "";
 
-            phase_innerHTML += `<img src="${phase.banner}" id="banner"/>`;
+            phase_innerHTML += `<img src="${timerPhase.banner}" id="banner"/>`;
 
             if (phase.text.some(line => line !== "")) {
                 phase_innerHTML += `<div id="banner_text_box">`;
@@ -598,7 +598,7 @@ function showTimer(callback) {
         else {
             let phase_innerHTML = "";
 
-            phase_innerHTML += `<img src="${phase.banner}" id="banner"/>`;
+            phase_innerHTML += `<img src="${timerPhase.banner}" id="banner"/>`;
 
             if (phase.text.some(line => line !== "")) {
                 phase_innerHTML += `<div id="banner_text_box">`;
