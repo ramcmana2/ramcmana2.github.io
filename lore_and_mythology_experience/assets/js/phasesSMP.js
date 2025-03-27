@@ -408,6 +408,9 @@ function showTimer(callback) {
         message2 = colHeadings[2];
     }
 
+    //const loopCondition = true;
+    const counter = 0;
+
     // // Add next button
     // const nextButton = document.createElement("button");
     // nextButton.id = "next-btn";
@@ -425,7 +428,9 @@ function showTimer(callback) {
     //     z-index: 100;
     //     display: none;
     // `);
-    // nextButton.addEventListener("click", callback);
+    // //nextButton.addEventListener("click", callback);
+    // //nextButton.addEventListener("click", function() {loopCondition = false});
+    // nextButton.addEventListener("click", function() {clearInterval(intervalIDloopCondition = false});
     // const phase_div = document.createElement("div");
     //     phase_div.setAttribute("id", "phase_modal");
     //     phase_div.setAttribute("style", "display: block; position: fixed;" +
@@ -433,12 +438,14 @@ function showTimer(callback) {
     //         "background-color: rgba(0, 0, 0, 0.2); overflow: hidden; transition: 1.5s; font-size: 16px");
     // phase_div.appendChild(nextButton);
 
-    // Next button appears after some time passes
+    // // Next button appears after some time passes
     // setTimeout(() => {
     //     nextButton.style.display = "block";
     // }, 1000);
 
-    for (let i = 0; i < 20; i++) {
+    //for (let i = 0; i < 20; i++) {
+    //while (loopCondition) {
+    let intervalID = setInterval(function() {
         launchCountup["seconds"] += launchIncrement;
 
         launchCountup["minutes"] += Math.floor(launchCountup["seconds"] / 60);
@@ -534,16 +541,20 @@ function showTimer(callback) {
         let timerValues = Object.values(countdown);
         let timerPhase = timerValues[0];
 
-        setTimeout(function() {showCountdown(timerPhase, i)}, 1000 * i);
-    }
+        //setTimeout(function() {showCountdown(timerPhase, i)}, 1000 * i);
+        //setTimeout(function() {showCountdown(timerPhase, i)}, 1000);
+        showCountdown(timerPhase, counter, intervalID);
+        counter++;
+    }, 1000);
 
-    setTimeout(() => {
-        incrementProgressBar(16);
-        callback();
-    }, 20000);
+    // setTimeout(() => {
+    //     incrementProgressBar(16);
+    //     callback();
+    // }, 20000);
+    //callback();
 }
 
-function showCountdown(phase, count) {
+function showCountdown(phase, count, intervalID) {
     console.log('Transitioning to countdown phase');
 
     if (count == 0) {
@@ -586,7 +597,8 @@ function showCountdown(phase, count) {
             z-index: 100;
             display: none;
         `);
-        nextButton.addEventListener("click", function() {showPhase(phaseValues[phaseIndex])});
+        //nextButton.addEventListener("click", function() {showPhase(phaseValues[phaseIndex])});
+        nextButton.addEventListener("click", function() {clearInterval(intervalID); showPhase(phaseValues[phaseIndex]);});
         phase_div.appendChild(nextButton);
         setTimeout(() => {
             nextButton.style.display = "block";
