@@ -434,9 +434,9 @@ function showTimer(callback) {
     // phase_div.appendChild(nextButton);
 
     // Next button appears after some time passes
-    setTimeout(() => {
-        nextButton.style.display = "block";
-    }, 1000);
+    // setTimeout(() => {
+    //     nextButton.style.display = "block";
+    // }, 1000);
 
     for (let i = 0; i < 20; i++) {
         launchCountup["seconds"] += launchIncrement;
@@ -588,7 +588,10 @@ function showCountdown(phase, count, callback) {
         `);
         nextButton.addEventListener("click", showPhase(phaseValues[phaseIndex]));
         phase_div.appendChild(nextButton);
-        
+        setTimeout(() => {
+            nextButton.style.display = "block";
+        }, 1000);
+
         document.body.appendChild(phase_div);
     }
     else {
