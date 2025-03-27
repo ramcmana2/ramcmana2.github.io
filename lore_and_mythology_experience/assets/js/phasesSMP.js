@@ -408,6 +408,36 @@ function showTimer(callback) {
         message2 = colHeadings[2];
     }
 
+    // Add next button
+    const nextButton = document.createElement("button");
+    nextButton.id = "next-btn";
+    nextButton.setAttribute("style", `
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        height: 100px;
+        border: none;
+        background: url('../assets/images/continue_button.png') no-repeat center center;
+        background-size: contain;
+        cursor: pointer;
+        z-index: 100;
+        display: none;
+    `);
+    nextButton.addEventListener("click", callback);
+    const phase_div = document.createElement("div");
+        phase_div.setAttribute("id", "phase_modal");
+        phase_div.setAttribute("style", "display: block; position: fixed;" +
+            " z-index: 20; left: 0; top: 0; width: 100%; height: 100%; " +
+            "background-color: rgba(0, 0, 0, 0.2); overflow: hidden; transition: 1.5s; font-size: 16px");
+    phase_div.appendChild(nextButton);
+
+    // Next button appears after some time passes
+    setTimeout(() => {
+        nextButton.style.display = "block";
+    }, 1000);
+
     for (let i = 0; i < 20; i++) {
         launchCountup["seconds"] += launchIncrement;
 
@@ -602,9 +632,9 @@ function showCountdown(phase, count, callback) {
         }, 1000);
     }
 
-    setTimeout(() => {
-        callback(); // Call the callback after timer is done
-    }, 500);
+    // setTimeout(() => {
+    //     callback(); // Call the callback after timer is done
+    // }, 500);
 }
 
 /*
