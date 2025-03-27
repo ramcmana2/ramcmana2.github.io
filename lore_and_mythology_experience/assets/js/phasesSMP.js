@@ -543,7 +543,7 @@ function showTimer(callback) {
     }, 20000);
 }
 
-function showCountdown(phase, count, callback) {
+function showCountdown(phase, count) {
     console.log('Transitioning to countdown phase');
 
     if (count == 0) {
@@ -610,6 +610,21 @@ function showCountdown(phase, count, callback) {
         phase_innerHTML += ``;
 
         document.getElementById("phase_modal").innerHTML = phase_innerHTML;
+
+        document.getElementById("next-btn").setAttribute("style", `
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 100px;
+            border: none;
+            background: url('../assets/images/continue_button.png') no-repeat center center;
+            background-size: contain;
+            cursor: pointer;
+            z-index: 99;
+            display: block;
+        `);
     }
 
     document.getElementById("banner").setAttribute("style",
