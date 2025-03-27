@@ -543,7 +543,127 @@ function showTimer(callback) {
 
         //setTimeout(function() {showCountdown(timerPhase, i)}, 1000 * i);
         //setTimeout(function() {showCountdown(timerPhase, i)}, 1000);
-        showCountdown(timerPhase, counter, intervalID);
+        //showCountdown(timerPhase, counter, intervalID);
+        console.log('Transitioning to countdown phase');
+
+        if (count == 0) {
+            // set up html and css
+            const phase_div = document.createElement("div");
+            phase_div.setAttribute("id", "phase_modal");
+            phase_div.setAttribute("style", "display: block; position: fixed;" +
+                " z-index: 20; left: 0; top: 0; width: 100%; height: 100%; " +
+                "background-color: rgba(0, 0, 0, 0.2); overflow: hidden; transition: 1.5s; font-size: 16px");
+
+            let phase_innerHTML = "";
+
+            phase_innerHTML += `<img src="${phase.banner}" id="banner"/>`;
+
+            if (phase.text.some(line => line !== "")) {
+                phase_innerHTML += `<div id="banner_text_box">`;
+                phase.text.forEach((line) => {
+                    phase_innerHTML += `<span class="info">${line}</span>`;
+                });
+                phase_innerHTML += `</div>`;
+            }
+
+            phase_innerHTML += ``;
+            phase_div.innerHTML = phase_innerHTML;
+
+            // Add next button
+            const nextButton = document.createElement("button");
+            nextButton.id = "next-btn";
+            nextButton.setAttribute("style", `
+                position: absolute;
+                bottom: 15px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 200px;
+                height: 100px;
+                border: none;
+                background: url('../assets/images/continue_button.png') no-repeat center center;
+                background-size: contain;
+                cursor: pointer;
+                z-index: 100;
+                display: none;
+            `);
+            //nextButton.addEventListener("click", function() {showPhase(phaseValues[phaseIndex])});
+            nextButton.addEventListener("click", function() {clearInterval(intervalID); document.getElementById("phase_modal").remove(); showPhase(phaseValues[phaseIndex]);});
+            phase_div.appendChild(nextButton);
+            setTimeout(() => {
+                nextButton.style.display = "block";
+            }, 1000);
+
+            document.body.appendChild(phase_div);
+        }
+        else {
+            let phase_innerHTML = "";
+
+            phase_innerHTML += `<img src="${phase.banner}" id="banner"/>`;
+
+            if (phase.text.some(line => line !== "")) {
+                phase_innerHTML += `<div id="banner_text_box">`;
+                phase.text.forEach((line) => {
+                    phase_innerHTML += `<span class="info">${line}</span>`;
+                });
+                phase_innerHTML += `</div>`;
+            }
+
+            phase_innerHTML += ``;
+
+            document.getElementById("phase_modal").innerHTML = phase_innerHTML;
+
+            document.getElementById("next-btn").setAttribute("style", `
+                position: absolute;
+                bottom: 15px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 200px;
+                height: 100px;
+                border: none;
+                background: url('../assets/images/continue_button.png') no-repeat center center;
+                background-size: contain;
+                cursor: pointer;
+                z-index: 99;
+                display: block;
+            `);
+        }
+
+        document.getElementById("banner").setAttribute("style",
+            "background-color: transparent; width: calc(30vw + 15vh); height: auto; border-radius: 12px;" +
+            " position: absolute; top: 70%; left: 50%;" +
+            " z-index: 5; transition: 1.5s ease-in-out; transform: translate(-50%, -50%);");
+
+        if (phase.text.some(line => line !== "")) {
+            const text = document.getElementById("banner_text_box");
+            text.setAttribute("style", " display: flex; flex-direction: column; position: absolute;" +
+                " top: 80%; left: 43%; transform: translate(-50%, -50%);" +
+                " color: #C9FFFC; font-size: 2rem; font-family: 'Comfortaa', Arial, sans-serif; text-align: center;" +
+                " z-index: 10; padding: 10px 20px; border-radius: 8px; transform: translate(-50%, -50%);");
+        }
+
+        var infos = document.getElementsByClassName("info");
+        for (var i = 0; i < infos.length; i++) {
+            infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
+                " z-index: 21; transition: 1.5s east-in;");
+        }
+
+        var colHeaders = document.getElementsByClassName("colHeader");
+        for (var j = 0; j < colHeaders.length; j++) {
+            colHeaders[j].setAttribute("style", "text-align: center; font-size: calc(0.025 * 40vh);" +
+                " z-index: 21; transition: 1.5s east-in; white-space: pre;");
+        }
+
+        var rowHeaders = document.getElementsByClassName("rowHeader");
+        for (var k = 0; k < rowHeaders.length; k++) {
+            rowHeaders[k].setAttribute("style", "text-align: right; font-size: calc(0.025 * 40vh);" +
+                " z-index: 21; transition: 1.5s east-in; white-space: pre;");
+        }
+
+        var dataCells = document.getElementsByClassName("dataCells");
+        for (var l = 0; l < dataCells.length; l++) {
+            dataCells[l].setAttribute("style", "text-align: center; font-size: calc(0.025 * 40vh);" +
+                " z-index: 21; transition: 1.5s east-in;");
+        }
         counter++;
     }, 1000);
 
@@ -598,7 +718,7 @@ function showCountdown(phase, count, intervalID) {
             display: none;
         `);
         //nextButton.addEventListener("click", function() {showPhase(phaseValues[phaseIndex])});
-        nextButton.addEventListener("click", function() {clearInterval(intervalID); showPhase(phaseValues[phaseIndex]);});
+        nextButton.addEventListener("click", function() {clearInterval(intervalID); document.getElementById("phase_modal").remove(); showPhase(phaseValues[phaseIndex]);});
         phase_div.appendChild(nextButton);
         setTimeout(() => {
             nextButton.style.display = "block";
@@ -677,11 +797,11 @@ function showCountdown(phase, count, intervalID) {
     }
 
     // clear phase after 20 seconds
-    if (count == 19) {
-        setTimeout(() => {
-            document.getElementById("phase_modal").remove();
-        }, 1000);
-    }
+    // if (count == 19) {
+    //     setTimeout(() => {
+    //         document.getElementById("phase_modal").remove();
+    //     }, 1000);
+    // }
 
     // setTimeout(() => {
     //     callback(); // Call the callback after timer is done
