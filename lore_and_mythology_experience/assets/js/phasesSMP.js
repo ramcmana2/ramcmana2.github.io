@@ -409,7 +409,7 @@ function showTimer(callback) {
     }
 
     //const loopCondition = true;
-    const counter = 0;
+    let counter = 0;
 
     // // Add next button
     // const nextButton = document.createElement("button");
