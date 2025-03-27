@@ -558,9 +558,9 @@ function showTimer(callback) {
 
             phase_innerHTML += `<img src="${timerPhase.banner}" id="banner"/>`;
 
-            if (phase.text.some(line => line !== "")) {
+            if (timerPhase.text.some(line => line !== "")) {
                 phase_innerHTML += `<div id="banner_text_box">`;
-                phase.text.forEach((line) => {
+                timerPhase.text.forEach((line) => {
                     phase_innerHTML += `<span class="info">${line}</span>`;
                 });
                 phase_innerHTML += `</div>`;
@@ -600,9 +600,9 @@ function showTimer(callback) {
 
             phase_innerHTML += `<img src="${timerPhase.banner}" id="banner"/>`;
 
-            if (phase.text.some(line => line !== "")) {
+            if (timerPhase.text.some(line => line !== "")) {
                 phase_innerHTML += `<div id="banner_text_box">`;
-                phase.text.forEach((line) => {
+                timerPhase.text.forEach((line) => {
                     phase_innerHTML += `<span class="info">${line}</span>`;
                 });
                 phase_innerHTML += `</div>`;
@@ -633,7 +633,7 @@ function showTimer(callback) {
             " position: absolute; top: 70%; left: 50%;" +
             " z-index: 5; transition: 1.5s ease-in-out; transform: translate(-50%, -50%);");
 
-        if (phase.text.some(line => line !== "")) {
+        if (timerPhase.text.some(line => line !== "")) {
             const text = document.getElementById("banner_text_box");
             text.setAttribute("style", " display: flex; flex-direction: column; position: absolute;" +
                 " top: 80%; left: 43%; transform: translate(-50%, -50%);" +
