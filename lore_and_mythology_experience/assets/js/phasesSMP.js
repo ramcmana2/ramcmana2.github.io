@@ -546,7 +546,7 @@ function showTimer(callback) {
         //showCountdown(timerPhase, counter, intervalID);
         console.log('Transitioning to countdown phase');
 
-        if (count == 0) {
+        if (counter == 0) {
             // set up html and css
             const phase_div = document.createElement("div");
             phase_div.setAttribute("id", "phase_modal");
@@ -665,6 +665,7 @@ function showTimer(callback) {
                 " z-index: 21; transition: 1.5s east-in;");
         }
         counter++;
+        console.log(counter);
     }, 1000);
 
     // setTimeout(() => {
