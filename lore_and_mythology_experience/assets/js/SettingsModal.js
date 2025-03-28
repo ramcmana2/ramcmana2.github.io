@@ -8,13 +8,12 @@ export default class SettingsModal {
      */
 
     // Constructor
-    constructor(updateGraphicsQualityCallback) {
+    constructor() {
         this.settingsModal = document.getElementById('settings-modal');
         this.settingsModalContent = document.getElementById('settings-modal-content');
         this.settingsIconButton = document.getElementById('settings-icon-button');
         this.cssFile = document.createElement("link");
         this.cssFile.rel = "stylesheet";
-        this.updateGraphicsQuality = updateGraphicsQualityCallback;
 
         this._initialize();
     }
@@ -128,17 +127,6 @@ export default class SettingsModal {
                 document.head.appendChild(this.cssFile);
             });
         });
-
-        // Graphics quality selection
-        const graphicsDropdown = document.getElementById('graphics-quality-dropdown');
-        if (graphicsDropdown) {
-            graphicsDropdown.value = localStorage.getItem('graphicsQuality') || 'medium';
-            graphicsDropdown.addEventListener('change', () => {
-                const newQuality = graphicsDropdown.value;
-                localStorage.setItem('graphicsQuality', newQuality);
-                this.updateGraphicsQuality(newQuality);
-            });
-        }
 
         // Volume Settings
         const volumeSlider = document.getElementById("volume-slider");
