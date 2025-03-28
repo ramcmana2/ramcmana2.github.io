@@ -584,7 +584,7 @@ function showTimer(callback) {
                 background: url('../assets/images/continue_button.png') no-repeat center center;
                 background-size: contain;
                 cursor: pointer;
-                z-index: 100;
+                z-index: 101;
                 display: block;
             `);
             //nextButton.addEventListener("click", function() {showPhase(phaseValues[phaseIndex])});
@@ -613,20 +613,20 @@ function showTimer(callback) {
 
             document.getElementById("phase_modal").innerHTML = phase_innerHTML;
 
-            // document.getElementById("next-btn").setAttribute("style", `
-            //     position: absolute;
-            //     bottom: 15px;
-            //     left: 50%;
-            //     transform: translateX(-50%);
-            //     width: 200px;
-            //     height: 100px;
-            //     border: none;
-            //     background: url('../assets/images/continue_button.png') no-repeat center center;
-            //     background-size: contain;
-            //     cursor: pointer;
-            //     z-index: 99;
-            //     display: block;
-            // `);
+            document.getElementById("next-btn").setAttribute("style", `
+                position: absolute;
+                bottom: 15px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 200px;
+                height: 100px;
+                border: none;
+                background: url('../assets/images/continue_button.png') no-repeat center center;
+                background-size: contain;
+                cursor: pointer;
+                z-index: 101;
+                display: block;
+            `);
         }
 
         document.getElementById("banner").setAttribute("style",
