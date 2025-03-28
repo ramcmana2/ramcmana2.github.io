@@ -14,7 +14,7 @@ const phases = {
         title: "The Psyche Satellite Resembles a Butterfly",
         image: "../assets/images/smp/psyche-satellite.png",
         alt: "Psyche satellite with wings like a butterfly.",
-        duration: 250,
+        duration: 2000,
         banner: "",
         text: [
             ""
@@ -27,7 +27,7 @@ const phases = {
         title: "The Psyche Satellite Resembles a Butterfly",
         image: "../assets/images/smp/psyche-satellite.png",
         alt: "Satellite Psyche with wings like a butterfly",
-        duration: 250,
+        duration: 2000,
         banner: "../assets/images/smp/smp-banner.png",
         text: [
             "With it’s solar panel wings",
@@ -43,7 +43,7 @@ const phases = {
         title: "Conclusion",
         image: "../assets/images/goddess_psyche/asteroid.png",
         alt: "",
-        duration: 250,
+        duration: 2000,
         banner: "../assets/images/smp/smp-banner.png",
         text: [
             " “Perhaps after NASA’s Psyche",
@@ -55,7 +55,7 @@ const phases = {
         title: "Conclusion",
         image: "../assets/images/goddess_psyche/psyche_drinking_ambrosia.png",
         alt: "",
-        duration: 250,
+        duration: 2000,
         banner: "../assets/images/smp/smp-banner.png",
         text: [
             " “it will be as though",
@@ -68,7 +68,7 @@ const phases = {
         title: "Conclusion",
         image: "../assets/images/goddess_psyche/asteroid.png",
         alt: "",
-        duration: 250,
+        duration: 2000,
         banner: "../assets/images/smp/smp-banner.png",
         text: [
             " “only that the achieved",
@@ -408,8 +408,7 @@ function showTimer(callback) {
         message2 = colHeadings[2];
     }
 
-    let counter = 0;
-    let intervalID = setInterval(function() {
+    for (let i = 0; i < 20; i++) {
         launchCountup["seconds"] += launchIncrement;
 
         launchCountup["minutes"] += Math.floor(launchCountup["seconds"] / 60);
@@ -505,128 +504,107 @@ function showTimer(callback) {
         let timerValues = Object.values(countdown);
         let timerPhase = timerValues[0];
 
-        if (counter == 0) {
-            // set up html and css
-            const phase_div = document.createElement("div");
-            phase_div.setAttribute("id", "phase_modal");
-            phase_div.setAttribute("style", "display: block; position: fixed;" +
-                " z-index: 20; left: 0; top: 0; width: 100%; height: 100%; " +
-                "background-color: rgba(0, 0, 0, 0.2); overflow: hidden; transition: 1.5s; font-size: 16px");
+        setTimeout(function() {showCountdown(timerPhase, i)}, 1000 * i);
+    }
 
-            let phase_innerHTML = "";
+    setTimeout(() => {
+        incrementProgressBar(16);
+        callback();
+    }, 20000);
+}
 
-            phase_innerHTML += `<img src="${timerPhase.banner}" id="banner"/>`;
+function showCountdown(phase, count, callback) {
+    console.log('Transitioning to countdown phase');
 
-            if (timerPhase.text.some(line => line !== "")) {
-                phase_innerHTML += `<div id="banner_text_box">`;
-                timerPhase.text.forEach((line) => {
-                    phase_innerHTML += `<span class="info">${line}</span>`;
-                });
-                phase_innerHTML += `</div>`;
-            }
+    if (count == 0) {
+        // set up html and css
+        const phase_div = document.createElement("div");
+        phase_div.setAttribute("id", "phase_modal");
+        phase_div.setAttribute("style", "display: block; position: fixed;" +
+            " z-index: 20; left: 0; top: 0; width: 100%; height: 100%; " +
+            "background-color: rgba(0, 0, 0, 0.2); overflow: hidden; transition: 1.5s; font-size: 16px");
 
-            phase_innerHTML += ``;
-            phase_div.innerHTML = phase_innerHTML;
+        let phase_innerHTML = "";
 
-            // Add next button
-            const nextButton = document.createElement("button");
-            nextButton.setAttribute("id", "next-btn");
-            nextButton.setAttribute("style", `
-                position: absolute;
-                bottom: 15px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 200px;
-                height: 100px;
-                border: none;
-                background: url('../assets/images/continue_button.png') no-repeat center center;
-                background-size: contain;
-                cursor: pointer;
-                z-index: 101;
-                display: block;
-            `);
-            nextButton.addEventListener("click", function() {incrementProgressBar(16); clearInterval(intervalID); document.getElementById("phase_modal").remove(); showPhase(phaseValues[phaseIndex]);});
-            phase_div.appendChild(nextButton);
+        phase_innerHTML += `<img src="${phase.banner}" id="banner"/>`;
 
-            document.body.appendChild(phase_div);
-        }
-        else {
-            let phase_innerHTML = "";
-
-            phase_innerHTML += `<img src="${timerPhase.banner}" id="banner"/>`;
-
-            if (timerPhase.text.some(line => line !== "")) {
-                phase_innerHTML += `<div id="banner_text_box">`;
-                timerPhase.text.forEach((line) => {
-                    phase_innerHTML += `<span class="info">${line}</span>`;
-                });
-                phase_innerHTML += `</div>`;
-            }
-
-            phase_innerHTML += ``;
-
-            document.getElementById("phase_modal").innerHTML = phase_innerHTML;
-
-            // Add next button
-            const nextButton = document.createElement("button");
-            nextButton.setAttribute("id", "next-btn");
-            nextButton.setAttribute("style", `
-                position: absolute;
-                bottom: 15px;
-                left: 50%;
-                transform: translateX(-50%);
-                width: 200px;
-                height: 100px;
-                border: none;
-                background: url('../assets/images/continue_button.png') no-repeat center center;
-                background-size: contain;
-                cursor: pointer;
-                z-index: 101;
-                display: block;
-            `);
-            nextButton.addEventListener("click", function() {incrementProgressBar(16); clearInterval(intervalID); document.getElementById("phase_modal").remove(); showPhase(phaseValues[phaseIndex]);});
-            document.getElementById("phase_modal").appendChild(nextButton);
+        if (phase.text.some(line => line !== "")) {
+            phase_innerHTML += `<div id="banner_text_box">`;
+            phase.text.forEach((line) => {
+                phase_innerHTML += `<span class="info">${line}</span>`;
+            });
+            phase_innerHTML += `</div>`;
         }
 
-        document.getElementById("banner").setAttribute("style",
-            "background-color: transparent; width: calc(30vw + 15vh); height: auto; border-radius: 12px;" +
-            " position: absolute; top: 70%; left: 50%;" +
-            " z-index: 5; transition: 1.5s ease-in-out; transform: translate(-50%, -50%);");
+        phase_innerHTML += ``;
+        phase_div.innerHTML = phase_innerHTML;
+        document.body.appendChild(phase_div);
+    }
+    else {
+        let phase_innerHTML = "";
 
-        if (timerPhase.text.some(line => line !== "")) {
-            const text = document.getElementById("banner_text_box");
-            text.setAttribute("style", " display: flex; flex-direction: column; position: absolute;" +
-                " top: 80%; left: 43%; transform: translate(-50%, -50%);" +
-                " color: #C9FFFC; font-size: 2rem; font-family: 'Comfortaa', Arial, sans-serif; text-align: center;" +
-                " z-index: 10; padding: 10px 20px; border-radius: 8px; transform: translate(-50%, -50%);");
+        phase_innerHTML += `<img src="${phase.banner}" id="banner"/>`;
+
+        if (phase.text.some(line => line !== "")) {
+            phase_innerHTML += `<div id="banner_text_box">`;
+            phase.text.forEach((line) => {
+                phase_innerHTML += `<span class="info">${line}</span>`;
+            });
+            phase_innerHTML += `</div>`;
         }
 
-        var infos = document.getElementsByClassName("info");
-        for (var i = 0; i < infos.length; i++) {
-            infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
-                " z-index: 21; transition: 1.5s east-in;");
-        }
+        phase_innerHTML += ``;
 
-        var colHeaders = document.getElementsByClassName("colHeader");
-        for (var j = 0; j < colHeaders.length; j++) {
-            colHeaders[j].setAttribute("style", "text-align: center; font-size: calc(0.025 * 40vh);" +
-                " z-index: 21; transition: 1.5s east-in; white-space: pre;");
-        }
+        document.getElementById("phase_modal").innerHTML = phase_innerHTML;
+    }
 
-        var rowHeaders = document.getElementsByClassName("rowHeader");
-        for (var k = 0; k < rowHeaders.length; k++) {
-            rowHeaders[k].setAttribute("style", "text-align: right; font-size: calc(0.025 * 40vh);" +
-                " z-index: 21; transition: 1.5s east-in; white-space: pre;");
-        }
+    document.getElementById("banner").setAttribute("style",
+        "background-color: transparent; width: calc(30vw + 15vh); height: auto; border-radius: 12px;" +
+        " position: absolute; top: 70%; left: 50%;" +
+        " z-index: 5; transition: 1.5s ease-in-out; transform: translate(-50%, -50%);");
 
-        var dataCells = document.getElementsByClassName("dataCells");
-        for (var l = 0; l < dataCells.length; l++) {
-            dataCells[l].setAttribute("style", "text-align: center; font-size: calc(0.025 * 40vh);" +
-                " z-index: 21; transition: 1.5s east-in;");
-        }
-        counter++;
-        console.log(counter);
-    }, 1000);
+    if (phase.text.some(line => line !== "")) {
+        const text = document.getElementById("banner_text_box");
+        text.setAttribute("style", " display: flex; flex-direction: column; position: absolute;" +
+            " top: 80%; left: 43%; transform: translate(-50%, -50%);" +
+            " color: #C9FFFC; font-size: 2rem; font-family: 'Comfortaa', Arial, sans-serif; text-align: center;" +
+            " z-index: 10; padding: 10px 20px; border-radius: 8px; transform: translate(-50%, -50%);");
+    }
+
+    var infos = document.getElementsByClassName("info");
+    for (var i = 0; i < infos.length; i++) {
+        infos[i].setAttribute("style", "text-align: center; font-size: calc(0.045 * 40vh);" +
+            " z-index: 21; transition: 1.5s east-in;");
+    }
+
+    var colHeaders = document.getElementsByClassName("colHeader");
+    for (var j = 0; j < colHeaders.length; j++) {
+        colHeaders[j].setAttribute("style", "text-align: center; font-size: calc(0.025 * 40vh);" +
+            " z-index: 21; transition: 1.5s east-in; white-space: pre;");
+    }
+
+    var rowHeaders = document.getElementsByClassName("rowHeader");
+    for (var k = 0; k < rowHeaders.length; k++) {
+        rowHeaders[k].setAttribute("style", "text-align: right; font-size: calc(0.025 * 40vh);" +
+            " z-index: 21; transition: 1.5s east-in; white-space: pre;");
+    }
+
+    var dataCells = document.getElementsByClassName("dataCells");
+    for (var l = 0; l < dataCells.length; l++) {
+        dataCells[l].setAttribute("style", "text-align: center; font-size: calc(0.025 * 40vh);" +
+            " z-index: 21; transition: 1.5s east-in;");
+    }
+
+    // clear phase after 20 seconds
+    if (count == 19) {
+        setTimeout(() => {
+            document.getElementById("phase_modal").remove();
+        }, 1000);
+    }
+
+    setTimeout(() => {
+        callback(); // Call the callback after timer is done
+    }, 500);
 }
 
 /*
@@ -760,7 +738,7 @@ function showPhase(phase) {
             document.getElementById("phase").setAttribute("style",
                 "background-color: transparent; width: calc(0.8 * 45vh); height: auto;" +
                 " border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 40vh);" +
-                " left: 50%; transform: translateX(-50%); z-index: 10;" +
+                " left: calc(50vw - ((0.8 * 50vh + 10vh) / 2)); z-index: 10;" +
                 "transition: 1.5s ease-in-out;");
         }
         if (phase.banner && phase.banner.length > 0) {
@@ -774,8 +752,8 @@ function showPhase(phase) {
             }
 
             banner.setAttribute("style",
-                "background-color: transparent; max-width: 90vw; width: calc(0.8 * 65vh); border-radius: 12px;" +
-                " position: absolute; bottom: 3vh; left: 50%; transform: translateX(-50%);" +
+                "background-color: transparent; max-width: 90vw; width: calc(0.8 * 55vh); border-radius: 12px;" +
+                " position: absolute; bottom: -2vh; left: calc(50vw - ((0.8 * 50vh + 10vh) / 2));" +
                 " z-index: 5; transition: 1.5s ease-in-out; display: flex; align-items: center; justify-content: center;" +
                 " text-align: center; overflow: visible; flex-direction: column;");
 
@@ -794,23 +772,23 @@ function showPhase(phase) {
                 if (window.innerWidth <= 768) { // Small screens (mobile)
                     console.log("small screen");
                     if (phase.text.length > 3) {
-                        bottomValue = "18vh";
+                        bottomValue = "12vh";
                     }  else {
-                        bottomValue = "22vh";
+                        bottomValue = "15vh";
                     }
                 } else if (window.innerWidth <= 1024) { // Medium screens (tablets)
                     console.log("medium screen");
                     if (phase.text.length > 3) {
-                        bottomValue = "21vh";
+                        bottomValue = "15vh";
                     }  else {
-                        bottomValue = "23vh";
+                        bottomValue = "16vh";
                     }
                 } else { // Large screens (desktops)
                     console.log("large screen");
                     if (phase.text.length > 3) {
-                        bottomValue = "21vh";
+                        bottomValue = "15vh";
                     }  else {
-                        bottomValue = "24vh";
+                        bottomValue = "16vh";
                     }
                 }
 
@@ -843,7 +821,7 @@ function showPhase(phase) {
                 overlayImage.setAttribute("style", `position: ${image.position}; top: ${image.top}; left: ${image.left}; z-index: 15;`);
                 overlayImage.setAttribute("style", "width: calc(0.8 * 50vh); height: auto" +
                     " border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 10vh);" +
-                    " left: 50%; transform: translateX(-50%); z-index: 21; transition: 1.5s ease-in-out;");
+                    " left: calc(50vw - ((0.8 * 50vh + 10vh) / 2)); z-index: 21; transition: 1.5s ease-in-out;");
 
                 document.body.appendChild(overlayImage);
             });
@@ -854,7 +832,7 @@ function showPhase(phase) {
         nextButton.id = "next-btn";
         nextButton.setAttribute("style", `
             position: absolute;
-            bottom: 2px;
+            bottom: 15px;
             left: 50%;
             transform: translateX(-50%);
             width: 200px;
@@ -865,8 +843,6 @@ function showPhase(phase) {
             cursor: pointer;
             z-index: 100;
             display: none;
-            outline: none;
-            -webkit-tap-highlight-color: transparent;
         `);
         nextButton.addEventListener("click", nextPhaseSMP);
         phase_div.appendChild(nextButton);
