@@ -613,7 +613,11 @@ function showTimer(callback) {
 
             document.getElementById("phase_modal").innerHTML = phase_innerHTML;
 
-            document.getElementById("next-btn").setAttribute("style", `
+            // Add next button
+            const nextButton = document.createElement("button");
+            //nextButton.id = "next-btn";
+            nextButton.setAttribute("id", "next-btn");
+            nextButton.setAttribute("style", `
                 position: absolute;
                 bottom: 15px;
                 left: 50%;
@@ -627,6 +631,24 @@ function showTimer(callback) {
                 z-index: 101;
                 display: block;
             `);
+            //nextButton.addEventListener("click", function() {showPhase(phaseValues[phaseIndex])});
+            nextButton.addEventListener("click", function() {clearInterval(intervalID); document.getElementById("phase_modal").remove(); showPhase(phaseValues[phaseIndex]);});
+            document.getElementById("phase_modal").appendChild(nextButton);
+
+            // document.getElementById("next-btn").setAttribute("style", `
+            //     position: absolute;
+            //     bottom: 15px;
+            //     left: 50%;
+            //     transform: translateX(-50%);
+            //     width: 200px;
+            //     height: 100px;
+            //     border: none;
+            //     background: url('../assets/images/continue_button.png') no-repeat center center;
+            //     background-size: contain;
+            //     cursor: pointer;
+            //     z-index: 101;
+            //     display: block;
+            // `);
         }
 
         document.getElementById("banner").setAttribute("style",
