@@ -571,7 +571,8 @@ function showTimer(callback) {
 
             // Add next button
             const nextButton = document.createElement("button");
-            nextButton.id = "next-btn";
+            //nextButton.id = "next-btn";
+            nextButton.setAttribute("id", "next-btn");
             nextButton.setAttribute("style", `
                 position: absolute;
                 bottom: 15px;
@@ -584,14 +585,14 @@ function showTimer(callback) {
                 background-size: contain;
                 cursor: pointer;
                 z-index: 100;
-                display: none;
+                display: block;
             `);
             //nextButton.addEventListener("click", function() {showPhase(phaseValues[phaseIndex])});
             nextButton.addEventListener("click", function() {clearInterval(intervalID); document.getElementById("phase_modal").remove(); showPhase(phaseValues[phaseIndex]);});
             phase_div.appendChild(nextButton);
-            setTimeout(() => {
-                nextButton.style.display = "block";
-            }, 1000);
+            // setTimeout(() => {
+            //     nextButton.style.display = "block";
+            // }, 1000);
 
             document.body.appendChild(phase_div);
         }
