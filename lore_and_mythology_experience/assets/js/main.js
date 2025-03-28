@@ -3,14 +3,10 @@ import SettingsModal from './SettingsModal.js';
 import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js";
 import { startPhases } from "./phases.js";
 import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/GLTFLoader.js";
-//import ProgressBar from './progressBar.js';
 import incrementProgressBar from './progressBar.js';
 
 incrementProgressBar(1);
 
-// const pBar = new ProgressBar(1);
-// pBar.initialize();
-// pBar.drawProgressBar();
 // import {
 //     CSS2DRenderer,
 //     CSS2DObject,
@@ -454,7 +450,7 @@ controls.enableZoom = false;
 const settingsModal = new SettingsModal();
 
 let holdTime = 0.0; // Time on asteroid
-const holdThreshold = 3.0; // Time to trigger zoom
+const holdThreshold = 0.5; // Time to trigger zoom
 let isLockOn = false; // Scope is locked on
 let isZoom = false; // Camera zoom starts
 
@@ -527,6 +523,7 @@ function pointTelescopeAt(target3D, delta) {
 // Star transition
 const starTransistionGeometry = new THREE.BufferGeometry();
 let isStarTransition = false;
+let phaseBool = false;
 function starFieldTransistion() {
     isStarTransition = true;
 
@@ -541,6 +538,7 @@ function starFieldTransistion() {
             mainTitle.style.visibility = "hidden";
             mainTitle.style.opacity = "0";
         }
+        phaseBool = true;
         startPhases();
     }, 2000);
 }
@@ -790,8 +788,6 @@ function startCameraZoom() {
             // Start star field transition
         } else {
             settingsModal.applyAMPIModalStyles();
-            //pBar.drawProgressBar();
-            //window.top.testIframe();
             incrementProgressBar(2);
             starFieldTransistion();
         }
@@ -819,13 +815,15 @@ function initializeAutoHelp() {
     });
 }
 function triggerAutoHelp() {
-    document.getElementById("help-icon-button").click();
+    if (!phaseBool) {
+        document.getElementById("help-icon-button").click();
+    }
 }
 function resetAutoHelp() {
     clearTimeout(inactivityTimer);
-    inactivityTimer = setTimeout(triggerAutoHelp, 60000);
+    inactivityTimer = setTimeout(triggerAutoHelp, 15000);
 }
-let inactivityTimer = setTimeout(triggerAutoHelp, 60000);
+let inactivityTimer = setTimeout(triggerAutoHelp, 15000);
 initializeAutoHelp();
 
 // Handle window resizing
