@@ -788,7 +788,7 @@ function startCameraZoom() {
             // Start star field transition
         } else {
             settingsModal.applyAMPIModalStyles();
-            incrementProgressBar(2);
+            //incrementProgressBar(2);
             starFieldTransistion();
         }
     }
