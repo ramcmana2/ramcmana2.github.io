@@ -1,5 +1,6 @@
 import { startPhasesSMP } from "./phasesSMP.js";
 import incrementProgressBar from './progressBar.js';
+import { AudioManager } from './AudioManager.js';
 
 incrementProgressBar(2);
 
@@ -57,22 +58,9 @@ const phases = {
             { src: "../assets/images/chrysalis/chrysalis.png", id: "chrysalis", position: "absolute", top: "0", left: "0" },
         ],
     },
-    chrysalis2: {
-        title: "Chrysalis Resemblance",
-        image: "",
-        alt: "image of chrysalis",
-        duration: 250,
-        scroll: "",
-        text: [
-            ""
-        ],
-        additionalImages: [
-            { src: "../assets/images/chrysalis/chrysalis.png", id: "chrysalis", position: "absolute", top: "0", left: "0" },
-        ],
-    },
-    chrysalis3: {
+    butterfly1: {
         title: "The 'Breath of Life'",
-        image: "../assets/images/chrysalis/butterfly.png",
+        image: "",
         alt: "Asteroid Psyche butterfly emerges from chrysalis",
         duration: 250,
         scroll: "../assets/images/papyrus_scroll_double_sided.png",
@@ -81,6 +69,9 @@ const phases = {
             "as someone dies and is represented as",
             "a butterfly leaving its chrysalis.",
             "This breath of life is called Psyche."
+        ],
+        additionalImages: [
+            { src: "../assets/images/chrysalis/butterfly.png", id: "butterfly", position: "absolute", top: "0", left: "0" },
         ]
     },
     psychegoddess1: { // psyche goddess part1
@@ -120,7 +111,7 @@ const phases = {
             "a dark, dreamless sleep..."
         ]
     },
-    psychegoddess4: { // psyche goddess part5
+    psychegoddess4: { // psyche goddess part4
         title: "The Asteroid Psyche",
         image: "../assets/images/goddess_psyche/asteroid.png",
         alt: "psyche asteroid sleeping",
@@ -131,7 +122,7 @@ const phases = {
             "a similar dark, dreamless sleep..."
         ]
     },
-    psychegoddess7: { // psyche goddess part7
+    psychegoddess5: { // psyche goddess part5
         title: "Exploring the Asteroid Psyche",
         image: "../assets/images/goddess_psyche/asteroid.png",
         alt: "psyche asteroid core",
@@ -147,29 +138,60 @@ const phases = {
 };
 
 let phaseIndex = 0;
+let audioManager;
 const phaseValues = Object.values(phases);
 
 // Start the phases
-export function startPhases() {
+export function startPhases(phasesAudioManager) {
+    audioManager = phasesAudioManager;
     phaseIndex = 0;
     console.log("Current Phase Index:", phaseIndex, "Total Phases:", phaseValues.length);
     showPhase(phaseValues[phaseIndex]);
 }
 
 function afterPhases() {
-    startPhasesSMP();
+    startPhasesSMP(audioManager);
 }
+
+// Create a <style> tag and add fade effects
+const style = document.createElement("style");
+style.innerHTML = `
+    .fade-in {
+        opacity: 0;
+        animation: fadeIn 0.25s forwards;
+    }
+    
+    .fade-out {
+        animation: fadeOut 0.25s forwards;
+    }
+
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+        0% { opacity: 1; }
+        100% { opacity: 0; }
+    }
+`;
+document.head.appendChild(style);
 
 let phaseBool = false;
 
 function showPhase(phase) {
     if (!phaseBool) {
+        new AudioManager("pageTurn");
         phaseBool = true;
 
         // set up html and css
         const phase_div = document.createElement("div");
         phase_div.setAttribute("id", "phase_modal");
-        phase_div.className = "phase-modal";
+        phase_div.classList.add("fade-in");
+        phase_div.setAttribute("style", "display: block; position: fixed;" +
+            " z-index: 20; left: 0; top: 0; width: 100%; height: 100%; " +
+            "background-color: rgba(0, 0, 0, 0.2); overflow: hidden; transition: 1.5s;");
+
         let phase_innerHTML = "";
 
         if (phase.title && phase.title.length > 0) {
@@ -183,7 +205,7 @@ function showPhase(phase) {
         }
 
         if (phase.scroll && phase.scroll.length > 0) {
-            phase_innerHTML += `<div id="scroll-container" class="scroll" style="background-image: url(${phase.scroll}); background-size: cover; background-position: center; background-repeat: no-repeat; width: 100%; height: 100%;">`;
+            phase_innerHTML += `<img src="${phase.scroll}" id="papyrus_scroll"/>`;
 
             if (phase.text.some(line => line !== "")) {
                 phase_innerHTML += `<div id="scroll_text_box">`;
@@ -192,10 +214,6 @@ function showPhase(phase) {
                 });
                 phase_innerHTML += `</div>`;
             }
-
-            phase_innerHTML += `</div>`;
-
-
         }
 
         phase_innerHTML += ``;
@@ -214,7 +232,10 @@ function showPhase(phase) {
 
         // add styles to the phase image and scroll
         if (phase.image && phase.image.length > 0) {
-            document.getElementById("phase").className = "phase";
+            document.getElementById("phase").setAttribute("style",
+                "background-color: transparent; width: calc(0.8 * 40vh); height: 40vh;" +
+                " border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 40vh);" +
+                " left: 50%; transform: translateX(-50%); z-index: 10; transition: 1.5s;");
         }
 
         if (phase.scroll && phase.scroll.length > 0) {
@@ -223,22 +244,59 @@ function showPhase(phase) {
             // Ensure banner exists before applying styles
             if (!scroll) {
                 scroll = document.createElement("div");
-                scroll.id = "scroll-container";
+                scroll.id = "scroll";
+                document.body.appendChild(scroll);
             }
-            scroll.className = "scroll";
 
-            {
+            scroll.setAttribute("style",
+                "background-color: transparent; max-width: 90vw; width: calc(0.8 * 56vh); border-radius: 12px;" +
+                " position: absolute; bottom: 5vh; left: 50%; transform: translateX(-50%);" +
+                " z-index: 5; transition: 1.5s ease-in-out; display: flex; align-items: center; justify-content: center;" +
+                " text-align: center; overflow: visible; flex-direction: column;");
+
+            if (phase.text.some(line => line !== "")) {
                 let textBox = document.getElementById("scroll_text_box");
 
                 // Ensure the text box exists
                 if (!textBox) {
                     textBox = document.createElement("div");
                     textBox.id = "scroll_text_box";
-                    scroll.appendChild(textBox);
-                    document.body.appendChild(scroll);
+                    banner.appendChild(textBox);
                 }
 
-                textBox.className = "scroll-text-box";
+                let bottomValue;
+
+                if (window.innerWidth <= 768) { // Small screens (mobile)
+                    console.log("small screen");
+                    if (phase.text.length > 3) {
+                        bottomValue = "16vh";
+                    }  else {
+                        bottomValue = "22vh";
+                    }
+                } else if (window.innerWidth <= 1024) { // Medium screens (tablets)
+                    console.log("medium screen");
+                    if (phase.text.length > 3) {
+                        bottomValue = "21vh";
+                    }  else {
+                        bottomValue = "23vh";
+                    }
+                } else { // Large screens (desktops)
+                    console.log("large screen");
+                    if (phase.text.length > 4) {
+                        bottomValue = "19vh";
+                    } else if (phase.text.length > 3) {
+                        bottomValue = "22vh";
+                    } else {
+                        bottomValue = "23vh";
+                    }
+                }
+
+                textBox.setAttribute("style",
+                    `display: flex; flex-wrap: wrap; position: inherit; align-items: center; 
+                         justify-content: center; width: calc(0.8 * 40vh); color: black; 
+                         font-size: clamp(0.8rem, 2vw, 0.5rem); font-family: 'Papyrus', Arial, sans-serif; 
+                         text-align: center; padding: 0vh 4vh; white-space: normal; 
+                         bottom: ${bottomValue}; z-index: 10; left: 50%; transform: translateX(-50%);`);
 
                 // Populate the text box with the phase text
                 textBox.innerHTML = phase.text.join(" ");  // Converts the array into a single line sentence
@@ -254,13 +312,14 @@ function showPhase(phase) {
         if (phase.additionalImages) {
             phase.additionalImages.forEach((image, index) => {
                 const overlayImage = document.createElement("img");
+                overlayImage.classList.add("fade-in");
                 overlayImage.setAttribute("src", image.src);
                 overlayImage.setAttribute("id", image.id);
 
                 overlayImage.setAttribute("style",
                     "background-color: transparent; width: calc(0.8 * 40vh); height: 40vh;" +
-                    " border-radius: 12px; padding: 5vh; position: absolute; top: calc(30vh);" +
-                    " left: calc(50vw - ((0.8 * 50vh) / 2)); z-index: 21; transition: 1.5s;");
+                    " border-radius: 12px; padding: 5vh; position: absolute; top: calc(0.25 * 40vh);" +
+                    " left: 50%; transform: translateX(-50%); z-index: 21; transition: 1.5s;");
 
                 document.body.appendChild(overlayImage);
             });
@@ -285,7 +344,18 @@ function showPhase(phase) {
             outline: none;
             -webkit-tap-highlight-color: transparent;
         `);
-        nextButton.addEventListener("click", nextPhase);
+        nextButton.addEventListener("click", () => {
+                setTimeout(() => {
+                    phase_div.classList.remove("fade-in");
+                    phase_div.classList.add("fade-out");
+
+                    setTimeout(() => {
+                        removeCurrentPhase();
+                        nextPhase();
+                    }, 250); // Matches fade-out duration
+                }, phase.duration);
+            }
+        );
         phase_div.appendChild(nextButton);
 
         // Next button appears after some time passes
@@ -308,27 +378,44 @@ function nextPhase() {
     phaseIndex++;
     incrementProgressBar(2 + phaseIndex);
     if (phaseIndex < phaseValues.length) {
-        console.log("Current Phase Index:", phaseIndex, "Total Phases:", phaseValues.length);
-        showPhase(phaseValues[phaseIndex]);
+        setTimeout(() => {
+            console.log("Current Phase Index:", phaseIndex, "Total Phases:", phaseValues.length);
+            showPhase(phaseValues[phaseIndex]);
+        }, 250);
 
     // If at end of phases
     } else {
         afterPhases();
     }
 }
-  
+
+// transition out of current phase. Fade out and signal calling the next phase.
 function removeCurrentPhase() {
-    // Remove phase modal
+    // Select phase modal
     const phaseModal = document.getElementById("phase_modal");
-    if (phaseModal) {
-        phaseModal.remove();
-    }
-  
-    // Remove phase images
+
+    // Select overlay images
     const overlayImages = document.querySelectorAll(
         '[id^="chrysalis"], [id^="butterfly"], [id^="chrysalis2"], [id^="butterfly2"]'
     );
-    overlayImages.forEach((img) => img.remove());
-  
+
+    // Force reflow (prevents animation issues)
+    phaseModal?.offsetHeight;
+    overlayImages.forEach((img) => img.offsetHeight);
+
+    // Apply fade-out effect
+    if (phaseModal) {
+        phaseModal.classList.add("fade-out");
+    }
+    overlayImages.forEach((img) => {
+        img.classList.add("fade-out");
+    });
+
+    // Remove elements after animation completes
+    setTimeout(() => {
+        phaseModal?.remove();
+        overlayImages.forEach((img) => img.remove());
+    }, 250); // Match fade-out duration in CSS
+
     phaseBool = false;
 }
