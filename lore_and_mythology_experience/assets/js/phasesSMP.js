@@ -124,9 +124,13 @@ export function startPhasesSMP(phasesAudioManager) {
     }
     //document.getElementById("swipe").setAttribute("style", "font-family: Arial, Helvetica, sans-serif; color: #333;");
     document.getElementById("tap").setAttribute("style", "width: calc(0.2 * 0.7 * 70vh); align-self: center; padding: 0.99vh;");
+    var text_boxes = document.getElementsByClassName("text_box");
+    for (var k = 0; k < text_boxes.length; k++) {
+        text_boxes[k].setAttribute("style", "border-style: solid; border-width: thin; border-color: black; border-radius: 5px; padding: 0.5vh; display: flex; flex-direction: column; width: calc(0.5 * 0.7 * 70vh);");
+    }
     var instructs = document.getElementsByClassName("instructions");
-    for (var k = 0; k < instructs.length; k++) {
-        instructs[k].setAttribute("style", "text-align: center; font-size: 24px; color: #333;");
+    for (var l = 0; l < instructs.length; l++) {
+        instructs[l].setAttribute("style", "text-align: center; font-size: 24px; color: #333;");
     }
 
     phaseIndex = 0;
