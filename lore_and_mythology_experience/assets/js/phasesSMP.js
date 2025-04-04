@@ -126,7 +126,7 @@ export function startPhasesSMP(phasesAudioManager) {
     document.getElementById("tap").setAttribute("style", "width: calc(0.2 * 0.7 * 70vh); align-self: center; padding: 0.99vh;");
     var instructs = document.getElementsByClassName("instructions");
     for (var k = 0; k < instructs.length; k++) {
-        instructs[k].setAttribute("style", "text-align: center; color: #333;");
+        instructs[k].setAttribute("style", "text-align: center; font-size: 24px; color: #333;");
     }
 
     phaseIndex = 0;
