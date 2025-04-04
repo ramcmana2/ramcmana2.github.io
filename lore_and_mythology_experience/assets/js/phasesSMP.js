@@ -98,6 +98,9 @@ let audioManager;
 export function startPhasesSMP(phasesAudioManager) {
     audioManager = phasesAudioManager;
     audioManager.stopPlaying();
+
+    document.getElementById("help_modal").setAttribute("style", "color: #333; background-color: rgba(229, 243, 255, 0.9); transition: 1.5s; font-family: Arial, Helvetica, sans-serif;");
+
     phaseIndex = 0;
     // using callbacks to ensure one function completes before another starts
     showSMPIntro(() => {
