@@ -116,7 +116,7 @@ export function startPhasesSMP(phasesAudioManager) {
     var taps = document.getElementsByClassName("tap");
     for (var i = 0; i < taps.length; i++) {
         //taps[i].setAttribute("style", "position: absolute; top: calc(3.17 * (100vh - 70vh)); left: calc((100vw / 2) - (0.1 * 0.7 * 70vh)); display: flex; flex-direction: column; font-family: Arial, Helvetica, sans-serif; color: #333;");
-        taps[i].setAttribute("style", "position: absolute; top: calc(1.82 * (100vh - 70vh)); left: calc((100vw / 2) - (0.185 * 0.7 * 70vh)); font-family: Arial, Helvetica, sans-serif; color: #333;");
+        taps[i].setAttribute("style", "position: absolute; top: calc(1.85 * (100vh - 70vh)); left: calc((100vw / 2) - (0.185 * 0.7 * 70vh)); font-family: Arial, Helvetica, sans-serif; color: #333;");
     }
     //document.getElementById("swipe").setAttribute("style", "font-family: Arial, Helvetica, sans-serif; color: #333;");
     document.getElementById("tap").setAttribute("style", "width: calc(0.2 * 0.7 * 70vh); align-self: center; padding: 0.99vh;");
