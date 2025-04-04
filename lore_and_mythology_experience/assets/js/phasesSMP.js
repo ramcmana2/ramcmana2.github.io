@@ -99,8 +99,9 @@ export function startPhasesSMP(phasesAudioManager) {
     audioManager = phasesAudioManager;
     audioManager.stopPlaying();
 
-    document.getElementById("help_modal").setAttribute("style", "background-repeat: no repeat; background-position: center center; background-size: 100% 100%; background-color: rgba(229, 243, 255, 0.9); border-radius: 15px; font-family: Arial, Helvetica, sans-serif; margin: 10% auto; padding: 20px; width: 80%; max-width: 375px; color: #333; position: relative; max-height: 90vh; overflow-y: auto; z-index: 30;");
-    document.getElementById("papyrus_horizontal").setAttribute("style", "display: none;")
+    document.getElementById("help_modal").setAttribute("style", "background-repeat: no repeat; background-position: center center; background-size: 100% 100%; background-color: rgba(229, 243, 255, 0.9); border-radius: 15px; font-family: Arial, Helvetica, sans-serif; margin: 10% auto; padding: 20px; width: 80%; max-width: 375px; color: #333; position: relative; max-height: 90vh; overflow-y: auto;");
+    //document.getElementById("papyrus_horizontal").setAttribute("style", "display: none;");
+    document.getElementById("papyrus_horizontal").src = "";
     document.getElementById("close_help").setAttribute("style", "font-family: Arial, Helvetica, sans-serif; color: #333;");
     document.getElementById("help_modal_title").setAttribute("style", "font-family: Arial, Helvetica, sans-serif; color: #333;");
     var swipes = document.getElementsByClassName("swipe");
