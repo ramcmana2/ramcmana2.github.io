@@ -99,18 +99,19 @@ export function startPhasesSMP(phasesAudioManager) {
     audioManager = phasesAudioManager;
     audioManager.stopPlaying();
 
-    document.getElementById("help_modal").setAttribute("style", "background-repeat: no repeat; background-position: center center; background-size: 100% 100%; background-color: rgba(229, 243, 255, 0.9); border-radius: 15px; font-family: Arial, Helvetica, sans-serif; margin: 10% auto; padding: 20px; width: 80%; max-width: 375px; color: #333; position: relative; max-height: 90vh; overflow-y: auto;");
+    //document.getElementById("help_modal").setAttribute("style", "background-repeat: no repeat; background-position: center center; background-size: 100% 100%; background-color: rgba(229, 243, 255, 0.9); border-radius: 15px; font-family: Arial, Helvetica, sans-serif; margin: 10% auto; padding: 20px; width: 80%; max-width: 375px; color: #333; position: relative; max-height: 90vh; overflow-y: auto;");
     //document.getElementById("papyrus_horizontal").setAttribute("style", "display: none;");
     document.getElementById("papyrus_horizontal").src = "";
-    document.getElementById("close_help").setAttribute("style", "font-family: Arial, Helvetica, sans-serif; color: #333;");
-    document.getElementById("help_modal_title").setAttribute("style", "font-family: Arial, Helvetica, sans-serif; color: #333;");
+    document.getElementById("papyrus_horizontal").setAttribute("style", "background-color: rgba(229, 243, 255, 0.9); border-radius: 15px; width: calc(0.75 * 85vh); height: 85vh; position: relative; top: calc((100vh - 85vh) / 2); left: calc((100vw - (0.75 * 85vh)) / 2);");
+    document.getElementById("close_help").setAttribute("style", "position: absolute; top: calc(100vh - 85vh - ((0.09 * 0.75 * 85vh) / 2)); left: calc((100vw / 2) + ((0.75 * 85vh) / 4)); font-family: Arial, Helvetica, sans-serif; color: #333; font-size: calc(0.09 * 0.75 * 85vh); cursor: pointer;");
+    document.getElementById("help_modal_title").setAttribute("style", "position: absolute; top: calc(100vh - 85vh + ((0.11 * 0.75 * 85vh) / 2)); left: calc((100vw / 2) - (4 * 0.35 * 0.11 * 0.75 * 85vh)); font-family: Arial, Helvetica, sans-serif; color: #333; font-size: calc(0.11 * 0.75 * 85vh);");
     var swipes = document.getElementsByClassName("swipe");
     for (var i = 0; i < swipes.length; i++) {
-        swipes[i].setAttribute("style", "font-family: Arial, Helvetica, sans-serif; color: #333;");
+        swipes[i].setAttribute("style", "position: absolute; top: calc(3.3 * (100vh - 85vh)); left: calc((100vw / 2) - (0.75 * 85vh / 2) + (0.22 * 0.75 * 85vh)); display: flex; flex-direction: column; font-family: Arial, Helvetica, sans-serif; color: #333;");
     }
     var taps = document.getElementsByClassName("tap");
     for (var i = 0; i < taps.length; i++) {
-        taps[i].setAttribute("style", "font-family: Arial, Helvetica, sans-serif; color: #333;");
+        taps[i].setAttribute("style", "position: absolute; top: calc(3.17 * (100vh - 85vh)); left: calc((100vw / 2) + (0.75 * 85vh / 2) - (0.46 * 0.75 * 85vh)); display: flex; flex-direction: column; font-family: Arial, Helvetica, sans-serif; color: #333;");
     }
     //document.getElementById("swipe").setAttribute("style", "font-family: Arial, Helvetica, sans-serif; color: #333;");
 
