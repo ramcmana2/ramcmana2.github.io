@@ -102,11 +102,15 @@ export function startPhasesSMP(phasesAudioManager) {
     //document.getElementById("help_modal").setAttribute("style", "background-repeat: no repeat; background-position: center center; background-size: 100% 100%; background-color: rgba(229, 243, 255, 0.9); border-radius: 15px; font-family: Arial, Helvetica, sans-serif; margin: 10% auto; padding: 20px; width: 80%; max-width: 375px; color: #333; position: relative; max-height: 90vh; overflow-y: auto;");
     //document.getElementById("papyrus_horizontal").setAttribute("style", "display: none;");
     document.getElementById("papyrus_horizontal").src = "";
+    document.getElementById("papyrus_horizontal").alt = "";
     document.getElementById("papyrus_horizontal").setAttribute("style", "background-color: rgba(229, 243, 255, 0.9); border-radius: 15px; width: calc(0.7 * 70vh); height: 70vh; position: relative; top: calc((100vh - 70vh) / 2); left: calc((100vw - (0.7 * 70vh)) / 2);");
     //document.getElementById("close_help").setAttribute("style", "position: absolute; top: calc(100vh - 70vh - ((0.09 * 0.7 * 70vh) / 2)); left: calc((100vw / 2) + ((0.8 * 70vh) / 4)); font-family: Arial, Helvetica, sans-serif; color: #333; font-size: calc(0.09 * 0.7 * 70vh); cursor: pointer;");
-    document.getElementById("close_help").setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + (0.07 * 0.7 * 70vh)); left: calc((100vw / 2) + (70vh / 4)); font-family: Arial, Helvetica, sans-serif; color: #333; font-size: calc(0.09 * 0.7 * 70vh); cursor: pointer;");
+    document.getElementById("close_help").textContent = "&times;";
+    //document.getElementById("close_help").setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + (0.07 * 0.7 * 70vh)); left: calc((100vw / 2) + (70vh / 4)); font-family: Arial, Helvetica, sans-serif; color: #333; font-size: calc(0.09 * 0.7 * 70vh); cursor: pointer;");
+    document.getElementById("close_help").setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + (0.07 * 0.7 * 70vh)); left: calc((100vw / 2) + (70vh / 4)); font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 30px; font-weight: bold; cursor: pointer;");
     //document.getElementById("help_modal_title").setAttribute("style", "position: absolute; top: calc(100vh - 70vh + ((0.11 * 0.7 * 70vh) / 2)); left: calc((100vw / 2) - (4 * 0.35 * 0.11 * 0.7 * 70vh)); font-family: Arial, Helvetica, sans-serif; color: #333; font-size: calc(0.11 * 0.7 * 70vh);");
-    document.getElementById("help_modal_title").setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + (0.11 * 0.7 * 70vh)); left: calc((100vw / 2) - (2.7 * 0.35 * 0.11 * 0.7 * 70vh)); font-family: Arial, Helvetica, sans-serif; color: #333; font-size: calc(0.11 * 0.7 * 70vh);");
+    //document.getElementById("help_modal_title").setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + (0.11 * 0.7 * 70vh)); left: calc((100vw / 2) - (2.7 * 0.35 * 0.11 * 0.7 * 70vh)); font-family: Arial, Helvetica, sans-serif; color: #333; font-size: calc(0.11 * 0.7 * 70vh);");
+    document.getElementById("help_modal_title").setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + (0.11 * 0.7 * 70vh)); left: calc((100vw / 2) - (2.7 * 0.35 * 0.11 * 0.7 * 70vh)); font-family: Arial, Helvetica, sans-serif; color: #333; font-size: 24px;");
     var swipes = document.getElementsByClassName("swipe");
     for (var i = 0; i < swipes.length; i++) {
         //swipes[i].setAttribute("style", "position: absolute; top: calc(3.3 * (100vh - 70vh)); left: calc((100vw / 2) - (0.7 * 70vh / 2) + (0.22 * 0.7 * 70vh)); display: flex; flex-direction: column; font-family: Arial, Helvetica, sans-serif; color: #333;");
@@ -114,12 +118,16 @@ export function startPhasesSMP(phasesAudioManager) {
     }
     document.getElementById("swipe").setAttribute("style", "display: none;");
     var taps = document.getElementsByClassName("tap");
-    for (var i = 0; i < taps.length; i++) {
+    for (var j = 0; j < taps.length; j++) {
         //taps[i].setAttribute("style", "position: absolute; top: calc(3.17 * (100vh - 70vh)); left: calc((100vw / 2) - (0.1 * 0.7 * 70vh)); display: flex; flex-direction: column; font-family: Arial, Helvetica, sans-serif; color: #333;");
-        taps[i].setAttribute("style", "position: absolute; top: calc(1.85 * (100vh - 70vh)); left: calc((100vw / 2) - (0.185 * 0.7 * 70vh)); font-family: Arial, Helvetica, sans-serif; color: #333;");
+        taps[j].setAttribute("style", "position: absolute; top: calc(1.85 * (100vh - 70vh)); left: calc((100vw / 2) - (0.185 * 0.7 * 70vh)); font-family: Arial, Helvetica, sans-serif; color: #333;");
     }
     //document.getElementById("swipe").setAttribute("style", "font-family: Arial, Helvetica, sans-serif; color: #333;");
     document.getElementById("tap").setAttribute("style", "width: calc(0.2 * 0.7 * 70vh); align-self: center; padding: 0.99vh;");
+    var instructs = document.getElementsByClassName("instructions");
+    for (var k = 0; k < instructs.length; k++) {
+        instructs[k].setAttribute("style", "text-align: center;");
+    }
 
     phaseIndex = 0;
     // using callbacks to ensure one function completes before another starts
