@@ -123,7 +123,7 @@ export function startPhasesSMP(phasesAudioManager) {
     for (var j = 0; j < taps.length; j++) {
         //taps[i].setAttribute("style", "position: absolute; top: calc(3.17 * (100vh - 70vh)); left: calc((100vw / 2) - (0.1 * 0.7 * 70vh)); display: flex; flex-direction: column; font-family: Arial, Helvetica, sans-serif; color: #333;");
         //taps[j].setAttribute("style", "position: absolute; top: calc(1.9 * (100vh - 70vh)); left: calc((100vw / 2) - (0.25 * 0.7 * 70vh)); font-family: Arial, Helvetica, sans-serif;");
-        taps[j].setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + 70vh - ((0.3 * 0.7 * 70vh) + 32px)); left: calc((100vw / 2) - ((0.58 * 0.7 * 70vh) / 2) + 0.7vh); font-family: Arial, Helvetica, sans-serif;");
+        taps[j].setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + 70vh - ((0.3 * 0.7 * 72vh) + 42px + ((0.7 * 70vh) / 8))); left: calc((100vw / 2) - (((0.58 * 0.7 * 70vh) / 2) + 1vh)); font-family: Arial, Helvetica, sans-serif;");
     }
     //document.getElementById("swipe").setAttribute("style", "font-family: Arial, Helvetica, sans-serif; color: #333;");
     document.getElementById("tap").setAttribute("style", "width: calc(0.3 * 0.7 * 70vh); align-self: center; padding: 0.99vh;");
