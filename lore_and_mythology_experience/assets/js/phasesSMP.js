@@ -107,10 +107,10 @@ export function startPhasesSMP(phasesAudioManager) {
     //document.getElementById("close_help").setAttribute("style", "position: absolute; top: calc(100vh - 70vh - ((0.09 * 0.7 * 70vh) / 2)); left: calc((100vw / 2) + ((0.8 * 70vh) / 4)); font-family: Arial, Helvetica, sans-serif; color: #333; font-size: calc(0.09 * 0.7 * 70vh); cursor: pointer;");
     document.getElementById("close_help").textContent = "×";
     //document.getElementById("close_help").setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + (0.07 * 0.7 * 70vh)); left: calc((100vw / 2) + (70vh / 4)); font-family: Arial, Helvetica, sans-serif; color: #333; font-size: calc(0.09 * 0.7 * 70vh); cursor: pointer;");
-    document.getElementById("close_help").setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + 30); left: calc((100vw / 2) + ((0.7 * 70vh) / 2) - 30); font-family: Arial, Helvetica, sans-serif; font-size: 30px; font-weight: bold; cursor: pointer;");
+    document.getElementById("close_help").setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + (0.07 * 0.7 * 70vh)); left: calc((100vw / 2) + (70vh / 5)); font-family: Arial, Helvetica, sans-serif; font-size: 30px; font-weight: bold; cursor: pointer;");
     //document.getElementById("help_modal_title").setAttribute("style", "position: absolute; top: calc(100vh - 70vh + ((0.11 * 0.7 * 70vh) / 2)); left: calc((100vw / 2) - (4 * 0.35 * 0.11 * 0.7 * 70vh)); font-family: Arial, Helvetica, sans-serif; color: #333; font-size: calc(0.11 * 0.7 * 70vh);");
     //document.getElementById("help_modal_title").setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + (0.11 * 0.7 * 70vh)); left: calc((100vw / 2) - (2.7 * 0.35 * 0.11 * 0.7 * 70vh)); font-family: Arial, Helvetica, sans-serif; color: #333; font-size: calc(0.11 * 0.7 * 70vh);");
-    document.getElementById("help_modal_title").setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + (2 * 24)); left: calc((100vw / 2) - (2 * 12)); font-family: Arial, Helvetica, sans-serif; font-size: 24px;");
+    document.getElementById("help_modal_title").setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + (0.11 * 0.7 * 70vh)); left: calc((100vw / 2) - (3 * 0.35 * 0.11 * 0.7 * 70vh)); font-family: Arial, Helvetica, sans-serif; font-size: 24px;");
     var swipes = document.getElementsByClassName("swipe");
     for (var i = 0; i < swipes.length; i++) {
         //swipes[i].setAttribute("style", "position: absolute; top: calc(3.3 * (100vh - 70vh)); left: calc((100vw / 2) - (0.7 * 70vh / 2) + (0.22 * 0.7 * 70vh)); display: flex; flex-direction: column; font-family: Arial, Helvetica, sans-serif; color: #333;");
@@ -120,13 +120,13 @@ export function startPhasesSMP(phasesAudioManager) {
     var taps = document.getElementsByClassName("tap");
     for (var j = 0; j < taps.length; j++) {
         //taps[i].setAttribute("style", "position: absolute; top: calc(3.17 * (100vh - 70vh)); left: calc((100vw / 2) - (0.1 * 0.7 * 70vh)); display: flex; flex-direction: column; font-family: Arial, Helvetica, sans-serif; color: #333;");
-        taps[j].setAttribute("style", "position: absolute; top: calc(100vh - ((100vh - 70vh) / 2) - (0.25 * 0.7 * 70vh)); left: calc((100vw / 2) - ((0.5 * 0.7 * 70vh) / 2)); font-family: Arial, Helvetica, sans-serif;");
+        taps[j].setAttribute("style", "position: absolute; top: calc(1.85 * (100vh - 70vh)); left: calc((100vw / 2) - (0.185 * 0.7 * 70vh)); font-family: Arial, Helvetica, sans-serif;");
     }
     //document.getElementById("swipe").setAttribute("style", "font-family: Arial, Helvetica, sans-serif; color: #333;");
     document.getElementById("tap").setAttribute("style", "width: calc(0.25 * 0.7 * 70vh); align-self: center; padding: 0.99vh;");
     var text_boxes = document.getElementsByClassName("text_box");
     for (var k = 0; k < text_boxes.length; k++) {
-        text_boxes[k].setAttribute("style", "border-style: solid; border-width: thin; border-color: black; border-radius: 5px; padding: 0.5vh; display: flex; flex-direction: column; width: calc(0.5 * 0.7 * 70vh);");
+        text_boxes[k].setAttribute("style", "border-style: solid; border-width: thin; border-color: black; border-radius: 5px; padding: 0.5vh; display: flex; flex-direction: column; width: calc(0.6 * 0.7 * 70vh);");
     }
     var instructs = document.getElementsByClassName("instructions");
     for (var l = 0; l < instructs.length; l++) {
