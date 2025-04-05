@@ -99,37 +99,25 @@ export function startPhasesSMP(phasesAudioManager) {
     audioManager = phasesAudioManager;
     audioManager.stopPlaying();
 
-    //document.getElementById("help_modal").setAttribute("style", "background-repeat: no repeat; background-position: center center; background-size: 100% 100%; background-color: rgba(229, 243, 255, 0.9); border-radius: 15px; font-family: Arial, Helvetica, sans-serif; margin: 10% auto; padding: 20px; width: 80%; max-width: 375px; color: #333; position: relative; max-height: 90vh; overflow-y: auto;");
-    //document.getElementById("papyrus_horizontal").setAttribute("style", "display: none;");
+    /* Restyling the Help Page */
     document.getElementById("papyrus_horizontal").src = "";
     document.getElementById("papyrus_horizontal").alt = "";
     document.getElementById("papyrus_horizontal").setAttribute("style", "background-color: rgba(229, 243, 255, 0.9); border-radius: 15px; width: calc(0.7 * 70vh); height: 70vh; position: relative; top: calc((100vh - 70vh) / 2); left: calc((100vw - (0.7 * 70vh)) / 2);");
-    //document.getElementById("close_help").setAttribute("style", "position: absolute; top: calc(100vh - 70vh - ((0.09 * 0.7 * 70vh) / 2)); left: calc((100vw / 2) + ((0.8 * 70vh) / 4)); font-family: Arial, Helvetica, sans-serif; color: #333; font-size: calc(0.09 * 0.7 * 70vh); cursor: pointer;");
     document.getElementById("close_help").textContent = "×";
-    //document.getElementById("close_help").setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + (0.07 * 0.7 * 70vh)); left: calc((100vw / 2) + (70vh / 4)); font-family: Arial, Helvetica, sans-serif; color: #333; font-size: calc(0.09 * 0.7 * 70vh); cursor: pointer;");
-    //document.getElementById("close_help").setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + (0.07 * 0.7 * 70vh)); left: calc((100vw / 2) + ((0.7 * 70vh) / 3)); font-family: Arial, Helvetica, sans-serif; font-size: 30px; font-weight: bold; cursor: pointer;");
     document.getElementById("close_help").setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + ((0.7 * 70vh) / 15)); left: calc((100vw / 2) + ((0.7 * 70vh) / 2) - ((0.7 * 70vh) / 6.3)); font-family: Arial, Helvetica, sans-serif; font-size: 30px; font-weight: bold; cursor: pointer;");
-    //document.getElementById("help_modal_title").setAttribute("style", "position: absolute; top: calc(100vh - 70vh + ((0.11 * 0.7 * 70vh) / 2)); left: calc((100vw / 2) - (4 * 0.35 * 0.11 * 0.7 * 70vh)); font-family: Arial, Helvetica, sans-serif; color: #333; font-size: calc(0.11 * 0.7 * 70vh);");
-    //document.getElementById("help_modal_title").setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + (0.11 * 0.7 * 70vh)); left: calc((100vw / 2) - (2.7 * 0.35 * 0.11 * 0.7 * 70vh)); font-family: Arial, Helvetica, sans-serif; color: #333; font-size: calc(0.11 * 0.7 * 70vh);");
-    //document.getElementById("help_modal_title").setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + (0.1 * 0.7 * 70vh)); left: calc((100vw / 2) - (0.063 * 0.7 * 70vh)); font-family: Arial, Helvetica, sans-serif; font-size: 24px;");
     document.getElementById("help_modal_title").setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + ((0.7 * 70vh) / 8)); left: calc((100vw / 2) - (48px / 2)); font-family: Arial, Helvetica, sans-serif; font-size: 24px;");
     var swipes = document.getElementsByClassName("swipe");
     for (var i = 0; i < swipes.length; i++) {
-        //swipes[i].setAttribute("style", "position: absolute; top: calc(3.3 * (100vh - 70vh)); left: calc((100vw / 2) - (0.7 * 70vh / 2) + (0.22 * 0.7 * 70vh)); display: flex; flex-direction: column; font-family: Arial, Helvetica, sans-serif; color: #333;");
         swipes[i].setAttribute("style", "display: none;");
     }
     document.getElementById("swipe").setAttribute("style", "display: none;");
     var taps = document.getElementsByClassName("tap");
     for (var j = 0; j < taps.length; j++) {
-        //taps[i].setAttribute("style", "position: absolute; top: calc(3.17 * (100vh - 70vh)); left: calc((100vw / 2) - (0.1 * 0.7 * 70vh)); display: flex; flex-direction: column; font-family: Arial, Helvetica, sans-serif; color: #333;");
-        //taps[j].setAttribute("style", "position: absolute; top: calc(1.9 * (100vh - 70vh)); left: calc((100vw / 2) - (0.25 * 0.7 * 70vh)); font-family: Arial, Helvetica, sans-serif;");
         taps[j].setAttribute("style", "position: absolute; top: calc(((100vh - 70vh) / 2) + 70vh - ((0.3 * 0.7 * 72vh) + 42px + ((0.7 * 70vh) / 4))); left: calc((100vw / 2) - (((0.58 * 0.7 * 70vh) / 2) + 0.7vh)); font-family: Arial, Helvetica, sans-serif;");
     }
-    //document.getElementById("swipe").setAttribute("style", "font-family: Arial, Helvetica, sans-serif; color: #333;");
     document.getElementById("tap").setAttribute("style", "width: calc(0.3 * 0.7 * 70vh); align-self: center; padding: 0.99vh;");
     var text_boxes = document.getElementsByClassName("text_box");
     for (var k = 0; k < text_boxes.length; k++) {
-        //text_boxes[k].setAttribute("style", "border-style: solid; border-width: thin; border-color: black; border-radius: 5px; padding: 0.5vh; display: flex; flex-direction: column; width: calc(0.57 * 0.7 * 70vh);");
         text_boxes[k].setAttribute("style", "border-style: solid; border-width: thin; border-color: black; border-radius: 5px; padding: 0.5vh; display: flex; flex-direction: column; width: calc(0.58 * 0.7 * 70vh);");
     }
     var instructs = document.getElementsByClassName("instructions");
