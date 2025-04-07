@@ -100,7 +100,7 @@ export function startPhasesSMP(phasesAudioManager) {
     audioManager.stopPlaying();
 
     /* Restyling the Help Page */
-    document.getElementById("papyrus_horizontal").src = "../images/help_page_background2.png";
+    document.getElementById("papyrus_horizontal").src = "../assets/images/help_page_background2.png";
     //document.getElementById("papyrus_horizontal").alt = "";
     document.getElementById("papyrus_horizontal").setAttribute("style", "background-color: rgba(229, 243, 255, 0.9); border-radius: 15px; width: calc(0.7 * 70vh); height: 70vh; position: relative; top: calc((100vh - 70vh) / 2); left: calc((100vw - (0.7 * 70vh)) / 2);");
     document.getElementById("close_help").textContent = "×";
