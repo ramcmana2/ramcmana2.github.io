@@ -1,7 +1,7 @@
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.118/build/three.module.js";
 import SettingsModal from './SettingsModal.js';
 import { OrbitControls } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/controls/OrbitControls.js";
-import { startPhases } from "./phases.js";
+import { startPhases } from "./asteroidPhases/asteroidPhases.js";
 import { GLTFLoader } from "https://cdn.jsdelivr.net/npm/three@0.118/examples/jsm/loaders/GLTFLoader.js";
 import { AudioManager } from './AudioManager.js';
 import incrementProgressBar from './progressBar.js';
@@ -686,6 +686,7 @@ function launch() {
 
         // Remove telescope from scene
         scene.remove(telescopeLower);
+        scope.remove();
 
         setTimeout(() => {
             camera.position.z = 0;
@@ -981,9 +982,9 @@ function launch() {
     }
     function resetAutoHelp() {
         clearTimeout(inactivityTimer);
-        inactivityTimer = setTimeout(triggerAutoHelp, 15000);
+        inactivityTimer = setTimeout(triggerAutoHelp, 40000);
     }
-    let inactivityTimer = setTimeout(triggerAutoHelp, 15000);
+    let inactivityTimer = setTimeout(triggerAutoHelp, 40000);
     initializeAutoHelp();
 
     // Handle window resizing
