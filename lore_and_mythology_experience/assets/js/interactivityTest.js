@@ -44,6 +44,9 @@ export default async function interactivityTest() {
 				different = true;
 				//break;
 			}
+			else {
+				console.log("No change.");
+			}
 
 			// for (var i = 0; i < width * height * 4; i++) {
 			// 	if (newDisplay.data[i] != originalDisplay.data[i]) {
