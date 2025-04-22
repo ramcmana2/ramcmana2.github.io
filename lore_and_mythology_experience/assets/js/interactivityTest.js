@@ -22,6 +22,8 @@ export default async function interactivityTest(intervalID) {
 	setTimeout(() => {
 		let randomX2 = width - 25;
 		let randomY2 = height - 65;
+		console.log("randomX2: " + randomX2);
+		console.log("randomY2: " + randomY2);
 
 		let elements = document.elementsFromPoint(randomX2, randomY2);
 		if (elements != null) {
