@@ -16,9 +16,19 @@ export default async function interactivityTest(intervalID) {
 	let randomX1 = width / 2;
 	let randomY1 = height / 2;
 
-	let oldColor = document.elementFromPoint(randomX1, randomY1);
-	if (oldColor != null) {
-		oldColor = oldColor.style.backgroundColor;
+	// let oldColor = document.elementFromPoint(randomX1, randomY1);
+	// if (oldColor != null) {
+	// 	oldColor = oldColor.style.backgroundColor;
+	// }
+	let oldColors = document.elementsFromPoint(randomX2, randomY2);
+	let oldColor = oldColors[0];
+	if (oldColors != null) {
+		for (var elem = 0; elem < oldColors.length; elem++) {
+			if (oldColors[elem].style.backgroundColor != null) {
+				oldColor = oldColors[elem].style.backgroundColor;
+				break;
+			}
+		}
 	}
 
 	setTimeout(() => {
@@ -36,9 +46,21 @@ export default async function interactivityTest(intervalID) {
 			});
 		}
 
-		let newColor = document.elementFromPoint(randomX1, randomY1);
-		if (newColor != null) {
-			newColor = newColor.style.backgroundColor;
+		// let newColor = document.elementFromPoint(randomX1, randomY1);
+
+		// if (newColor != null) {
+		// 	newColor = newColor.style.backgroundColor;
+		// }
+
+		let newColors = document.elementFromPoint(randomX1, randomY1);
+		let newColor = newColors[0];
+		if (newColors != null) {
+			for (var elem = 0; elem < newColors.length; elem++) {
+				if (newColors[elem].style.backgroundColor != null) {
+					newColor = newColors[elem].style.backgroundColor;
+					break;
+				}
+			}
 		}
 
 		if (newColor != oldColor || (newColor != null && oldColor == null) || (oldColor != null && newColor == null)) {
