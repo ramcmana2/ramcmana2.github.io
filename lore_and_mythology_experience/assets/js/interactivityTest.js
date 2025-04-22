@@ -6,8 +6,10 @@
 export default async function interactivityTest(intervalID) {
 	console.log("Initiating automatic interactivity test... Please wait.");
 
-	const width = window.screen.width;
-	const height = window.screen.height;
+	// const width = window.screen.width;
+	// const height = window.screen.height;
+	const width = window.innerWidth;
+	const height = window.innerHeight;
 	console.log("width: " + width);
 	console.log("height: " + height);
 
