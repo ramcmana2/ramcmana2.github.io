@@ -54,7 +54,7 @@ export default async function interactivityTest(intervalID) {
 		// 	});
 		// }
 
-		let newColors = document.elementFromPoint(randomX1, randomY1);
+		let newColors = document.elementsFromPoint(randomX1, randomY1);
 		let newColor = newColors[0];
 		if (newColors != null) {
 			for (var elem = 0; elem < newColors.length; elem++) {
