@@ -9,12 +9,12 @@ export default async function interactivityTest(intervalID) {
 	const width = window.innerWidth;
 	const height = window.innerHeight;
 
-	// let randomX1 = width / 2;
-	// let randomY1 = height / 2;
-	let randomX1 = Math.floor(Math.random() * (width + 1));
-	let randomY1 = Math.floor(Math.random() * (height + 1));
-	console.log("randomX2: " + randomX1);
-	console.log("randomY2: " + randomY1);
+	let randomX1 = width / 2;
+	let randomY1 = height / 2;
+	// let randomX1 = Math.floor(Math.random() * (width + 1));
+	// let randomY1 = Math.floor(Math.random() * (height + 1));
+	console.log("randomX1: " + randomX1);
+	console.log("randomY1: " + randomY1);
 
 	let oldColors = document.elementsFromPoint(randomX1, randomY1);
 	let oldColor = oldColors[0];
