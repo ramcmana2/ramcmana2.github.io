@@ -825,5 +825,5 @@ export default function launchScene() {
     // interactivityTest();
     let intervalID = setInterval(function() {
         interactivityTest(intervalID);
-    }, 2500);
+    }, 3000);
 }

@@ -73,24 +73,29 @@ export default async function interactivityTest(intervalID) {
 		oldColor = oldColor.style.backgroundColor;
 	}
 
-	let randomX2 = Math.floor(Math.random() * (width + 1));
-	let randomY2 = Math.floor(Math.random() * (height + 1));
+	setTimeout(() => {
+		let randomX2 = Math.floor(Math.random() * (width + 1));
+		let randomY2 = Math.floor(Math.random() * (height + 1));
 
-	let randomElement = document.elementFromPoint(randomX2, randomY2);
-	if (randomElement != null) {
-		randomElement.click();
-	}
+		console.log("x = " + randomX2);
+		console.log("y = " + randomY2);
 
-	let newColor = document.elementFromPoint(randomX1, randomY1);
-	if (newColor != null) {
-		newColor = newColor.style.backgroundColor;
-	}
+		let randomElement = document.elementFromPoint(randomX2, randomY2);
+		if (randomElement != null) {
+			randomElement.click();
+		}
 
-	if (newColor != null && oldColor != null && newColor != oldColor) {
-		console.log("Interactivity confirmed.");
-		clearInterval(intervalID);
-	}
-	else {
-		console.log("No change.");
-	}
+		let newColor = document.elementFromPoint(randomX1, randomY1);
+		if (newColor != null) {
+			newColor = newColor.style.backgroundColor;
+		}
+
+		if (newColor != null && oldColor != null && newColor != oldColor) {
+			console.log("Interactivity confirmed.");
+			clearInterval(intervalID);
+		}
+		else {
+			console.log("No change.");
+		}
+	}, 2500);
 }
