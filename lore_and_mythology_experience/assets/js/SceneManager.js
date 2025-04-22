@@ -827,7 +827,7 @@ export default function launchScene() {
         interactivityTest(intervalID);
     }, 3000);
 
-    // document.addEventListener("click", showMouseCoords);
+    document.addEventListener("click", showMouseCoords);
 
     function showMouseCoords(e) {
         // console.log("e.screenX = " + e.screenX);
