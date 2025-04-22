@@ -42,7 +42,7 @@ export default async function interactivityTest() {
 
 			if (newColor != null && oldColor != null && newColor != oldColor) {
 				different = true;
-				break;
+				//break;
 			}
 
 			// for (var i = 0; i < width * height * 4; i++) {
