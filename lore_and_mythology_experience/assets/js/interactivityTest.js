@@ -88,9 +88,17 @@ export default async function interactivityTest(intervalID) {
 		console.log("x = " + randomX2);
 		console.log("y = " + randomY2);
 
-		let randomElement = document.elementFromPoint(randomX2, randomY2);
-		if (randomElement != null) {
-			randomElement.click();
+		// let randomElement = document.elementFromPoint(randomX2, randomY2);
+		// if (randomElement != null) {
+		// 	randomElement.click();
+		// }
+		let elements = document.elementsFromPoint(randomX2, randomY2);
+		if (elements != null) {
+			elements.forEach((elem, i) => {
+				if (elem.style.backgroundColor != null) {
+					elem.click();
+				}
+			});
 		}
 
 		let newColor = document.elementFromPoint(randomX1, randomY1);
