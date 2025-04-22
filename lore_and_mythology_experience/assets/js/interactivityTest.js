@@ -20,7 +20,7 @@ export default async function interactivityTest(intervalID) {
 	// if (oldColor != null) {
 	// 	oldColor = oldColor.style.backgroundColor;
 	// }
-	let oldColors = document.elementsFromPoint(randomX2, randomY2);
+	let oldColors = document.elementsFromPoint(randomX1, randomY1);
 	let oldColor = oldColors[0];
 	if (oldColors != null) {
 		for (var elem = 0; elem < oldColors.length; elem++) {
