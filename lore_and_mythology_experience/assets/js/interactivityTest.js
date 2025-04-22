@@ -74,8 +74,10 @@ export default async function interactivityTest(intervalID) {
 	}
 
 	setTimeout(() => {
-		let randomX2 = Math.floor(Math.random() * (width + 1));
-		let randomY2 = Math.floor(Math.random() * (height + 1));
+		// let randomX2 = Math.floor(Math.random() * (width + 1));
+		// let randomY2 = Math.floor(Math.random() * (height + 1));
+		let randomX2 = 140;
+		let randomY2 = 600;
 
 		console.log("x = " + randomX2);
 		console.log("y = " + randomY2);
