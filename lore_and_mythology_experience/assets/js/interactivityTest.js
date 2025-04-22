@@ -3,7 +3,7 @@
  * A test intended to ensure content reacts to user action.
  * Only applicable to screens without animations.
  */
-export default function interactivityTest() {
+export default async function interactivityTest() {
 	console.log("Initiating automatic interactivity test... Please wait.");
 
 	const width = window.screen.width;
@@ -22,34 +22,36 @@ export default function interactivityTest() {
 			oldColor = oldColor.style.backgroundColor;
 		}
 
-		let randomX2 = Math.floor(Math.random() * (width + 1));
-		let randomY2 = Math.floor(Math.random() * (height + 1));
+		setTimeout(() => {
+			let randomX2 = Math.floor(Math.random() * (width + 1));
+			let randomY2 = Math.floor(Math.random() * (height + 1));
 
-		// document.elementFromPoint(randomX, randomY).click();
-		let randomElement = document.elementFromPoint(randomX2, randomY2);
-		if (randomElement != null) {
-			randomElement.click();
-		}
+			// document.elementFromPoint(randomX, randomY).click();
+			let randomElement = document.elementFromPoint(randomX2, randomY2);
+			if (randomElement != null) {
+				randomElement.click();
+			}
 
-		// let newColor = document.elementFromPoint(randomX, randomY).style.backgroundColor;
-		let newColor = document.elementFromPoint(randomX1, randomY1);
-		if (newColor != null) {
-			newColor = newColor.style.backgroundColor;
-		}
+			// let newColor = document.elementFromPoint(randomX, randomY).style.backgroundColor;
+			let newColor = document.elementFromPoint(randomX1, randomY1);
+			if (newColor != null) {
+				newColor = newColor.style.backgroundColor;
+			}
 
-		// const newDisplay = window.canvas.getImageData(0, 0, width, height);
+			// const newDisplay = window.canvas.getImageData(0, 0, width, height);
 
-		if (newColor != null && oldColor != null && newColor != oldColor) {
-			different = true;
-			break;
-		}
+			if (newColor != null && oldColor != null && newColor != oldColor) {
+				different = true;
+				break;
+			}
 
-		// for (var i = 0; i < width * height * 4; i++) {
-		// 	if (newDisplay.data[i] != originalDisplay.data[i]) {
-		// 		different = true;
-		// 		break;
-		// 	}
-		// }
+			// for (var i = 0; i < width * height * 4; i++) {
+			// 	if (newDisplay.data[i] != originalDisplay.data[i]) {
+			// 		different = true;
+			// 		break;
+			// 	}
+			// }
+	    }, 2500);
 	}
 
 	console.log("Interactivity confirmed.");
