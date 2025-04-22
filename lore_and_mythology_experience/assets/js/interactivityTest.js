@@ -66,6 +66,8 @@ export default async function interactivityTest(intervalID) {
 		}
 
 		if (newColor != oldColor || (newColor != null && oldColor == null) || (oldColor != null && newColor == null)) {
+			console.log("oldColor: " + oldColor);
+			console.log("newColor: " + newColor);
 			console.log("Interactivity confirmed.");
 			clearInterval(intervalID);
 		}
