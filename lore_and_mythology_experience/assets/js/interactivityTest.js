@@ -22,8 +22,8 @@ export default function interactivityTest() {
 			oldColor = oldColor.style.backgroundColor;
 		}
 
-		randomX2 = Math.floor(Math.random() * (width + 1));
-		randomY2 = Math.floor(Math.random() * (height + 1));
+		let randomX2 = Math.floor(Math.random() * (width + 1));
+		let randomY2 = Math.floor(Math.random() * (height + 1));
 
 		// document.elementFromPoint(randomX, randomY).click();
 		let randomElement = document.elementFromPoint(randomX2, randomY2);
