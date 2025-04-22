@@ -65,8 +65,10 @@ export default async function interactivityTest(intervalID) {
 	const width = window.screen.width;
 	const height = window.screen.height;
 
-	let randomX1 = Math.floor(Math.random() * (width + 1));
-	let randomY1 = Math.floor(Math.random() * (height + 1));
+	// let randomX1 = Math.floor(Math.random() * (width + 1));
+	// let randomY1 = Math.floor(Math.random() * (height + 1));
+	let randomX1 = 900;
+	let randomY1 = 300;
 
 	let oldColor = document.elementFromPoint(randomX1, randomY1);
 	if (oldColor != null) {
