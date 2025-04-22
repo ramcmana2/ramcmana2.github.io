@@ -819,8 +819,11 @@ export default function launchScene() {
         camera.updateProjectionMatrix();
     });
 
-    setTimeout(() => {
-        interactivityTest();
-    }, 1000);
+    // setTimeout(() => {
+    //     interactivityTest();
+    // }, 1000);
     // interactivityTest();
+    let intervalID = setInterval(function() {
+        interactivityTest(intervalID);
+    }, 2500);
 }
