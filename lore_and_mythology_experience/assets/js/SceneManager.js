@@ -829,10 +829,10 @@ export default function launchScene() {
 
     // document.addEventListener("click", showMouseCoords);
 
-    // function showMouseCoords(e) {
-    //     console.log("e.screenX = " + e.screenX);
-    //     console.log("e.screenY = " + e.screenY);
-    //     console.log("e.clientX = " + e.clientX);
-    //     console.log("e.clientY = " + e.clientY);
-    // }
+    function showMouseCoords(e) {
+        // console.log("e.screenX = " + e.screenX);
+        // console.log("e.screenY = " + e.screenY);
+        console.log("e.clientX = " + e.clientX);
+        console.log("e.clientY = " + e.clientY);
+    }
 }
