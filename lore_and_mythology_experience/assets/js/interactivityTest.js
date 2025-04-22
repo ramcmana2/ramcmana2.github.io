@@ -13,22 +13,26 @@ export default function interactivityTest() {
 	let different = false;
 
 	while (!different) {
-		let randomX = Math.floor(Math.random() * (width + 1));
-		let randomY = Math.floor(Math.random() * (height + 1));
+		let randomX1 = Math.floor(Math.random() * (width + 1));
+		let randomY1 = Math.floor(Math.random() * (height + 1));
 
 		// let oldColor = document.elementFromPoint(randomX, randomY).style.backgroundColor;
-		let oldColor = document.elementFromPoint(randomX, randomY);
+		let oldColor = document.elementFromPoint(randomX1, randomY1);
 		if (oldColor != null) {
 			oldColor = oldColor.style.backgroundColor;
 		}
 
-		randomX = Math.floor(Math.random() * (width + 1));
-		randomY = Math.floor(Math.random() * (height + 1));
+		randomX2 = Math.floor(Math.random() * (width + 1));
+		randomY2 = Math.floor(Math.random() * (height + 1));
 
-		document.elementFromPoint(randomX, randomY).click();
+		// document.elementFromPoint(randomX, randomY).click();
+		let randomElement = document.elementFromPoint(randomX2, randomY2);
+		if (randomElement != null) {
+			randomElement.click();
+		}
 
 		// let newColor = document.elementFromPoint(randomX, randomY).style.backgroundColor;
-		let newColor = document.elementFromPoint(randomX, randomY);
+		let newColor = document.elementFromPoint(randomX1, randomY1);
 		if (newColor != null) {
 			newColor = newColor.style.backgroundColor;
 		}
