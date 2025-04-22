@@ -819,5 +819,7 @@ export default function launchScene() {
         camera.updateProjectionMatrix();
     });
 
-    interactivityTest();
+    setTimeout(() => {
+        interactivityTest();
+    }, 1000);
 }
