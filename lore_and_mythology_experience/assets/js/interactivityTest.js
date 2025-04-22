@@ -6,20 +6,14 @@
 export default async function interactivityTest(intervalID) {
 	console.log("Initiating automatic interactivity test... Please wait.");
 
-	// const width = window.screen.width;
-	// const height = window.screen.height;
 	const width = window.innerWidth;
 	const height = window.innerHeight;
-	console.log("width: " + width);
-	console.log("height: " + height);
 
-	let randomX1 = width / 2;
-	let randomY1 = height / 2;
+	// let randomX1 = width / 2;
+	// let randomY1 = height / 2;
+	let randomX1 = Math.floor(Math.random() * (width + 1));
+	let randomY1 = Math.floor(Math.random() * (height + 1));
 
-	// let oldColor = document.elementFromPoint(randomX1, randomY1);
-	// if (oldColor != null) {
-	// 	oldColor = oldColor.style.backgroundColor;
-	// }
 	let oldColors = document.elementsFromPoint(randomX1, randomY1);
 	let oldColor = oldColors[0];
 	if (oldColors != null) {
@@ -31,25 +25,33 @@ export default async function interactivityTest(intervalID) {
 		}
 	}
 
+	// let randomX2 = width - 25;
+	// let randomY2 = height - 65;
+	let randomX2 = Math.floor(Math.random() * (width + 1));
+	let randomY2 = Math.floor(Math.random() * (height + 1));
+
+	let elements = document.elementsFromPoint(randomX2, randomY2);
+	if (elements != null) {
+		elements.forEach((elem, i) => {
+			if (elem.style.backgroundColor != null) {
+				elem.click();
+			}
+		});
+	}
+
 	setTimeout(() => {
-		let randomX2 = width - 25;
-		let randomY2 = height - 65;
-		console.log("randomX2: " + randomX2);
-		console.log("randomY2: " + randomY2);
+		// let randomX2 = width - 25;
+		// let randomY2 = height - 65;
+		// console.log("randomX2: " + randomX2);
+		// console.log("randomY2: " + randomY2);
 
-		let elements = document.elementsFromPoint(randomX2, randomY2);
-		if (elements != null) {
-			elements.forEach((elem, i) => {
-				if (elem.style.backgroundColor != null) {
-					elem.click();
-				}
-			});
-		}
-
-		// let newColor = document.elementFromPoint(randomX1, randomY1);
-
-		// if (newColor != null) {
-		// 	newColor = newColor.style.backgroundColor;
+		// let elements = document.elementsFromPoint(randomX2, randomY2);
+		// if (elements != null) {
+		// 	elements.forEach((elem, i) => {
+		// 		if (elem.style.backgroundColor != null) {
+		// 			elem.click();
+		// 		}
+		// 	});
 		// }
 
 		let newColors = document.elementFromPoint(randomX1, randomY1);
