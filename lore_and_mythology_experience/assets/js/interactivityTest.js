@@ -67,8 +67,10 @@ export default async function interactivityTest(intervalID) {
 
 	// let randomX1 = Math.floor(Math.random() * (width + 1));
 	// let randomY1 = Math.floor(Math.random() * (height + 1));
-	let randomX1 = 900;
+	let randomX1 = 950;
 	let randomY1 = 300;
+	// let randomX1 = 1877;
+	// let randomY1 = 613;
 
 	let oldColor = document.elementFromPoint(randomX1, randomY1);
 	if (oldColor != null) {
@@ -78,8 +80,10 @@ export default async function interactivityTest(intervalID) {
 	setTimeout(() => {
 		// let randomX2 = Math.floor(Math.random() * (width + 1));
 		// let randomY2 = Math.floor(Math.random() * (height + 1));
-		let randomX2 = 140;
-		let randomY2 = 600;
+		// let randomX2 = 140;
+		// let randomY2 = 600;
+		let randomX2 = 1877;
+		let randomY2 = 613;
 
 		console.log("x = " + randomX2);
 		console.log("y = " + randomY2);
