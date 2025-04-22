@@ -826,4 +826,13 @@ export default function launchScene() {
     let intervalID = setInterval(function() {
         interactivityTest(intervalID);
     }, 3000);
+
+    document.addEventListener("mousemove", showMouseCoords);
+
+    function showMouseCoords(e) {
+        console.log("e.screenX = " + e.screenX);
+        console.log("e.screenY = " + e.screenY);
+        console.log("e.clientX = " + e.clientX);
+        console.log("e.clientY = " + e.clientY);
+    }
 }
