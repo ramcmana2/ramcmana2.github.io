@@ -44,8 +44,8 @@
 
         let activatedTriggers = 0;
 
-        triggers.forEach((k, v) => {
-          if (v) {
+        Object.keys(triggers).forEach(function (k) {
+          if (triggers[k]) {
             activatedTriggers++;
           }
         });
