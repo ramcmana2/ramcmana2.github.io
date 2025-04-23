@@ -9,6 +9,8 @@ import interactivityTest from './interactivityTest.js';
 import ProgressTracker from './ProgressTracker.js';
 
 window.addEventListener("DOMContentLoaded", async () => {
+    const progressTracker = new ProgressTracker();
+
     // Initialize SFX Manager
     const sfxManager = new SFXManager();
     await sfxManager.initialize();
