@@ -6,6 +6,7 @@ import InstrumentContentManager from './InstrumentContentManager.js';
 import MissionContentManager from './MissionContentManager.js';
 import SFXManager from './SFXManager.js';
 import interactivityTest from './interactivityTest.js';
+import ProgressTracker from './ProgressTracker.js';
 
 window.addEventListener("DOMContentLoaded", async () => {
     // Initialize SFX Manager
