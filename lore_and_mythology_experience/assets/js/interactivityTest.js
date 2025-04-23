@@ -23,7 +23,7 @@ export default async function interactivityTest(intervalID) {
 	if (oldColors != null) {
 		for (var elem = 0; elem < oldColors.length; elem++) {
 			if (oldColors[elem].style.backgroundColor != null) {
-				console.log("oldColors[elem].style.backgroundColor != null");
+				console.log("oldColors[elem].style.backgroundColor = " + oldColors[elem].style.backgroundColor);
 				oldColor = oldColors[elem].style.backgroundColor;
 				break;
 			}
@@ -69,7 +69,7 @@ export default async function interactivityTest(intervalID) {
 		if (newColors != null) {
 			for (var elem = 0; elem < newColors.length; elem++) {
 				if (newColors[elem].style.backgroundColor != null) {
-					console.log("newColors[elem].style.backgroundColor != null");
+					console.log("newColors[elem].style.backgroundColor = " + newColors[elem].style.backgroundColor);
 					newColor = newColors[elem].style.backgroundColor;
 					break;
 				}
