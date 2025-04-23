@@ -3,13 +3,14 @@
  */
 
 export default class HelpModal {
+    progressTracker = null;
     /*
      * Public methods
      */
 
     // Constructor
     constructor(progressTracker, inactivityTime = 60000) {
-        this._progressTracker = progressTracker;
+        this.progressTracker = progressTracker;
         this._helpModal = document.getElementById('help-modal');
         this._helpModalContent = document.getElementById('help-modal-content');
         this._helpIconButton = document.getElementById('help-icon-button');
@@ -53,7 +54,7 @@ export default class HelpModal {
 
     // Load help modal content
     _loadHelpModalContent() {
-        this.progressTracker.triggered("help");
+        progressTracker.triggered("help");
         window.sfxManager.playSound("open");
         const xhr = new XMLHttpRequest();
         xhr.open('GET', 'help_modal.html', true);
