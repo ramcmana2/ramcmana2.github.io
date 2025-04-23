@@ -53,7 +53,7 @@ export default class HelpModal {
 
     // Load help modal content
     _loadHelpModalContent() {
-        progressTracker.triggered("help");
+        this.progressTracker.triggered("help");
         window.sfxManager.playSound("open");
         const xhr = new XMLHttpRequest();
         xhr.open('GET', 'help_modal.html', true);
