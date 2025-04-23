@@ -1,0 +1,9 @@
+To test the Satellite Experience:
+
+index.html:
+<meta http-equiv="refresh" content="0; url=https://ramcmana2.github.io/satellite_experience/pages/index.html">
+
+To test the Lore and Mythology Experience:
+
+index.html:
+<meta http-equiv="refresh" content="0; url=https://ramcmana2.github.io/lore_and_mythology_experience/pages/index.html">
