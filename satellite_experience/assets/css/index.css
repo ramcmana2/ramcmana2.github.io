@@ -27,7 +27,6 @@ body {
   text-align: center;
 }
 
-
 #body {
   display: flex;
   flex-direction: column;
@@ -170,17 +169,17 @@ h1 {
 
 .about-link {
   text-decoration: none;
+  font-size: 10cqw;
   color: white;
 }
 
 .about-button {
   margin-top: 10px;
   margin-bottom: 25px;
-  font-size: 20px;
+  container-type: inline-size;
   color: white;
   font-weight: bold;
   background-color: gray;
-  /* background-color: #f9a000;#20162f; */
   border: 2px 50% black;
   border-radius: 16px;
   height: 40px;
@@ -206,3 +205,20 @@ h1 {
   box-shadow: 0 6px 8px rgba(0, 0, 0, 0.35);
 }
 
+.footer {
+  background-image: linear-gradient(to right, #302144, #000000);
+  width: 100%;
+  justify-content: center;
+}
+
+.footer-links {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  text-align: left;
+  width: 20%;
+  left: 50%;
+  margin: 0 auto;
+}
+.footer-links a {
+  color: white;
+}

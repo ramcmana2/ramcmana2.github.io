@@ -14,24 +14,18 @@ html {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  /* min-width: 100%; */
-  /* min-height: 100vh; */
   margin: 0;
-  /* background-color: #ffffff; */
 }
 
 .about-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* height: 50vh; */
   width: 100%;
   top: 0;
   left: 0;
   justify-content: center;
   margin: 0;
-  /* gap: 10px; */
-  /* margin-bottom: 50vh; */
 }
 
 .team {
@@ -39,7 +33,6 @@ html {
 }
 
 .team-container {
-  /*width: 400px;*/
   width: 350px;
   text-align: left;
   padding-bottom: 30px;
@@ -60,7 +53,35 @@ html {
   text-align: center;
 }
 
+/*.logo {*/
+/*  position: absolute;*/
+/*  left: 0;*/
+/*  align-self: center;*/
+/*  max-height: 75px;*/
+/*  max-width: 75px;*/
+/*  min-height: 75px;*/
+/*  min-width: 75px;*/
+/*  height: 15%;*/
+/*  width: 15%;*/
+/*  margin-left: 5%;*/
+/*  */
+/*}*/
+
 .logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  text-align: center;
+  width: 90px; /* Explicit width */
+  height: auto;
+  margin-right: 20px; /* Spacing from header */
+}
+
+#psyche-icon {
   position: absolute;
   left: 0;
   align-self: center;
@@ -73,12 +94,21 @@ html {
   margin-left: 5%;
 }
 
+.back-link {
+  font-size: 14px;
+  color: white;
+  text-decoration: none;
+  margin: 22px;
+  position: absolute;
+  left: 5%;
+  align-self: center;
+  margin-top: 120px;
+}
+
 h1 {
   padding: 30px;
   align-self: center;
   color: white;
-  /*margin-left: 6%;*/
-  margin-left: 100px;
   margin-right: 100px;
 }
 
@@ -90,7 +120,6 @@ h1 {
   text-align: left;
   align-items: center;
   justify-content: center;
-  /*width: 400px;*/
   width: 350px;
   gap: 40px;
 }
@@ -122,14 +151,12 @@ h1 {
 }
 
 .citation-container {
-  /*margin-top: 150px;*/
   margin-top: 30px;
   display: flex;
-  /*width: 400px;*/
   width: 350px;
   text-align: left;
   flex-direction: column;
-  /* align-items: center; */
+  padding-left: 5%;
 }
 
 .citation-section-title {
@@ -154,9 +181,5 @@ h1 {
 }
 
 .content-container {
-  /*padding-top: 1%;*/
-  /*padding-bottom: 1%;
-  padding-left: 10%;
-  padding-right: 10%;*/
   margin: 10px;
 }
