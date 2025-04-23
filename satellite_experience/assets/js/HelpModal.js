@@ -8,7 +8,8 @@ export default class HelpModal {
      */
 
     // Constructor
-    constructor(inactivityTime = 60000) {
+    constructor(progressTracker, inactivityTime = 60000) {
+        this._progressTracker = progressTracker;
         this._helpModal = document.getElementById('help-modal');
         this._helpModalContent = document.getElementById('help-modal-content');
         this._helpIconButton = document.getElementById('help-icon-button');
