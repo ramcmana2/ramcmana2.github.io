@@ -6,10 +6,10 @@ import InstrumentContentManager from './InstrumentContentManager.js';
 import MissionContentManager from './MissionContentManager.js';
 import SFXManager from './SFXManager.js';
 import interactivityTest from './interactivityTest.js';
-import ProgressTracker from './ProgressTracker.js';
+//import ProgressTracker from './ProgressTracker.js';
 
 window.addEventListener("DOMContentLoaded", async () => {
-    const progressTracker = new ProgressTracker();
+    //const progressTracker = new ProgressTracker();
 
     // Initialize SFX Manager
     const sfxManager = new SFXManager();
@@ -21,7 +21,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     const upperButton = document.getElementById('upper-button');
     const lowerButton = document.getElementById('lower-button');
 
-    const helpModal = new HelpModal();
+    const helpModal = new HelpModal(progressTracker);
 
     // Initialize SpaceScene
     let spaceScene = new SpaceScene({

@@ -9,6 +9,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Main Page</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/styles.css" />
+    <script id="global-triggers">
+      let triggers = {
+        "help": false,
+        "settings": false,
+        "defaultMode": false,
+        "highContrastMode": false,
+        "lightMode": false,
+        "colorBlindMode": false,
+        "volume": false,
+        "exploreMission": false,
+        "launch": false,
+        "gravityAssist": false,
+        "orbitA": false,
+        "orbitB1": false,
+        "orbitD": false,
+        "orbitC": false,
+        "orbitB2": false,
+        "endOfMission": false,
+        "exploreInstruments": false,
+        "solarArrays1": false,
+        "xBandHighGainAntenna": false,
+        "multispectralImager": false,
+        "deepSpaceOpticalCommunication": false,
+        "magnetometer": false,
+        "spt140Engines1": false,
+        "spt140Engines2": false,
+        "solarArrays2": false,
+        "backToMain": false
+      };
+      
+      function triggered(trigger) {
+        triggers[trigger] = true;
+
+        let activatedTriggers = 0;
+
+        triggers.forEach((k, v) => {
+          if (v) {
+            activatedTriggers++;
+          }
+        });
+
+        let progress = (activatedTriggers / Object.keys(triggers).length) * 100;
+        console.log("Your current progress is " + progress);
+      }
+    </script>
   </head>
   <body>
     <!-- Help Icon Button -->
