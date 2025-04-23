@@ -19,6 +19,7 @@ export default async function interactivityTest(intervalID) {
 	let oldColors = document.elementsFromPoint(randomX1, randomY1);
 	console.log("oldColors: " + oldColors);
 	let oldColor = oldColors[0];
+	console.log("oldColor: " + oldColor);
 	if (oldColors != null) {
 		for (var elem = 0; elem < oldColors.length; elem++) {
 			if (oldColors[elem].style.backgroundColor != null) {
@@ -27,6 +28,7 @@ export default async function interactivityTest(intervalID) {
 			}
 		}
 	}
+	console.log("oldColor: " + oldColor);
 
 	let randomX2 = width - 25;
 	let randomY2 = height - 65;
@@ -62,6 +64,7 @@ export default async function interactivityTest(intervalID) {
 		let newColors = document.elementsFromPoint(randomX1, randomY1);
 		console.log("newColors: " + newColors);
 		let newColor = newColors[0];
+		console.log("newColor: " + newColor);
 		if (newColors != null) {
 			for (var elem = 0; elem < newColors.length; elem++) {
 				if (newColors[elem].style.backgroundColor != null) {
@@ -70,6 +73,7 @@ export default async function interactivityTest(intervalID) {
 				}
 			}
 		}
+		console.log("newColor: " + newColor);
 
 		if (newColor != oldColor || (newColor != null && oldColor == null) || (oldColor != null && newColor == null)) {
 			console.log("oldColor: " + oldColor);
