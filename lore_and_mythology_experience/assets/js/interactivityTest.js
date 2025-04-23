@@ -9,10 +9,10 @@ export default async function interactivityTest(intervalID) {
 	const width = window.innerWidth;
 	const height = window.innerHeight;
 
-	let randomX1 = Math.floor(width / 2);
-	let randomY1 = Math.floor(height / 2);
-	// let randomX1 = Math.floor(Math.random() * (width + 1));
-	// let randomY1 = Math.floor(Math.random() * (height + 1));
+	// let randomX1 = Math.floor(width / 2);
+	// let randomY1 = Math.floor(height / 2);
+	let randomX1 = Math.floor(Math.random() * (width + 1));
+	let randomY1 = Math.floor(Math.random() * (height + 1));
 	// console.log("randomX1: " + randomX1);
 	// console.log("randomY1: " + randomY1);
 
@@ -32,9 +32,9 @@ export default async function interactivityTest(intervalID) {
 	// console.log("oldColor: " + oldColor);
 	let oldLayers = document.elementsFromPoint(randomX1, randomY1);
 
-	let randomX2 = width - 25;
+	// let randomX2 = width - 25;
 	let randomY2 = height - 65;
-	// let randomX2 = Math.floor(Math.random() * (width + 1));
+	let randomX2 = Math.floor(Math.random() * (width + 1));
 	// let randomY2 = Math.floor(Math.random() * (height + 1));
 	// console.log("randomX2: " + randomX2);
 	// console.log("randomY2: " + randomY2);
