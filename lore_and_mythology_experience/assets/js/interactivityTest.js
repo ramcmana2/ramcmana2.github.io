@@ -33,9 +33,9 @@ export default async function interactivityTest(intervalID) {
 	let oldLayers = document.elementsFromPoint(randomX1, randomY1);
 
 	// let randomX2 = width - 25;
-	let randomY2 = height - 65;
+	// let randomY2 = height - 65;
 	let randomX2 = Math.floor(Math.random() * (width + 1));
-	// let randomY2 = Math.floor(Math.random() * (height + 1));
+	let randomY2 = Math.floor(Math.random() * (height + 1));
 	// console.log("randomX2: " + randomX2);
 	// console.log("randomY2: " + randomY2);
 
