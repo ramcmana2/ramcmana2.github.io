@@ -21,7 +21,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     const upperButton = document.getElementById('upper-button');
     const lowerButton = document.getElementById('lower-button');
 
-    const helpModal = new HelpModal(progressTracker);
+    const helpModal = new HelpModal();
 
     // Initialize SpaceScene
     let spaceScene = new SpaceScene({
