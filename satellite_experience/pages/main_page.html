@@ -9,34 +9,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Main Page</title>
     <link rel="stylesheet" type="text/css" href="../assets/css/styles.css" />
-    <script id="global-triggers">
+    <script>
       let triggers = {
         "help": false,
         "settings": false,
-        "defaultMode": false,
-        "highContrastMode": false,
-        "lightMode": false,
-        "colorBlindMode": false,
+        "default-mode": false,
+        "high-contrast-mode": false,
+        "high-mode": false,
+        "color-blind-mode": false,
         "volume": false,
-        "exploreMission": false,
+        "mission": false,
         "launch": false,
-        "gravityAssist": false,
-        "orbitA": false,
-        "orbitB1": false,
-        "orbitD": false,
-        "orbitC": false,
-        "orbitB2": false,
-        "endOfMission": false,
-        "exploreInstruments": false,
-        "solarArrays1": false,
-        "xBandHighGainAntenna": false,
-        "multispectralImager": false,
-        "deepSpaceOpticalCommunication": false,
-        "magnetometer": false,
-        "spt140Engines1": false,
-        "spt140Engines2": false,
-        "solarArrays2": false,
-        "backToMain": false
+        "assist": false,
+        "a": false,
+        "b1": false,
+        "d": false,
+        "c": false,
+        "b2": false,
+        "end": false,
+        "instrument": false,
+        "arrays": false,
+        "spectrometer": false,
+        "antenna": false,
+        "imager": false,
+        "communication": false,
+        "detection": false,
+        "propulsion": false,
+        "main": false
       };
       
       function triggered(trigger) {
@@ -50,8 +49,8 @@
           }
         });
 
-        let progress = (activatedTriggers / Object.keys(triggers).length) * 100;
-        console.log("Your current progress is " + progress);
+        let progress = ((activatedTriggers / Object.keys(triggers).length) * 100).toFixed(2);
+        console.log("Your current progress is " + progress + "%");
       }
     </script>
   </head>
