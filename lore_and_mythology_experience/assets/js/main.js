@@ -11,9 +11,9 @@ import launchScene from './SceneManager.js';
 /**
  * Increment a progress bar UI element as steps in the scene are loaded.
  */
-import incrementProgressBar from './progressBar.js';
+// import incrementProgressBar from './progressBar.js';
 
-incrementProgressBar(1);
+//incrementProgressBar(1);
 
 window.onload = async () => {
     // Wait for the user to click on the telescope background in the context modal.

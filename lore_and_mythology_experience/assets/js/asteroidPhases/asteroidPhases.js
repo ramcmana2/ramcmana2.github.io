@@ -242,6 +242,9 @@ function nextPhase() {
     // Move to next phase
     phaseIndex++;
     incrementProgressBar(2 + phaseIndex);
+    console.log(2 + phaseIndex);
+    let trigger = (2 + phaseIndex).toString();
+    triggered(trigger);
     if (phaseIndex < phaseValues.length) {
         setTimeout(() => {
             console.log("Current Phase Index:", phaseIndex, "Total Phases:", phaseValues.length);

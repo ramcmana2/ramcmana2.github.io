@@ -75,6 +75,8 @@ const GraphicsQuality = Object.freeze({
 export default function launchScene() {
     const audioManager = new AudioManager();
     audioManager.play("amp");
+    incrementProgressBar(1);
+    console.log(1);
     document.getElementById('main-title').style.visibility = 'visible';
 
     // Create the scene
@@ -734,6 +736,8 @@ export default function launchScene() {
                 // When done zooming, style the modal, increment progress, and start star transition
                 settingsModal.applyAMPIModalStyles();
                 incrementProgressBar(2);
+                console.log(2);
+                triggered("lock-on");
                 starFieldTransition();
             }
         }
