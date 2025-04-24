@@ -62,8 +62,8 @@ export default function showLaunch(launchBool, audioManager, callback) {
             if (event.data === YT.PlayerState.ENDED) {
                 document.getElementById("launch-modal").remove();
                 launchBool = false;
-                incrementProgressBar(14);
-                console.log(14);
+                incrementProgressBar(13);
+                console.log(13);
                 triggered("launch-video");
                 callback();  // transition to next function when video ends
             }
@@ -80,8 +80,8 @@ export default function showLaunch(launchBool, audioManager, callback) {
             modal.remove();
         }
         launchBool = false;
-        incrementProgressBar(14);
-        console.log(14);
+        incrementProgressBar(13);
+        console.log(13);
         triggered("launch-video");
         callback();
     }
