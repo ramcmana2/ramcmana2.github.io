@@ -13,7 +13,8 @@ import launchScene from './SceneManager.js';
  */
 // import incrementProgressBar from './progressBar.js';
 
-//incrementProgressBar(1);
+// incrementProgressBar(0);
+// console.log(0);
 
 window.onload = async () => {
     // Wait for the user to click on the telescope background in the context modal.

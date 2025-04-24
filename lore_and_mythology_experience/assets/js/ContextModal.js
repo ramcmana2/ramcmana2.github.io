@@ -19,6 +19,9 @@ let audioManager = new AudioManager();
 audioManager.play("context");
 audioManager.setVolume(0.5);
 
+incrementProgressBar(0);
+console.log(0);
+
 /**
  * Asynchronously loads the "context" modal
  * and waits for the user to dismiss it.

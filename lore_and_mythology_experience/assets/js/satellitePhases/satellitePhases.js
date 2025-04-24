@@ -34,8 +34,8 @@ let audioManager;
 export function startSatellitePhases(phasesAudioManager) {
     audioManager = phasesAudioManager;
     audioManager.stopPlaying();
-    incrementProgressBar(14);
-    console.log(14);
+    incrementProgressBar(12);
+    console.log(12);
 
     /* Restyling the Help Page */
     document.getElementById("papyrus_horizontal").src = "../assets/images/help_page_background2.png";
