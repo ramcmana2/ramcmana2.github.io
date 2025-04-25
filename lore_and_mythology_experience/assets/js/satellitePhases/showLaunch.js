@@ -63,7 +63,6 @@ export default function showLaunch(launchBool, audioManager, callback) {
                 document.getElementById("launch-modal").remove();
                 launchBool = false;
                 incrementProgressBar(13);
-                console.log(13);
                 triggered("launch-video");
                 callback();  // transition to next function when video ends
             }
@@ -81,7 +80,6 @@ export default function showLaunch(launchBool, audioManager, callback) {
         }
         launchBool = false;
         incrementProgressBar(13);
-        console.log(13);
         triggered("launch-video");
         callback();
     }

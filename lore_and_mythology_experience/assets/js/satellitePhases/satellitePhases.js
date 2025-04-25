@@ -12,9 +12,6 @@ import showLaunch from './showLaunch.js';
 import showTimer from './showTimer.js';
 import showFinale from './showFinale.js';
 
-// incrementProgressBar(15);
-// console.log(15);
-
 // phase index keeps track of which phase in the satellite dialog the application is currently on
 let phaseIndex = 0;
 const phaseValues = Object.values(satellitePhases);
@@ -35,7 +32,6 @@ export function startSatellitePhases(phasesAudioManager) {
     audioManager = phasesAudioManager;
     audioManager.stopPlaying();
     incrementProgressBar(12);
-    console.log(12);
 
     /* Restyling the Help Page */
     document.getElementById("papyrus_horizontal").src = "../assets/images/help_page_background2.png";
@@ -270,7 +266,6 @@ function nextPhase() {
     // Move to next phase
     phaseIndex++;
     incrementProgressBar(14 + phaseIndex);
-    console.log(14 + phaseIndex);
     let trigger = (14 + phaseIndex).toString();
     triggered(trigger);
     if (phaseIndex < phaseValues.length) {

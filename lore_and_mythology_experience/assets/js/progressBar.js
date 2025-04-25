@@ -4,13 +4,13 @@ export default function incrementProgressBar(currentProgress) {
 	 * Steps:
 	 * telescope (1)
 	 * asteroid (1)
-	 * phases (10)
+	 * phases (12)
 	 * launch video (1)
 	 * countdown timer (1)
 	 * phasesSMP (5)
-	 * etc. (0) = (19)
+	 * etc. (0) = (21)
 	 */
-	let totalSteps = 19;
+	let totalSteps = 21;
 	let progressUnits = 100 / totalSteps;
 
 	let progressBar = document.createElement("div");
