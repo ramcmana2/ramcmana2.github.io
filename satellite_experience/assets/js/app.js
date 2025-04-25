@@ -6,11 +6,8 @@ import InstrumentContentManager from './InstrumentContentManager.js';
 import MissionContentManager from './MissionContentManager.js';
 import SFXManager from './SFXManager.js';
 import interactivityTest from './interactivityTest.js';
-//import ProgressTracker from './ProgressTracker.js';
 
 window.addEventListener("DOMContentLoaded", async () => {
-    //const progressTracker = new ProgressTracker();
-
     // Initialize SFX Manager
     const sfxManager = new SFXManager();
     await sfxManager.initialize();
@@ -37,7 +34,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     // Connect settings modal to help modal inactivity timer
     settingsModal.resetInactivityTimer = () => helpModal._setupInactivityTimer();
 
-    let intervalID = setInterval(function() {
-        interactivityTest(intervalID);
-    }, 3000);
+    // let intervalID = setInterval(function() {
+    //     interactivityTest(intervalID);
+    // }, 3000);
 });
